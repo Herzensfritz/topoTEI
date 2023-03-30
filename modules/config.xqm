@@ -12,6 +12,7 @@ import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 
 declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace expath="http://expath.org/ns/pkg";
+import module namespace console="http://exist-db.org/xquery/console";
 (:
     Determine the application root collection from the current module load path.
 :)
@@ -63,6 +64,14 @@ declare function config:expath-descriptor() as element(expath:package) {
 
 declare %templates:wrap function config:app-title($node as node(), $model as map(*)) as text() {
     $config:expath-descriptor/expath:title/text()
+};
+declare %templates:wrap function config:app-version($node as node(), $model as map(*)) as xs:string* {
+    "Version " || $config:expath-descriptor/@version
+};
+declare function config:app-home($node as node(), $model as map(*)) as node() {
+    <a title="{$config:repo-descriptor//repo:description/text()}" class="{$node/@class}" href="{$node/@href}">{
+    $config:expath-descriptor/expath:title/text()
+    }</a>
 };
 
 declare function config:app-meta($node as node(), $model as map(*)) as element()* {

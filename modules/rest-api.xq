@@ -58,7 +58,7 @@ function myrest:transform($file as xs:string*) {
 };
 declare function local:storeFile($data, $type as xs:string, $targetType as xs:string) as map(*) {
     let $collection := concat($config:data-root, "/")
-    let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+    let $output-collection := xmldb:login($collection, 'test', 'test')
     
     let $parsedData := myparsedata:parseXMLData($data, $type, $targetType)
     return if (map:contains($parsedData, $targetType)) then (
@@ -87,7 +87,7 @@ declare
  %rest:query-param("file", "{$file}", "none")
 function myrest:revertVersion($file) {
     let $collection := concat($config:data-root, '/')
-    let $output-collection := xmldb:login($collection, 'myrest', 'myrest') 
+    let $output-collection := xmldb:login($collection, 'test', 'test') 
     let $originalFile := concat(substring-after(substring-before($file, '.xml_'), 'bak/'), '.xml')
     let $log := console:log($file)
     let $bakfile := local:backupFile($originalFile, $collection )
@@ -114,7 +114,7 @@ function myrest:deleteBakFile($file) {
     ) else (
         let $originalFile := concat(substring-after(substring-before($file, '.xml_'), 'bak/'), '.xml') 
         let $collection := concat($config:data-root, '/bak/')
-        let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+        let $output-collection := xmldb:login($collection, 'test', 'test')
         let $deleted := xmldb:remove($collection, $file)
         return $originalFile
     )
@@ -130,7 +130,7 @@ function myrest:deleteBakFile($file) {
 };
 
 declare function local:deleteAllVersions($file, $collection) {
-    let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+    let $output-collection := xmldb:login($collection, 'test', 'test')
     let $bakDir := concat($collection, 'bak/')
     let $output := for $bakFile in local:getVersions($file)
                             return  xmldb:remove($bakDir, $bakFile)
@@ -152,7 +152,7 @@ declare
  %rest:header-param("Referer", "{$referer}", "none")
 function myrest:deleteFile($file, $referer) {
         let $collection := concat($config:data-root, '/')
-        let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+        let $output-collection := xmldb:login($collection, 'test', 'test')
         let $deleted := xmldb:remove($collection, $file)
         let $output := local:deleteAllVersions($file, $collection)
       return
@@ -162,7 +162,7 @@ function myrest:deleteFile($file, $referer) {
             <http:header name="Pragma" value="no-cache"/>
             <http:header name="Expires" value="0"/>
             <http:header name="X-XQuery-Cached" value="false"/>
-             <http:header name="location" value="{$referer}"/>
+             <http:header name="location" value="{$referer}#reload"/>
       
         </http:response>
     </rest:response> 
@@ -268,7 +268,7 @@ declare function local:getBackupFileName($file as xs:string) as xs:string {
     return string($fileName)
 };
 declare function local:backupFile($file as xs:string*, $collection as xs:string*) as xs:string* {
-   let $output-collection := xmldb:login($collection, 'myrest', 'myrest') 
+   let $output-collection := xmldb:login($collection, 'test', 'test') 
    return if (doc(concat($collection, $file))) then (
       let $backup-collection := local:createCollection($collection, "bak")
       let $backup := xmldb:store($backup-collection, local:getBackupFileName($file), doc(concat($collection, $file)))
@@ -304,7 +304,7 @@ declare
  %rest:header-param("Referer", "{$referer}", "none")
 function myrest:uploadFile($data, $type, $referer as xs:string*) {
     let $collection := concat($config:data-root, "/data/")
-    let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+    let $output-collection := xmldb:login($collection, 'test', 'test')
     let $boundary := substring-after($type, "boundary=")
     let $content := substring-before(substring-after($data, $boundary), concat("--", $boundary))
     let $header := local:parseHeader($data, $boundary)
@@ -334,7 +334,7 @@ declare function local:update($item, $document){
 declare function local:updateFile($file as xs:string, $elements as xs:string*) as xs:string* {
      let $array := parse-json($elements)
      let $collection := concat($config:data-root, "/")
-     let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+     let $output-collection := xmldb:login($collection, 'test', 'test')
      let $backup := local:backupFile($file, $collection)
      let $document := doc(concat($collection, $file))
      for $index in 1 to array:size($array)
@@ -346,7 +346,7 @@ declare function local:processConfig($configuration as xs:string*) as xs:integer
     let $configArray := parse-json($configuration)
     let $collection := replace($config:data-root, "data", "config/")
    
-   let $output-collection := xmldb:login($collection, 'myrest', 'myrest')
+   let $output-collection := xmldb:login($collection, 'test', 'test')
    let $document := doc(concat($collection, "gui_config.xml"))
    for $index in 1 to array:size($configArray)
         let $item := array:get($configArray, $index) 

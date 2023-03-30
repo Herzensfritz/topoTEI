@@ -4,6 +4,11 @@ module namespace myparsedata="http://exist-db.org/apps/myapp/myparsedata";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 import module namespace console="http://exist-db.org/xquery/console";
 
+declare function local:getFileName($keyValue) as map(*)*{
+    let $filename := replace(replace($keyValue[2], '"', ''), '(\s)', '_')
+    return map { 'filename': $filename }
+};
+
 declare function myparsedata:parseHeader($data as xs:string, $type as xs:string) as map(*) {
     let $boundary := substring-after($type, "boundary=")
     let $head := replace(substring-before(substring-after($data, $boundary), "Content-Type:"),  '(\r?\n|\r)', '')
@@ -12,13 +17,14 @@ declare function myparsedata:parseHeader($data as xs:string, $type as xs:string)
     let $header := map:merge(
     for $item in tokenize($full-header, ";")
        return  if (contains($item, '="')) then (
-            let $keyValue := tokenize($item, "=")
-            let $out := map { replace($keyValue[1], '(^\s)', '') : replace($keyValue[2], '"', '') }
-            return $out
+                let $keyValue := tokenize($item, "=")
+                return if (contains($item, 'filename')) 
+                       then (local:getFileName($keyValue)) 
+                       else (map { replace($keyValue[1], '(^\s)', '') : replace($keyValue[2], '"', '') })
             ) else (
-            let $keyValue := tokenize($item, ": ")    
-            let $out := map { $keyValue[1] : replace($keyValue[2], '"', '') }
-            return $out
+                let $keyValue := tokenize($item, ": ")    
+                let $out := map { $keyValue[1] : replace($keyValue[2], '"', '') }
+                return $out
             )
     )
     return $header
@@ -34,6 +40,7 @@ declare function myparsedata:parseContent($data as xs:string, $header as map(*))
 
 declare function myparsedata:parseXMLData($data as xs:string, $type as xs:string, $targetType as xs:string) as map(*)* {
     let $header := myparsedata:parseHeader($data, $type)
+    let $out := console:log($header)
     return if ($header("content-type") = $targetType) then (
         let $content := myparsedata:parseContent($data, $header)
         return map:merge(($header, map { $targetType : $content, 'status': '200' }))
