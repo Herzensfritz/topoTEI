@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <param name="offset">2</param>
+    <param name="modOffset">20</param>
+    <param name="toggleOffset">20</param>
+</config>

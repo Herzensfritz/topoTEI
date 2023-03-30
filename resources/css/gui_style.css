@@ -1,0 +1,154 @@
+#input { position: fixed; left: 70%;}
+form { margin-top: 2px;}
+#message { color: red;}
+#transkription { background-color: #CED5CE; padding-right: 20px; padding-left: 5px; padding-top: 10px; padding-bottom: 10px;margin-left: 30px; width: max-content;}
+.EOL { color: red;}
+.XXX_red { color: #dc4731;}
+.N-Archiv_red { color: #b8390e;font-face: bold;}
+.N_brown1 { color: #5C4033;}
+span[draggable] { cursor: grab; }
+.deleted-N_brown1 { cursor: context-menu; 
+	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='%235C4033' stroke-dasharray='0.1 0.2 0.1 0.2' d='M1,1 1500,1500'/></svg>") repeat; }
+.GSA_pencil { color: #6b6b6b;font-family: cursive;} 
+
+        .fw-container { margin-left: 30px; width: 90%; display: inline-block;}
+        .top-left { text-align: left }
+        .bottom-left { text-align: left }
+        .top-right { margin-left: 60%; }
+        .insertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
+        .Ezinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
+         .Ezinsertion-above:before { 
+           position: absolute;
+           content: "";
+           left: -2px;
+           height: inherit;
+           width: var(--length);
+           top: -3px;
+           border-top: 1px solid;
+           border-left: 1px solid;
+           border-top-left-radius: var(--radius);
+           border-color: inherit;/* inherit color from text */
+        }
+
+        .below { 
+           position: absolute;
+           top: 1.8em;
+           font-size:80%;
+           width: max-content;
+           line-height: 1em;
+            transition: color 1s;
+            
+        }
+        .above  {
+            position: absolute;
+            top: -1.5em;
+            font-size:80%;
+            width: max-content;
+            line-height: 1em;
+            /*height: max-content;*/
+            transition: color 1s;
+        }
+        .centerLeft {
+            transform: translateX(-30%);
+        }
+        span.content  .Ezinsertion-above:-moz-first-node  .above   { background: red;} 
+        .above2 { position:relative;top: -2.8em; left: -2em;font-size:80%;}
+        .insert-mark-above, .insert-mark-below{ position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
+        :root {
+            --radius: 2em 2em;
+            --length: 1em;
+        }
+        .insertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
+        .Ezinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
+        .Ezinsertion-below:before { 
+           position: absolute;
+           content: "";
+           left: 20%;
+           width: var(--length);
+           height: inherit;
+           top: 2px;
+           border-bottom: 1px solid;
+           border-left: 0.5px solid;
+           border-bottom-left-radius:  var(--radius);
+           border-color: inherit;
+        }
+                .addSpan { font-size:90%;}
+	.box { cursor: context-menu; background-color: #F5F5F5;}
+	.fw-box { cursor: context-menu; background-color: #add8e6;}
+        .erased { color: grey;}
+        .inline { font-size:80%;}
+        .overwritten { text-decoration: line-through; color: red;}
+        .superimposed { color: green;}
+        .deleted { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
+        .red-deleted { cursor: context-menu; 
+	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='red' stroke-dasharray='1.2 1.8 1.2' d='M1,1 1500,1500'/></svg>") repeat; }
+        .hex-deleted { background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='240' stroke='%23750606' stroke-dasharray='1' d='M1,1 150,150'/></svg>") repeat; }
+        .new-deleted { background:url("https://upload.wikimedia.org/wikipedia/commons/7/73/Schraffur_fein_diagonal_hoch.svg") repeat; }
+        .strikethrough1 { text-decoration: line-through; }
+        .strikethrough2 { text-decoration: line-through; }
+        .overwritten-punctuation { position: relative; color: red; }
+        .overwritten-punctuation:before {
+           position: absolute;
+           content: "";
+           left: 0;
+           top: 65%;
+           right: 0;
+           border-top: 1px solid;
+           border-color: inherit;
+
+           -webkit-transform:rotate(12deg);
+           -moz-transform:rotate(12deg);
+           -ms-transform:rotate(12deg);
+           -o-transform:rotate(12deg);
+           transform:rotate(12deg);
+         }
+
+        .strikethrough-apastrophe { position: relative; }
+        .strikethrough-apastrophe:before {
+           position: absolute;
+           content: "";
+           left: 0;
+           top: 25%;
+           right: 0;
+           border-top: 1px solid;
+           border-color: inherit;
+
+           -webkit-transform:rotate(-7deg);
+           -moz-transform:rotate(-7deg);
+           -ms-transform:rotate(-7deg);
+           -o-transform:rotate(-7deg);
+           transform:rotate(-7deg);
+         }
+
+        .deleted-underline { text-decoration: underline; position: relative; }
+        .deleted-underline:before {
+           position: absolute;
+           content: "";
+           left: 0;
+           top: 85%;
+           right: 0;
+           border-top: 1px solid;
+           border-color: inherit;
+
+           -webkit-transform:rotate(-5deg);
+           -moz-transform:rotate(-5deg);
+           -ms-transform:rotate(-5deg);
+           -o-transform:rotate(-5deg);
+           transform:rotate(-5deg);
+         }
+         .del-linearisiert:before { content: '['; }
+         .del-linearisiert:after { content: ']'; }
+        .underline { text-decoration: underline;  }
+        .above-linearisiert:before { content: '\2308'; }
+        .above-linearisiert:after { content: '\2309'; }
+         .below-linearisiert:before { content: '\230A'; }
+         .below-linearisiert:after { content: '\230B'; }
+        span.lnr { position:relative; left: -30px;font-style: italic; color: blue;margin-right: 20px;font-size: 80%; cursor: pointer;}
+        span.nolnr { margin-left: 40px;}
+        div.line { line-height: 3.0em;  }
+        .flushRight { margin-left: 65%; }
+         .flushMiniRight { margin-left: 10%; }
+        span.line:after { content: '\00B6' }
+        .old-insert-mark:before { content: '\23DF';}
+        .head { margin-left: 20%; display: inline-block; }
+        .latin { font-family: Arial, Helvetica, sans-serif;}

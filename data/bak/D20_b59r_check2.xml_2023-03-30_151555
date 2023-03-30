@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" version="4.1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+          <title>b59r</title>
+         </titleStmt>
+         <publicationStmt/>
+            <sourceDesc/>
+        </fileDesc>
+   </teiHeader>
+   <text>
+      <body>
+         <div1>
+                <pb xml:id="b59r" corresp="#msDesc_b59rv" facs="#D-20b_58"/>
+            <fw type="pageNumber" place="top-left" hand="#N_pencil">59</fw>
+            <fw type="pageNumber" place="top-right" hand="#N-Archiv_red">
+                    <del rend="erased">94</del>
+                </fw>
+            <fw type="folNumber" place="bottom-left" hand="#GSA_pencil">58</fw>
+            <div2 xml:id="GM0325">
+               <p spanTo="#HIERARCHY-d2e37"/>
+               <lb n="2" resp="#knister0" xml:id="TEMPORARY_ID_d2e40"/>Abzeichen des mühsameren Stoffwechsels, des ringenden, schwerer arbeitenden Lebens.) Man 
+               <lb n="4" resp="#knister0" xml:id="TEMPORARY_ID_d2e42"/>sehe sich die Zeiten eines Volkes an, in denen der Gelehrte <subst seq="1">
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e45">in den</add>
+                        <del>im</del>
+                    </subst> Vordergrund<del seq="1">e</del> <subst seq="1">
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e53">tritt</add>
+                        <del>steht</del>
+                    </subst>: es 
+               <lb n="6" resp="#knister0" xml:id="TEMPORARY_ID_d2e58"/>sind Zeiten der Ermüdung, oft des Abends, des Niederganges, – die überströmende <subst spanTo="#HIERARCHY-d2e60" instant="true" change="version0"/>
+                    <add place="above" resp="#knister0" xml:id="TEMPORARY_ID_d2e61">Kraft,</add>
+                    <delSpan spanTo="#TRANSFORM-d2e63"/>Ge<pc force="weak">-</pc> 
+                  <lb n="8" resp="#knister0" xml:id="TEMPORARY_ID_d2e68"/>wiß<anchor xml:id="TRANSFORM-d2e63"/>
+                    <anchor xml:id="HIERARCHY-d2e60"/>, die Lebens-Gewißheit, <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e71">die</add> <hi rend="underline">Zukunfts</hi>-Gewißheit sind dahin. Das Übergewicht des Manda<pc force="weak">-</pc>
+               <lb n="10" resp="#knister0" xml:id="TEMPORARY_ID_d2e80"/>rinen bedeutet niemals etwas Gutes: so wenig als die Heraufkunft der Demokratie, 
+               <lb n="12" resp="#knister0" xml:id="TEMPORARY_ID_d2e83"/>der Friedens-Schiedsgerichte an Stelle der Kriege, <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e85">der Frauen-Gleichberechtigung,</add> der Religion des Mitleids und was 
+               <lb n="14" resp="#knister0" xml:id="TEMPORARY_ID_d2e88"/>es <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e90">sonst</add> Alles für Symptome des absinkenden Lebens <del instant="true">*so</del> giebt. <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e96">(Wissenschaft als Problem gefaßt; was bedeutet Wissenschaft? – vergl. darüber die Vorrede zur „<hi rend="latin">Geburt der Tragödie</hi>“)</add> – Nein! diese „moderne 
+               <lb n="16" resp="#knister0" xml:id="TEMPORARY_ID_d2e103"/>Wissenschaft“ – macht euch <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e105">nur</add> dafür die Augen auf! – ist <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e108">einstweilen</add> die <hi rend="underline">beste</hi> Bundesgenossin des aske<pc force="weak">-</pc>
+               <lb n="18" resp="#knister0" xml:id="TEMPORARY_ID_d2e117"/>tischen Ideals, und gerade deshalb, weil sie die unbewußteste, die unfreiwilligste, die 
+               <lb n="20" resp="#knister0" xml:id="TEMPORARY_ID_d2e120"/>heimlichste und unterirdisch<choice>
+                        <sic>e</sic>
+                        <corr/>
+                    </choice>ste ist! Sie haben bis jetzt Ein Spiel gespielt, die „Armen 
+               <lb n="22" resp="#knister0" xml:id="TEMPORARY_ID_d2e126"/>des Geistes“ und die wissenschaftlichen <subst>
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e129">Widersacher</add>
+                        <del>Gegner</del>
+                    </subst> jenes Ideals (<subst spanTo="#HIERARCHY-d2e133"/>
+                    <add seq="1" place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e134">man hüte sich <add seq="2" place="below" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e136">anbei gesagt,</add> zu denken, daß sie deren Gegen<pc force="weak">-</pc>
+                    </add>
+                    <del seq="1">ich hüte mich zu sagen, daß sie</del> 
+                  <lb n="24" resp="#knister0" xml:id="TEMPORARY_ID_d2e144"/>
+                    <add seq="1" place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e145">satz seien, etwa als </add>
+                    <anchor xml:id="HIERARCHY-d2e133"/>die <hi rend="underline">Reichen</hi> des Geistes<add seq="3" place="inline" resp="#knister0" xml:id="TEMPORARY_ID_d2e152"> –</add>
+                    <del>, die „Geistreichen“</del>
+                    <subst>
+                        <add seq="1" place="inline" resp="#knister0" xml:id="TEMPORARY_ID_d2e156">
+                            <del seq="3">*…</del>
+                        </add>
+                        <del seq="1">seien…</del>
+                    </subst>
+                    <del seq="3">)</del>
+                    <add seq="3" place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e163"> das sind sie <hi rend="underline">nicht</hi>, ich nannte sie Hektiker des Geistes)</add>. <subst seq="4">
+                        <del>Man sehe sich</del> <del rend="overwritten">d</del>
+                        <add place="superimposed" resp="#knister0" xml:id="TEMPORARY_ID_d2e174">D</add>
+                    </subst>iese <subst seq="4">
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e178">berühmten</add>
+                        <del>angeblichen</del>
+                    </subst> <hi rend="underline">Siege</hi> 
+               <lb n="26" resp="#knister0" xml:id="TEMPORARY_ID_d2e188"/>der letzteren<subst seq="4">
+                        <add place="inline" resp="#knister0" xml:id="TEMPORARY_ID_d2e191">:</add> <del>doch aus der Nähe an:</del> <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e196">unzweifelhaft,</add>
+                    </subst> es sind Siege – aber worüber? Das asketische I<pc force="weak">-</pc>
+               <lb n="28" resp="#knister0" xml:id="TEMPORARY_ID_d2e202"/>deal <subst seq="1">
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e205">wurde</add>
+                        <del>ist</del>
+                    </subst> ganz und gar nicht in ihnen besiegt, es <subst seq="1">
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e210">wurde</add>
+                        <del>ist</del>
+                    </subst> eher damit stärker, nämlich unfaßlicher, 
+               <lb n="30" resp="#knister0" xml:id="TEMPORARY_ID_d2e215"/>geistiger, verfänglicher gemacht, daß immer wieder eine Mauer, ein Außenwerk, das sich an 
+               <lb n="32" resp="#knister0" xml:id="TEMPORARY_ID_d2e217"/>dasselbe angebaut hatte und seinen Aspekt <hi rend="underline">vergröberte</hi>, seitens der Wissenschaft schonungs<pc force="weak">-</pc>
+               <lb n="34" resp="#knister0" xml:id="TEMPORARY_ID_d2e225"/>los abgelöst, abgebrochen <subst seq="1">
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e228">worden ist.</add>
+                        <del>wird</del>
+                    </subst>. Meint man in der That, daß <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e233">etwa</add> die Niederlage der theologi<pc force="weak">-</pc>
+               <lb n="36" resp="#knister0" xml:id="TEMPORARY_ID_d2e239"/>schen Astronomie eine Niederlage jenes Ideals bedeute?… Ist damit vielleicht der Mensch 
+               <lb n="38" resp="#knister0" xml:id="TEMPORARY_ID_d2e241"/>
+                    <hi rend="underline">weniger bedürftig</hi> nach einer Jenseitigkeits-Lösung seines Räthsels von Dasein gewor<pc force="weak">-</pc>
+               <lb n="40" resp="#knister0" xml:id="TEMPORARY_ID_d2e249"/>den, daß dieses Dasein sich seitdem noch beliebiger, eckensteherischer, entbehrlicher in 
+               <lb n="42" resp="#knister0" xml:id="TEMPORARY_ID_d2e251"/>der <hi rend="underline">sichtbaren</hi> Ordnung der Dinge ausnimmt? Ist nicht gerade die Selbstverkleinerung 
+               <lb n="44" resp="#knister0" xml:id="TEMPORARY_ID_d2e256"/>des Menschen, sein <hi rend="underline">Wille</hi> zur Selbstverkleinerung <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e261">seit Kopernikus</add> in einem unaufhaltsamen Fortschritte? 
+               <lb n="46" resp="#knister0" xml:id="TEMPORARY_ID_d2e265"/>Ach, der Glaube an seine Würde, Einzigkeit<add place="inline" resp="#knister0" xml:id="TEMPORARY_ID_d2e267">,</add>
+                    <del rend="strikethrough2">,</del> Unersetzlichkeit in der Rangabfolge der We<pc force="weak">-</pc>
+               <lb n="48" resp="#knister0" xml:id="TEMPORARY_ID_d2e275"/>sen ist dahin, – er ist <hi rend="underline">Thier</hi> geworden, <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e281">Thier, ohne Gleichniß<add place="above l" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e283">, Abzug</add> und Vorbehalt,</add> er, der in <subst>
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e288">seinem</add>
+                        <del>einem</del>
+                    </subst> früheren <subst>
+                        <del>Falle</del>
+                        <add place="above" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e294">Glauben beinahe</add>
+                    </subst> Gott <add place="below" rend="Ez" resp="#knister0" xml:id="TEMPORARY_ID_d2e297">(„Kind Gottes“, „Gottmensch“)</add> war… 
+            <anchor xml:id="HIERARCHY-d2e37"/>
+                </div2>
+            </div1>
+        </body>
+   </text>
+</TEI>

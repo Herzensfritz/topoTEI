@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <meta http-equiv="Expires" content="Sat, 12 Oct 1991 05:00:00 GMT"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="shortcut icon" href="../apps/topoTEI/resources/images/exist_icon_16x16.ico"/>
+    <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/exist-2.2.css"/>
+    <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/gui_style.css"/>
+  <!-- <script type="text/javascript" src="../apps/topoTEI/resources/scripts/bootstrap.bundle.min.js"/>-->
+    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
+    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/gui_transcription.js"/>
+</head>
+<body id="grey-top" onload="updatePositions()">
+<div class="grey-bot">
+    <div class="container" id="main-container">
+        <div class="row">
+            <div class="col-md-12" id="header">
+                <a href="../apps/topoTEI/" id="logo">eXistDB</a>
+            </div>
+        </div>
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-navbar" role="navigation">
+                <div class="container-fluid g-0">
+                   <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a id="homeButton" class="nav-link active" aria-current="page" href="../apps/topoTEI/index.html#reload">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="undoButton" class="nav-link" onClick="undo()" disabled="true">Undo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="redoButton" class="nav-link" onClick="redo()" disabled="true">Redo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="saveButton" class="nav-link" onClick="myPost(this)" disabled="true">Speichern</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="editButton" class="nav-link active" title="Quelldatei in eXide öffnen" onClick="openFile(this)">Edit</a>
+                            </li>
+                             <li class="nav-item">
+                                <a id="exportButton" class="nav-link active" title="Quelldatei exportieren" onClick="downloadFile(this)">Export</a>
+                            </li>
+                             <li class="nav-item">
+                                <a id="versionButton" class="nav-link active" title="Versionen verwalten" onClick="checkVersions(this)">Versionen</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link active" onClick="toggleConfig()">Konfiguration</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link active" onClick="test()">Test</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="content" class="row" style="padding-top: 4.5rem">
+            <div data-template="app:hiddenData"/>
+            <div data-template="app:createConfig"/>
+            <div data-template="app:lineInput"/>
+             <div data-template="app:versions"/>
+            <div data-template="app:transform"/>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="text-end">
+    <a id="poweredby" href="http://exist-db.org"/>
+    </div>
+    <div id="footer">
+        <ul>
+            <li>
+                <a href="http://exist-db.org">eXist-db.org</a>
+            </li>
+        </ul>
+        <div id="copyright">
+            <p>Copyright eXist-db Project 2013</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <param label="Offset" name="offset">1</param>
+    <param label="Ctrl/Shift Offset" name="modOffset">10</param>
+    <param label="Up/Down Offset" name="toggleOffset">10</param>
+</config>

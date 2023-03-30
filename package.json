@@ -1,0 +1,40 @@
+{
+  "name": "exist_test",
+  "version": "1.0.0",
+  "description": "My amazing exist_test application",
+  "homepage": "",
+  "bugs": "",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "exist",
+    "exist-db",
+    "xml",
+    "xql",
+    "xquery"
+  ],
+  "author": {
+    "name": "Christian Steiner",
+    "email": "christian.steiner@unibas.ch"
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "test": "mocha test/mocha/ --recursive --exit && mocha test/xqs/*.js",
+    "cypress": "cypress run"
+  },
+  "repository": "",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "chai-xml": "^0.4.0",
+    "cypress": "^12.3.0",
+    "fs-extra": "^10.1.0",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3",
+    "xmldoc": "^1.2.0",
+    "yeoman-assert": "^3.1.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3"
+  }
+}

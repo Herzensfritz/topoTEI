@@ -1,0 +1,47 @@
+/*Application styles could go here */
+.data {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-color: red;
+}
+.datacontainer {
+    position: relative;
+    color: blue;
+    background: green;
+    height: 400px;
+}
+.mydivheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #2196F3;
+  color: #fff;
+}
+.fixed-navbar {
+    position: fixed;
+}
+.selected {
+    background-color: yellow;
+}
+.input {
+    position: fixed;
+    left : 10px;
+    visibility: hidden;
+}
+.active {
+    cursor: pointer;
+}
+.fbutton {
+    margin: 3px;
+}
+label.config {
+    width: 150px;
+}
+#versions {
+    height: 200px;
+    width: 350px;
+    overflow: scroll;
+}
