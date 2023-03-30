@@ -39,6 +39,32 @@
          </xsl:for-each>
       </xsl:element>
    </xsl:template>
+   <xsl:template name="all">
+      <xsl:param name="nodes"/>
+      <xsl:for-each select="$nodes">
+               <xsl:copy-of select="."/>
+      </xsl:for-each>
+   </xsl:template>
+
+   <xsl:template match="tei:hi[tei:lb]|tei:del[tei:lb]">
+      <xsl:element name="{name()}">
+         <xsl:for-each select="@*">
+            <xsl:attribute name="{name()}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+         </xsl:for-each>
+         <xsl:copy-of select="child::*[not(local-name() = 'lb') and following-sibling::tei:lb]|text()[following-sibling::tei:lb]"/>
+      </xsl:element>
+      <xsl:apply-templates select="child::tei:lb"/>
+      <xsl:element name="{name()}">
+      <xsl:for-each select="@*">
+            <xsl:attribute name="{name()}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+         </xsl:for-each>
+         <xsl:copy-of select="child::*[not(local-name() = 'lb') and preceding-sibling::tei:lb]|text()[preceding-sibling::tei:lb]"/>
+      </xsl:element>
+   </xsl:template>
    <xsl:template match="tei:seg[tei:lb]|tei:subst[tei:lb]|tei:subst[child::*/tei:lb]|tei:addSpan[not(@spanTo)]">
       <xsl:variable name="TO" select="concat('HIERARCHY-', generate-id())"/>
       <xsl:element name="{name()}">
@@ -58,7 +84,7 @@
             </xsl:attribute>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="tei:del[tei:lb]|tei:add[tei:lb]">
+   <xsl:template match="tei:add[tei:lb]">
       <xsl:variable name="TO" select="concat('TRANSFORM-', generate-id())"/>
       <xsl:element name="{concat(name(),'Span')}">
          <xsl:attribute name="spanTo">
