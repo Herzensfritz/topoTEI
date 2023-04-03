@@ -25,20 +25,19 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare
      %templates:wrap
 function app:uploadDialog($node as node(), $model as map(*)) {
-       let $files :=  local:getTeiFiles()
-    
+    let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
                  <form action="/exist/restxq/transform" method="get">
-                <label for="file">File:</label>
+                
                  <select id="fileSelection" name="file" onChange="enableVersionButton(file.value, 'versionButton')">
                     {for $resource in $files
                         return <option>  {$resource}</option>
                     }</select>
                 <input type="submit" value="auswählen"/>
-               
+              <input id="newest" class="newest" type="checkbox" onChange="updateOrderBy(this)"/><label class="newest" for="newest"> Neueste zuerst</label>
             </form> 
             
              <span>
@@ -66,8 +65,9 @@ function app:uploadDialog($node as node(), $model as map(*)) {
 
 declare 
      %templates:wrap
-function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?) as map(*) {
-    let $default := map {}
+function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?, $newest as xs:string?) as map(*) {
+    let $default := map { "newest-first": ($newest = 'true' or empty($newest))}
+    let $log := console:log($default)
     return if ($msg) then (
         switch($msg)
             case ("422") return map { "error": "Falscher Dateityp" }
@@ -85,11 +85,19 @@ declare function app:title($node as node(), $model as map(*)) as element(h1) {
         <h1>{$msg}</h1>
     )
 };
-declare function local:getTeiFiles() as xs:string* {
-    for $resource in xmldb:get-child-resources($config:data-root)
+declare function local:getTeiFiles($newest as xs:boolean) as xs:string* {
+    if ($newest) then (
+        for $resource in xmldb:get-child-resources($config:data-root)
                         where local:isTeiFile(doc(concat($config:data-root, '/', $resource)))
+                        
                         order by xmldb:last-modified($config:data-root, $resource) descending
                         return $resource
+    ) else (
+        for $resource in xmldb:get-child-resources($config:data-root)
+                        where local:isTeiFile(doc(concat($config:data-root, '/', $resource)))
+                        order by $resource
+                        return $resource
+    )
                         
 };
 declare function local:isTeiFile($document as node()) {

@@ -182,16 +182,16 @@
         <xsl:variable name="top" select="if (contains(substring-after($style, 'top:'), ';')) then (substring-before(substring-after($style, 'top:'), ';')) else (substring-after($style, 'top:'))"/>
         <xsl:variable name="height" select="if (contains(substring-after($style, 'height:'), ';')) then (substring-before(substring-after($style, 'height:'), ';')) else (substring-after($style, 'height:'))"/>
         <xsl:choose>
-            <xsl:when test="$place = 'above' and $target = 'parent'">
+            <xsl:when test="contains($place,'above') and $target = 'parent'">
                 <xsl:value-of select="concat('top:',$top, ';', 'height:', $height, ';')"/>        
             </xsl:when>
-            <xsl:when test="$place = 'above' and $target = 'child'">
+            <xsl:when test="contains($place,'above') and $target = 'child'">
                 <xsl:value-of select="concat('left:',$left, ';')"/>        
             </xsl:when>
-             <xsl:when test="$place = 'below' and $target = 'parent'">
+             <xsl:when test="contains($place,'below') and $target = 'parent'">
                 <xsl:value-of select="concat('height:', $height, ';')"/>        
             </xsl:when>
-             <xsl:when test="$place = 'below' and $target = 'child'">
+             <xsl:when test="contains($place,'below') and $target = 'child'">
                 <xsl:value-of select="concat('left:',$left, ';', 'top:', $top,';')"/>        
             </xsl:when>
         </xsl:choose>

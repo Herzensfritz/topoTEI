@@ -1,6 +1,7 @@
 /** 
 **/
 var runsOnBakFile = false;
+var NEWEST = "newest";
 var FILENAME = 'filename';
 var COLLECTION = 'collection';
 var DOWNLOAD_LINK = 'downloadLink';
@@ -14,6 +15,10 @@ function test (){
     tester.forEach(test =>{
         console.log(document.getElementById(test))    
 });
+}
+function updateOrderBy(checkbox){
+    location.href = (location.search) ? location.href.substring(0, location.href.indexOf('?')) + '?newest=' + String(checkbox.checked) : location.href + '?newest=' + String(checkbox.checked);
+     
 }
 function revertVersion(){
     let form = document.getElementById(VERSIONS);
@@ -490,6 +495,18 @@ window.addEventListener("load", (event) => {
       let button = document.getElementById('versionButton')
       checkVersions(button);
       setDisabledStatus(button, true);
+  }
+  let newest = document.getElementById(NEWEST);
+  if (newest){
+      
+    let checkNewest = (location.search && location.search.includes('newest=')) ? location.search.includes('newest=true') : true;  
+    //newest.style.setProperty('checked', String(checkNewest));
+    if (checkNewest) {
+        newest.setAttribute('checked', 'true');
+    } else {
+        newest.removeAttribute('checked');    
+    }
+    console.log('checked', String(checkNewest));
   }
 });
 document.addEventListener("visibilitychange", (event) =>{

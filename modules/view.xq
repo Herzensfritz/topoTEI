@@ -34,8 +34,7 @@ let $config := map {
  : below does see them.
  :)
 let $lookup := function ($functionName as xs:string, $arity as xs:int) {
-    let $log := console:log($functionName)
-    return try {
+    try {
         function-lookup(xs:QName($functionName), $arity)
     } catch * {
         ()

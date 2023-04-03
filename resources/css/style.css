@@ -45,3 +45,6 @@ label.config {
     width: 350px;
     overflow: scroll;
 }
+.newest {
+    margin-left: 5px;
+}
