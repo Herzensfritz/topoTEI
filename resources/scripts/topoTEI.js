@@ -176,6 +176,7 @@ class LineChange {
 
 window.onload = function() {
     if(window.location.hash == '#reload') {
+        console.log('reloading .........')
         history.replaceState(null, null, ' ');
         window.location.reload(true);
     }
@@ -252,15 +253,32 @@ function toggleConfig(){
 function createConfigObject(object){
     return { name: object.id, value: String(object.value)}    
 }
-function saveConfig(dataNameArray) {
+function updateFont(font) {
+    console.log(font)
+    let xhr = new XMLHttpRequest()
+    xhr.open('POST', "/exist/restxq/font", true)
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    xhr.send('font=' + font);
+    xhr.onload = function () {
+        //TODO
+    }
+  
+}
+function saveConfig(fontId, dataNameArray) {
+    let fontSelector = document.getElementById(fontId);
+    let font = fontSelector.options[fontSelector.selectedIndex].text;
    let configData = dataNameArray.map(id =>createConfigObject(document.getElementById(id)));
-    let jsonData = JSON.stringify(configData);
+    let data = { font: font, config: configData }
+    let jsonData = JSON.stringify(data);
     console.log(jsonData)
     let xhr = new XMLHttpRequest()
     xhr.open('POST', "/exist/restxq/config", true)
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xhr.send('configuration=' + jsonData);
     xhr.onload = function () {
+        if(this.status == '205'){
+            window.location.reload(true);    
+        }
         toggleConfig();
     }
   

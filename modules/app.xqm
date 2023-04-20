@@ -10,6 +10,7 @@ xquery version "3.1";
 (: Module for app-specific template functions :)
 module namespace app="http://exist-db.org/apps/topoTEI/templates";
 declare namespace array="http://www.w3.org/2005/xpath-functions/array";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 import module namespace config="http://exist-db.org/apps/topoTEI/config" at "config.xqm";
@@ -50,10 +51,12 @@ function app:uploadDialog($node as node(), $model as map(*)) {
           
           <div class="col-md-6">
               <form method="POST" action="/exist/restxq/posttransform" enctype="multipart/form-data">
+                  
                   <input type="file" name="content" accept=".xml"/>
                   <input type="submit" value="upload"/>
                 </form>
           </div>
+           
           <div>{ if(count($files) > 0) 
                     then (<a hidden="true" id="downloadLink" href="/exist/restxq/download?file={$files[1]}" download="{$files[1]}">Download</a>) 
                     else ()
@@ -62,16 +65,34 @@ function app:uploadDialog($node as node(), $model as map(*)) {
          
       </p>
 };
+declare 
+     %templates:wrap
+function app:fontUpload($node as node(), $model as map(*)){
+    <p>
+        <h2>Schrift hochladen</h2>
+        <div class="col-md-6">
+              <form method="POST" action="/exist/restxq/postfont" enctype="multipart/form-data">
+                  <input type="file" name="content"/>
+                  <input type="submit" value="upload"/>
+                </form>
+                
+            { if ($model('status') = '200') then (
+                    <div>Schrift gespeichert</div>
+                ) else ()
+                
+            }
+          </div>
+    </p>
+};
 
 declare 
      %templates:wrap
 function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?, $newest as xs:string?) as map(*) {
     let $default := map { "newest-first": ($newest = 'true' or empty($newest))}
-    let $log := console:log($default)
     return if ($msg) then (
         switch($msg)
             case ("422") return map { "error": "Falscher Dateityp" }
-            default return map { 'error': "Unspezifische Fehler"}
+            default return map:merge(($default, map { 'status' : $msg }))
     ) else (
         $default
     )
@@ -167,23 +188,75 @@ declare function app:hiddenData($node as node(), $model as map(*)) as element(di
        <a hidden="true" id="downloadLink" href="/exist/restxq/download?file={$filename}" download="{$filename}">Download</a>
     </div> 
 };
-
+declare function local:createFontFaces($current_font as xs:string?) as element(option)* {
+    let $fontDir := concat(replace($config:data-root, "data", "resources/"), 'fonts/')
+    return if (xmldb:collection-available($fontDir)) then (
+        for $fontFile in xmldb:get-child-resources($fontDir)
+            order by xmldb:last-modified($fontDir, $fontFile) descending
+            return if ($fontFile = $current_font) then (
+                <option selected="true">{$fontFile}</option>
+                ) else (
+                <option>{$fontFile}</option>    
+                )
+    ) else ()
+};
+declare function local:createWebFonts($document) as element(option)* {
+    for $localFont in $document/config/fonts/webfont/text()
+            return if ($localFont = $document/config/fonts/current/text()) then (
+                <option selected="true">{$localFont}</option>
+                ) else (
+                <option>{$localFont}</option>    
+                )
+   
+};
+declare function local:createFontFace($fontName) as xs:string {
+    if (contains($fontName, '.')) then (
+    '@font-face {
+                font-family: "MyFont";
+                src: url("../apps/topoTEI/resources/fonts/' || $fontName || '");}
+    #transkription {
+        font-family: MyFont;    
+    }
+    ') else (
+        '#transkription {
+            font-family: ' || $fontName ||';    
+        }'    
+    )  
+};
+declare function app:fontFace($node as node(), $model as map(*)) as element(style)* {
+    let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
+    return 
+        if ($configFile/config/fonts/current/text()) then (
+            <style>{local:createFontFace($configFile/config/fonts/current/text())} 
+        </style>
+ 
+          ) else ()
+};
 declare function app:createConfig($node as node(), $model as map(*)) as element(div) {
     let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
-    return <div id="editorInput" class="input">
+    return 
+    <div id="editorInput" class="input">
         <h2>Konfiguration</h2>
         <form name="config">
-       { for $p in $configFile/config/param
-               let $label := $p/@label
-               let $log := console:log(string($label))
-               return <div><label class="config" for="{$p/@name}">{string($p/@label)}:</label><input type="number" id="{$p/@name}" value="{$p/text()}" step="any"/></div>
-       }
-       </form>
-       <button onClick="saveConfig([{string-join(
-           for $item in $configFile/config/param/@name
-                return concat("'", $item, "'"),
-           ',')}])">Speichern</button>
-           
+           { for $p in $configFile/config/param
+                   let $label := $p/@label
+                   return <div><label class="config" for="{$p/@name}">{string($p/@label)}:</label><input type="number" id="{$p/@name}" value="{$p/text()}" step="any"/></div>
+           }
+            <div>
+                <label class="config" for="font">Schrift:</label>
+                <select id="fontSelection" name="font">
+                    { local:createFontFaces($configFile/config/fonts/current/text())}
+                    { local:createWebFonts($configFile) }
+                </select>
+                   
+            </div>
+        
+        </form>
+        <button onClick="saveConfig('fontSelection', [{string-join(
+               for $item in $configFile/config/param/@name
+                    return concat("'", $item, "'"),
+               ',')}])">Speichern</button>
+               
     </div> 
 };
 declare function app:lineInput($node as node(), $model as map(*)) as element(div) {

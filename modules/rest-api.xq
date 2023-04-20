@@ -56,19 +56,22 @@ function myrest:transform($file as xs:string*) {
     return local:showTransformation($filepath)
    
 };
-declare function local:storeFile($data, $type as xs:string, $targetType as xs:string) as map(*) {
-    let $collection := concat($config:data-root, "/")
+declare function local:storeFile($data, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {
     let $output-collection := xmldb:login($collection, 'test', 'test')
     
-    let $parsedData := myparsedata:parseXMLData($data, $type, $targetType)
+    let $parsedData := myparsedata:parseData($data, $type, $targetType)
     return if (map:contains($parsedData, $targetType)) then (
         let $filename := $parsedData('filename')
-        let $xmlContent := $parsedData($targetType)
-        (:  :let $document := parse-xml($xmlContent):)
-        let $document := local:prepareDocument($xmlContent)
-        let $backup := local:backupFile($filename, $collection)
-        let $localUri := xmldb:store($collection, $filename, $document)
-        return map:merge(($parsedData, map{ 'localUri': $localUri }))
+        let $content := $parsedData($targetType)
+        return if (contains($targetType, 'xml')) then (
+            let $document := local:prepareDocument($content)
+            let $backup := local:backupFile($filename, $collection)
+            let $localUri := xmldb:store($collection, $filename, $document)
+            return map:merge(($parsedData, map{ 'localUri': $localUri }))
+        ) else (
+            let $localUri := xmldb:store($collection, $filename, $content)
+            return map:merge(($parsedData, map{ 'localUri': $localUri }))    
+        )
     ) else (
         $parsedData    
     )
@@ -167,7 +170,29 @@ function myrest:deleteFile($file, $referer) {
         </http:response>
     </rest:response> 
 };
-
+declare
+ %rest:path("/postfont")
+ %rest:POST("{$data}")
+ %rest:header-param("Content-Type", "{$type}")
+ %output:media-type("text/html")
+ %output:method("html5")
+  %rest:header-param("Referer", "{$referer}", "none")
+function myrest:uploadFont($data, $type, $referer) {
+    let $targetType := 'font'
+    let $collection := concat(replace($config:data-root, "data", "resources/"), 'fonts/')
+    let $response := local:storeFile($data, $type, $targetType, $collection)
+    let $location := concat(replace($referer, '(\?.*$)',''), '?msg=',  $response('status'))
+    return  <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="{$location}"/>
+      
+        </http:response>
+    </rest:response>
+};
 declare
  %rest:path("/posttransform")
  %rest:POST("{$data}")
@@ -177,7 +202,8 @@ declare
   %rest:header-param("Referer", "{$referer}", "none")
 function myrest:uploadTransform($data, $type, $referer) {
     let $targetType := "text/xml"
-    let $response := local:storeFile($data, $type, $targetType)
+    let $collection := concat($config:data-root, "/")
+    let $response := local:storeFile($data, $type, $targetType, $collection)
     let $status := $response('status')
     return if ($status = '200') then (
         local:showTransformation($response('localUri'))
@@ -342,34 +368,51 @@ declare function local:updateFile($file as xs:string, $elements as xs:string*) a
         let $out := local:update($item, $document)
      return $file
 };
-declare function local:processConfig($configuration as xs:string*) as xs:integer* {
-    let $configArray := parse-json($configuration)
+declare function local:saveConfigItems($configArray, $document)  {
+    for $index in 1 to array:size($configArray)
+        let $item := array:get($configArray, $index) 
+        let $out := local:updateConfigFile($item, $document)
+        let $name := $item("name")
+    return 0
+};
+declare function local:processConfig($configuration as xs:string*) as xs:boolean {
+    let $config := parse-json($configuration)
+    let $log := console:log($config)
+    let $configArray := $config('config')
     let $collection := replace($config:data-root, "data", "config/")
    
    let $output-collection := xmldb:login($collection, 'test', 'test')
    let $document := doc(concat($collection, "gui_config.xml"))
-   for $index in 1 to array:size($configArray)
-        let $item := array:get($configArray, $index) 
-        let $out := local:updateConfigFile($item, $document)
-        let $name := $item("name")
-        let $log := console:log($name || " " || $document/config/param[@name= $name]/text())
-    return 0
+   let $oldFontSameAsNew := ($document/config/fonts/current/text() = $config('font'))
+   let $update := local:updateConfigFontValue($config('font'), $document)
+   let $configItemsChanged := local:saveConfigItems($configArray, $document)
+    return $oldFontSameAsNew
 };
 declare
   %rest:path("/config")
   %rest:POST
   %rest:form-param("configuration", "{$configuration}", "[]")
+
 function myrest:updateConfig($configuration as xs:string*) {
-   let $config := local:processConfig($configuration)
-   return 
-     <rest:response>
-        <http:response status="200" message="OK">
-        </http:response>
-        
-    </rest:response>
+    let $oldFontSameAsNew := local:processConfig($configuration) 
+    return if ($oldFontSameAsNew) then (
+        <rest:response>
+            <http:response status="200" message="OK"/>
+        </rest:response>
+        ) else (
+        <rest:response>
+            <http:response status="205" message="Reset Content">
+                <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+                <http:header name="Pragma" value="no-cache"/>
+                <http:header name="Expires" value="0"/>
+                <http:header name="X-XQuery-Cached" value="false"/>
+            </http:response>
+        </rest:response>)
 };
 
-
+declare function local:updateConfigFontValue($font, $document){
+   update value $document/config/fonts/current with $font 
+};
 declare function local:updateConfigFile($item, $document){
    update value $document/config/param[@name= $item("name") ] with $item("value")   
 };

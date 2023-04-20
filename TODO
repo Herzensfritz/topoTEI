@@ -1,0 +1,3 @@
+- D20_a18r_check2.xml: remove_hierarchies.xsl -><hi rend="latin" on ln="18" with several lines included
+- D20_a27r_check2.xml: gui_transcription.xsl -><lb n="36"/>.... <addSpan hand="#N_brown1"> whole line is brown instead of begining with "dem Anfang ..."
+- xslt/recreate_hierarchies.xsl: problems with several p and ab tags ...

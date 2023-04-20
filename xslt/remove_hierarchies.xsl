@@ -8,7 +8,7 @@
     <xsl:template match="tei:p">
          <xsl:apply-templates/>
    </xsl:template>
-    <xsl:template match="tei:p[tei:lb]|tei:ab[tei:lb]">
+    <xsl:template match="tei:p[tei:lb]|tei:ab[tei:lb]|tei:hi[count(tei:lb) gt 1]">
       <xsl:variable name="TO" select="concat('HIERARCHY-', generate-id())"/>
       <xsl:element name="{name()}">
           <xsl:attribute name="spanTo">
@@ -46,7 +46,7 @@
       </xsl:for-each>
    </xsl:template>
 
-   <xsl:template match="tei:hi[tei:lb]|tei:del[tei:lb]">
+   <xsl:template match="tei:hi[tei:lb and count(tei:lb) lt 2]|tei:del[tei:lb]">
       <xsl:element name="{name()}">
          <xsl:for-each select="@*">
             <xsl:attribute name="{name()}">

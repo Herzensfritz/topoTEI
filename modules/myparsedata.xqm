@@ -40,8 +40,17 @@ declare function myparsedata:parseContent($data as xs:string, $header as map(*))
 
 declare function myparsedata:parseXMLData($data as xs:string, $type as xs:string, $targetType as xs:string) as map(*)* {
     let $header := myparsedata:parseHeader($data, $type)
-    let $out := console:log($header)
     return if ($header("content-type") = $targetType) then (
+        let $content := myparsedata:parseContent($data, $header)
+        return map:merge(($header, map { $targetType : $content, 'status': '200' }))
+    ) else (
+        map:merge(($header, map { 'status': '422'}))
+    )
+};
+declare function myparsedata:parseData($data as xs:string, $type as xs:string, $targetType as xs:string) as map(*)* {
+    let $header := myparsedata:parseHeader($data, $type)
+    let $out := console:log($header)
+    return if (contains($header("content-type"), $targetType)) then (
         let $content := myparsedata:parseContent($data, $header)
         return map:merge(($header, map { $targetType : $content, 'status': '200' }))
     ) else (
