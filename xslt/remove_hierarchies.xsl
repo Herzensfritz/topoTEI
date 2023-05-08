@@ -8,7 +8,7 @@
     <xsl:template match="tei:p">
          <xsl:apply-templates/>
    </xsl:template>
-    <xsl:template match="tei:p[tei:lb]|tei:ab[tei:lb]|tei:hi">
+   <xsl:template match="(tei:p|tei:ab|tei:hi)[tei:lb|*/tei:lb]">
       <xsl:variable name="TO" select="concat('HIERARCHY-', generate-id())"/>
       <xsl:element name="{name()}">
           <xsl:attribute name="spanTo">

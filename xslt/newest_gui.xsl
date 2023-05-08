@@ -121,27 +121,21 @@
 </xsl:template>
 
 <!--or following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:hi[@spanTo][1]/@spanTo, '#','')]/preceding-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n-->
-<xsl:template match="text()[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n
-                  or tei:seqContains(current()/preceding-sibling::tei:hi/@spanTo, current()/following-sibling::tei:anchor/@xml:id) = 1]">
+<xsl:template match="text()[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
    <xsl:param name="show"/>
-   <xsl:if test="$show = 'true' or tei:seqContains(preceding-sibling::tei:hi[@spanTo][1]/@spanTo, $show) = 1">
-      <span><xsl:value-of select="tei:seqContains(preceding-sibling::tei:hi/@spanTo, $show)"/></span>
+   <xsl:if test="$show = 'true'">
       <xsl:copy-of select="."/> 
    </xsl:if>
 </xsl:template>
-<xsl:template match="*[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n
-or following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:hi[@spanTo][1]/@spanTo, '#','')]/preceding-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
+<xsl:template match="*[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
    <xsl:param name="show"/>
-   <xsl:if test="$show = 'true' or $show = preceding-sibling::tei:hi[@spanTo][1]/@spanTo">
+   <xsl:if test="$show = 'true'">
       <xsl:choose>
          <xsl:when test="local-name() = 'add'">
             <xsl:call-template name="add"/>
          </xsl:when>
          <xsl:when test="local-name() = 'del'">
             <xsl:call-template name="del"/>
-         </xsl:when>
-         <xsl:when test="local-name() = 'hi'">
-            <xsl:call-template name="hi"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:apply-templates select="."/> 
@@ -217,35 +211,27 @@ or following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::
    </span>
 </xsl:template>
 
-<xsl:template name="hi" match="tei:hi">
+<xsl:template match="text()[tei:seqContains(preceding-sibling::tei:hi/@spanTo, following-sibling::tei:anchor/@xml:id)=1]">
+      <span class="{preceding-sibling::tei:hi[1]/@rend}">
+            <xsl:copy-of select="."/>
+      </span>
+</xsl:template>
+<xsl:template match="*[tei:seqContains(preceding-sibling::tei:hi/@spanTo, following-sibling::tei:anchor/@xml:id)=1]">
+      <span class="{preceding-sibling::tei:hi[1]/@rend}">
+            <xsl:apply-templates/>
+      </span>
+</xsl:template>
+<xsl:template name="hi" match="tei:hi[empty(@spanTo)]">
    <xsl:variable name="nextLineNumber" select="following-sibling::tei:lb[1]/@n"/> 
    <xsl:choose>
       <xsl:when test="parent::tei:restore/@type = 'strike'">
          <span class="deleted-{@rend}">
-            <xsl:choose>
-               <xsl:when test="@spanTo">
-                  <xsl:apply-templates select="(following-sibling::*|following-sibling::text())[following-sibling::tei:anchor/@xml:id = replace(@spanTo, '#','')]">
-                     <xsl:with-param name="show" select="@spanTo"/>
-                  </xsl:apply-templates>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:apply-templates/>
-               </xsl:otherwise>
-            </xsl:choose>
+            <xsl:apply-templates/>
          </span>
       </xsl:when>
       <xsl:otherwise>
       <span class="{@rend}">
-            <xsl:choose>
-               <xsl:when test="@spanTo">
-                  <xsl:apply-templates select="(following-sibling::*|following-sibling::text())[following-sibling::tei:lb[1]/@n = $nextLineNumber]">
-                     <xsl:with-param name="show" select="@spanTo"/>
-                  </xsl:apply-templates>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:apply-templates/>
-               </xsl:otherwise>
-            </xsl:choose>
+            <xsl:apply-templates/>
       </span>
       </xsl:otherwise>
    </xsl:choose>
