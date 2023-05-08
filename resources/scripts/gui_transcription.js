@@ -7,7 +7,6 @@ const CSS_CLASSES =  {
    ABOVE: 'above',
    BELOW: 'below',
    CENTERLEFT: 'centerLeft',
-   EOL: 'EOL',
    FLUSHRIGHT: 'flushRight',
    INSERTION: 'insertion-',
    LINE: 'line', 

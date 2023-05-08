@@ -72,14 +72,14 @@ span[draggable] { cursor: grab; }
            border-bottom-left-radius:  var(--radius);
            border-color: inherit;
         }
-                .addSpan { font-size:90%;}
+   .addSpan { font-size:90%;}
 	.box { cursor: context-menu; background-color: #F5F5F5;}
 	.fw-box { cursor: context-menu; background-color: #add8e6;}
         .erased { color: grey;}
-        .inline { font-size:80%;}
+        .inline { font-size:90%;}
         .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
-        .deleted { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
+        .deleted, .deleted-000 { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
         .red-deleted { cursor: context-menu; 
 	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='red' stroke-dasharray='1.2 1.8 1.2' d='M1,1 1500,1500'/></svg>") repeat; }
         .hex-deleted { background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='240' stroke='%23750606' stroke-dasharray='1' d='M1,1 150,150'/></svg>") repeat; }
