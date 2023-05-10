@@ -59,7 +59,7 @@
    <!-- Write the line number, if in editor mode write also a call to a javascript function onClick -->
    <xsl:template name="writeLineNumber">
       <xsl:param name="n"/>
-      <xsl:if test="number($n) = $n">
+      <xsl:if test="number($n) and number($n) = $n">
          <xsl:choose>
             <xsl:when test="$fullpage = 'true'">
                <span class="lnr">
@@ -84,7 +84,7 @@
                <xsl:variable name="oldtestAddSpan" select="count(following-sibling::tei:lb)"/>
                <xsl:variable name="addSpan" 
                              select="if (following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id) then ('addSpan') else ()"/>
-               <xsl:variable name="nextXmlId" select="following-sibling::tei:anchor[@xml:id = replace(preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id"/>
+               <xsl:variable name="nextXmlId" select="following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id"/>
                <xsl:variable name="addSpanHand" select="preceding-sibling::tei:addSpan[@spanTo = concat('#', $nextXmlId)]/@hand"/>
                <div id="{@xml:id}" class="line {$handShift} {replace($addSpanHand[1], '#','')}" style="{@style}">
                   <xsl:variable name="noNumber" select="if (number(@n) != @n) then ('nolnr') else ()"/>
@@ -134,6 +134,12 @@
             <xsl:when test="local-name() = 'del'">
                <xsl:call-template name="del"/>
             </xsl:when>
+            <xsl:when test="local-name() = 'hi' and not(@spanTo)">
+               <xsl:call-template name="hi"/>
+            </xsl:when>
+            <xsl:when test="local-name() = 'subst' and tei:add/@place = 'superimposed' and tei:del">
+               <xsl:call-template name="superimposed"/>
+            </xsl:when>
             <xsl:otherwise>
                <xsl:apply-templates select="."/> 
             </xsl:otherwise>
@@ -158,7 +164,8 @@
       </span>
    </xsl:template>
    <!-- Process overwritten text in case of normal substitution, also for forme work -->
-   <xsl:template match="tei:subst[tei:add/@place = 'superimposed' and tei:del]">
+   <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del
+                                            and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
       <xsl:variable name="dict">
          <tei:entry key="erased" value="(radiert)"/>
          <tei:entry key="overwritten" value="(überschrieben)"/>
@@ -215,7 +222,7 @@
          </span>
    </xsl:template>
    <!-- Process highlights -->
-   <xsl:template name="hi" match="tei:hi[not(@spanTo)]">
+   <xsl:template name="hi" match="tei:hi[not(@spanTo) and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
       <xsl:choose>
          <xsl:when test="parent::tei:restore/@type = 'strike'">
             <span class="deleted-{@rend}">
