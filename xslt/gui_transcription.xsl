@@ -13,19 +13,23 @@
          <xsl:when test="$fullpage = 'true'">
            <html>
               <head>
-                  <title><xsl:value-of select="$TITLE"/></title>
+                  <title>
+                            <xsl:value-of select="$TITLE"/>
+                        </title>
                   <link rel="stylesheet" href="{concat($resources, '/css/gui_style.css')}"/>
                   <script src="{concat($resources, '/scripts/gui_transcription.js')}"/>
               </head>
               <body onload="updatePositions()">
-                  <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/></h1>
+                  <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>
+                        </h1>
                   <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
               </body>
            </html>
          </xsl:when>
          <xsl:otherwise>
             <div>
-                <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/></h1>
+                <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>
+                    </h1>
                 <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
              </div>
          </xsl:otherwise>
@@ -82,8 +86,7 @@
          <xsl:choose>
             <xsl:when test="@n != '' or name() = 'lb'">
                <xsl:variable name="oldtestAddSpan" select="count(following-sibling::tei:lb)"/>
-               <xsl:variable name="addSpan" 
-                             select="if (following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id) then ('addSpan') else ()"/>
+               <xsl:variable name="addSpan" select="if (following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id) then ('addSpan') else ()"/>
                <xsl:variable name="nextXmlId" select="following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id"/>
                <xsl:variable name="addSpanHand" select="preceding-sibling::tei:addSpan[@spanTo = concat('#', $nextXmlId)]/@hand"/>
                <div id="{@xml:id}" class="line {$handShift} {replace($addSpanHand[1], '#','')}" style="{@style}">
@@ -164,8 +167,7 @@
       </span>
    </xsl:template>
    <!-- Process overwritten text in case of normal substitution, also for forme work -->
-   <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del
-                                            and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
+   <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del                                             and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
       <xsl:variable name="dict">
          <tei:entry key="erased" value="(radiert)"/>
          <tei:entry key="overwritten" value="(überschrieben)"/>
@@ -214,10 +216,8 @@
       </span>
    </xsl:template>
    <!-- Process all text that is contained between one or several <hi spanTo="..."/> and <anchor xml:id="..."/> -->
-   <xsl:template match="text()[tei:seqContains(preceding-sibling::tei:hi/@spanTo, following-sibling::tei:anchor/@xml:id)=1]
-                              |text()[tei:seqContains(../preceding-sibling::tei:hi/@spanTo, ../following-sibling::tei:anchor/@xml:id)=1]">
-         <span class="{distinct-values(preceding-sibling::tei:hi[@spanTo and index-of(current()/following-sibling::tei:anchor/@xml:id, replace(@spanTo, '#','')) gt 0]/@rend
-                                 |../preceding-sibling::tei:hi[@spanTo and index-of(current()/../following-sibling::tei:anchor/@xml:id, replace(@spanTo, '#','')) gt 0]/@rend)}">
+   <xsl:template match="text()[tei:seqContains(preceding-sibling::tei:hi/@spanTo, following-sibling::tei:anchor/@xml:id)=1]                               |text()[tei:seqContains(../preceding-sibling::tei:hi/@spanTo, ../following-sibling::tei:anchor/@xml:id)=1]">
+         <span class="{distinct-values(preceding-sibling::tei:hi[@spanTo and index-of(current()/following-sibling::tei:anchor/@xml:id, replace(@spanTo, '#','')) gt 0]/@rend                                  |../preceding-sibling::tei:hi[@spanTo and index-of(current()/../following-sibling::tei:anchor/@xml:id, replace(@spanTo, '#','')) gt 0]/@rend)}">
                <xsl:copy-of select="."/>
          </span>
    </xsl:template>

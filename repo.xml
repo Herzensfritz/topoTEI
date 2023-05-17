@@ -2,11 +2,12 @@
 <meta xmlns="http://exist-db.org/xquery/repo">
   <description>topoTEI: edit topological information of TEI files</description>
   <author>Christian Steiner</author>
-  <website>https://nietzsche.philhist.unibas.ch</website>
+  <website>https://c4science.ch/source/topoTEI/</website>
   <status>beta</status>
   <license>GPL-3.0</license>
   <copyright>true</copyright>
   <type>application</type>
   <target>topoTEI</target>
-  <permissions user="test" password="test" group="dpa" mode="rw-rw-r--"/>
+  <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="dpa" mode="rw-rw-r--"/>
+  <prepare>pre-install.xql</prepare>
 </meta>
