@@ -267,6 +267,7 @@ declare function app:lineInput($node as node(), $model as map(*)) as element(div
                         <br/>
             Abstand unten: <input type="number" value="0" id="bottom" step="any" onChange="changeLineHeight(bottom.value, false, false)"/>
       </form>
+      <button id="lineInputButton" onClick="fixLineNumbering()" hidden="true">Zeilennummern korrigieren</button>
     </div>
 };
 

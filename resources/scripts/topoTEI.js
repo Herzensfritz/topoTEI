@@ -207,18 +207,45 @@ function changeLineHeight(value, isTop, isRedoing){
 function getLineHeightInput(element, id){
     if (!runsOnBakFile){
         let input = document.getElementById(id);
+        
         if(currentLine === element){
             input.style.visibility = 'hidden';
             currentLine = null;
         } else {
+            
             currentLine = element;
             input.firstElementChild.innerText = "Zeilenabstände für Zeile " + element.innerText;
             let top =  Number(element.parentElement.style.paddingTop.replace('px',''));
             let bottom =  Number(element.parentElement.style.paddingBottom.replace('px',''));
             Array.from(input.lastElementChild.children).filter(child =>child.value).forEach(child =>{child.value = (child.id == 'top') ? top : bottom });
             input.style.visibility = 'visible';
+            showFixLineNumberButtonIfNeeded(element);
         }
     }
+}
+function showFixLineNumberButtonIfNeeded(element){
+    let lines = Array.from(document.getElementsByClassName('lnr')).filter(line =>line.innerText == element.innerText);
+    if (lines.length > 1){
+        let button = document.getElementById('lineInputButton');  
+        button.removeAttribute('hidden');
+    }
+}
+function fixLineNumbering(){
+    let lines = Array.from(document.getElementsByClassName('lnr')).map(line =>new Object({ id: line.parentElement.id, n: line.innerText.substring(0, line.innerText.indexOf(':')) }));    
+    let data = adjustLineNumbers(lines);
+    mySend(data);
+}
+function adjustLineNumbers(lines){
+    if (lines.length < 2){
+        return lines    
+    } else {
+        if (lines[0].n == lines[1].n){
+            for (var i = 1; i < lines.length; i++){
+                lines[i].n = String( Number(lines[i].n) + 2);    
+            }
+        }
+        return [lines[0]].concat(adjustLineNumbers(lines.slice(1)));
+    }   
 }
 function saveStyleGet(element, attribute){
     return (element.style[attribute]) ? element.style[attribute] : "0px";   
@@ -290,8 +317,12 @@ function myPost(button) {
        let elementInfos = elements.map(element =>createInfo(element))
        let lineInfos = Array.from(document.getElementsByClassName('lineManuallyChanged')).map(element =>createStyleObject(element));
        let data = elementInfos.concat(lineInfos);
-       let filename = document.getElementById(FILENAME);
-       if (filename && data.length > 0) {
+       mySend(data);
+   } 
+}
+function mySend(data){
+    let filename = document.getElementById(FILENAME);
+    if (filename && data.length > 0) {
             let file = filename.value;   
             let xhr = new XMLHttpRequest()
             xhr.open('POST', "/exist/restxq/save", true)
@@ -301,8 +332,7 @@ function myPost(button) {
                undoStack = [];
                location.href = '/exist/restxq/transform?file=' + file
             }
-       }
-   } 
+    }
 }
 var currentItems = [];
 var currentItem = null;

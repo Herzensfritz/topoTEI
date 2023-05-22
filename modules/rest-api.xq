@@ -51,7 +51,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    
+    let $log := console:log("test")
     return local:showTransformation($filepath)
    
 };
@@ -353,7 +353,11 @@ function myrest:uploadFile($data, $type, $referer as xs:string*) {
 };
 
 declare function local:update($item, $document){
-    update insert attribute style { $item('style')} into $document//*[@xml:id = $item('id')]    
+    if ($item('style')) then(
+        update insert attribute style { $item('style')} into $document//*[@xml:id = $item('id')] 
+    ) else (
+        update insert attribute n { $item('n')} into $document//*[@xml:id = $item('id')] 
+    )
 };
 
 declare function local:updateFile($file as xs:string, $elements as xs:string*) as xs:string* {
