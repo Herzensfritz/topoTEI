@@ -223,6 +223,11 @@ declare function local:createFontFace($fontName) as xs:string {
         }'    
     )  
 };
+declare function app:fontLink($node as node(), $model as map(*)) as element(link)* {
+    let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
+    for $link in $configFile/config/fonts/link
+        return <link href='{$link}' rel='stylesheet' type='text/css'/>
+};
 declare function app:fontFace($node as node(), $model as map(*)) as element(style)* {
     let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
     return 

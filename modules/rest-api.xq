@@ -51,7 +51,6 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    let $log := console:log("test")
     return local:showTransformation($filepath)
    
 };
@@ -289,7 +288,7 @@ declare function local:createCollection($collection as xs:string, $child as xs:s
 };
 declare function local:getBackupFileName($file as xs:string) as xs:string {
     let $damyrestring := format-dateTime(current-dateTime(), "[Y0001]-[M01]-[D01]_[H01][m01][s01]")
-    let $fileName := concat($file, "_", $damyrestring)  
+    let $fileName := concat($file, "_", $damyrestring, '.xml')  
     return string($fileName)
 };
 declare function local:backupFile($file as xs:string*, $collection as xs:string*) as xs:string* {
