@@ -37,6 +37,26 @@ function myrest:saveData($file as xs:string*,$elements as xs:string*) {
         
     </rest:response>
 };
+declare
+  %rest:path("/fix")
+  %rest:GET
+function myrest:fixD($file as xs:string*,$elements as xs:string*) {
+    let $bakDir := concat($config:data-root, '/bak')
+    let $output-collection := xmldb:login($bakDir, 'test', 'test')
+    (:  :let $output := for $bakFile in xmldb:get-child-resources($bakDir)
+        where not(ends-with($bakFile, '.xml'))
+        let $new := xmldb:remove($bakDir, $bakFile)
+        return $new :)
+   return 
+    
+      <rest:response>
+        <http:response status="200" message="OK">
+  
+        </http:response>
+        
+    </rest:response>
+   
+};
 
 declare function local:getLocalPath() as xs:string {
     let $path := substring-before(substring-after(system:get-module-load-path(), '/db/'), '/modules')
