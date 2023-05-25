@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
    <!-- This function tests whether the spanTo sequence contains one value that is equal to one of the values of the xmlId sequence (by removing the # from the @spanTo) 
          Return value: 0 for false, 1 for true.
@@ -39,7 +38,7 @@
                    <xsl:value-of select="concat('left:',$left, ';', 'top:', $top,';')"/>        
                </xsl:when>
                <xsl:otherwise>
-                  <xsl:message terminate="yes">ERROR: Input does not specify a place [above|below] and a target [parent|child]!
+                  <xsl:message terminate="no">ERROR: Input does not specify a place [above|below] and a target [parent|child]! <xsl:value-of select="concat($place,' : ',$target,' : ',$style)"/>
                   </xsl:message>
                </xsl:otherwise>
            </xsl:choose>

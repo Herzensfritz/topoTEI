@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
    <xsl:import href="functions.xsl"/>
    <xsl:output method="html" encoding="UTF-8"/>
@@ -265,7 +264,7 @@
    <xsl:template name="add" match="tei:add">
       <xsl:variable name="hand" select="replace(@hand,'#','')"/>
       <xsl:choose>
-         <xsl:when test="@place">
+         <xsl:when test="@place and (contains(@place,'above') or contains(@place,'below'))">
                    <xsl:call-template name="writeAdd">
                       <xsl:with-param name="childId" select="@xml:id"/>
                       <xsl:with-param name="parentId" select="concat('parent-', @xml:id)"/>
