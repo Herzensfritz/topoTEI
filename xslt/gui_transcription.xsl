@@ -268,7 +268,8 @@
                    <xsl:call-template name="writeAdd">
                       <xsl:with-param name="childId" select="@xml:id"/>
                       <xsl:with-param name="parentId" select="concat('parent-', @xml:id)"/>
-                      <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/>
+                     <!-- <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/> -->
+                     <xsl:with-param name="childClass" select="@place"/>
                       <xsl:with-param name="parentClass" select="if (@rend) then (concat(@rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
                       <xsl:with-param name="childStyle" select="if (@rend) then (tei:createStyle(@style, 'child', @place)) else (@style)"/>
                       <xsl:with-param name="parentStyle" select="if (@rend) then (tei:createStyle(@style, 'parent', @place)) else ()"/>

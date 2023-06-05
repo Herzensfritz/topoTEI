@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <meta xmlns="http://exist-db.org/xquery/repo">
   <description>topoTEI: edit topological information of TEI files</description>
   <author>Christian Steiner</author>
@@ -10,4 +9,7 @@
   <target>topoTEI</target>
   <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="dpa" mode="rw-rw-r--"/>
   <prepare>pre-install.xql</prepare>
+
+
+
 </meta>
