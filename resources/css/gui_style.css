@@ -16,8 +16,8 @@ span[draggable] { cursor: grab; }
         .bottom-left { text-align: left }
         .top-right { margin-left: 60%; }
         .insertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
-        .Ezinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
-         .Ezinsertion-above:before { 
+        .insMinsertion-above, .Ezinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
+          .insMinsertion-above:before, .Ezinsertion-above:before { 
            position: absolute;
            content: "";
            left: -2px;
@@ -59,8 +59,8 @@ span[draggable] { cursor: grab; }
             --length: 1em;
         }
         .insertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
-        .Ezinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
-        .Ezinsertion-below:before { 
+        .insMinsertion-below, .Ezinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
+        .insMinsertion-below:before, .Ezinsertion-below:before { 
            position: absolute;
            content: "";
            left: 20%;
