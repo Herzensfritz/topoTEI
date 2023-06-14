@@ -6,6 +6,7 @@ var FILENAME = 'filename';
 var COLLECTION = 'collection';
 var DOWNLOAD_LINK = 'downloadLink';
 var VERSIONS = 'versions';
+const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
 var currentLine = null;
 var undoStack = [];
@@ -252,7 +253,7 @@ function saveStyleGet(element, attribute){
 }
 function createInfo (element){
     let style = "left:" + saveStyleGet(element, 'left');
-    if (element.parentElement && element.parentElement.className.includes('Ez')){
+    if (element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1){
         if (element.parentElement.className.includes('below')){
             style = style + "; top:" + saveStyleGet(element, 'top') + "; height:" + saveStyleGet(element.parentElement, 'height');
         } else {
@@ -480,7 +481,7 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     handleButtons();
     let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
     currentElement.style.left = (oldLeft + offsetX) + 'px';
-    if(currentElement.parentElement.className.includes('Ez')) {
+    if(currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
         if (currentElement.parentElement.className.includes('below')){
             let oldHeight =  (currentElement.parentElement.style.height) ? Number(currentElement.parentElement.style.height.replace('px','')) : currentElement.parentElement.offsetHeight;
             let newHeight = oldHeight + offsetY;
