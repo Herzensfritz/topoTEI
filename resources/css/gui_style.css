@@ -48,6 +48,12 @@ span[draggable] { cursor: grab; }
             /*height: max-content;*/
             transition: color 1s;
         }
+        .centered{
+            margin: auto;
+            width: 60%;
+             border: 3px solid #73AD21;
+            padding: 10px;
+        }
         .centerLeft {
             transform: translateX(-30%);
         }
@@ -139,6 +145,10 @@ span[draggable] { cursor: grab; }
          .del-linearisiert:before { content: '['; }
          .del-linearisiert:after { content: ']'; }
         .underline { text-decoration: underline;  }
+        .doubleUnderline {
+            text-decoration-line: underline;
+            text-decoration-style: double;
+        }
         .above-linearisiert:before { content: '\2308'; }
         .above-linearisiert:after { content: '\2309'; }
          .below-linearisiert:before { content: '\230A'; }

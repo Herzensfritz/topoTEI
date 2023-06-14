@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
     <xsl:output method="xml" encoding="UTF-8"/>
     <xsl:param name="GENERIC_EDITOR" select="'knister0'"/>
@@ -45,25 +44,31 @@
                <xsl:copy-of select="."/>
       </xsl:for-each>
    </xsl:template>
-
-   <xsl:template match="tei:hi[tei:lb]|tei:del[tei:lb]">
+   <xsl:template name="printParent">
+      <xsl:param name="parentName"/>
+      <xsl:param name="content"/>
       <xsl:element name="{name()}">
          <xsl:for-each select="@*">
             <xsl:attribute name="{name()}">
                     <xsl:value-of select="."/>
                 </xsl:attribute>
          </xsl:for-each>
-         <xsl:copy-of select="child::*[not(local-name() = 'lb') and following-sibling::tei:lb]|text()[following-sibling::tei:lb]"/>
+         <xsl:copy-of select="$content"/>
       </xsl:element>
-      <xsl:apply-templates select="child::tei:lb"/>
-      <xsl:element name="{name()}">
-      <xsl:for-each select="@*">
-            <xsl:attribute name="{name()}">
+   </xsl:template>
+   <xsl:template match="tei:hi[tei:lb]|tei:del[tei:lb]">
+      <xsl:for-each select="child::tei:lb">
+         <xsl:variable name="currentLineNumber" select="@n"/>
+         <xsl:element name="{../name()}">
+            <xsl:for-each select="../@*">
+               <xsl:attribute name="{name()}">
                     <xsl:value-of select="."/>
                 </xsl:attribute>
-         </xsl:for-each>
-         <xsl:copy-of select="child::*[not(local-name() = 'lb') and preceding-sibling::tei:lb]|text()[preceding-sibling::tei:lb]"/>
-      </xsl:element>
+            </xsl:for-each>
+            <xsl:copy-of select="../child::*[not(local-name() = 'lb') and following-sibling::tei:lb[1]/@n = $currentLineNumber]|../child::text()[following-sibling::tei:lb[1]/@n = $currentLineNumber]"/>
+         </xsl:element> 
+      <xsl:apply-templates select="."/>
+      </xsl:for-each>
    </xsl:template>
    <xsl:template match="tei:seg[tei:lb]|tei:subst[tei:lb]|tei:subst[child::*/tei:lb]|tei:addSpan[not(@spanTo)]">
       <xsl:variable name="TO" select="concat('HIERARCHY-', generate-id())"/>
