@@ -44,6 +44,18 @@
                <xsl:copy-of select="."/>
       </xsl:for-each>
    </xsl:template>
+   <xsl:template match="tei:head[tei:lb]">
+      <xsl:variable name="currentLineNumber" select="child::tei:lb[1]/@n"/>
+      <xsl:apply-templates select="child::tei:lb"/>
+      <xsl:element name="{name()}">
+            <xsl:for-each select="@*">
+               <xsl:attribute name="{name()}">
+                    <xsl:value-of select="."/>
+                </xsl:attribute>
+            </xsl:for-each>
+            <xsl:copy-of select="child::*[not(local-name() = 'lb')]|text()"/>
+         </xsl:element> 
+   </xsl:template>
    <xsl:template match="tei:hi[tei:lb]|tei:del[tei:lb]">
       <xsl:variable name="lastLineNumber" select="child::tei:lb[last()]/@n"/>
       <xsl:for-each select="child::tei:lb">
