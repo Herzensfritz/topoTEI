@@ -38,10 +38,11 @@
    <xsl:key name="following-nodes" match="tei:*/node()" use="concat(generate-id(..), '|', count(following-sibling::tei:lb))"/>
    <!-- Process tei:div1: produce top forme work container, transkription and bottom forme work container -->
    <xsl:template match="tei:body/tei:div1">
+      <xsl:variable name="style" select="//tei:sourceDoc/tei:surface[@start = concat('#', current()/@xml:id)]/@style"/>
       <div class="fw-container">
          <xsl:apply-templates select="tei:fw[@place='top-left' or @place='top-right']"/>
       </div>
-      <div id="transkription">
+      <div id="transkription" style="{$style}">
          <xsl:apply-templates select="node()[local-name() != 'fw']"/>
       </div>
       <div class="fw-container">

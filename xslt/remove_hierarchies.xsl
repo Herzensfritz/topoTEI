@@ -44,19 +44,8 @@
                <xsl:copy-of select="."/>
       </xsl:for-each>
    </xsl:template>
-   <xsl:template name="printParent">
-      <xsl:param name="parentName"/>
-      <xsl:param name="content"/>
-      <xsl:element name="{name()}">
-         <xsl:for-each select="@*">
-            <xsl:attribute name="{name()}">
-                    <xsl:value-of select="."/>
-                </xsl:attribute>
-         </xsl:for-each>
-         <xsl:copy-of select="$content"/>
-      </xsl:element>
-   </xsl:template>
    <xsl:template match="tei:hi[tei:lb]|tei:del[tei:lb]">
+      <xsl:variable name="lastLineNumber" select="child::tei:lb[last()]/@n"/>
       <xsl:for-each select="child::tei:lb">
          <xsl:variable name="currentLineNumber" select="@n"/>
          <xsl:element name="{../name()}">
@@ -69,6 +58,7 @@
          </xsl:element> 
       <xsl:apply-templates select="."/>
       </xsl:for-each>
+      <xsl:copy-of select="child::*[not(local-name() = 'lb') and preceding-sibling::tei:lb[1]/@n = $lastLineNumber]|child::text()[preceding-sibling::tei:lb[1]/@n = $lastLineNumber]"/>
    </xsl:template>
    <xsl:template match="tei:seg[tei:lb]|tei:subst[tei:lb]|tei:subst[child::*/tei:lb]|tei:addSpan[not(@spanTo)]">
       <xsl:variable name="TO" select="concat('HIERARCHY-', generate-id())"/>
