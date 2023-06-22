@@ -120,44 +120,91 @@
    </xsl:template>
 
    <!-- Match text between addSpan and lb: display it depending on param 'show' -->
-   <xsl:template match="text()[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
-      <xsl:param name="show"/>
+   <xsl:template match="text()[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]|text()[preceding-sibling::tei:addSpan[@spanTo = concat('#',current()/following-sibling::tei:anchor[1]/@xml:id)]]">
+   <xsl:param name="show"/>
+      <xsl:param name="debug"/>
       <xsl:if test="$show = 'true'">
-         <xsl:copy-of select="."/> 
+            <xsl:copy-of select="."/>
       </xsl:if>
    </xsl:template>
-   <!-- Match tags between addSpan and lb: process them depending on param 'show' -->
-   <xsl:template match="*[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
-      <xsl:param name="show"/>
-      <xsl:if test="$show = 'true'">
+     <xsl:template match="*[preceding-sibling::tei:addSpan[@spanTo = concat('#',current()/following-sibling::tei:anchor[1]/@xml:id)]]|*[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
+        <xsl:param name="show"/>
+        <xsl:param name="debug"/>
+        
+        <xsl:if test="$show = 'true'">
+            <xsl:call-template name="showSelected">
+                <xsl:with-param name="localName" select="local-name()"/>
+            </xsl:call-template>
+        </xsl:if>
+   </xsl:template>
+ 
+ 
+   <xsl:template name="showSelected">
+      <xsl:param name="localName"/>
          <xsl:choose>
-            <xsl:when test="local-name() = 'add'">
+            <xsl:when test="$localName = 'head'">
+                <xsl:call-template name="head"/>
+            </xsl:when>
+            <xsl:when test="$localName = 'pc'">
+               <xsl:apply-templates/>
+            </xsl:when>
+            <xsl:when test="$localName = 'add'">
                <xsl:call-template name="add"/>
             </xsl:when>
-            <xsl:when test="local-name() = 'del'">
+            <xsl:when test="$localName = 'del'">
                <xsl:call-template name="del"/>
             </xsl:when>
-            <xsl:when test="local-name() = 'hi' and not(@spanTo)">
+            <xsl:when test="($localName = 'hi' or $localName = 'restore') and not(@spanTo)">
                <xsl:call-template name="hi"/>
             </xsl:when>
-            <xsl:when test="local-name() = 'subst' and tei:add/@place = 'superimposed' and tei:del">
+            <xsl:when test="$localName = 'subst' and tei:add/@place = 'superimposed' and tei:del">
                <xsl:call-template name="superimposed"/>
+            </xsl:when>
+            <xsl:when test="$localName = 'subst'">
+               <xsl:apply-templates/>
             </xsl:when>
             <xsl:otherwise>
                <xsl:apply-templates select="."/> 
             </xsl:otherwise>
          </xsl:choose>
-      </xsl:if>
+      
    </xsl:template>
    <!-- Match addSpan: apply templates to following nodes until the corresponding anchor -->
    <xsl:template match="tei:addSpan">
       <xsl:variable name="nextLineNumber" select="following-sibling::tei:lb[1]/@n"/> 
+      <xsl:variable name="anchorId" select="replace(@spanTo, '#', '')"/>
       <xsl:variable name="hand" select="replace(@hand, '#', '')"/>
-      <span class="addSpan {$hand}">
-         <xsl:apply-templates select="following-sibling::*[following-sibling::tei:lb/@n = $nextLineNumber]|following-sibling::text()[following-sibling::tei:lb/@n = $nextLineNumber]">
-            <xsl:with-param name="show" select="'true'"/>
-         </xsl:apply-templates>
+      <span class="addSpan {$hand} {@rend}">
+            <xsl:choose>
+                <xsl:when test="$nextLineNumber">
+                    <xsl:apply-templates select="following-sibling::*[following-sibling::tei:lb/@n = $nextLineNumber]|following-sibling::text()[following-sibling::tei:lb/@n = $nextLineNumber]">
+                        <xsl:with-param name="show" select="'true'"/>
+                        <xsl:with-param name="debug" select="$nextLineNumber"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="following-sibling::*[following-sibling::tei:anchor/@xml:id = $anchorId]|following-sibling::text()[following-sibling::tei:anchor/@xml:id = $anchorId]">
+                        <xsl:with-param name="show" select="'true'"/>
+                        <xsl:with-param name="debug" select="$anchorId"/>
+                    </xsl:apply-templates>
+                </xsl:otherwise>
+            </xsl:choose>
       </span>
+   </xsl:template>
+   <xsl:template match="tei:anchor[@xml:id = substring-after(preceding-sibling::tei:lb[1]/preceding-sibling::tei:addSpan[1]/@spanTo, '#')]">
+      <xsl:variable name="hand" select="substring-after(preceding-sibling::tei:lb[1]/preceding-sibling::tei:addSpan[1]/@hand, '#')"/>
+      <xsl:variable name="previousLineNumber" select="preceding-sibling::tei:lb[1]/@n"/>
+      <xsl:variable name="numberAfterAddSpan" select="preceding-sibling::tei:addSpan[@spanTo = concat('#', current()/@xml:id)]/following-sibling::tei:lb[1]/@n"/>
+    
+      <xsl:if test="$previousLineNumber = $numberAfterAddSpan">
+      
+      <span class="{$hand}">
+      <xsl:apply-templates select="preceding-sibling::*[preceding-sibling::tei:lb[1]/@n = $previousLineNumber]|preceding-sibling::text()[preceding-sibling::tei:lb[1]/@n = $previousLineNumber]">
+                        <xsl:with-param name="show" select="'true'"/>
+                        <xsl:with-param name="debug" select="$previousLineNumber"/>
+                    </xsl:apply-templates>
+      </span>
+      </xsl:if>
    </xsl:template>
    <!-- Process overwritten text in case of substitution with @spanTo -->
    <xsl:template match="tei:subst[@spanTo and (following-sibling::tei:del[1]/@rend = 'overwritten' or following-sibling::tei:add[1]/@place = 'superimposed')]">
@@ -210,7 +257,7 @@
       </xsl:if>
    </xsl:template>
    <!-- Process head -->
-   <xsl:template match="tei:head">
+   <xsl:template name="head" match="tei:head">
       <span class="head">
          <xsl:apply-templates/>
       </span>
