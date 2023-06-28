@@ -87,51 +87,43 @@
          </xsl:apply-templates>
       </div>
    </xsl:template>
-   <xsl:template name="processHierarchy">
-      <xsl:param name="startId"/>
-      <xsl:param name="endId"/>
-      <xsl:param name="parent"/>
-      <span><xsl:value-of select="$startId"/>:<xsl:value-of select="$endId"/>:<xsl:value-of select="$parent"/></span>
-   </xsl:template>
    <xsl:template match="tei:line">
       <xsl:param name="zoneId"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
       <xsl:variable name="endId" select="substring-after(following-sibling::tei:line[1]/@start, '#')"/>
-      <xsl:choose>
-         <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]) gt 0">
-            <div class="line">
-               <xsl:call-template name="writeLineNumber">
-                  <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
-               </xsl:call-template>
-               <span>1</span>
-               <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]"/>
-            </div>
-         </xsl:when>
-         <xsl:when test="$endId">
-            <div class="line">
-               <xsl:call-template name="writeLineNumber">
-                  <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
-               </xsl:call-template>
-               <!--<span><xsl:value-of select="count(//(*|text())[following-sibling::tei:lb[@xml:id = $endId]])"/></span>
-               <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/.."/>-->
-               <xsl:call-template name="processHierarchy">
-                  <xsl:with-param name="startId" select="$startId"/>
-                  <xsl:with-param name="endId" select="$endId"/>
-                  <xsl:with-param name="parent" select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../local-name()"/>
-               </xsl:call-template>
-            </div>
-         </xsl:when>
-
-         <xsl:otherwise>
-            <div class="line">
-               <xsl:call-template name="writeLineNumber">
-                  <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
-               </xsl:call-template>
-               <span>3</span>
+      <div class="line">
+         <xsl:call-template name="writeLineNumber">
+            <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
+         </xsl:call-template>
+         <xsl:choose>
+            <!-- Simple case: nodes/text between two lb -->
+            <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]) gt 0">
+                  <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]"/>
+            </xsl:when>
+            <!-- Hierarchical case 1: nodes/text between two lb, second lb inside a tag -->
+            <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../node()/tei:lb[@xml:id = $endId]) gt 0">
+               <xsl:variable name="stopNode" select="//(*|text())[following-sibling::tei:lb[@xml:id = $endId]]/.."/>
+                  <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::* = $stopNode]"/>
+            </xsl:when>
+            <!-- Hierarchical case 2: first lb inside a tag -->
+            <xsl:when test="$endId">
+                  <xsl:choose>
+                     <!-- Hierarchical case 2a: only one lb inside a tag -->
+                     <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb) eq 1">
+                        <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/.."/>
+                     </xsl:when>
+                     <!-- Hierarchical case 2b: several lbs inside a tag, current lb is last lb inside tag -->
+                     <xsl:otherwise>
+                        <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
+                     </xsl:otherwise>
+                  </xsl:choose>
+            </xsl:when>
+            <!-- Nodes/text after last lb in div2 -->
+            <xsl:otherwise>
                <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
-            </div>
-         </xsl:otherwise>
-      </xsl:choose>
+            </xsl:otherwise>
+         </xsl:choose>
+      </div>
    </xsl:template>
 
    <!-- Match text between addSpan and lb: display it depending on param 'show' -->
