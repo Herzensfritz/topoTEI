@@ -1,7 +1,40 @@
-#input { position: fixed; left: 70%;}
-form { margin-top: 2px;}
-#message { color: red;}
-#transkription { background-color: #CED5CE; padding-right: 20px; padding-left: 5px; padding-top: 10px; padding-bottom: 10px;margin-left: 30px; width: max-content;}
+      #input { position: fixed; left: 70%;}
+      form { margin-top: 2px;}
+      #message { color: red;}
+      .transkriptionField {background-color: #CED5CE;}
+      #transkription {  padding-right: 20px; padding-left: 5px; padding-top: 10px; padding-bottom: 10px;margin-left: 30px; width: max-content;}
+      .small { color: black; padding: 3px; }
+	   .fw-box { background-color: #add8e6;}
+       .box { background-color: #F5F5F5; width: max-content; text-align: start;}
+       .box .tooltip {
+          display: none;
+       }
+       .fw-box .tooltip {
+          display: none;
+       }
+       .box:hover, .fw-box:hover  {
+           cursor: context-menu;
+            position: relative;
+       }
+       .tooltip {
+          padding: 5px;
+          display: inline;
+          min-width: max-content;
+          border-radius: 5px;
+          font-size: 80%;
+       }
+       .box:hover .tooltip, .fw-box:hover .tooltip {
+        display: block;
+        z-index: 100;
+        line-height: 1.1em;
+        background-color: black;
+        opacity: .7;
+        color: white;
+        left: 0px;
+        position: absolute;
+        top: -2em;
+        text-decoration: none;
+       }
 .EOL { color: red;}
 .XXX_red { color: #dc4731;}
 .N-Archiv_red { color: #b8390e;font-face: bold;}
@@ -79,13 +112,11 @@ span[draggable] { cursor: grab; }
            border-color: inherit;
         }
    .addSpan { font-size:90%;}
-	.box { cursor: context-menu; background-color: #F5F5F5;}
-	.fw-box { cursor: context-menu; background-color: #add8e6;}
         .erased { color: grey;}
         .inline { font-size:90%;}
         .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
-        .deleted, .deleted-000 { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
+        .deleted, .deleted-000, .hatching { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
         .red-deleted { cursor: context-menu; 
 	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='red' stroke-dasharray='1.2 1.8 1.2' d='M1,1 1500,1500'/></svg>") repeat; }
         .hex-deleted { background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='240' stroke='%23750606' stroke-dasharray='1' d='M1,1 150,150'/></svg>") repeat; }

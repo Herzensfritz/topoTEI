@@ -90,7 +90,7 @@ function getOuterValueFromChildren(element, isUp, value) {
    var outest = value;
    for (var i = 0; i < element.children.length; i++){
       var childValue = getOuterValueFromChildren(element.children[i], isUp, outest);
-      if ((isUp && childValue < outest) || (!isUp && childValue > outest)) {
+      if ((isUp && childValue > 0 && childValue < outest) || (!isUp && childValue > outest)) {
          outest = childValue;
       } 
    }
