@@ -36,10 +36,10 @@
    </xsl:template>
    <!-- Process tei:div1: produce top forme work container, transkription and bottom forme work container -->
    <xsl:template match="tei:body/tei:div1">
-      <div class="fw-container">
+      <!--<div class="fw-container">
          <xsl:apply-templates select="tei:fw[@place='top-left' or @place='top-right']"/>
-      </div>
-      <xsl:apply-templates select="//tei:sourceDoc/tei:surface[@start = concat('#', current()/@xml:id)]"/>
+      </div>-->
+      <xsl:apply-templates select="//tei:sourceDoc/tei:surface[@start = concat('#', //tei:pb/@xml:id)]"/>
       <div class="fw-container">
          <xsl:apply-templates select="tei:fw[@place='bottom-left']"/>
       </div>
@@ -52,11 +52,24 @@
    </xsl:template>
    <xsl:template match="tei:zone">
       <xsl:variable name="zone" select="substring-after(@start, '#')"/>
-      <div id="{$zone}">
-         <xsl:apply-templates>
-            <xsl:with-param name="zoneId" select="$zone"/>
-         </xsl:apply-templates>
+      <div id="{$zone}" style="{@style}">
+         <xsl:choose>
+            <xsl:when test="@type = 'fw'">
+               <xsl:call-template name="fw-zone">
+                  <xsl:with-param name="fwId" select="$zone"/>
+               </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:apply-templates>
+                  <xsl:with-param name="zoneId" select="$zone"/>
+               </xsl:apply-templates>
+            </xsl:otherwise>
+         </xsl:choose>
       </div>
+   </xsl:template>
+   <xsl:template name="fw-zone">
+      <xsl:param name="fwId"/>
+      <xsl:apply-templates select="//tei:fw[@xml:id = $fwId ]"/>
    </xsl:template>
    <xsl:template match="tei:line">
       <xsl:param name="zoneId"/>

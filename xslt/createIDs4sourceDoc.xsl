@@ -4,11 +4,25 @@
     <xsl:template match="/">
          <xsl:apply-templates/>
    </xsl:template>
-   <xsl:template match="(tei:div2|tei:div1|tei:lb|tei:add)[not(@xml:id)]">
+   <xsl:template match="tei:div2|tei:div1">
+      <xsl:variable name="id" select="if (@xml:id) then (@xml:id) else (generate-id())"/>
+      <xsl:element name="{name()}">
+         <xsl:copy-of select="@*"/>
+         <xsl:element name="anchor">
+            <xsl:attribute name="xml:id">
+             <xsl:value-of select="concat($TITLE,'_',local-name(),'_',$id)"/>
+           </xsl:attribute>
+         </xsl:element>
+        <xsl:apply-templates/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template match="(tei:lb|tei:add|tei:fw)[not(@xml:id)]">
+      <xsl:variable name="id" select="if (@n) then (@n) else (generate-id())"/>
+      <xsl:variable name="name" select="if (@n) then (local-name()) else (concat(local-name(), '_'))"/>
       <xsl:element name="{name()}">
          <xsl:copy-of select="@*"/>
          <xsl:attribute name="xml:id">
-          <xsl:value-of select="concat($TITLE,'_',generate-id())"/>
+          <xsl:value-of select="concat($TITLE,'_',$name,$id)"/>
         </xsl:attribute>
         <xsl:apply-templates/>
       </xsl:element>

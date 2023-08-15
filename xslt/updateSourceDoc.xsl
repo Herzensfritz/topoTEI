@@ -12,18 +12,19 @@
    </xsl:template>
    <xsl:template name="sourceDoc">
          <xsl:element name="sourceDoc">
-            <xsl:for-each select="//tei:text/tei:body/tei:div1[@xml:id]">
+            <xsl:for-each select="//tei:text/tei:body/tei:div1">
+               <xsl:variable name="pb_id" select="tei:pb/@xml:id"/>
                <xsl:choose>
-                  <xsl:when test="//tei:surface[@start = concat('#', current()/@xml:id)]">
+                  <xsl:when test="//tei:surface[@start = concat('#', $pb_id)]">
                      <xsl:element name="surface">
-                        <xsl:copy-of select="//tei:surface[@start = concat('#', current()/@xml:id)]/@*"/>
-                        <xsl:if test="empty(//tei:surface[@start = concat('#', current()/@xml:id)]/@type)">
+                        <xsl:copy-of select="//tei:surface[@start = concat('#', $pb_id)]/@*"/>
+                        <xsl:if test="empty(//tei:surface[@start = concat('#', $pb_id)]/@type)">
                            <xsl:attribute name="type">
                              <xsl:value-of select="'relative'"/>
                            </xsl:attribute>
                         </xsl:if>
                         <xsl:call-template name="zones">
-                           <xsl:with-param name="div1_id" select="current()/@xml:id"/>
+                           <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
                         </xsl:call-template>
                      </xsl:element>
                   </xsl:when>
@@ -33,10 +34,10 @@
                           <xsl:value-of select="'relative'"/>
                         </xsl:attribute>
                         <xsl:attribute name="start">
-                          <xsl:value-of select="concat('#', @xml:id)"/>
+                          <xsl:value-of select="concat('#', $pb_id)"/>
                         </xsl:attribute>
                         <xsl:call-template name="zones">
-                           <xsl:with-param name="div1_id" select="@xml:id"/>
+                           <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
                         </xsl:call-template>
                        </xsl:element>
                   </xsl:otherwise>
@@ -46,38 +47,50 @@
    </xsl:template>
 
    <xsl:template name="zones">
-      <xsl:param name="div1_id"/>
-      <xsl:for-each select="tei:div2[ancestor::div1/@xml:id = $div1_id and @xml:id]">
+      <xsl:param name="anchor_id"/>
+      <xsl:for-each select="tei:div2[ancestor::div1/tei:anchor[1]/@xml:id = $anchor_id]">
          <xsl:element name="zone">
             <xsl:attribute name="start">
-              <xsl:value-of select="concat('#', @xml:id)"/>
+               <xsl:value-of select="concat('#', tei:anchor[1]/@xml:id)"/>
             </xsl:attribute>
+            <xsl:if test="count(preceding-sibling::tei:div2) lt 1">
+               <xsl:attribute name="type">
+                  <xsl:value-of select="'firstRegularLine'"/>
+               </xsl:attribute>
+               <xsl:attribute name="style">
+                  <xsl:value-of select="'padding-top:5em;'"/>
+               </xsl:attribute>
+               <xsl:call-template name="fw-zone">
+                  <xsl:with-param name="start_id" select="$anchor_id"/>
+                  <xsl:with-param name="end_id" select="tei:anchor[1]/@xml:id"/>
+               </xsl:call-template>
+            </xsl:if>
             <xsl:call-template name="lines">
-               <xsl:with-param name="div2_id" select="@xml:id"/>
+               <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
             </xsl:call-template>
          </xsl:element>
      </xsl:for-each>
    </xsl:template>
    <xsl:template name="lines">
-      <xsl:param name="div2_id"/>
-      <xsl:for-each select="//tei:lb[ancestor::div2/@xml:id = $div2_id and @xml:id]">
+      <xsl:param name="anchor_id"/>
+      <xsl:for-each select="//tei:lb[ancestor::div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id]">
          <xsl:element name="line">
             <xsl:attribute name="start">
               <xsl:value-of select="concat('#', @xml:id)"/>
             </xsl:attribute>
             <xsl:call-template name="parentAdd">
-               <xsl:with-param name="div2_id" select="$div2_id"/>
+               <xsl:with-param name="anchor_id" select="$anchor_id"/>
                <xsl:with-param name="lb_id" select="@xml:id"/>
             </xsl:call-template>
          </xsl:element>
       </xsl:for-each>
    </xsl:template>
    <xsl:template name="parentAdd">
-      <xsl:param name="div2_id"/>
+      <xsl:param name="anchor_id"/>
       <xsl:param name="lb_id"/>
       <xsl:for-each select="//tei:add[
          @xml:id and (@place = 'above' or @place = 'below') 
-         and ancestor::tei:div2/@xml:id = $div2_id 
+         and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id
          and (preceding-sibling::tei:lb[1][@xml:id = $lb_id] or 
                (ancestor::tei:subst/preceding-sibling::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below']))
              )
@@ -129,5 +142,19 @@
          <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </xsl:element>
+   </xsl:template>
+   <xsl:template name="fw-zone">
+      <xsl:param name="start_id"/>
+      <xsl:param name="end_id"/>
+      <xsl:for-each select="//tei:fw[ancestor::div1/tei:anchor[1]/@xml:id = $start_id and following-sibling::tei:div2/tei:anchor[1]/@xml:id = $end_id]">
+         <xsl:element name="zone">
+            <xsl:attribute name="type">
+               <xsl:value-of select="'fw'"/>
+            </xsl:attribute>
+            <xsl:attribute name="start">
+               <xsl:value-of select="concat('#', current()/@xml:id)"/>
+            </xsl:attribute>
+         </xsl:element>
+      </xsl:for-each>
    </xsl:template>
 </xsl:stylesheet>
