@@ -253,10 +253,18 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
-
+   <!-- Process notes -->
+   <xsl:template match="tei:note[@type = 'authorial']">
+      <xsl:param name="id"/>
+      <xsl:if test="@xml:id = $id">
+         <span class="{@place} {replace(@hand, '#', '')}">
+            <xsl:apply-templates/>
+         </span>
+      </xsl:if>
+   </xsl:template>
    <!-- unprocessed tags ...-->
    <xsl:template match="tei:certainty"/>
-   <xsl:template match="tei:noteGrp|tei:note"/>
+   <xsl:template match="tei:noteGrp|tei:note[empty(@type) or not(@type = 'authorial')]"/>
    <xsl:template match="tei:pb"/>
    <xsl:template match="tei:del[@rend='overwritten']|tei:add[@place='superimposed']"/>
 </xsl:stylesheet>

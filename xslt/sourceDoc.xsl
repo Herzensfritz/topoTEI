@@ -13,8 +13,8 @@
            <html>
               <head>
                   <title>
-                            <xsl:value-of select="$TITLE"/>
-                        </title>
+                      <xsl:value-of select="$TITLE"/>
+                  </title>
                   <link rel="stylesheet" href="{concat($resources, '/css/gui_style.css')}"/>
                   <script src="{concat($resources, '/scripts/gui_transcription.js')}"/>
               </head>
@@ -40,9 +40,9 @@
          <xsl:apply-templates select="tei:fw[@place='top-left' or @place='top-right']"/>
       </div>-->
       <xsl:apply-templates select="//tei:sourceDoc/tei:surface[@start = concat('#', //tei:pb/@xml:id)]"/>
-      <div class="fw-container">
+      <!--<div class="fw-container">
          <xsl:apply-templates select="tei:fw[@place='bottom-left']"/>
-      </div>
+      </div>-->
    </xsl:template>
    <xsl:template match="tei:surface">
       <xsl:variable name="style" select="@style"/>
@@ -52,11 +52,24 @@
    </xsl:template>
    <xsl:template match="tei:zone">
       <xsl:variable name="zone" select="substring-after(@start, '#')"/>
-      <div id="{$zone}" style="{@style}">
+      <xsl:element name="div">
+         <xsl:attribute name="id">
+            <xsl:value-of select="$zone"/>
+         </xsl:attribute>
+         <xsl:if test="@style">
+            <xsl:attribute name="style">
+               <xsl:value-of select="@style"/>
+            </xsl:attribute>
+         </xsl:if>
+         <xsl:if test="@type">
+            <xsl:attribute name="class">
+               <xsl:value-of select="@type"/>
+            </xsl:attribute>
+         </xsl:if>
          <xsl:choose>
-            <xsl:when test="@type = 'fw'">
-               <xsl:call-template name="fw-zone">
-                  <xsl:with-param name="fwId" select="$zone"/>
+            <xsl:when test="starts-with(@type, 'fw') or starts-with(@type, 'note')">
+               <xsl:call-template name="zoneItems">
+                  <xsl:with-param name="id" select="$zone"/>
                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
@@ -65,20 +78,25 @@
                </xsl:apply-templates>
             </xsl:otherwise>
          </xsl:choose>
-      </div>
+      </xsl:element>
    </xsl:template>
-   <xsl:template name="fw-zone">
-      <xsl:param name="fwId"/>
-      <xsl:apply-templates select="//tei:fw[@xml:id = $fwId ]"/>
+   <xsl:template name="zoneItems">
+      <xsl:param name="id"/>
+      <xsl:apply-templates select="//*[@xml:id = $id ]">
+         <xsl:with-param name="id" select="$id"/>
+      </xsl:apply-templates>
    </xsl:template>
    <xsl:template match="tei:line">
       <xsl:param name="zoneId"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
       <xsl:variable name="endId" select="substring-after(following-sibling::tei:line[1]/@start, '#')"/>
+      <xsl:variable name="spanType" select="concat(@rend,' ',tei:zone/@type)"/>
+      <xsl:variable name="spanStyle" select="concat(@style,tei:zone/@style)"/>
       <div class="line">
          <xsl:call-template name="writeLineNumber">
             <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
          </xsl:call-template>
+         <span class="{$spanType}" style="{$spanStyle}">
          <xsl:choose>
             <!-- Simple case: nodes/text between two lb -->
             <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]) gt 0">
@@ -107,6 +125,7 @@
                <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
             </xsl:otherwise>
          </xsl:choose>
+         </span>
       </div>
    </xsl:template>
 </xsl:stylesheet>
