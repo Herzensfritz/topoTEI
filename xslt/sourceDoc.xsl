@@ -18,7 +18,8 @@
                   <link rel="stylesheet" href="{concat($resources, '/css/gui_style.css')}"/>
                   <script src="{concat($resources, '/scripts/gui_transcription.js')}"/>
               </head>
-              <body onload="updatePositions()">
+              <!--<body onload="updatePositions()">-->
+              <body>
                   <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>
                         </h1>
                   <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
@@ -67,6 +68,7 @@
             </xsl:attribute>
          </xsl:if>
          <xsl:choose>
+            <!--<xsl:when test="starts-with(@type, 'fw') or starts-with(@type, 'note')">
             <xsl:when test="starts-with(@type, 'fw') or starts-with(@type, 'note')">
                <xsl:call-template name="zoneItems">
                   <xsl:with-param name="id" select="$zone"/>
@@ -76,6 +78,16 @@
                <xsl:apply-templates>
                   <xsl:with-param name="zoneId" select="$zone"/>
                </xsl:apply-templates>
+            </xsl:otherwise>-->
+            <xsl:when test="tei:line">
+               <xsl:apply-templates>
+                  <xsl:with-param name="zoneId" select="$zone"/>
+               </xsl:apply-templates>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:call-template name="zoneItems">
+                  <xsl:with-param name="id" select="$zone"/>
+               </xsl:call-template>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
@@ -88,11 +100,14 @@
    </xsl:template>
    <xsl:template match="tei:line">
       <xsl:param name="zoneId"/>
+      <xsl:variable name="lineClass" select="if (ends-with(parent::tei:zone/@type, 'Block')) then ('line') else ('zoneLine')"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
-      <xsl:variable name="endId" select="substring-after(following-sibling::tei:line[1]/@start, '#')"/>
+      <xsl:variable name="endId" select="if (following-sibling::tei:line) then (substring-after(following-sibling::tei:line[1]/@start, '#')) 
+      else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#')) 
+      else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[1]/@start,'#')))"/>
       <xsl:variable name="spanType" select="concat(@rend,' ',tei:zone/@type)"/>
       <xsl:variable name="spanStyle" select="concat(@style,tei:zone/@style)"/>
-      <div class="line">
+      <div class="{$lineClass}">
          <xsl:call-template name="writeLineNumber">
             <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
          </xsl:call-template>
@@ -104,15 +119,15 @@
             </xsl:when>
             <!-- Hierarchical case 1: nodes/text between two lb, second lb inside a tag -->
             <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../node()/tei:lb[@xml:id = $endId]) gt 0">
-               <xsl:variable name="stopNode" select="//(*|text())[following-sibling::tei:lb[@xml:id = $endId]]/.."/>
-                  <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::* = $stopNode]"/>
+               <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])
+               and (following-sibling::*//tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId])]"/>
             </xsl:when>
             <!-- Hierarchical case 2: first lb inside a tag -->
             <xsl:when test="$endId">
                   <xsl:choose>
                      <!-- Hierarchical case 2a: only one lb inside a tag -->
                      <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb) eq 1">
-                        <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/.."/>
+                        <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
                      </xsl:when>
                      <!-- Hierarchical case 2b: several lbs inside a tag, current lb is last lb inside tag -->
                      <xsl:otherwise>

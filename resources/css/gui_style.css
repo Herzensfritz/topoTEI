@@ -47,11 +47,15 @@
      .singleBlock { position: relative; padding-top: 5em; padding-bottom: 5em;}
      .firstBlock { position: relative; padding-top: 5em; }
      .lastBlock { position: relative; padding-bottom: 5em; }
+     .add-zone { position: absolute; top: 0em; font-size: 90%; }
+     .note-zone-bottom-right { position: absolute; bottom: 1em;  }
      .fw-top { position: absolute; top: -0.1em;}
      .fw-top-right { position: absolute; top: -0.1em; right: 50px;}
      .fw-bottom-left { position: absolute; bottom: 0em; left: 25px;}
      .fw-container { margin-left: 30px; width: 90%; display: inline-block;}
      .note-top-right { position: absolute; top: 1em; right: 0px;width: 100%;}
+     .note-bottom-right { position: absolute; bottom: 2em; right: 0px;}
+     .note-top-center { position: absolute; top: 1em; margin-left: 60%;margin-right:60%;width: 100%;}
      .head-zone { position: absolute; top: 1em; width: 100%;}
      .top-left { text-align: left }
      .bottom-left { text-align: left }
@@ -185,6 +189,7 @@
          .del-linearisiert:before { content: '['; }
          .del-linearisiert:after { content: ']'; }
          .underline { text-decoration: underline;  }
+         .markLine { border-bottom: solid; }
          .markLine_N_brown1 {
              border-bottom: solid;
              border-bottom-color: var(--nbrown);
