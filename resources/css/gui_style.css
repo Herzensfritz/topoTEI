@@ -3,6 +3,8 @@
    #message { color: red;}
    .transkriptionField {background-color: #CED5CE;}
    #transkription {  padding-right: 20px; padding-left: 5px; padding-top: 10px; padding-bottom: 10px;margin-left: 30px; width: max-content;}
+   .highlight, .metamark:hover { background-color: var(--highlight); }
+   .metamark { cursor: pointer;}
    .small { color: black; padding: 3px; }
    .fw-box { background-color: #add8e6;}
     .box { background-color: #F5F5F5; width: max-content; text-align: start;}
@@ -38,7 +40,9 @@
    .EOL { color: red;}
    .XXX_red, .N_red { color: #dc4731;}
    .N-Archiv_red { color: #b8390e;font-face: bold;}
+   .N_pencil { color: gray; font-weight: bold;}
    .N_brown1 { color: var(--nbrown);}
+   .red-marking { color: var(--red-marking);}
    .indent { margin-left: 34px;}
    span[draggable] { cursor: grab; }
    .deleted-N_brown1 { cursor: context-menu; 
@@ -48,14 +52,15 @@
      .firstBlock { position: relative; padding-top: 5em; }
      .lastBlock { position: relative; padding-bottom: 5em; }
      .add-zone { position: absolute; top: 0em; font-size: 90%; }
-     .note-zone-bottom-right { position: absolute; bottom: 1em;  }
+     .ab-zone { position: absolute; bottom: 1em;}
+     .note-zone-bottom-right { position: absolute; bottom: 1em;  font-style: italic;}
      .fw-top { position: absolute; top: -0.1em;}
      .fw-top-right { position: absolute; top: -0.1em; right: 50px;}
      .fw-bottom-left { position: absolute; bottom: 0em; left: 25px;}
-     .fw-container { margin-left: 30px; width: 90%; display: inline-block;}
-     .note-top-right { position: absolute; top: 1em; right: 0px;width: 100%;}
-     .note-bottom-right { position: absolute; bottom: 2em; right: 0px;}
-     .note-top-center { position: absolute; top: 1em; margin-left: 60%;margin-right:60%;width: 100%;}
+     .fw-container { margin-left: 30px; width: 90%; display: inline-block;font-style: italic;}
+     .note-top-right { position: absolute; top: 1em; right: 0px;width: 100%;font-style: italic;}
+     .note-bottom-right { position: absolute; bottom: 2em; right: 0px;font-style: italic;}
+     .note-top-center { position: absolute; top: 1em; margin-left: 60%;margin-right:60%;width: 100%;font-style: italic; }
      .head-zone { position: absolute; top: 1em; width: 100%;}
      .top-left { text-align: left }
      .bottom-left { text-align: left }
@@ -106,7 +111,9 @@
      .above2 { position:relative;top: -2.8em; left: -2em;font-size:80%;}
      .insert-mark-above, .insert-mark-below{ position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
      :root {
+         --highlight: yellow;
          --radius: 0em 0em;
+         --red-marking: red;
          --length: 0.5em;
          --nbrown: #5C4033;
      }

@@ -15,7 +15,7 @@
    <!-- Write the line number, if in editor mode write also a call to a javascript function onClick -->
    <xsl:template name="writeLineNumber">
       <xsl:param name="n"/>
-      <xsl:if test="number($n) and number($n) = $n">
+      <xsl:if test="$n">
          <xsl:choose>
             <xsl:when test="$fullpage = 'true'">
                <span class="lnr">
@@ -256,12 +256,30 @@
    <!-- Process notes -->
    <xsl:template match="tei:note[@type = 'authorial']">
       <xsl:param name="id"/>
-      <xsl:if test="@xml:id = $id">
+      <xsl:if test="preceding-sibling::tei:lb[1][@xml:id = $id]">
          <span class="{@place} {replace(@hand, '#', '')}">
             <xsl:apply-templates/>
          </span>
       </xsl:if>
    </xsl:template>
+   <!-- Process metamarks -->
+   <xsl:template match="tei:metamark">
+      <xsl:param name="id"/>
+      <xsl:choose>
+         <xsl:when test="@target">
+            <xsl:variable name="target" select="substring-before(substring-after(@target, '#'), ' ')"/>
+            <span id="{@xml:id}" class="metamark {replace(replace(@rend, '#', ''), '\*','')}" onmouseover="toggleHighlight('{$target}', true)" onmouseout="toggleHighlight('{$target}', false)">
+               <xsl:apply-templates/>
+            </span>
+         </xsl:when>
+         <xsl:otherwise>
+            <span id="{@xml:id}" class="{replace(replace(@rend, '#', ''), '*','')}">
+               <xsl:apply-templates/>
+            </span>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+
    <!-- unprocessed tags ...-->
    <xsl:template match="tei:certainty"/>
    <xsl:template match="tei:noteGrp|tei:note[empty(@type) or not(@type = 'authorial')]"/>

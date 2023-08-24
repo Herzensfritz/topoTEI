@@ -8,11 +8,18 @@ const CSS_CLASSES =  {
    BELOW: 'below',
    CENTERLEFT: 'centerLeft',
    FLUSHRIGHT: 'flushRight',
+   HIGHLIGHT: 'highlight',
    INSERTION: 'insertion-',
    LINE: 'line', 
    MARKABOVE: 'insert-mark-above',
    MARKBELOW: 'insert-mark-below',
    MARK: 'insert-mark'
+}
+function toggleHighlight(targetId, highlight) {
+   let targetElement = document.getElementById(targetId);
+   if (targetElement) {
+      targetElement.classList.toggle(CSS_CLASSES.HIGHLIGHT);
+   }
 }
 function updatePositions() {
       var transkription = document.getElementById(CSS_IDS.TRANSKRIPTION);

@@ -68,17 +68,6 @@
             </xsl:attribute>
          </xsl:if>
          <xsl:choose>
-            <!--<xsl:when test="starts-with(@type, 'fw') or starts-with(@type, 'note')">
-            <xsl:when test="starts-with(@type, 'fw') or starts-with(@type, 'note')">
-               <xsl:call-template name="zoneItems">
-                  <xsl:with-param name="id" select="$zone"/>
-               </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:apply-templates>
-                  <xsl:with-param name="zoneId" select="$zone"/>
-               </xsl:apply-templates>
-            </xsl:otherwise>-->
             <xsl:when test="tei:line">
                <xsl:apply-templates>
                   <xsl:with-param name="zoneId" select="$zone"/>
@@ -100,7 +89,7 @@
    </xsl:template>
    <xsl:template match="tei:line">
       <xsl:param name="zoneId"/>
-      <xsl:variable name="lineClass" select="if (ends-with(parent::tei:zone/@type, 'Block')) then ('line') else ('zoneLine')"/>
+      <xsl:variable name="lineClass" select="if (empty(parent::tei:zone/@type) or ends-with(parent::tei:zone/@type, 'Block')) then ('line') else ('zoneLine')"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
       <xsl:variable name="endId" select="if (following-sibling::tei:line) then (substring-after(following-sibling::tei:line[1]/@start, '#')) 
       else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#')) 
@@ -137,7 +126,9 @@
             </xsl:when>
             <!-- Nodes/text after last lb in div2 -->
             <xsl:otherwise>
-               <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
+               <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]">
+                  <xsl:with-param name="id" select="$startId"/>
+               </xsl:apply-templates>
             </xsl:otherwise>
          </xsl:choose>
          </span>
