@@ -96,11 +96,13 @@ declare function local:storeFile($data, $type as xs:string, $targetType as xs:st
 };
 declare function local:prepareDocument($xmlContent as xs:string) as node() {
     let $document := parse-xml($xmlContent)
-    let $stylesheet := config:resolve("xslt/remove_hierarchies.xsl")
+    let $stylesheet := config:resolve("xslt/createIDs4sourceDoc.xsl")
     let $fix := config:resolve("xslt/remove_namespaces.xsl")
+    let $sourceDoc := config:resolve("xslt/updateSourceDoc.xsl")
     let $new-document := transform:transform($document, $stylesheet, (), (), "method=xml media-type=text/xml")
     let $fix-document := transform:transform($new-document, $fix, (), (), "method=xml media-type=text/xml")
-    return $fix-document
+    let $source-document := transform:transform($fix-document, $sourceDoc, (), (), "method=xml media-type=text/xml")
+    return $source-document
 };
 declare
  %rest:path("/revertVersion")
@@ -212,6 +214,35 @@ function myrest:uploadFont($data, $type, $referer) {
     </rest:response>
 };
 declare
+ %rest:path("/old-posttransform")
+ %rest:POST("{$data}")
+ %rest:header-param("Content-Type", "{$type}")
+ %output:media-type("text/html")
+ %output:method("html5")
+  %rest:header-param("Referer", "{$referer}", "none")
+function myrest:OLDuploadTransform($data, $type, $referer) {
+    let $targetType := "text/xml"
+    let $collection := concat($config:data-root, "/")
+    let $response := local:storeFile($data, $type, $targetType, $collection)
+    let $status := $response('status')
+    return if ($status = '200') then (
+        local:showTransformation($response('localUri'))
+    ) else (
+        let $location := concat(replace($referer, '(\?.*$)',''), '?msg=', $status)
+        return
+    <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="{$location}"/>
+      
+        </http:response>
+    </rest:response>
+    )
+};
+declare
  %rest:path("/posttransform")
  %rest:POST("{$data}")
  %rest:header-param("Content-Type", "{$type}")
@@ -274,9 +305,9 @@ function myrest:donwload($file as xs:string*) {
     let $mimetype   := 'application/xml'
     let $method     := 'xml'
     let $data := doc($doc-uri)
-    let $stylesheet := config:resolve('xslt/recreate_hierarchies.xsl')
+    (:  :let $stylesheet := config:resolve('xslt/recreate_hierarchies.xsl')
 
-    let $export-data := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml")
+    let $export-data := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml") :)
 return (
     <rest:response>
         <http:response>
@@ -288,7 +319,7 @@ return (
         
         </output:serialization-parameters>
     </rest:response>
-    , $export-data
+    , $data
     (:  :<serverinfo accept="{req:header("Accept")}" method="{$method}" mimetype="{$mimetype}">
         <desc language="en-US"/>
         <database version="{system:get-version()}"/>

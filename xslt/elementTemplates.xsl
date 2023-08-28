@@ -133,8 +133,12 @@
       <span class="{if (parent::tei:fw) then ('fw-box') else ('box')}">
          <xsl:choose>
             <xsl:when test="current()/tei:del/node()">
-               <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/><span class="tooltip"><xsl:value-of select="$dict/tei:entry[@key = current()/tei:del/@rend]/@value"/>
-                  <span class="transkriptionField small"><xsl:apply-templates select="./tei:del/(*|text())"/></span>
+               <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/>
+                    <span class="tooltip">
+                        <xsl:value-of select="$dict/tei:entry[@key = current()/tei:del/@rend]/@value"/>
+                  <span class="transkriptionField small">
+                            <xsl:apply-templates select="./tei:del/(*|text())"/>
+                        </span>
                </span>
             </xsl:when>
             <xsl:otherwise>
@@ -236,15 +240,20 @@
       <xsl:variable name="hand" select="replace(@hand,'#','')"/>
       <xsl:choose>
          <xsl:when test="@place and (contains(@place,'above') or contains(@place,'below'))">
-                   <xsl:call-template name="writeAdd">
-                      <xsl:with-param name="childId" select="@xml:id"/>
-                      <xsl:with-param name="parentId" select="concat('parent-', @xml:id)"/>
-                     <!-- <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/> -->
-                     <xsl:with-param name="childClass" select="@place"/>
-                      <xsl:with-param name="parentClass" select="if (@rend) then (concat(@rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
-                      <xsl:with-param name="childStyle" select="if (@rend) then (tei:createStyle(@style, 'child', @place)) else (@style)"/>
-                      <xsl:with-param name="parentStyle" select="if (@rend) then (tei:createStyle(@style, 'parent', @place)) else ()"/>
-                   </xsl:call-template>
+            <xsl:variable name="addId" select="concat('#', @xml:id)"/>
+            <xsl:variable name="childId" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@xml:id"/>
+            <xsl:variable name="childStyle" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@style"/>
+            <xsl:variable name="parentId" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@xml:id"/>
+            <xsl:variable name="parentStyle" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@style"/>
+            <xsl:call-template name="writeAdd">
+                <xsl:with-param name="childId" select="$childId"/>
+                <xsl:with-param name="parentId" select="$parentId"/>
+               <!-- <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/> -->
+               <xsl:with-param name="childClass" select="@place"/>
+                <xsl:with-param name="parentClass" select="if (@rend) then (concat(@rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
+                <xsl:with-param name="childStyle" select="$childStyle"/>
+                <xsl:with-param name="parentStyle" select="$parentStyle"/>
+            </xsl:call-template>
          </xsl:when>
          <xsl:otherwise>
             <span class="inline {$hand}">
@@ -267,7 +276,7 @@
       <xsl:param name="id"/>
       <xsl:choose>
          <xsl:when test="@target">
-            <xsl:variable name="target" select="substring-before(substring-after(@target, '#'), ' ')"/>
+            <xsl:variable name="target" select="if (contains(@target, ' ')) then (substring-before(substring-after(@target, '#'), ' ')) else (substring-after(@target, '#'))"/>
             <span id="{@xml:id}" class="metamark {replace(replace(@rend, '#', ''), '\*','')}" onmouseover="toggleHighlight('{$target}', true)" onmouseout="toggleHighlight('{$target}', false)">
                <xsl:apply-templates/>
             </span>

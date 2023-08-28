@@ -1,7 +1,7 @@
 {
-  "name": "exist_test",
-  "version": "1.0.0",
-  "description": "My amazing exist_test application",
+  "name": "topoTEI",
+  "version": "1.1.0",
+  "description": "topoTEI: edit topological information of TEI files",
   "homepage": "",
   "bugs": "",
   "engines": {

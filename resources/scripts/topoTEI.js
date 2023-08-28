@@ -251,6 +251,21 @@ function adjustLineNumbers(lines){
 function saveStyleGet(element, attribute){
     return (element.style[attribute]) ? element.style[attribute] : "0px";   
 }
+function createAddPositionInfo (element, isChild, targetArray){
+    if (isChild){
+        let style = (element.className.includes('below') 
+        || !(element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1)) 
+        ? "left:" + saveStyleGet(element, 'left') + "; top:" + saveStyleGet(element, 'top') 
+        : "left:" + saveStyleGet(element, 'left');
+        targetArray.push({id: element.id, style: style});
+        if (element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1){
+            createAddPositionInfo(element.parentElement, false, targetArray)    
+        }
+    } else {
+        let style = (element.className.includes('below')) ? "height:" + saveStyleGet(element.parentElement, 'height') : "top:" + saveStyleGet(element, 'top') + "; height:" + saveStyleGet(element, 'height');
+        targetArray.push({id: element.id, style: style});
+    }
+}
 function createInfo (element){
     let style = "left:" + saveStyleGet(element, 'left');
     if (element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1){
@@ -315,7 +330,10 @@ function myPost(button) {
    if (!button.getAttribute('disabled')){
        let elements = Array.from(document.querySelectorAll("span[draggable]")).filter(element =>(element.style.length > 0 
                                                                                              || (element.parentElement && element.parentElement.style.length > 0)));
-       let elementInfos = elements.map(element =>createInfo(element))
+       let elementInfos = [];
+       elements.forEach(element =>{
+           createAddPositionInfo(element, true, elementInfos)
+        });
        let lineInfos = Array.from(document.getElementsByClassName('lineManuallyChanged')).map(element =>createStyleObject(element));
        let data = elementInfos.concat(lineInfos);
        mySend(data);

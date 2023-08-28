@@ -42,7 +42,7 @@ function app:uploadDialog($node as node(), $model as map(*)) {
             </form> 
             
              <span>
-                <button title="Ausgewählte Datei exportieren" class="fbutton" onclick="exportFile('fileSelection')">Datei exportieren ...</button>
+                <button title="Ausgewählte Datei runterladen" class="fbutton" onclick="exportFile('fileSelection')">Download ...</button>
                     
                 <button title="Ausgewählte Datei löschen" class="fbutton"onClick="deleteFile('fileSelection')">Datei löschen</button>
              </span>
@@ -279,7 +279,7 @@ declare function app:lineInput($node as node(), $model as map(*)) as element(div
 declare function app:transform($node as node(), $model as map(*)) {
     let $file := $model('file')
     let $node-tree := doc($file)
-    let $stylesheet := doc(concat($config:app-root, "/xslt/gui_transcription.xsl"))
+    let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
     let $param := <parameters>
                     <param name="fullpage" value="false"/>   
                 </parameters>
