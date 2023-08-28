@@ -7,45 +7,30 @@
       <xsl:element name="{name()}">
          <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
-         <xsl:call-template name="sourceDoc"/>
+         <xsl:if test="empty(//tei:sourceDoc)">
+            <xsl:call-template name="sourceDoc"/>
+         </xsl:if>
       </xsl:element>
    </xsl:template>
    <xsl:template name="sourceDoc">
          <xsl:element name="sourceDoc">
             <xsl:for-each select="//tei:text/tei:body/tei:div1">
                <xsl:variable name="pb_id" select="tei:pb/@xml:id"/>
-               <xsl:choose>
-                  <xsl:when test="//tei:surface[@start = concat('#', $pb_id)]">
-                     <xsl:element name="surface">
-                        <xsl:copy-of select="//tei:surface[@start = concat('#', $pb_id)]/@*"/>
-                        <xsl:if test="empty(//tei:surface[@start = concat('#', $pb_id)]/@type)">
-                           <xsl:attribute name="type">
-                             <xsl:value-of select="'relative'"/>
-                           </xsl:attribute>
-                        </xsl:if>
-                        <xsl:call-template name="zones">
-                           <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
-                        </xsl:call-template>
-                     </xsl:element>
-                  </xsl:when>
-                  <xsl:otherwise>
-                     <xsl:element name="surface">
-                        <xsl:attribute name="xml:id">
-                          <xsl:value-of select="concat('srcD_surface_', $pb_id)"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="type">
-                          <xsl:value-of select="'relative'"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="start">
-                          <xsl:value-of select="concat('#', $pb_id)"/>
-                        </xsl:attribute>
-                        <xsl:call-template name="zones">
-                           <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
-                        </xsl:call-template>
-                       </xsl:element>
-                  </xsl:otherwise>
-               </xsl:choose>
-            </xsl:for-each>
+               <xsl:element name="surface">
+                     <xsl:attribute name="xml:id">
+                       <xsl:value-of select="concat('srcD_surface_', $pb_id)"/>
+                     </xsl:attribute>
+                     <xsl:attribute name="type">
+                       <xsl:value-of select="'relative'"/>
+                     </xsl:attribute>
+                     <xsl:attribute name="start">
+                       <xsl:value-of select="concat('#', $pb_id)"/>
+                     </xsl:attribute>
+                     <xsl:call-template name="zones">
+                        <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
+                     </xsl:call-template>
+              </xsl:element>
+           </xsl:for-each>
          </xsl:element>
    </xsl:template>
 
@@ -133,6 +118,7 @@
       <xsl:param name="rend"/>
       <xsl:param name="anchor_id"/>
       <xsl:param name="zone_type"/>
+      <xsl:param name="style"/>
       <xsl:element name="line">
         <xsl:attribute name="xml:id">
             <xsl:value-of select="concat('srcD_line_', $id)"/>
@@ -140,6 +126,11 @@
          <xsl:attribute name="start">
            <xsl:value-of select="concat('#', $id)"/>
          </xsl:attribute>
+         <xsl:if test="$style">
+            <xsl:attribute name="style">
+              <xsl:value-of select="$style"/>
+            </xsl:attribute>
+         </xsl:if>
          <xsl:if test="$rend">
             <xsl:attribute name="rend">
               <xsl:value-of select="$rend"/>
@@ -186,44 +177,44 @@
                <xsl:variable name="hand" select="if (ancestor::tei:note or following-sibling::tei:note[1]) then (                   if (ancestor::tei:note) then ((substring-after(ancestor::tei:note[1]/@hand, '#'))) else (substring-after(following-sibling::note[1]/@hand, '#'))                )                else (if (ancestor::tei:add) then (substring-after(ancestor::tei:add[1]/@hand, '#')) else (substring-after(following-sibling::tei:add[1]/@hand, '#')))"/>
 
                <xsl:element name="zone">   
+                  <xsl:variable name="topValue" select="number(@n) * 8 + 2"/>
+                  <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
+                  <xsl:variable name="style" select="if (ancestor::tei:note or following-sibling::tei:note[1] or ancestor::tei:ab or following-sibling::tei:ab[1])                      then (concat('bottom:',$bottomValue,'em;'))                      else (concat('top:', $topValue,'px;'))"/>
                   <xsl:choose>
                      <xsl:when test="ancestor::tei:note or following-sibling::tei:note[1]">
                         <xsl:variable name="place" select="if (ancestor::tei:note/@place) then (ancestor::tei:note/@place) else (following-sibling::tei:note[1]/@place)"/>
                         <xsl:variable name="id" select="if (ancestor::tei:note/@xml:id) then (ancestor::tei:note/@xml:id) else (following-sibling::tei:note[1]/@xml:id)"/>
+                        <xsl:attribute name="xml:id">
+                           <xsl:value-of select="concat('srcD_zone_', @xml:id)"/>
+                        </xsl:attribute>
                         <xsl:attribute name="start">
                            <xsl:value-of select="concat('#', @xml:id)"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
-                           <xsl:value-of select="concat('note-zone-', $place)"/>
-                        </xsl:attribute>
-                        <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
-                        <xsl:attribute name="style">
-                           <xsl:value-of select="concat('bottom:',$bottomValue,'em;')"/>
+                           <xsl:value-of select="'note-zone'"/>
                         </xsl:attribute>
                      </xsl:when>
                      <xsl:when test="ancestor::tei:ab or following-sibling::tei:ab[1]">
                         <xsl:variable name="id" select="if (ancestor::tei:ab/@xml:id) then (ancestor::tei:ab/@xml:id) else (following-sibling::tei:ab[1]/@xml:id)"/>
+                        <xsl:attribute name="xml:id">
+                           <xsl:value-of select="concat('srcD_zone_', $id)"/>
+                        </xsl:attribute>
                         <xsl:attribute name="start">
                            <xsl:value-of select="concat('#', @xml:id)"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
                            <xsl:value-of select="'ab-zone'"/>
                         </xsl:attribute>
-                        <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
-                        <xsl:attribute name="style">
-                           <xsl:value-of select="concat('bottom:',$bottomValue,'em;')"/>
-                        </xsl:attribute>
                      </xsl:when>
                      <xsl:otherwise>
-                        <xsl:variable name="topValue" select="number(@n) * 8 + 2"/>
+                        <xsl:attribute name="xml:id">
+                           <xsl:value-of select="concat('srcD_zone_', @xml:id)"/>
+                        </xsl:attribute>
                         <xsl:attribute name="start">
                            <xsl:value-of select="concat('#', @xml:id)"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
                            <xsl:value-of select="'add-zone'"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="style">
-                           <xsl:value-of select="concat('top:', $topValue,'px;')"/>
                         </xsl:attribute>
                      </xsl:otherwise>
                   </xsl:choose>
@@ -232,6 +223,7 @@
                      <xsl:with-param name="rend" select="$hand"/>
                      <xsl:with-param name="anchor_id" select="$anchor_id"/>
                      <xsl:with-param name="zone_type" select="'horizontal'"/>
+                     <xsl:with-param name="style" select="$style"/>
                   </xsl:call-template>
                </xsl:element>
             </xsl:otherwise>

@@ -210,6 +210,30 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
+   <!-- Write content span -->
+   <xsl:template name="writeContentSpanAttributes">
+      <xsl:param name="isZone"/>
+      <xsl:param name="spanClass"/>
+      <xsl:param name="spanStyle"/>
+      <xsl:if test="$spanStyle">
+         <xsl:attribute name="style">
+            <xsl:value-of select="$spanStyle"/>
+         </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="$spanClass">
+         <xsl:attribute name="class">
+            <xsl:value-of select="$spanClass"/>
+         </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="$isZone = 'true' and $fullpage != 'true'">
+         <xsl:attribute name="draggable">
+            <xsl:value-of select="'true'"/>
+         </xsl:attribute>
+         <xsl:attribute name="onClick">
+            <xsl:value-of select="'clickItem(this, event)'"/>
+         </xsl:attribute>
+      </xsl:if>
+   </xsl:template>
    <!-- Write addition, in editor mode make text draggable and create a call to javascript function onClick -->
    <xsl:template name="writeAdd">
       <xsl:param name="childId"/>

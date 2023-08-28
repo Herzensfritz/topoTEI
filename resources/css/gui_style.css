@@ -53,6 +53,7 @@
      .lastBlock { position: relative; padding-bottom: 5em; }
      .add-zone { position: absolute; top: 0em; font-size: 90%; }
      .ab-zone { position: absolute; bottom: 1em;}
+     .zoneLine { position: absolute;}
      .note-zone-bottom-right { position: absolute; bottom: 1em;  font-style: italic;}
      .fw-top { position: absolute; top: -0.1em;}
      .fw-top-right { position: absolute; top: -0.1em; right: 50px;}
