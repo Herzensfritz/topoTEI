@@ -212,17 +212,22 @@
    </xsl:template>
    <!-- Write content span -->
    <xsl:template name="writeContentSpanAttributes">
+      <xsl:param name="parentZoneId"/>
       <xsl:param name="isZone"/>
       <xsl:param name="spanClass"/>
       <xsl:param name="spanStyle"/>
+      <xsl:variable name="class" select="if ($isZone = 'true') then (concat('marginLeft', ' ', $spanClass)) else ($spanClass)"/>
+      <xsl:attribute name="id">
+            <xsl:value-of select="$parentZoneId"/>
+      </xsl:attribute>
       <xsl:if test="$spanStyle">
          <xsl:attribute name="style">
             <xsl:value-of select="$spanStyle"/>
          </xsl:attribute>
       </xsl:if>
-      <xsl:if test="$spanClass">
+      <xsl:if test="$class">
          <xsl:attribute name="class">
-            <xsl:value-of select="$spanClass"/>
+            <xsl:value-of select="$class"/>
          </xsl:attribute>
       </xsl:if>
       <xsl:if test="$isZone = 'true' and $fullpage != 'true'">

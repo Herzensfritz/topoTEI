@@ -103,6 +103,7 @@
          </xsl:call-template>
          <xsl:element name="span">
             <xsl:call-template name="writeContentSpanAttributes">
+              <xsl:with-param name="parentZoneId" select="parent::tei:zone/@xml:id"/>
                <xsl:with-param name="isZone" select="$isZone"/>
                <xsl:with-param name="spanClass" select="$spanType"/>
                <xsl:with-param name="spanStyle" select="$spanStyle"/>

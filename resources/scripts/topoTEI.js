@@ -6,6 +6,8 @@ var FILENAME = 'filename';
 var COLLECTION = 'collection';
 var DOWNLOAD_LINK = 'downloadLink';
 var VERSIONS = 'versions';
+var MARGIN_LEFT = 'marginLeft';
+var POSITION_CHANGED = 'positionChanged';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
 var currentLine = null;
@@ -266,18 +268,13 @@ function createAddPositionInfo (element, isChild, targetArray){
         targetArray.push({id: element.id, style: style});
     }
 }
-function createInfo (element){
-    let style = "left:" + saveStyleGet(element, 'left');
-    if (element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1){
-        if (element.parentElement.className.includes('below')){
-            style = style + "; top:" + saveStyleGet(element, 'top') + "; height:" + saveStyleGet(element.parentElement, 'height');
-        } else {
-            style = style + "; top:" + saveStyleGet(element.parentElement, 'top') + "; height:" + saveStyleGet(element.parentElement, 'height');
-        }    
+function createInfo (element, targetArray){
+    if (element.className.includes(MARGIN_LEFT)){
+        let style = "margin-left:" + element.style.marginLeft;
+        targetArray.push({id: element.id, style: style});
     } else {
-        style = style + "; top:" + saveStyleGet(element, 'top');    
-    }
-    return { id: element.id, style: style + ";"}    
+        createAddPositionInfo(element, true, targetArray);    
+    }  
 }
 function createStyleObject(element){
     let style = '';
@@ -328,11 +325,11 @@ function saveConfig(fontId, dataNameArray) {
 }
 function myPost(button) {
    if (!button.getAttribute('disabled')){
-       let elements = Array.from(document.querySelectorAll("span[draggable]")).filter(element =>(element.style.length > 0 
-                                                                                             || (element.parentElement && element.parentElement.style.length > 0)));
+       //let elements = Array.from(document.querySelectorAll("span[draggable]")).filter(element =>(element.style.length > 0 || (element.parentElement && element.parentElement.style.length > 0)));
+       let elements = Array.from(document.querySelectorAll("span[draggable]")).filter(element =>element.classList.contains(POSITION_CHANGED));                                                                                
        let elementInfos = [];
        elements.forEach(element =>{
-           createAddPositionInfo(element, true, elementInfos)
+           createInfo(element, elementInfos)
         });
        let lineInfos = Array.from(document.getElementsByClassName('lineManuallyChanged')).map(element =>createStyleObject(element));
        let data = elementInfos.concat(lineInfos);
@@ -467,6 +464,9 @@ function checkKey(e) {
     }
 }
 function recordChange(currentElement, offsetX, offsetY, isRedoing){
+   if (!currentElement.classList.contains(POSITION_CHANGED)){
+        currentElement.classList.add(POSITION_CHANGED);    
+   }
    let change = new Change(currentElement, offsetX, offsetY);
    let currentStack = (isRedoing) ? redoStack : undoStack;
    currentStack.push(change);
@@ -497,26 +497,31 @@ function setDisabledStatus(button, disable){
 function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     recordChange(currentElement, offsetX, offsetY, isRedoing);
     handleButtons();
-    let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
-    currentElement.style.left = (oldLeft + offsetX) + 'px';
-    if(currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
-        if (currentElement.parentElement.className.includes('below')){
-            let oldHeight =  (currentElement.parentElement.style.height) ? Number(currentElement.parentElement.style.height.replace('px','')) : currentElement.parentElement.offsetHeight;
-            let newHeight = oldHeight + offsetY;
-            currentElement.parentElement.style.height = newHeight + "px";
-            currentElement.style.top = (currentElement.offsetTop + offsetY) + "px";
-        } else {
-            let oldTop = Number(currentElement.parentElement.style.top.replace('px',''));
-            if (offsetY == 0 && !currentElement.parentElement.style.top){
-                oldTop = -2    
-            }
-            let newTop = oldTop + offsetY;
-            currentElement.parentElement.style.top = newTop + "px";
-            currentElement.parentElement.style.height = ((currentElement.parentElement.offsetHeight-2) + newTop*-1) + "px";
-        }
+    if (currentElement.className.includes(MARGIN_LEFT)){
+        let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('px','')) : currentElement.offsetLeft;
+        currentElement.style.marginLeft = (oldLeft + offsetX) + 'px';
     } else {
-        let oldTop = (currentElement.style.top) ? Number(currentElement.style.top.replace('px','')) : currentElement.offsetTop;
-        currentElement.style.top = (oldTop + offsetY) + "px";
+        let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
+        currentElement.style.left = (oldLeft + offsetX) + 'px';
+        if(currentElement.parentElement && currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
+            if (currentElement.parentElement.className.includes('below')){
+                let oldHeight =  (currentElement.parentElement.style.height) ? Number(currentElement.parentElement.style.height.replace('px','')) : currentElement.parentElement.offsetHeight;
+                let newHeight = oldHeight + offsetY;
+                currentElement.parentElement.style.height = newHeight + "px";
+                currentElement.style.top = (currentElement.offsetTop + offsetY) + "px";
+            } else {
+                let oldTop = Number(currentElement.parentElement.style.top.replace('px',''));
+                if (offsetY == 0 && !currentElement.parentElement.style.top){
+                    oldTop = -2    
+                }
+                let newTop = oldTop + offsetY;
+                currentElement.parentElement.style.top = newTop + "px";
+                currentElement.parentElement.style.height = ((currentElement.parentElement.offsetHeight-2) + newTop*-1) + "px";
+            }
+        } else {
+            let oldTop = (currentElement.style.top) ? Number(currentElement.style.top.replace('px','')) : currentElement.offsetTop;
+            currentElement.style.top = (oldTop + offsetY) + "px";
+        }
     }
 }
 
