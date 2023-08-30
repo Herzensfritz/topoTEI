@@ -83,27 +83,22 @@
          </xsl:choose>
       </xsl:element>
    </xsl:template>
-   <xsl:template name="zoneItems">
-      <xsl:param name="id"/>
-      <xsl:apply-templates select="//*[@xml:id = $id ]">
-         <xsl:with-param name="id" select="$id"/>
-      </xsl:apply-templates>
-   </xsl:template>
+  
    <xsl:template match="tei:line">
       <xsl:param name="zoneId"/>
       <xsl:variable name="lineClass" select="if (empty(parent::tei:zone/@type) or ends-with(parent::tei:zone/@type, 'Block')) then ('line') else ('zoneLine')"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
       <xsl:variable name="endId" select="if (following-sibling::tei:line) then (substring-after(following-sibling::tei:line[1]/@start, '#'))        else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#'))        else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[1]/@start,'#')))"/>
-      <xsl:variable name="isZone" select="if (contains(parent::tei:zone/@type, 'zone')) then ('true') else ('false')"/>
+      <xsl:variable name="isZone" select="if (contains(parent::tei:zone/@type, 'zone') or tei:zone/@type = 'head') then ('true') else ('false')"/>
       <xsl:variable name="spanType" select="concat(@rend,' ',tei:zone/@type)"/>
-      <xsl:variable name="spanStyle" select="if ($isZone = 'true') then (parent::tei:zone/@style) else ()"/>
+      <xsl:variable name="spanStyle" select="if ($isZone = 'true') then (         if (tei:zone/@xml:id) then (tei:zone/@style) else (parent::tei:zone/@style)) else ()"/>
       <div class="{$lineClass}" style="{@style}">
          <xsl:call-template name="writeLineNumber">
             <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
          </xsl:call-template>
          <xsl:element name="span">
             <xsl:call-template name="writeContentSpanAttributes">
-              <xsl:with-param name="parentZoneId" select="parent::tei:zone/@xml:id"/>
+              <xsl:with-param name="parentZoneId" select="if (tei:zone/@xml:id) then (tei:zone/@xml:id) else (parent::tei:zone/@xml:id)"/>
                <xsl:with-param name="isZone" select="$isZone"/>
                <xsl:with-param name="spanClass" select="$spanType"/>
                <xsl:with-param name="spanStyle" select="$spanStyle"/>
@@ -115,14 +110,16 @@
                </xsl:when>
                <!-- Hierarchical case 1: nodes/text between two lb, second lb inside a tag -->
                <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../node()/tei:lb[@xml:id = $endId]) gt 0">
-                  <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])                and (following-sibling::*//tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId])]"/>
+               
+                  <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])                                                                             and (following-sibling::*//tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId])]"/>
                </xsl:when>
                <!-- Hierarchical case 2: first lb inside a tag -->
                <xsl:when test="$endId">
+               
                      <xsl:choose>
                         <!-- Hierarchical case 2a: only one lb inside a tag -->
                         <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb) eq 1">
-                           <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
+                          <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
                         </xsl:when>
                         <!-- Hierarchical case 2b: several lbs inside a tag, current lb is last lb inside tag -->
                         <xsl:otherwise>

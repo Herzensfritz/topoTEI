@@ -35,8 +35,9 @@ declare function myparsedata:parseContent($data as xs:string, $header as map(*))
     let $endBoundary := $header("endBoundary")
     let $content := substring-before(substring-after($data, $startBoundary), $endBoundary)
     let $xmlContent := replace(substring-after($content, $header('content-type')), '(^\s+)', '')
-    let $inclNotes := replace(replace($xmlContent, '<!--', '<note type="private" resp="#editor">'), '-->','</note>')
-    return $inclNotes
+    (:  :let $inclNotes := replace(replace($xmlContent, '<!--', '<note type="private" resp="#editor">'), '-->','</note>')
+    return $inclNotes :)
+    return $xmlContent
 };
 
 declare function myparsedata:parseXMLData($data as xs:string, $type as xs:string, $targetType as xs:string) as map(*)* {

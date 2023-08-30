@@ -325,15 +325,14 @@ function saveConfig(fontId, dataNameArray) {
 }
 function myPost(button) {
    if (!button.getAttribute('disabled')){
-       //let elements = Array.from(document.querySelectorAll("span[draggable]")).filter(element =>(element.style.length > 0 || (element.parentElement && element.parentElement.style.length > 0)));
-       let elements = Array.from(document.querySelectorAll("span[draggable]")).filter(element =>element.classList.contains(POSITION_CHANGED));                                                                                
+       let elements = Array.from(document.querySelectorAll("*[draggable]")).filter(element =>element.classList.contains(POSITION_CHANGED)); 
        let elementInfos = [];
        elements.forEach(element =>{
            createInfo(element, elementInfos)
         });
        let lineInfos = Array.from(document.getElementsByClassName('lineManuallyChanged')).map(element =>createStyleObject(element));
        let data = elementInfos.concat(lineInfos);
-       mySend(data);
+        mySend(data);
    } 
 }
 function mySend(data){

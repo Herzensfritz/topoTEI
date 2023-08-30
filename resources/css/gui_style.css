@@ -44,7 +44,7 @@
    .N_brown1 { color: var(--nbrown);}
    .red-marking { color: var(--red-marking);}
    .indent { margin-left: 34px;}
-   span[draggable] { cursor: grab; }
+   *[draggable] { cursor: grab; }
    .deleted-N_brown1 { cursor: context-menu; 
       background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='%235C4033' stroke-dasharray='0.1 0.2 0.1 0.2' d='M1,1 1500,1500'/></svg>") repeat; }
    .GSA_pencil { color: #6b6b6b;font-family: cursive;} 
@@ -52,7 +52,7 @@
      .firstBlock { position: relative; padding-top: 5em; }
      .lastBlock { position: relative; padding-bottom: 5em; }
      .add-zone { position: absolute; top: 0em; font-size: 90%; }
-     .ab-zone { position: absolute; bottom: 1em;}
+     .ab-zone { }
      .zoneLine { position: absolute;}
      .note-zone-bottom-right { position: absolute; bottom: 1em;  font-style: italic;}
      .fw-top { position: absolute; top: -0.1em;}

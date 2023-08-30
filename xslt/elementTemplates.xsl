@@ -185,6 +185,7 @@
    </xsl:template>
    <!-- Process head -->
    <xsl:template name="head" match="tei:head">
+   
       <span class="head">
          <xsl:apply-templates/>
       </span>
@@ -264,6 +265,22 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
+    <!-- Write zoneItems, in editor mode make text draggable and create a call to javascript function onClick -->
+    <xsl:template name="zoneItems">
+      <xsl:param name="id"/>
+      <xsl:if test="$fullpage != 'true'">
+          <xsl:attribute name="draggable">
+              <xsl:value-of select="'true'"/>
+          </xsl:attribute>
+          <xsl:attribute name="onClick">
+              <xsl:value-of select="'clickItem(this, event)'"/>
+          </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates select="//*[@xml:id = $id ]">
+         <xsl:with-param name="id" select="$id"/>
+      </xsl:apply-templates>
+   </xsl:template>
+   
    <!-- Process additions -->
    <xsl:template name="add" match="tei:add">
       <xsl:variable name="hand" select="replace(@hand,'#','')"/>
@@ -319,6 +336,7 @@
    </xsl:template>
 
    <!-- unprocessed tags ...-->
+   <xsl:template match="tei:note[@type = 'private']"/>
    <xsl:template match="tei:certainty"/>
    <xsl:template match="tei:noteGrp|tei:note[empty(@type) or not(@type = 'authorial')]"/>
    <xsl:template match="tei:pb"/>

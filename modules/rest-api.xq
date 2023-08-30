@@ -70,6 +70,7 @@ declare
     %output:media-type("text/html")
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
+    let $log := console:log('asdf')
     let $filepath := concat($config:data-root,'/', $file)
     return local:showTransformation($filepath)
    
