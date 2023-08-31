@@ -117,6 +117,7 @@
    <xsl:template name="line">
       <xsl:param name="id"/>
       <xsl:param name="rend"/>
+      <xsl:param name="hand"/>
       <xsl:param name="anchor_id"/>
       <xsl:param name="style"/>
       <xsl:element name="line">
@@ -131,9 +132,14 @@
               <xsl:value-of select="$style"/>
             </xsl:attribute>
          </xsl:if>
-         <xsl:if test="$rend">
+         <xsl:if test="$rend != ''">
             <xsl:attribute name="rend">
               <xsl:value-of select="$rend"/>
+            </xsl:attribute>
+         </xsl:if>
+         <xsl:if test="$hand !=''">
+            <xsl:attribute name="hand">
+              <xsl:value-of select="$hand"/>
             </xsl:attribute>
          </xsl:if>
          <xsl:call-template name="parentAdd">
@@ -148,34 +154,29 @@
       <xsl:for-each select="//tei:lb[ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id]">
          <xsl:variable name="lineType" select="tei:getLineType(current())"/>
          <xsl:choose>
-            <xsl:when test="$lineType eq 0">
-               <!--<xsl:if test="following-sibling::tei:head[1]">
-                  <xsl:element name="test">
-                        <xsl:attribute name="value">
-                           <xsl:value-of select="tei:getLineType(current())"/>
-                        </xsl:attribute>
-                  </xsl:element>
-               </xsl:if>-->
+            <xsl:when test="$lineType eq $DEFAULT_LINE_TYPE">
                <xsl:call-template name="line">
                   <xsl:with-param name="id" select="@xml:id"/>
                   <xsl:with-param name="rend" select="@rend"/>
+                  <xsl:with-param name="hand" select="@hand"/>
                   <xsl:with-param name="anchor_id" select="$anchor_id"/>
                </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$lineType eq 5 or $lineType eq 6">
+            <xsl:when test="$lineType eq $HEAD_LINE_TYPE or $lineType eq $HEAD_LINE_TYPE_F">
                <xsl:call-template name="head-line">
                   <xsl:with-param name="id" select="@xml:id"/>
                   <xsl:with-param name="head" select="if ($lineType eq 5) then (ancestor::tei:head[1]) else (following-sibling::tei:head[1])"/>
                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:variable name="hand" select="tei:getHand(current())"/>
+               <xsl:variable name="hand" select="tei:getAttribute(current(), 'hand', $lineType)"/>
+               <xsl:variable name="rend" select="tei:getAttribute(current(), 'rend', $lineType)"/>
                <xsl:variable name="topValue" select="number(@n) * 8 + 2"/>
                <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
                <xsl:variable name="style" select="tei:getStyle($topValue, $bottomValue, $lineType)"/>
                <xsl:element name="zone">   
                   <xsl:choose>
-                     <xsl:when test="$lineType eq 3 or $lineType eq 4">
+                     <xsl:when test="$lineType eq $NOTE_LINE_TYPE or $lineType eq $NOTE_LINE_TYPE_F">
                         <xsl:variable name="place" select="if (ancestor::tei:note/@place) then (ancestor::tei:note/@place) else (following-sibling::tei:note[1]/@place)"/>
                         <xsl:variable name="id" select="if (ancestor::tei:note/@xml:id) then (ancestor::tei:note/@xml:id) else (following-sibling::tei:note[1]/@xml:id)"/>
                         <xsl:attribute name="xml:id">
@@ -188,7 +189,7 @@
                            <xsl:value-of select="'note-zone'"/>
                         </xsl:attribute>
                      </xsl:when>
-                     <xsl:when test="$lineType eq 1 or $lineType eq 2">
+                     <xsl:when test="$lineType eq $AB_LINE_TYPE or $lineType eq $AB_LINE_TYPE_F">
                         <xsl:variable name="id" select="if (ancestor::tei:ab/@xml:id) then (ancestor::tei:ab/@xml:id) else (following-sibling::tei:ab[1]/@xml:id)"/>
                         <xsl:attribute name="xml:id">
                            <xsl:value-of select="concat('srcD_zone_', $id)"/>
@@ -198,18 +199,6 @@
                         </xsl:attribute>
                         <xsl:attribute name="type">
                            <xsl:value-of select="concat('ab-zone', tei:getStyle(1, 22,33))"/>
-                        </xsl:attribute>
-                     </xsl:when>
-                     <xsl:when test="$lineType eq 5 or $lineType eq 6">
-                        <xsl:variable name="id" select="if (ancestor::tei:head[1]/@xml:id) then (ancestor::tei:head[1]/@xml:id) else (following-sibling::tei:head[1]/@xml:id)"/>
-                        <xsl:attribute name="xml:id">
-                           <xsl:value-of select="concat('srcD_zone_', $id)"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="start">
-                           <xsl:value-of select="concat('#', @xml:id)"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="type">
-                           <xsl:value-of select="'head'"/>
                         </xsl:attribute>
                      </xsl:when>
                      <xsl:otherwise>
@@ -226,7 +215,8 @@
                   </xsl:choose>
                   <xsl:call-template name="line">
                      <xsl:with-param name="id" select="@xml:id"/>
-                     <xsl:with-param name="rend" select="$hand"/>
+                     <xsl:with-param name="hand" select="$hand"/>
+                     <xsl:with-param name="rend" select="$rend"/>
                      <xsl:with-param name="anchor_id" select="$anchor_id"/>
                      <xsl:with-param name="style" select="$style"/>
                   </xsl:call-template>

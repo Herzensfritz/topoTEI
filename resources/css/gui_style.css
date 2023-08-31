@@ -42,7 +42,15 @@
    .N-Archiv_red { color: #b8390e;font-face: bold;}
    .N_pencil { color: gray; font-weight: bold;}
    .N_brown1 { color: var(--nbrown);}
-   .red-marking { color: var(--red-marking);}
+   .red-marking:before { 
+      color: var(--red-marking);
+      position: relative;
+      content: "";
+      left: -2px;
+      height: inherit;
+      top: 3px;
+      border-left: 2.5px solid;
+   }
    .indent { margin-left: 34px;}
    *[draggable] { cursor: grab; }
    .deleted-N_brown1 { cursor: context-menu; 

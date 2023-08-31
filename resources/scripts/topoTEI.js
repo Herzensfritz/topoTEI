@@ -8,9 +8,13 @@ var DOWNLOAD_LINK = 'downloadLink';
 var VERSIONS = 'versions';
 var MARGIN_LEFT = 'marginLeft';
 var POSITION_CHANGED = 'positionChanged';
+var LINE_CHANGED = 'lineChanged';
+var ZONE_LINE = 'zoneLine';
+var LINE = 'line';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
 var currentLine = null;
+var currentInput = null;
 var undoStack = [];
 var redoStack = [];
 var tester = [ FILENAME, COLLECTION, DOWNLOAD_LINK];
@@ -166,14 +170,15 @@ class Change {
     }
 };
 class LineChange {
-    constructor(line, value, isTop){
+    constructor(line, value, isDefault, paramName){
         this.line = line;
         this.value = value;
-        this.isTop = isTop;
+        this.isDefault = isDefault;
+        this.paramName = paramName;
     }    
     undo(isRedoing) {
         currentLine = this.line;
-        changeLineHeight(this.value, this.isTop, isRedoing);
+        setLineHeight(this.value, this.isDefault, this.paramName, isRedoing);
     }
 };
 
@@ -184,45 +189,49 @@ window.onload = function() {
         window.location.reload(true);
     }
 } 
-function recordLineChange(line, isTop, isRedoing){
-    let oldValue = (isTop) ? Number(currentLine.parentElement.style.paddingTop.replace('px','')) : Number(currentLine.parentElement.style.paddingBottom.replace('px',''));
-    let change = new LineChange(line, oldValue, isTop);    
+function recordLineChange(line, isDefault, paramName, isRedoing){
+    let oldValue = Number(currentLine.parentElement.style[paramName].replace('em',''));
+    let change = new LineChange(line, oldValue, isDefault, paramName);    
     let currentStack = (isRedoing) ? redoStack : undoStack;
     currentStack.push(change);
 }
-function changeLineHeight(value, isTop, isRedoing){
-    if(currentLine){
-        recordLineChange(currentLine, isTop, isRedoing);
-        handleButtons();
-        if (isTop){
-            currentLine.parentElement.style.paddingTop = value + "px"; 
-        } else {
-            currentLine.parentElement.style.paddingBottom = value + "px"; 
-        }
-        if (Number(currentLine.parentElement.style.paddingTop.replace('px','')) != 0 
-            || Number(currentLine.parentElement.style.paddingBottom.replace('px','')) != 0){
-            currentLine.parentElement.classList.add('lineManuallyChanged');
-        } else {
-            currentLine.parentElement.classList.remove('lineManuallyChanged'); 
-        }
-    }  
+
+function setLineHeight(newValue, isDefault, paramName, isRedoing){
+    recordLineChange(currentLine, isDefault, paramName, isRedoing);
+    handleButtons();
+    if (isDefault){
+        Array.from(document.getElementsByClassName(LINE)).forEach(line =>{
+            line.style.lineHeight = newValue + 'em';   
+            line.classList.add(LINE_CHANGED);
+        });    
+    } else {
+        currentLine.parentElement.style[paramName] = newValue + 'em';
+        currentLine.parentElement.classList.add(LINE_CHANGED);
+    }
 }
-function getLineHeightInput(element, id){
+function getLineHeightInput(element, id, paramName){
     if (!runsOnBakFile){
         let input = document.getElementById(id);
-        
-        if(currentLine === element){
+        if (currentInput && currentLine && input != currentInput){
+            currentInput.style.visibility = 'hidden';
+           
+        }
+        currentInput = input;
+        if( currentLine === element || (currentLine && currentLine.parentElement.classList.contains(LINE) && element.parentElement.classList.contains(LINE))){
             input.style.visibility = 'hidden';
             currentLine = null;
         } else {
-            
             currentLine = element;
-            input.firstElementChild.innerText = "Zeilenabstände für Zeile " + element.innerText;
-            let top =  Number(element.parentElement.style.paddingTop.replace('px',''));
-            let bottom =  Number(element.parentElement.style.paddingBottom.replace('px',''));
-            Array.from(input.lastElementChild.children).filter(child =>child.value).forEach(child =>{child.value = (child.id == 'top') ? top : bottom });
+            if (element.parentElement.classList.contains(ZONE_LINE)){
+                input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
+                let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
+                label.innerText = paramName;
+            }
+            if (element.parentElement.style[paramName]) {
+                let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];
+                lineInput.value =  Number(element.parentElement.style[paramName].replace('em',''));
+            } 
             input.style.visibility = 'visible';
-            showFixLineNumberButtonIfNeeded(element);
         }
     }
 }
@@ -275,6 +284,15 @@ function createInfo (element, targetArray){
     } else {
         createAddPositionInfo(element, true, targetArray);    
     }  
+}
+function createLineInfo (element, targetArray){
+    if (element.classList.contains(LINE)){
+        let style = 'line-height:' + element.style.lineHeight;
+        targetArray.push({id: element.id, style: style});
+    } else {
+        let style = (element.style.bottom) ? 'bottom:' + element.style.bottom : 'top:' + element.style.top; 
+        targetArray.push({id: element.id, style: style});
+    } 
 }
 function createStyleObject(element){
     let style = '';
@@ -330,9 +348,10 @@ function myPost(button) {
        elements.forEach(element =>{
            createInfo(element, elementInfos)
         });
-       let lineInfos = Array.from(document.getElementsByClassName('lineManuallyChanged')).map(element =>createStyleObject(element));
-       let data = elementInfos.concat(lineInfos);
-        mySend(data);
+       Array.from(document.getElementsByClassName(LINE_CHANGED)).forEach(line =>{
+            createLineInfo(line, elementInfos)   
+        });
+        mySend(elementInfos);
    } 
 }
 function mySend(data){

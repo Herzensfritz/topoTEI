@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
    <xsl:import href="functions.xsl"/>
    <xsl:output method="html" encoding="UTF-8"/>
+   <xsl:variable name="apos">'</xsl:variable>
    <!-- process forme work by using a dictionary that translates @hand keys to human readable information  -->
    <xsl:template match="tei:fw">
       <xsl:variable name="dict">
@@ -15,6 +16,7 @@
    <!-- Write the line number, if in editor mode write also a call to a javascript function onClick -->
    <xsl:template name="writeLineNumber">
       <xsl:param name="n"/>
+      <xsl:param name="lineType"/>
       <xsl:if test="$n">
          <xsl:choose>
             <xsl:when test="$fullpage = 'true'">
@@ -23,9 +25,17 @@
                </span>
             </xsl:when>
             <xsl:otherwise>
-               <span class="lnr" onClick="getLineHeightInput(this, 'lineInput')">
-                  <xsl:value-of select="$n"/>:
-               </span>
+               <xsl:variable name="lineInputType" select="if ($lineType = 'line') then ('defaultLineInput') else ('lineInput')"/>
+               <xsl:variable name="paramName" select="if ($lineType = 'line') then ('lineHeight') else (if (number(replace($n, '[a-z]',''))  lt 12) then ('top') else ('bottom'))"/>
+               <xsl:element name="span">
+                   <xsl:attribute name="class">
+                       <xsl:value-of select="'lnr'"/>
+                   </xsl:attribute>
+                   <xsl:attribute name="onClick">
+                       <xsl:value-of select="concat('getLineHeightInput(this, ',$apos,$lineInputType,$apos,', ',$apos,$paramName,$apos,')')"/>
+                   </xsl:attribute>
+                   <xsl:value-of select="$n"/>:
+               </xsl:element>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:if>

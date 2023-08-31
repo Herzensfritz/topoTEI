@@ -65,25 +65,7 @@ function app:uploadDialog($node as node(), $model as map(*)) {
          
       </p>
 };
-declare 
-     %templates:wrap
-function app:fontUpload($node as node(), $model as map(*)){
-    <p>
-        <h2>Schrift hochladen</h2>
-        <div class="col-md-6">
-              <form method="POST" action="/exist/restxq/postfont" enctype="multipart/form-data">
-                  <input type="file" name="content"/>
-                  <input type="submit" value="upload"/>
-                </form>
-                
-            { if ($model('status') = '200') then (
-                    <div>Schrift gespeichert</div>
-                ) else ()
-                
-            }
-          </div>
-    </p>
-};
+
 
 declare 
      %templates:wrap
@@ -265,14 +247,19 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
     </div> 
 };
 declare function app:lineInput($node as node(), $model as map(*)) as element(div) {
-    <div id="lineInput" class="input">
-        <h2>Lininenhöhe</h2>
+     <div id="lineInput" class="input">
+        <h2>Zeilenposition</h2>
          <form name="line">
-            Abstand oben: <input type="number" value="0" id="top" step="any" onChange="changeLineHeight(top.value, true, false)"/>
-                        <br/>
-            Abstand unten: <input type="number" value="0" id="bottom" step="any" onChange="changeLineHeight(bottom.value, false, false)"/>
+            <span id="param">Bottom</span> <input type="number" value="3" id="line" step="0.1" onChange="setLineHeight(line.value, false, param.innerText, false)"/> em
       </form>
-      <button id="lineInputButton" onClick="fixLineNumbering()" hidden="true">Zeilennummern korrigieren</button>
+      </div>
+};
+declare function app:defaultLineInput($node as node(), $model as map(*)) as element(div) {
+    <div id="defaultLineInput" class="input">
+        <h2>Standardzeilenhöhe</h2>
+         <form name="line">
+            Zeilenhöhe: <input type="number" value="3" id="line" step="0.1" onChange="setLineHeight(line.value, true, 'lineHeight', false)"/> em
+      </form>
     </div>
 };
 
