@@ -1,5 +1,6 @@
 /** 
 **/
+var TEST = false;
 var runsOnBakFile = false;
 var NEWEST = "newest";
 var FILENAME = 'filename';
@@ -209,6 +210,45 @@ function setLineHeight(newValue, isDefault, paramName, isRedoing){
         currentLine.parentElement.classList.add(LINE_CHANGED);
     }
 }
+function myTestOK(newValue, id){
+    console.log(newValue, id);
+}
+function createNewFormInput(element, input){
+    if ( element.classList.contains('firstBlock') || element.classList.contains('singleBlock')) {
+        let oldValue = (element.style['paddingTop']) ? Number(element.style['paddingTop'].replace('em','')) : 5;
+        var newField = document.createElement('input');
+        newField.setAttribute('type','number');
+        newField.setAttribute('id','paddingTop');
+        newField.setAttribute('value',oldValue);
+        newField.setAttribute('step','0.1');
+        newField.setAttribute('onChange','myTestOK(paddingTop.value, \"' + element.id + '\")');
+        let label = document.createElement('span');
+        label.innerText = 'padding-top:  '
+        input.appendChild(label)
+        let em = document.createElement('span');
+        em.innerText = 'em'
+                    
+        input.appendChild(newField);
+        input.appendChild(em) 
+    }
+    if ( element.classList.contains('lastBlock') || element.classList.contains('singleBlock')) {
+        let oldValue = (element.style['paddingBottom']) ? Number(element.style['paddingBottom'].replace('em','')) : 5;
+        var newField = document.createElement('input');
+        newField.setAttribute('type','number');
+        newField.setAttribute('id','paddingBottom');
+        newField.setAttribute('value',oldValue);
+        newField.setAttribute('step','0.1');
+        newField.setAttribute('onChange','myTestOK(paddingBottom.value, \"' + element.id + '\")');
+        let label = document.createElement('span');
+        label.innerText = 'padding-bottom:  '
+        input.appendChild(label)
+        let em = document.createElement('span');
+        em.innerText = 'em'
+                    
+        input.appendChild(newField);
+        input.appendChild(em) 
+    }
+}
 function getLineHeightInput(element, id, paramName){
     if (!runsOnBakFile){
         let input = document.getElementById(id);
@@ -222,10 +262,15 @@ function getLineHeightInput(element, id, paramName){
             currentLine = null;
         } else {
             currentLine = element;
+            console.log(element.parentElement.parentElement.classList)
             if (element.parentElement.classList.contains(ZONE_LINE)){
                 input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
                 let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
                 label.innerText = paramName;
+            } else if (TEST && (element.parentElement.parentElement.classList.contains('firstBlock') 
+            || element.parentElement.parentElement.classList.contains('lastBlock') 
+            || element.parentElement.parentElement.classList.contains('singleBlock'))){
+                createNewFormInput(element.parentElement.parentElement, input);   
             }
             if (element.parentElement.style[paramName]) {
                 let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];

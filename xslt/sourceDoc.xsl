@@ -54,12 +54,12 @@
    <xsl:template match="tei:zone">
       <xsl:variable name="zone" select="substring-after(@start, '#')"/>
       <xsl:element name="div">
-         <xsl:if test="@xml:id and not(tei:line)">
+         <xsl:if test="@xml:id and (empty(@type) or ends-with(@type, 'Block') or not(tei:line))">
             <xsl:attribute name="id">
                <xsl:value-of select="@xml:id"/>
             </xsl:attribute>
          </xsl:if>
-         <xsl:if test="@style and not(tei:line)">
+         <xsl:if test="@style and (empty(@type) or ends-with(@type, 'Block') or not(tei:line))">
             <xsl:attribute name="style">
                <xsl:value-of select="@style"/>
             </xsl:attribute>

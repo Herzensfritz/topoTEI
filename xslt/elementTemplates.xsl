@@ -27,9 +27,10 @@
             <xsl:otherwise>
                <xsl:variable name="lineInputType" select="if ($lineType = 'line') then ('defaultLineInput') else ('lineInput')"/>
                <xsl:variable name="paramName" select="if ($lineType = 'line') then ('lineHeight') else (if (number(replace($n, '[a-z]',''))  lt 12) then ('top') else ('bottom'))"/>
+               <xsl:variable name="className" select="if ($lineType = 'line') then ('lnr') else ('zlnr')"/>
                <xsl:element name="span">
                    <xsl:attribute name="class">
-                       <xsl:value-of select="'lnr'"/>
+                       <xsl:value-of select="$className"/>
                    </xsl:attribute>
                    <xsl:attribute name="onClick">
                        <xsl:value-of select="concat('getLineHeightInput(this, ',$apos,$lineInputType,$apos,', ',$apos,$paramName,$apos,')')"/>

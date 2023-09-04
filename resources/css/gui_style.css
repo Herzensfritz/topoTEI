@@ -121,9 +121,9 @@
      .insert-mark-above, .insert-mark-below{ position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
      :root {
          --highlight: yellow;
-         --radius: 0em 0em;
+         --radius: 1em 1em;
          --red-marking: red;
-         --length: 0.5em;
+         --length: 0.2em;
          --nbrown: #5C4033;
      }
      .insertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
@@ -219,6 +219,7 @@
          .below-linearisiert:before { content: '\230A'; }
          .below-linearisiert:after { content: '\230B'; }
         span.lnr { position:relative; left: -30px;font-style: italic; color: blue;margin-right: 20px;font-size: 80%; cursor: pointer;}
+        span.zlnr { position:relative; left: -30px;font-style: italic; color: grey;margin-right: 20px;font-size: 80%; cursor: pointer;}
         span.nolnr { margin-left: 40px;}
         div.line { line-height: 3.0em;  }
         .flushRight {  display: inline-block;
