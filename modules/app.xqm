@@ -256,9 +256,11 @@ declare function app:lineInput($node as node(), $model as map(*)) as element(div
 };
 declare function app:defaultLineInput($node as node(), $model as map(*)) as element(div) {
     <div id="defaultLineInput" class="input">
-        <h2>Standardzeilenhöhe</h2>
+        <h2>Settings für Textblock</h2>
          <form name="line">
-            Zeilenhöhe: <input type="number" value="3" id="line" step="0.1" onChange="setLineHeight(line.value, true, 'lineHeight', false)"/> em
+            Zeilenhöhe: <input type="number" value="3" id="line" step="0.1" onChange="setLineHeight(line.value, true, 'lineHeight', false)"/> em<br/>
+            padding-top: <input type="number" value="0" id="paddingTop" step="0.1" onChange="setPadding(paddingTop.value, true, PADDING_TOP, false)"/> em<br/>
+            padding-bottom: <input type="number" value="0" id="paddingBottom" step="0.1" onChange="setPadding(paddingBottom.value, true, PADDING_TOP, false)"/> em
       </form>
     </div>
 };

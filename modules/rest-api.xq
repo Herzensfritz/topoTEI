@@ -29,6 +29,7 @@ declare
    %rest:form-param("elements", "{$elements}", "[]")
 function myrest:saveData($file as xs:string*,$elements as xs:string*) {
    let $newfile := local:updateFile($file, $elements)
+       let $log := console:log($file)
    return 
      <rest:response>
         <http:response status="200" message="OK">
@@ -112,7 +113,7 @@ function myrest:revertVersion($file) {
     let $collection := concat($config:data-root, '/')
     let $output-collection := xmldb:login($collection, 'test', 'test') 
     let $originalFile := concat(substring-after(substring-before($file, '.xml_'), 'bak/'), '.xml')
-    let $log := console:log($file)
+
     let $bakfile := local:backupFile($originalFile, $collection )
     let $out-file := xmldb:store($collection, $originalFile, doc(concat($collection, $file)))
     return <rest:response>

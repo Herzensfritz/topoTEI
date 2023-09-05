@@ -1,6 +1,6 @@
 /** 
 **/
-var TEST = false;
+var TEST = true;
 var runsOnBakFile = false;
 var NEWEST = "newest";
 var FILENAME = 'filename';
@@ -267,10 +267,12 @@ function getLineHeightInput(element, id, paramName){
                 input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
                 let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
                 label.innerText = paramName;
-            } else if (TEST && (element.parentElement.parentElement.classList.contains('firstBlock') 
-            || element.parentElement.parentElement.classList.contains('lastBlock') 
-            || element.parentElement.parentElement.classList.contains('singleBlock'))){
-                createNewFormInput(element.parentElement.parentElement, input);   
+            } else {
+                let currentElement = element.parentElement.parentElement;
+                let currentParams = [ 'paddingTop', 'paddingBottom'];
+                currentParams.forEach(param =>{
+                    Array.from(input.lastElementChild.children).filter(child =>child.id == param)[0].value = (currentElement.style[param]) ? Number(currentElement.style[param].replace('em','')) : 0;    
+                })
             }
             if (element.parentElement.style[paramName]) {
                 let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];

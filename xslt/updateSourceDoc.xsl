@@ -228,7 +228,7 @@
    <xsl:template name="parentAdd">
       <xsl:param name="anchor_id"/>
       <xsl:param name="lb_id"/>
-      <xsl:for-each select="//tei:add[          @xml:id and (contains(@place, 'above') or contains(@place, 'below'))           and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id          and (preceding-sibling::tei:lb[1][@xml:id = $lb_id] or                 (ancestor::tei:subst/preceding-sibling::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below']))              )       ]">
+      <xsl:for-each select="//tei:add[@xml:id and (contains(@place, 'above') or contains(@place, 'below')) and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and (preceding-sibling::tei:lb[1][@xml:id = $lb_id] or (ancestor::tei:*/preceding-sibling::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below']))   )]">
          <xsl:call-template name="add">
             <xsl:with-param name="id" select="@xml:id"/>
             <xsl:with-param name="rend" select="@rend"/>
