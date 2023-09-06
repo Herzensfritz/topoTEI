@@ -1,6 +1,7 @@
 /** 
 **/
-var TEST = true;
+var PADDING_TOP = { paramName: 'paddingTop', cssName: 'padding-top'};
+var PADDING_BOTTOM = { paramName: 'paddingBottom', cssName: 'padding-bottom'};
 var runsOnBakFile = false;
 var NEWEST = "newest";
 var FILENAME = 'filename';
@@ -10,6 +11,7 @@ var VERSIONS = 'versions';
 var MARGIN_LEFT = 'marginLeft';
 var POSITION_CHANGED = 'positionChanged';
 var LINE_CHANGED = 'lineChanged';
+var VALUE_CHANGED = 'valueChanged';
 var ZONE_LINE = 'zoneLine';
 var LINE = 'line';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
@@ -182,6 +184,19 @@ class LineChange {
         setLineHeight(this.value, this.isDefault, this.paramName, isRedoing);
     }
 };
+class ParamChange {
+    constructor(idObject, oldValue, paramObject){
+        this.idObject = idObject;
+        this.oldValue = oldValue;
+        this.paramObject = paramObject;
+    }    
+    undo(isRedoing) {
+        setNewValue(this.idObject, this.oldValue, this.paramObject, isRedoing);
+    }
+};
+
+
+
 
 window.onload = function() {
     if(window.location.hash == '#reload') {
@@ -195,6 +210,63 @@ function recordLineChange(line, isDefault, paramName, isRedoing){
     let change = new LineChange(line, oldValue, isDefault, paramName);    
     let currentStack = (isRedoing) ? redoStack : undoStack;
     currentStack.push(change);
+}
+function recordNewValueChange(idObject, paramObject, isRedoing){
+    let currentElement = (idObject.isClass) ? Array.from(document.getElementsByClassName(idObject.id))[0] : document.getElementById(idObject.id);
+    let oldValue = currentElement.style[paramObject.paramName];
+    let change = new ParamChange(idObject, oldValue, paramObject);    
+    let currentStack = (isRedoing) ? redoStack : undoStack;
+    currentStack.push(change);
+}
+function setNewValue(idObject, newValue, paramObject, isRedoing){
+    recordNewValueChange(idObject, paramObject, isRedoing);
+    handleButtons();
+    if (idObject.isClass){
+         Array.from(document.getElementsByClassName(idObject.id)).forEach(element =>{
+             element.style[paramObject.paramName] = newValue;
+             element.classList.add(VALUE_CHANGED);
+         });
+    } else {
+        let element = document.getElementById(idObject.id);
+        element.style[paramObject.paramName] = newValue;
+        element.classList.add(VALUE_CHANGED);
+    }    
+}
+function setStyleToElement(element, newValue, paramObject){
+    element.style[paramObject.paramName] = newValue + 'em';//TODO fix this!!
+    element.classList.add(VALUE_CHANGED);
+    if (element.dataset.index) {
+        if (!containsValue(element, 'data-param', paramObject.paramName)){
+            element.setAttribute('data-param' + element.dataset.index, paramObject.paramName);
+            element.setAttribute('data-css' + element.dataset.index, paramObject.cssName);
+            element.setAttribute('data-index', Number(element.dataset.index)+1);    
+        }
+    } else {
+        element.setAttribute('data-param' + 0, paramObject.paramName);
+        element.setAttribute('data-css' + 0, paramObject.cssName);
+        element.setAttribute('data-index', 1);  
+    }
+    
+    console.log(element.dataset, element.style);
+}
+
+function containsValue(element, param, value){
+    let length = (element.dataset.index) ? element.dataset.index : 0;
+    let data = [];
+    for (var i = 0; i < length; i++){
+        data[i] = element.getAttribute(param + i);
+    }
+    return data.filter(name => name == value).length > 0;
+}
+
+function getStyleFromElement(element, targetArray){
+    let length = (element.dataset.index) ? Number(element.dataset.index) : 0;
+    let style = '';
+    for (var i = 0; i < length; i++){
+        style = style + element.getAttribute('data-css' + i) + ':' + element.style[element.getAttribute('data-param' + i)] + ';';  
+    }
+    console.log(style);
+    targetArray.push({id: element.id, style: style});
 }
 
 function setLineHeight(newValue, isDefault, paramName, isRedoing){
