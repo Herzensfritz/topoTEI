@@ -96,6 +96,7 @@
          <xsl:call-template name="writeLineNumber">
             <xsl:with-param name="lineType" select="$lineClass"/>
             <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
+            <xsl:with-param name="zoneId" select="parent::tei:zone/@xml:id"/>
          </xsl:call-template>
          <xsl:element name="span">
             <xsl:call-template name="writeContentSpanAttributes">

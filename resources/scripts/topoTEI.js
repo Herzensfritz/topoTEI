@@ -1,7 +1,13 @@
 /** 
 **/
+const OBJ_PARAMS = [{targetName: 'id', dataName: 'data-id'}, 
+                    {targetName: 'isClass', dataName: 'data-is-class', type: 'boolean'}, 
+                    {targetName: 'paramName', dataName: 'data-param'}, 
+                    {targetName: 'cssName', dataName: 'data-css'}, 
+                    {targetName: 'unit', dataName: 'data-unit'}];
 var PADDING_TOP = { paramName: 'paddingTop', cssName: 'padding-top'};
 var PADDING_BOTTOM = { paramName: 'paddingBottom', cssName: 'padding-bottom'};
+var LINE_PARAM = { paramName: 'lineHeight', cssName: 'line-height'};
 var runsOnBakFile = false;
 var NEWEST = "newest";
 var FILENAME = 'filename';
@@ -13,6 +19,9 @@ var POSITION_CHANGED = 'positionChanged';
 var LINE_CHANGED = 'lineChanged';
 var VALUE_CHANGED = 'valueChanged';
 var ZONE_LINE = 'zoneLine';
+var TEXT_BLOCK = 'textBlockInput';
+var LINE_INPUT = 'lineInput';
+var LINE_POSITION = 'linePosition';
 var LINE = 'line';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
@@ -185,18 +194,14 @@ class LineChange {
     }
 };
 class ParamChange {
-    constructor(idObject, oldValue, paramObject){
-        this.idObject = idObject;
+    constructor(input, oldValue){
+        this.input = input;
         this.oldValue = oldValue;
-        this.paramObject = paramObject;
     }    
     undo(isRedoing) {
-        setNewValue(this.idObject, this.oldValue, this.paramObject, isRedoing);
+        setNewValue(this.input, this.oldValue, isRedoing);
     }
 };
-
-
-
 
 window.onload = function() {
     if(window.location.hash == '#reload') {
@@ -211,29 +216,40 @@ function recordLineChange(line, isDefault, paramName, isRedoing){
     let currentStack = (isRedoing) ? redoStack : undoStack;
     currentStack.push(change);
 }
-function recordNewValueChange(idObject, paramObject, isRedoing){
-    let currentElement = (idObject.isClass) ? Array.from(document.getElementsByClassName(idObject.id))[0] : document.getElementById(idObject.id);
-    let oldValue = currentElement.style[paramObject.paramName];
-    let change = new ParamChange(idObject, oldValue, paramObject);    
+function getObject(input, dataParams){
+    const obj = {};
+    dataParams.forEach(param =>{
+        if(input.getAttribute(param.dataName)){
+            obj[param.targetName] = (param.type == 'boolean') ? input.getAttribute(param.dataName) == 'true' : input.getAttribute(param.dataName);    
+        }
+    });
+    return obj;
+}
+
+function recordNewValueChange(input, isRedoing){
+    let inputObject = getObject(input, OBJ_PARAMS);
+    let currentElement = (inputObject.isClass) ? Array.from(document.getElementsByClassName(inputObject.id))[0] : document.getElementById(inputObject.id);
+    let oldValue = currentElement.style[inputObject.paramName];
+    let change = new ParamChange(input, oldValue);    
     let currentStack = (isRedoing) ? redoStack : undoStack;
     currentStack.push(change);
 }
-function setNewValue(idObject, newValue, paramObject, isRedoing){
-    recordNewValueChange(idObject, paramObject, isRedoing);
+function setNewValue(input, isRedoing){
+    let inputObject = getObject(input, OBJ_PARAMS);
+    recordNewValueChange(input, isRedoing);
+    let newValue = (input.type == 'number') ? Number(input.value) : input.value;
     handleButtons();
-    if (idObject.isClass){
-         Array.from(document.getElementsByClassName(idObject.id)).forEach(element =>{
-             element.style[paramObject.paramName] = newValue;
-             element.classList.add(VALUE_CHANGED);
+    if (inputObject.isClass){
+         Array.from(document.getElementsByClassName(inputObject.id)).forEach(element =>{
+            setStyleToElement(element, newValue, inputObject)
          });
     } else {
-        let element = document.getElementById(idObject.id);
-        element.style[paramObject.paramName] = newValue;
-        element.classList.add(VALUE_CHANGED);
-    }    
+        let element = document.getElementById(inputObject.id);
+        setStyleToElement(element, newValue, inputObject);
+    } 
 }
 function setStyleToElement(element, newValue, paramObject){
-    element.style[paramObject.paramName] = newValue + 'em';//TODO fix this!!
+    element.style[paramObject.paramName] = newValue + paramObject.unit;
     element.classList.add(VALUE_CHANGED);
     if (element.dataset.index) {
         if (!containsValue(element, 'data-param', paramObject.paramName)){
@@ -282,46 +298,37 @@ function setLineHeight(newValue, isDefault, paramName, isRedoing){
         currentLine.parentElement.classList.add(LINE_CHANGED);
     }
 }
-function myTestOK(newValue, id){
-    console.log(newValue, id);
-}
-function createNewFormInput(element, input){
-    if ( element.classList.contains('firstBlock') || element.classList.contains('singleBlock')) {
-        let oldValue = (element.style['paddingTop']) ? Number(element.style['paddingTop'].replace('em','')) : 5;
-        var newField = document.createElement('input');
-        newField.setAttribute('type','number');
-        newField.setAttribute('id','paddingTop');
-        newField.setAttribute('value',oldValue);
-        newField.setAttribute('step','0.1');
-        newField.setAttribute('onChange','myTestOK(paddingTop.value, \"' + element.id + '\")');
-        let label = document.createElement('span');
-        label.innerText = 'padding-top:  '
-        input.appendChild(label)
-        let em = document.createElement('span');
-        em.innerText = 'em'
-                    
-        input.appendChild(newField);
-        input.appendChild(em) 
+function setInputValue(input, styleValue, id, isClass, label){
+    if (styleValue) {
+        input.value = Number(styleValue.replace(input.dataset.unit, '')) 
     }
-    if ( element.classList.contains('lastBlock') || element.classList.contains('singleBlock')) {
-        let oldValue = (element.style['paddingBottom']) ? Number(element.style['paddingBottom'].replace('em','')) : 5;
-        var newField = document.createElement('input');
-        newField.setAttribute('type','number');
-        newField.setAttribute('id','paddingBottom');
-        newField.setAttribute('value',oldValue);
-        newField.setAttribute('step','0.1');
-        newField.setAttribute('onChange','myTestOK(paddingBottom.value, \"' + element.id + '\")');
-        let label = document.createElement('span');
-        label.innerText = 'padding-bottom:  '
-        input.appendChild(label)
-        let em = document.createElement('span');
-        em.innerText = 'em'
-                    
-        input.appendChild(newField);
-        input.appendChild(em) 
+    input.setAttribute('data-is-class', String(isClass));
+    input.setAttribute('data-id', id);
+}
+function showLinePositionDialog(element, paramName){
+    if (!runsOnBakFile){
+        let input = document.getElementById(LINE_INPUT);
+        let textBlock = document.getElementById(TEXT_BLOCK);
+        let id = element.parentElement.id;
+        if (textBlock){
+            textBlock.style.visibility = 'hidden';
+        }
+        if (input.dataset.id == id){
+           input.removeAttribute('data-id');
+           input.style.visibility = 'hidden';
+        } else {
+           let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
+           lineInput.setAttribute('data-param', paramName);
+           lineInput.setAttribute('data-css', paramName);
+           setInputValue(lineInput, element.parentElement.style[paramName], id, false);
+           input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
+           let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
+           label.innerText = paramName;
+           input.style.visibility = 'visible';
+        }
     }
 }
-function getLineHeightInput(element, id, paramName){
+function getLineHeightInput(element, id, paramName){ //DEPRECATED
     if (!runsOnBakFile){
         let input = document.getElementById(id);
         if (currentInput && currentLine && input != currentInput){
@@ -329,26 +336,31 @@ function getLineHeightInput(element, id, paramName){
            
         }
         currentInput = input;
+        let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];
+        let isClass = element.parentElement.classList.contains(LINE)
+        let lineInputId = (isClass) ? LINE : element.parentElement.id;
+        setInputValue(lineInput, element.parentElement.style[paramName], lineInputId, isClass);
         if( currentLine === element || (currentLine && currentLine.parentElement.classList.contains(LINE) && element.parentElement.classList.contains(LINE))){
             input.style.visibility = 'hidden';
             currentLine = null;
         } else {
             currentLine = element;
-            console.log(element.parentElement.parentElement.classList)
             if (element.parentElement.classList.contains(ZONE_LINE)){
                 input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
                 let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
                 label.innerText = paramName;
             } else {
                 let currentElement = element.parentElement.parentElement;
-                let currentParams = [ 'paddingTop', 'paddingBottom'];
+                let currentParams = [ PADDING_TOP.paramName, PADDING_BOTTOM.paramName ];
                 currentParams.forEach(param =>{
-                    Array.from(input.lastElementChild.children).filter(child =>child.id == param)[0].value = (currentElement.style[param]) ? Number(currentElement.style[param].replace('em','')) : 0;    
+                    let paramInput = Array.from(input.lastElementChild.children).filter(child =>child.id == param)[0];
+                    paramInput.value = (currentElement.style[param]) ? Number(currentElement.style[param].replace(paramInput.dataset.unit,'')) : 0;    
                 })
             }
             if (element.parentElement.style[paramName]) {
                 let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];
-                lineInput.value =  Number(element.parentElement.style[paramName].replace('em',''));
+                //lineInput.value =  Number(element.parentElement.style[paramName].replace('em',''));
+                setInputValue(lineInput, element.parentElement.style[paramName], element.parentElement.id, element.parentElement.classList.contains(LINE));
             } 
             input.style.visibility = 'visible';
         }

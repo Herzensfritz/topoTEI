@@ -48,3 +48,12 @@ label.config {
 .newest {
     margin-left: 5px;
 }
+.newvalue {
+    color: red;
+}
+.newvalue::before {
+    content: attr(data-label);
+}
+.newvalue::after {
+    content: attr(data-unit);
+}

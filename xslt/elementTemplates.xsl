@@ -17,6 +17,7 @@
    <xsl:template name="writeLineNumber">
       <xsl:param name="n"/>
       <xsl:param name="lineType"/>
+      <xsl:param name="zoneId"/>
       <xsl:if test="$n">
          <xsl:choose>
             <xsl:when test="$fullpage = 'true'">
@@ -25,15 +26,15 @@
                </span>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:variable name="lineInputType" select="if ($lineType = 'line') then ('defaultLineInput') else ('lineInput')"/>
-               <xsl:variable name="paramName" select="if ($lineType = 'line') then ('lineHeight') else (if (number(replace($n, '[a-z]',''))  lt 12) then ('top') else ('bottom'))"/>
+               <xsl:variable name="paramName" select="if (number(replace($n, '[a-z]',''))  lt 12) then ('top') else ('bottom')"/>
                <xsl:variable name="className" select="if ($lineType = 'line') then ('lnr') else ('zlnr')"/>
+                <xsl:variable name="function" select="if ($lineType = 'line') then (concat('showTextBlockDialog(',$apos,$zoneId,$apos,')')) else (concat('showLinePositionDialog(this, ',$apos,$paramName,$apos,')'))"/>
                <xsl:element name="span">
                    <xsl:attribute name="class">
                        <xsl:value-of select="$className"/>
                    </xsl:attribute>
                    <xsl:attribute name="onClick">
-                       <xsl:value-of select="concat('getLineHeightInput(this, ',$apos,$lineInputType,$apos,', ',$apos,$paramName,$apos,')')"/>
+                       <xsl:value-of select="$function"/>
                    </xsl:attribute>
                    <xsl:value-of select="$n"/>:
                </xsl:element>

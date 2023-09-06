@@ -29,7 +29,7 @@ declare
    %rest:form-param("elements", "{$elements}", "[]")
 function myrest:saveData($file as xs:string*,$elements as xs:string*) {
    let $newfile := local:updateFile($file, $elements)
-     
+     let $log := console:log($file)  
    return 
      <rest:response>
         <http:response status="200" message="OK">
@@ -72,7 +72,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-      let $log := console:log($file)
+    
     return local:showTransformation($filepath)
    
 };
