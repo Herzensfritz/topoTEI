@@ -47,7 +47,7 @@
    </xsl:template>
    <xsl:template match="tei:surface">
       <xsl:variable name="style" select="@style"/>
-      <div id="transkription" class="transkriptionField" style="{$style}">
+      <div id="{@xml:id}" class="transkriptionField" style="{$style}">
          <xsl:apply-templates/>
       </div>
    </xsl:template>

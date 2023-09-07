@@ -196,11 +196,11 @@ declare function local:createFontFace($fontName) as xs:string {
     '@font-face {
                 font-family: "MyFont";
                 src: url("../apps/topoTEI/resources/fonts/' || $fontName || '");}
-    #transkription {
+    .transkriptionField {
         font-family: MyFont;    
     }
     ') else (
-        '#transkription {
+        '.transkriptionField {
             font-family: ' || $fontName ||';    
         }'    
     )  
@@ -246,11 +246,19 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
                
     </div> 
 };
+declare function app:pageSetup($node as node(), $model as map(*)) as element(div) {
+     <div id="pageSetup" class="input">
+        <h2>Seiten Setup</h2>
+         <form name="page">
+            min-width <input type="number" value="900" id="pageWidth" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="px" data-param="minWidth" data-css="min-width"/> px
+      </form>
+      </div>
+};
 declare function app:lineInput($node as node(), $model as map(*)) as element(div) {
      <div id="lineInput" class="input">
         <h2>Zeilenposition</h2>
          <form name="line">
-            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="bottom" data-css="bottom"/> em
+            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom" data-css="bottom"/> em
       </form>
       </div>
 };
@@ -258,9 +266,9 @@ declare function app:textBlockInput($node as node(), $model as map(*)) as elemen
     <div id="textBlockInput" class="input">
         <h2>Settings für Textblock</h2>
          <form name="line">
-            Zeilenhöhe: <input type="number" value="3" id="lineHeightInput" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="lineHeight" data-css="line-height"/> em<br/>
-            padding-top: <input type="number" value="0" id="paddingTop" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="paddingTop" data-css="padding-top"/> em<br/>
-            padding-bottom: <input type="number" value="0" id="paddingBottom" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="paddingBottom" data-css="padding-bottom"/> em
+            Zeilenhöhe: <input type="number" value="3" id="lineHeightInput" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="lineHeight" data-css="line-height"/> em<br/>
+            padding-top: <input type="number" value="0" id="paddingTop" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="paddingTop" data-css="padding-top"/> em<br/>
+            padding-bottom: <input type="number" value="0" id="paddingBottom" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="paddingBottom" data-css="padding-bottom"/> em
       </form>
       
     </div>

@@ -18,9 +18,12 @@ var TEXT_BLOCK = 'textBlockInput';
 var LINE_INPUT = 'lineInput';
 var LINE_POSITION = 'linePosition';
 var LINE_HEIGHT_INPUT = 'lineHeightInput';
+var PAGE_SETUP = 'pageSetup';
+var PAGE_WIDTH = 'pageWidth';
 var PADDING_TOP = 'paddingTop';
 var PADDING_BOTTOM = 'paddingBottom';
 var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
+var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
@@ -32,6 +35,7 @@ function test (){
         console.log(document.getElementById(test))    
 });
 }
+
 function updateOrderBy(checkbox){
     location.href = (location.search) ? location.href.substring(0, location.href.indexOf('?')) + '?newest=' + String(checkbox.checked) : location.href + '?newest=' + String(checkbox.checked);
      
@@ -259,12 +263,29 @@ function getStyleFromElement(element, targetArray){
     }
     targetArray.push({id: element.id, style: style});
 }
-function setInputValue(input, styleValue, id, isClass, label){
+function setInputValue(input, styleValue, id, isClass){
     if (styleValue) {
         input.value = Number(styleValue.replace(input.dataset.unit, '')) 
     }
     input.setAttribute('data-is-class', String(isClass));
     input.setAttribute('data-id', id);
+    console.log(input);
+}
+function noEnter(input){
+     setNewValue(input);
+     return !(window.event && window.event.keyCode == 13);
+}
+function pageSetup(){
+    if (!runsOnBakFile){
+        let form = document.getElementById(PAGE_SETUP);
+        form.style.visibility = (form.style.visibility == 'visible') ? 'hidden' : 'visible';
+        if (form.style.visibility == 'visible'){
+            let pageInput = Array.from(form.lastElementChild.children).filter(child =>child.id == PAGE_WIDTH)[0]; 
+            let tf = Array.from(document.getElementsByClassName(TRANSCRIPTION_FIELD))[0];
+            let style = tf.style[pageInput.dataset.param];
+            setInputValue(pageInput, style, tf.id, false);
+        }
+    }   
 }
 function showLinePositionDialog(element, paramName){
     if (!runsOnBakFile){

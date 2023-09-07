@@ -42,6 +42,9 @@
                                 <a id="saveButton" class="nav-link" onClick="myPost(this)" disabled="true">Speichern</a>
                             </li>
                             <li class="nav-item">
+                                <a id="pageButton" class="nav-link active" title="Seite einrichten" onClick="pageSetup()">Seite</a>
+                            </li>
+                            <li class="nav-item">
                                 <a id="editButton" class="nav-link active" title="Quelldatei in eXide öffnen" onClick="openFile(this)">Edit</a>
                             </li>
                              <li class="nav-item">
@@ -63,7 +66,8 @@
             <div data-template="app:createConfig"/>
             <div data-template="app:lineInput"/>
             <div data-template="app:textBlockInput"/>
-             <div data-template="app:versions"/>
+            <div data-template="app:pageSetup"/>
+            <div data-template="app:versions"/>
             <div data-template="app:transform"/>
         </div>
     </div>

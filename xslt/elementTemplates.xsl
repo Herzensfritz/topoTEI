@@ -340,7 +340,7 @@
             </span>
          </xsl:when>
          <xsl:otherwise>
-            <span id="{@xml:id}" class="{replace(replace(@rend, '#', ''), '*','')}">
+            <span id="{@xml:id}" class="{if (contains(@rend, '#') or contains(@rend, '*')) then (replace(replace(@rend, '#', ''), '*','')) else (@rend)}">
                <xsl:apply-templates/>
             </span>
          </xsl:otherwise>
