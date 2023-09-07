@@ -6,7 +6,6 @@ const OBJ_PARAMS = [{targetName: 'id', dataName: 'data-id'},
                     {targetName: 'cssName', dataName: 'data-css'}, 
                     {targetName: 'unit', dataName: 'data-unit'}];
 
-var LINE_PARAM = { paramName: 'lineHeight', cssName: 'line-height'};
 var runsOnBakFile = false;
 var NEWEST = "newest";
 var FILENAME = 'filename';
@@ -14,10 +13,7 @@ var COLLECTION = 'collection';
 var DOWNLOAD_LINK = 'downloadLink';
 var VERSIONS = 'versions';
 var MARGIN_LEFT = 'marginLeft';
-var POSITION_CHANGED = 'positionChanged';
-var LINE_CHANGED = 'lineChanged';
 var VALUE_CHANGED = 'valueChanged';
-var ZONE_LINE = 'zoneLine';
 var TEXT_BLOCK = 'textBlockInput';
 var LINE_INPUT = 'lineInput';
 var LINE_POSITION = 'linePosition';
@@ -28,8 +24,6 @@ var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var LINE = 'line';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
-var currentLine = null;
-var currentInput = null;
 var undoStack = [];
 var redoStack = [];
 var tester = [ FILENAME, COLLECTION, DOWNLOAD_LINK];
@@ -184,18 +178,6 @@ class Change {
         repositionElement(this.element, this.offsetX*-1, this.offsetY*-1, isRedoing);
     }
 };
-class LineChange {
-    constructor(line, value, isDefault, paramName){
-        this.line = line;
-        this.value = value;
-        this.isDefault = isDefault;
-        this.paramName = paramName;
-    }    
-    undo(isRedoing) {
-        currentLine = this.line;
-        setLineHeight(this.value, this.isDefault, this.paramName, isRedoing);
-    }
-};
 class ParamChange {
     constructor(input, oldValue){
         this.input = input;
@@ -213,12 +195,6 @@ window.onload = function() {
         window.location.reload(true);
     }
 } 
-function recordLineChange(line, isDefault, paramName, isRedoing){
-    let oldValue = Number(currentLine.parentElement.style[paramName].replace('em',''));
-    let change = new LineChange(line, oldValue, isDefault, paramName);    
-    let currentStack = (isRedoing) ? redoStack : undoStack;
-    currentStack.push(change);
-}
 function getObject(input, dataParams){
     const obj = {};
     dataParams.forEach(param =>{
@@ -265,6 +241,7 @@ function setStyleToElement(element, newValue, paramObject){
         element.setAttribute('data-css' + 0, paramObject.cssName);
         element.setAttribute('data-index', 1);  
     }
+    //console.log(element);
 }
 function containsValue(element, param, value){
     let length = (element.dataset.index) ? element.dataset.index : 0;
@@ -281,20 +258,6 @@ function getStyleFromElement(element, targetArray){
         style = style + element.getAttribute('data-css' + i) + ':' + element.style[element.getAttribute('data-param' + i)] + ';';  
     }
     targetArray.push({id: element.id, style: style});
-}
-
-function setLineHeight(newValue, isDefault, paramName, isRedoing){
-    recordLineChange(currentLine, isDefault, paramName, isRedoing);
-    handleButtons();
-    if (isDefault){
-        Array.from(document.getElementsByClassName(LINE)).forEach(line =>{
-            line.style.lineHeight = newValue + 'em';   
-            line.classList.add(LINE_CHANGED);
-        });    
-    } else {
-        currentLine.parentElement.style[paramName] = newValue + 'em';
-        currentLine.parentElement.classList.add(LINE_CHANGED);
-    }
 }
 function setInputValue(input, styleValue, id, isClass, label){
     if (styleValue) {
@@ -351,44 +314,6 @@ function showTextBlockDialog(textBlockId){
         }
     }
 }
-function getLineHeightInput(element, id, paramName){ //DEPRECATED
-    if (!runsOnBakFile){
-        let input = document.getElementById(id);
-        if (currentInput && currentLine && input != currentInput){
-            currentInput.style.visibility = 'hidden';
-           
-        }
-        currentInput = input;
-        let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];
-        let isClass = element.parentElement.classList.contains(LINE)
-        let lineInputId = (isClass) ? LINE : element.parentElement.id;
-        setInputValue(lineInput, element.parentElement.style[paramName], lineInputId, isClass);
-        if( currentLine === element || (currentLine && currentLine.parentElement.classList.contains(LINE) && element.parentElement.classList.contains(LINE))){
-            input.style.visibility = 'hidden';
-            currentLine = null;
-        } else {
-            currentLine = element;
-            if (element.parentElement.classList.contains(ZONE_LINE)){
-                input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
-                let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
-                label.innerText = paramName;
-            } else {
-                let currentElement = element.parentElement.parentElement;
-                let currentParams = [ PADDING_TOP.paramName, PADDING_BOTTOM.paramName ];
-                currentParams.forEach(param =>{
-                    let paramInput = Array.from(input.lastElementChild.children).filter(child =>child.id == param)[0];
-                    paramInput.value = (currentElement.style[param]) ? Number(currentElement.style[param].replace(paramInput.dataset.unit,'')) : 0;    
-                })
-            }
-            if (element.parentElement.style[paramName]) {
-                let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.value)[0];
-                //lineInput.value =  Number(element.parentElement.style[paramName].replace('em',''));
-                setInputValue(lineInput, element.parentElement.style[paramName], element.parentElement.id, element.parentElement.classList.contains(LINE));
-            } 
-            input.style.visibility = 'visible';
-        }
-    }
-}
 function showFixLineNumberButtonIfNeeded(element){
     let lines = Array.from(document.getElementsByClassName('lnr')).filter(line =>line.innerText == element.innerText);
     if (lines.length > 1){
@@ -413,68 +338,12 @@ function adjustLineNumbers(lines){
         return [lines[0]].concat(adjustLineNumbers(lines.slice(1)));
     }   
 }
-function saveStyleGet(element, attribute){
-    return (element.style[attribute]) ? element.style[attribute] : "0px";   
-}
-function createAddPositionInfo (element, isChild, targetArray){
-    if (isChild){
-        let style = (element.className.includes('below') 
-        || !(element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1)) 
-        ? "left:" + saveStyleGet(element, 'left') + "; top:" + saveStyleGet(element, 'top') 
-        : "left:" + saveStyleGet(element, 'left');
-        targetArray.push({id: element.id, style: style});
-        if (element.parentElement && element.parentElement.className.search(INSERTION_MARK_REGEX) > -1){
-            createAddPositionInfo(element.parentElement, false, targetArray)    
-        }
-    } else {
-        let style = (element.className.includes('below')) ? "height:" + saveStyleGet(element.parentElement, 'height') : "top:" + saveStyleGet(element, 'top') + "; height:" + saveStyleGet(element, 'height');
-        targetArray.push({id: element.id, style: style});
-    }
-}
-function createInfo (element, targetArray){
-    if (element.className.includes(MARGIN_LEFT)){
-        let style = "margin-left:" + element.style.marginLeft;
-        targetArray.push({id: element.id, style: style});
-    } else {
-        createAddPositionInfo(element, true, targetArray);    
-    }  
-}
-function createLineInfo (element, targetArray){
-    if (element.classList.contains(LINE)){
-        let style = 'line-height:' + element.style.lineHeight;
-        targetArray.push({id: element.id, style: style});
-    } else {
-        let style = (element.style.bottom) ? 'bottom:' + element.style.bottom : 'top:' + element.style.top; 
-        targetArray.push({id: element.id, style: style});
-    } 
-}
-function createStyleObject(element){
-    let style = '';
-    if (element.style.paddingTop){
-        style =  'padding-top: ' +  element.style.paddingTop + ';';
-    }
-    if (element.style.paddingBottom){
-        style =  style + 'padding-bottom: ' +  element.style.paddingBottom + ';';
-    }
-    return { id: element.id, style: style}    
-}
 function toggleConfig(){
     let config = document.getElementById("editorInput"); 
     config.style.visibility = (config.style.visibility == 'visible') ? 'hidden' : 'visible';
 }
 function createConfigObject(object){
     return { name: object.id, value: String(object.value)}    
-}
-function updateFont(font) {
-    console.log(font)
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', "/exist/restxq/font", true)
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-    xhr.send('font=' + font);
-    xhr.onload = function () {
-        //TODO
-    }
-  
 }
 function saveConfig(fontId, dataNameArray) {
     let fontSelector = document.getElementById(fontId);
@@ -493,17 +362,13 @@ function saveConfig(fontId, dataNameArray) {
         }
         toggleConfig();
     }
-  
 }
 function myPost(button) {
    if (!button.getAttribute('disabled')){
-       let elements = Array.from(document.querySelectorAll("*[draggable]")).filter(element =>element.classList.contains(POSITION_CHANGED)); 
+       let elements = Array.from(document.getElementsByClassName(VALUE_CHANGED));
        let elementInfos = [];
        elements.forEach(element =>{
-           createInfo(element, elementInfos)
-        });
-       Array.from(document.getElementsByClassName(LINE_CHANGED)).forEach(line =>{
-            createLineInfo(line, elementInfos)   
+           getStyleFromElement(element, elementInfos)
         });
         mySend(elementInfos);
    } 
@@ -636,9 +501,6 @@ function checkKey(e) {
     }
 }
 function recordChange(currentElement, offsetX, offsetY, isRedoing){
-   if (!currentElement.classList.contains(POSITION_CHANGED)){
-        currentElement.classList.add(POSITION_CHANGED);    
-   }
    let change = new Change(currentElement, offsetX, offsetY);
    let currentStack = (isRedoing) ? redoStack : undoStack;
    currentStack.push(change);
@@ -665,34 +527,33 @@ function setDisabledStatus(button, disable){
         button.classList.add('active');
     }
 }
-
 function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     recordChange(currentElement, offsetX, offsetY, isRedoing);
     handleButtons();
     if (currentElement.className.includes(MARGIN_LEFT)){
         let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('px','')) : currentElement.offsetLeft;
-        currentElement.style.marginLeft = (oldLeft + offsetX) + 'px';
+        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'marginLeft', cssName: 'margin-left', unit: 'px'} );
     } else {
         let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
-        currentElement.style.left = (oldLeft + offsetX) + 'px';
+        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'left', cssName: 'left', unit: 'px'} );
         if(currentElement.parentElement && currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
             if (currentElement.parentElement.className.includes('below')){
                 let oldHeight =  (currentElement.parentElement.style.height) ? Number(currentElement.parentElement.style.height.replace('px','')) : currentElement.parentElement.offsetHeight;
                 let newHeight = oldHeight + offsetY;
-                currentElement.parentElement.style.height = newHeight + "px";
-                currentElement.style.top = (currentElement.offsetTop + offsetY) + "px";
+                setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', cssName: 'height', unit: 'px'} );
+                setStyleToElement(currentElement, (currentElement.offsetTop + offsetY), { paramName: 'top', cssName: 'top', unit: 'px'} );
             } else {
                 let oldTop = Number(currentElement.parentElement.style.top.replace('px',''));
                 if (offsetY == 0 && !currentElement.parentElement.style.top){
                     oldTop = -2    
                 }
                 let newTop = oldTop + offsetY;
-                currentElement.parentElement.style.top = newTop + "px";
-                currentElement.parentElement.style.height = ((currentElement.parentElement.offsetHeight-2) + newTop*-1) + "px";
+                setStyleToElement(currentElement.parentElement, newTop, { paramName: 'top', cssName: 'top', unit: 'px'} );
+                setStyleToElement(currentElement.parentElement, ((currentElement.parentElement.offsetHeight-2) + newTop*-1), { paramName: 'height', cssName: 'height', unit: 'px'} );
             }
         } else {
             let oldTop = (currentElement.style.top) ? Number(currentElement.style.top.replace('px','')) : currentElement.offsetTop;
-            currentElement.style.top = (oldTop + offsetY) + "px";
+            setStyleToElement(currentElement, (oldTop + offsetY) , { paramName: 'top', cssName: 'top', unit: 'px'} );
         }
     }
 }
