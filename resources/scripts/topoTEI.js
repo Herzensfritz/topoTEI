@@ -5,8 +5,7 @@ const OBJ_PARAMS = [{targetName: 'id', dataName: 'data-id'},
                     {targetName: 'paramName', dataName: 'data-param'}, 
                     {targetName: 'cssName', dataName: 'data-css'}, 
                     {targetName: 'unit', dataName: 'data-unit'}];
-var PADDING_TOP = { paramName: 'paddingTop', cssName: 'padding-top'};
-var PADDING_BOTTOM = { paramName: 'paddingBottom', cssName: 'padding-bottom'};
+
 var LINE_PARAM = { paramName: 'lineHeight', cssName: 'line-height'};
 var runsOnBakFile = false;
 var NEWEST = "newest";
@@ -22,6 +21,10 @@ var ZONE_LINE = 'zoneLine';
 var TEXT_BLOCK = 'textBlockInput';
 var LINE_INPUT = 'lineInput';
 var LINE_POSITION = 'linePosition';
+var LINE_HEIGHT_INPUT = 'lineHeightInput';
+var PADDING_TOP = 'paddingTop';
+var PADDING_BOTTOM = 'paddingBottom';
+var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var LINE = 'line';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
@@ -262,10 +265,7 @@ function setStyleToElement(element, newValue, paramObject){
         element.setAttribute('data-css' + 0, paramObject.cssName);
         element.setAttribute('data-index', 1);  
     }
-    
-    console.log(element.dataset, element.style);
 }
-
 function containsValue(element, param, value){
     let length = (element.dataset.index) ? element.dataset.index : 0;
     let data = [];
@@ -274,14 +274,12 @@ function containsValue(element, param, value){
     }
     return data.filter(name => name == value).length > 0;
 }
-
 function getStyleFromElement(element, targetArray){
     let length = (element.dataset.index) ? Number(element.dataset.index) : 0;
     let style = '';
     for (var i = 0; i < length; i++){
         style = style + element.getAttribute('data-css' + i) + ':' + element.style[element.getAttribute('data-param' + i)] + ';';  
     }
-    console.log(style);
     targetArray.push({id: element.id, style: style});
 }
 
@@ -310,20 +308,45 @@ function showLinePositionDialog(element, paramName){
         let input = document.getElementById(LINE_INPUT);
         let textBlock = document.getElementById(TEXT_BLOCK);
         let id = element.parentElement.id;
+        let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
         if (textBlock){
             textBlock.style.visibility = 'hidden';
         }
-        if (input.dataset.id == id){
-           input.removeAttribute('data-id');
+        if (lineInput.dataset.id == id){
+           lineInput.removeAttribute('data-id');
            input.style.visibility = 'hidden';
         } else {
-           let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
            lineInput.setAttribute('data-param', paramName);
            lineInput.setAttribute('data-css', paramName);
            setInputValue(lineInput, element.parentElement.style[paramName], id, false);
            input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
            let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
            label.innerText = paramName;
+           input.style.visibility = 'visible';
+        }
+    }
+}
+function showTextBlockDialog(textBlockId){
+     if (!runsOnBakFile){
+        let linePosition = document.getElementById(LINE_INPUT);
+        let input = document.getElementById(TEXT_BLOCK);
+        let inputs =  Array.from(input.lastElementChild.children).filter(child =>TEXT_BLOCK_INPUTS.includes(child.id));
+        let textBlock = document.getElementById(textBlockId);
+        let firstLine = Array.from(document.getElementsByClassName(LINE))[0];
+        if (linePosition){
+            linePosition.style.visibility = 'hidden';
+        }
+        if (inputs.filter(input =>input.dataset.isClass == 'false').map(input =>input.dataset.id).includes(textBlockId)){
+           inputs.filter(input =>input.dataset.isClass == 'false').forEach(input =>{ input.removeAttribute('data-id') });
+           input.style.visibility = 'hidden';
+        } else {
+           let elements = [ firstLine, textBlock, textBlock ];
+           let ids = [ LINE, textBlockId, textBlockId ];
+           for (var i = 0; i < elements.length; i++){
+                let paramName = inputs[i].dataset.param;
+                let style = elements[i].style[paramName];
+                setInputValue(inputs[i], style, ids[i], ids[i] != textBlockId);
+           }
            input.style.visibility = 'visible';
         }
     }

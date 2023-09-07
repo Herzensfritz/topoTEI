@@ -258,7 +258,7 @@ declare function app:textBlockInput($node as node(), $model as map(*)) as elemen
     <div id="textBlockInput" class="input">
         <h2>Settings für Textblock</h2>
          <form name="line">
-            Zeilenhöhe: <input type="number" value="3" id="line" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="lineHeight" data-css="line-height"/> em<br/>
+            Zeilenhöhe: <input type="number" value="3" id="lineHeightInput" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="lineHeight" data-css="line-height"/> em<br/>
             padding-top: <input type="number" value="0" id="paddingTop" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="paddingTop" data-css="padding-top"/> em<br/>
             padding-bottom: <input type="number" value="0" id="paddingBottom" step="0.1" onChange="setNewValue(this)" data-unit="em" data-param="paddingBottom" data-css="padding-bottom"/> em
       </form>
