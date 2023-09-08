@@ -111,17 +111,15 @@
                      <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]"/>
                </xsl:when>
                <!-- Hierarchical case 1: nodes/text between two lb, second lb inside a tag -->
-               <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../node()/tei:lb[@xml:id = $endId]) gt 0">
-               
+               <xsl:when test="$endId and count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../node()//tei:lb[@xml:id = $endId]) gt 0">
                   <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])                                                                             and (following-sibling::*//tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId])]"/>
                </xsl:when>
                <!-- Hierarchical case 2: first lb inside a tag -->
                <xsl:when test="$endId">
-               
                      <xsl:choose>
                         <!-- Hierarchical case 2a: only one lb inside a tag -->
                         <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb) eq 1">
-                          <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]"/>
+                           <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] and count(following-sibling::tei:lb) eq 0)                             or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and ancestor::*/following-sibling::tei:lb[@xml:id = $endId])                            or (preceding-sibling::*//tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId])]"/>
                         </xsl:when>
                         <!-- Hierarchical case 2b: several lbs inside a tag, current lb is last lb inside tag -->
                         <xsl:otherwise>
