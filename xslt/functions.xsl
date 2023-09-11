@@ -85,10 +85,16 @@
    <xsl:function name="tei:getLineType" as="xs:decimal">
       <xsl:param name="currentNode"/>
       <xsl:choose>
+        <xsl:when test="$currentNode/following-sibling::tei:ab[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id           and count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1"> 
+            <xsl:value-of select="$AB_LINE_TYPE_F"/><!-- following sibling is tei:ab  -->
+         </xsl:when>
+         <xsl:when test="$currentNode/ancestor::tei:ab"> <!-- parent is tei:ab -->
+            <xsl:value-of select="$AB_LINE_TYPE"/>
+         </xsl:when>
          <xsl:when test="(count($currentNode/following-sibling::tei:lb[1]/preceding-sibling::tei:*[ preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1           and count($currentNode/following-sibling::tei:lb[1]/preceding-sibling::tei:add[(empty(@place) or @place = 'inline') and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1)    and count($currentNode/following-sibling::tei:add[1][(empty(@place) or @place = 'inline') and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]/preceding-sibling::text()[normalize-space()]) eq 0          and ($currentNode/following-sibling::tei:add[1]/tei:lb[1] or count($currentNode/following-sibling::tei:add[1][empty(@place) or @place = 'inline']/following-sibling::text()[1][normalize-space()]) eq 0)"> 
             <xsl:value-of select="$ADD_LINE_TYPE_F"/><!-- following sibling is tei:add -->
          </xsl:when>
-         <xsl:when test="$currentNode/parent::tei:add"> <!-- parent is tei:add -->
+         <xsl:when test="$currentNode/ancestor::tei:add"> <!-- parent is tei:add -->
             <xsl:value-of select="$ADD_LINE_TYPE"/>
          </xsl:when>
          <xsl:when test="$currentNode/following-sibling::tei:head[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id           and (count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1          or count($currentNode/following-sibling::tei:*[local-name() != 'p' and following-sibling::tei:p[1]/tei:lb[1]]) eq 1)"> 
@@ -103,18 +109,12 @@
          <xsl:when test="$currentNode/following-sibling::tei:note[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id           and count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1"> 
             <xsl:value-of select="$NOTE_LINE_TYPE_F"/><!--  following sibling is tei:note -->
          </xsl:when>
-         <xsl:when test="$currentNode/following-sibling::tei:ab[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id           and count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1"> 
-            <xsl:value-of select="$AB_LINE_TYPE_F"/><!-- following sibling is tei:ab  -->
-         </xsl:when>
-         <xsl:when test="$currentNode/ancestor::tei:ab"> <!-- parent is tei:ab -->
-            <xsl:value-of select="$AB_LINE_TYPE"/>
-         </xsl:when>
-         <xsl:otherwise> <!-- normal line -->
+          <xsl:otherwise> <!-- normal line -->
             <xsl:value-of select="$DEFAULT_LINE_TYPE"/>
          </xsl:otherwise>
       </xsl:choose>
    </xsl:function>
-   <xsl:function name="tei:getStyle" as="xs:string">
+   <xsl:function name="tei:getStyle" as="xs:string"> <!-- deprecated -->
       <xsl:param name="topValue"/>
       <xsl:param name="bottomValue"/>
       <xsl:param name="lineType" as="xs:decimal"/>

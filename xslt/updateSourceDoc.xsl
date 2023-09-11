@@ -171,9 +171,9 @@
             <xsl:otherwise>
                <xsl:variable name="hand" select="tei:getAttribute(current(), 'hand', $lineType)"/>
                <xsl:variable name="rend" select="tei:getAttribute(current(), 'rend', $lineType)"/>
-               <xsl:variable name="topValue" select="number(@n) * 8 + 2"/>
+               <xsl:variable name="topValue" select="number(@n)"/>
                <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
-               <xsl:variable name="style" select="tei:getStyle($topValue, $bottomValue, $lineType)"/>
+               <xsl:variable name="style" select="if (index-of(//tei:lb/@n, @n) lt (count(//tei:lb) div 2)) then (concat('top:',$topValue,'em;')) else (concat('bottom:',$bottomValue,'em;'))"/>
                <xsl:element name="zone">   
                   <xsl:choose>
                      <xsl:when test="$lineType eq $NOTE_LINE_TYPE or $lineType eq $NOTE_LINE_TYPE_F">
@@ -362,6 +362,8 @@
          <xsl:when test="//tei:lb[parent::tei:note[@xml:id = $noteId]]">
             <xsl:for-each select="//tei:lb[ancestor::tei:note[@xml:id = $noteId]]">
                 <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
+                <xsl:variable name="topValue" select="number(@n)"/>
+                <xsl:variable name="style" select="if (index-of(//tei:lb/@n, @n) lt (count(//tei:lb) div 2)) then (concat('top:',$topValue,'em;')) else (concat('bottom:',$bottomValue,'em;'))"/>
                 <xsl:element name="zone">
                     <xsl:attribute name="xml:id">
                         <xsl:value-of select="concat('srcD_zone_', $noteId)"/>
@@ -375,7 +377,7 @@
                       <xsl:call-template name="line">
                         <xsl:with-param name="id" select="@xml:id"/>
                         <xsl:with-param name="rend" select="//tei:note[@xml:id = $noteId]/@hand"/>
-                        <xsl:with-param name="style" select="concat('bottom:',$bottomValue,'em;')"/>
+                        <xsl:with-param name="style" select="$style"/>
                      </xsl:call-template>
                </xsl:element>
             </xsl:for-each>
