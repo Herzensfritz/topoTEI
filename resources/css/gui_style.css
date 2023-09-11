@@ -6,14 +6,14 @@
    .metamark { cursor: pointer;}
    .small { color: black; padding: 3px; }
    .fw-box { background-color: #add8e6;}
-    .box { background-color: #F5F5F5; width: max-content; text-align: start;}
+    .box, .editorCorrection { background-color: #F5F5F5; width: max-content; text-align: start;}
     .box .tooltip {
        display: none;
     }
     .fw-box .tooltip {
        display: none;
     }
-    .box:hover, .fw-box:hover  {
+    .box:hover, .fw-box:hover, .editorCorrection:hover  {
         cursor: context-menu;
          position: relative;
     }

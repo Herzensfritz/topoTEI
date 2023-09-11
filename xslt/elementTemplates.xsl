@@ -136,6 +136,16 @@
          <xsl:value-of select="following-sibling::tei:add[@place='superimposed'][1]/text()"/>
       </span>
    </xsl:template>
+   <xsl:template match="tei:choice[not(tei:sic/tei:lb)]">
+      <span class="editorCorrection" title="{tei:sic/text()} >{tei:corr/text()}">
+         <xsl:value-of select="normalize-space(tei:sic/text())"/>
+      </span>
+   </xsl:template>
+   <xsl:template match="text()[parent::tei:sic]|tei:sic">
+      <span class="editorCorrection" title="{normalize-space(string-join(parent::tei:sic/text(), ''))} >{ancestor::tei:choice/tei:corr/text()}">
+         <xsl:value-of select="normalize-space(.)"/>
+      </span>
+   </xsl:template>
    <!-- Process overwritten text in case of normal substitution, also for forme work -->
    <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del                                             and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
       <xsl:variable name="dict">
@@ -349,6 +359,8 @@
 
    <!-- unprocessed tags ...-->
    <xsl:template match="tei:note[@type = 'private']"/>
+   <xsl:template match="tei:choice[tei:sic/tei:lb]"/>
+   <xsl:template match="text()[parent::tei:corr]"/>
    <xsl:template match="tei:certainty"/>
    <xsl:template match="tei:noteGrp|tei:note[empty(@type) or not(@type = 'authorial')]"/>
    <xsl:template match="tei:pb"/>
