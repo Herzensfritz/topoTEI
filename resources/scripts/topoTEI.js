@@ -3,7 +3,6 @@
 const OBJ_PARAMS = [{targetName: 'id', dataName: 'data-id'}, 
                     {targetName: 'isClass', dataName: 'data-is-class', type: 'boolean'}, 
                     {targetName: 'paramName', dataName: 'data-param'}, 
-                    {targetName: 'cssName', dataName: 'data-css'}, 
                     {targetName: 'unit', dataName: 'data-unit'}];
 
 var runsOnBakFile = false;
@@ -234,32 +233,12 @@ function setNewValue(input, isRedoing){
 function setStyleToElement(element, newValue, paramObject){
     element.style[paramObject.paramName] = newValue + paramObject.unit;
     element.classList.add(VALUE_CHANGED);
-    if (element.dataset.index) {
-        if (!containsValue(element, 'data-param', paramObject.paramName)){
-            element.setAttribute('data-param' + element.dataset.index, paramObject.paramName);
-            element.setAttribute('data-css' + element.dataset.index, paramObject.cssName);
-            element.setAttribute('data-index', Number(element.dataset.index)+1);    
-        }
-    } else {
-        element.setAttribute('data-param' + 0, paramObject.paramName);
-        element.setAttribute('data-css' + 0, paramObject.cssName);
-        element.setAttribute('data-index', 1);  
-    }
-    //console.log(element);
-}
-function containsValue(element, param, value){
-    let length = (element.dataset.index) ? element.dataset.index : 0;
-    let data = [];
-    for (var i = 0; i < length; i++){
-        data[i] = element.getAttribute(param + i);
-    }
-    return data.filter(name => name == value).length > 0;
 }
 function getStyleFromElement(element, targetArray){
     let length = (element.dataset.index) ? Number(element.dataset.index) : 0;
     let style = '';
-    for (var i = 0; i < length; i++){
-        style = style + element.getAttribute('data-css' + i) + ':' + element.style[element.getAttribute('data-param' + i)] + ';';  
+    for (const value of Object.values(element.style)) {
+        style = style + value + ':' + element.style[value] + ';';
     }
     targetArray.push({id: element.id, style: style});
 }
@@ -269,39 +248,42 @@ function setInputValue(input, styleValue, id, isClass){
     }
     input.setAttribute('data-is-class', String(isClass));
     input.setAttribute('data-id', id);
-    console.log(input);
 }
 function noEnter(input){
      setNewValue(input);
      return !(window.event && window.event.keyCode == 13);
 }
+function hideOtherInputs(id){
+    let inputs = Array.from(document.getElementsByClassName('input')).filter(input =>input.id != id)
+    inputs.forEach(input =>{
+        input.style.visibility = 'hidden'
+    });
+}
 function pageSetup(){
     if (!runsOnBakFile){
         let form = document.getElementById(PAGE_SETUP);
+        hideOtherInputs(form.id);
         form.style.visibility = (form.style.visibility == 'visible') ? 'hidden' : 'visible';
         if (form.style.visibility == 'visible'){
-            let pageInput = Array.from(form.lastElementChild.children).filter(child =>child.id == PAGE_WIDTH)[0]; 
-            let tf = Array.from(document.getElementsByClassName(TRANSCRIPTION_FIELD))[0];
-            let style = tf.style[pageInput.dataset.param];
-            setInputValue(pageInput, style, tf.id, false);
+            Array.from(form.lastElementChild.children).filter(child =>child.id).forEach(pageInput =>{
+                let tf = Array.from(document.getElementsByClassName(TRANSCRIPTION_FIELD))[0];
+                let style = tf.style[pageInput.dataset.param];
+                setInputValue(pageInput, style, tf.id, false);
+            });
         }
     }   
 }
 function showLinePositionDialog(element, paramName){
     if (!runsOnBakFile){
         let input = document.getElementById(LINE_INPUT);
-        let textBlock = document.getElementById(TEXT_BLOCK);
+        hideOtherInputs(input.id);
         let id = element.parentElement.id;
         let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
-        if (textBlock){
-            textBlock.style.visibility = 'hidden';
-        }
         if (lineInput.dataset.id == id){
            lineInput.removeAttribute('data-id');
            input.style.visibility = 'hidden';
         } else {
            lineInput.setAttribute('data-param', paramName);
-           lineInput.setAttribute('data-css', paramName);
            setInputValue(lineInput, element.parentElement.style[paramName], id, false);
            input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
            let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
@@ -312,14 +294,11 @@ function showLinePositionDialog(element, paramName){
 }
 function showTextBlockDialog(textBlockId){
      if (!runsOnBakFile){
-        let linePosition = document.getElementById(LINE_INPUT);
         let input = document.getElementById(TEXT_BLOCK);
+        hideOtherInputs(input.id);
         let inputs =  Array.from(input.lastElementChild.children).filter(child =>TEXT_BLOCK_INPUTS.includes(child.id));
         let textBlock = document.getElementById(textBlockId);
         let firstLine = Array.from(document.getElementsByClassName(LINE))[0];
-        if (linePosition){
-            linePosition.style.visibility = 'hidden';
-        }
         if (inputs.filter(input =>input.dataset.isClass == 'false').map(input =>input.dataset.id).includes(textBlockId)){
            inputs.filter(input =>input.dataset.isClass == 'false').forEach(input =>{ input.removeAttribute('data-id') });
            input.style.visibility = 'hidden';
@@ -553,28 +532,28 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     handleButtons();
     if (currentElement.className.includes(MARGIN_LEFT)){
         let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('px','')) : currentElement.offsetLeft;
-        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'marginLeft', cssName: 'margin-left', unit: 'px'} );
+        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'marginLeft', unit: 'px'} );
     } else {
         let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
-        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'left', cssName: 'left', unit: 'px'} );
+        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'left', unit: 'px'} );
         if(currentElement.parentElement && currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
             if (currentElement.parentElement.className.includes('below')){
                 let oldHeight =  (currentElement.parentElement.style.height) ? Number(currentElement.parentElement.style.height.replace('px','')) : currentElement.parentElement.offsetHeight;
                 let newHeight = oldHeight + offsetY;
-                setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', cssName: 'height', unit: 'px'} );
-                setStyleToElement(currentElement, (currentElement.offsetTop + offsetY), { paramName: 'top', cssName: 'top', unit: 'px'} );
+                setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', unit: 'px'} );
+                setStyleToElement(currentElement, (currentElement.offsetTop + offsetY), { paramName: 'top', unit: 'px'} );
             } else {
                 let oldTop = Number(currentElement.parentElement.style.top.replace('px',''));
                 if (offsetY == 0 && !currentElement.parentElement.style.top){
                     oldTop = -2    
                 }
                 let newTop = oldTop + offsetY;
-                setStyleToElement(currentElement.parentElement, newTop, { paramName: 'top', cssName: 'top', unit: 'px'} );
-                setStyleToElement(currentElement.parentElement, ((currentElement.parentElement.offsetHeight-2) + newTop*-1), { paramName: 'height', cssName: 'height', unit: 'px'} );
+                setStyleToElement(currentElement.parentElement, newTop, { paramName: 'top', unit: 'px'} );
+                setStyleToElement(currentElement.parentElement, ((currentElement.parentElement.offsetHeight-2) + newTop*-1), { paramName: 'height', unit: 'px'} );
             }
         } else {
             let oldTop = (currentElement.style.top) ? Number(currentElement.style.top.replace('px','')) : currentElement.offsetTop;
-            setStyleToElement(currentElement, (oldTop + offsetY) , { paramName: 'top', cssName: 'top', unit: 'px'} );
+            setStyleToElement(currentElement, (oldTop + offsetY) , { paramName: 'top', unit: 'px'} );
         }
     }
 }

@@ -46,7 +46,7 @@
       </div>-->
    </xsl:template>
    <xsl:template match="tei:surface">
-      <xsl:variable name="style" select="@style"/>
+      <xsl:variable name="style" select="if (empty(@style) and tei:zone/tei:zone and not(tei:zone/tei:line)) then (concat('min-width: 900px;min-height: ', count(//tei:line)*3,'em;')) else (@style)"/>
       <div id="{@xml:id}" class="transkriptionField" style="{$style}">
          <xsl:apply-templates/>
       </div>
@@ -70,7 +70,7 @@
             </xsl:attribute>
          </xsl:if>
          <xsl:choose>
-            <xsl:when test="tei:line">
+            <xsl:when test="tei:line|tei:zone">
                <xsl:apply-templates>
                   <xsl:with-param name="zoneId" select="$zone"/>
                </xsl:apply-templates>

@@ -72,13 +72,13 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-     let $log := console:log($file)
+    
     return local:showTransformation($filepath)
    
 };
 declare function local:storeFile($data, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {
     let $output-collection := xmldb:login($collection, 'test', 'test')
-    
+     let $log := console:log($collection)
     let $parsedData := myparsedata:parseData($data, $type, $targetType)
     return if (map:contains($parsedData, $targetType)) then (
         let $filename := $parsedData('filename')

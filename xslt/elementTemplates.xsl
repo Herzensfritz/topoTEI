@@ -137,12 +137,12 @@
       </span>
    </xsl:template>
    <xsl:template match="tei:choice[not(tei:sic/tei:lb)]">
-      <span class="editorCorrection" title="{tei:sic/text()} >{tei:corr/text()}">
+      <span class="editorCorrection" title="{tei:sic/text()} &gt;{tei:corr/text()}">
          <xsl:value-of select="normalize-space(tei:sic/text())"/>
       </span>
    </xsl:template>
    <xsl:template match="text()[parent::tei:sic]|tei:sic">
-      <span class="editorCorrection" title="{normalize-space(string-join(parent::tei:sic/text(), ''))} >{ancestor::tei:choice/tei:corr/text()}">
+      <span class="editorCorrection" title="{normalize-space(string-join(parent::tei:sic/text(), ''))} &gt;{ancestor::tei:choice/tei:corr/text()}">
          <xsl:value-of select="normalize-space(.)"/>
       </span>
    </xsl:template>
