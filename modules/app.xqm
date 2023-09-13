@@ -259,7 +259,8 @@ declare function app:lineInput($node as node(), $model as map(*)) as element(div
      <div id="lineInput" class="input">
         <h2>Zeilenposition</h2>
          <form name="line">
-            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom"/> em
+            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom"/> em<br/>
+            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="px" data-param="marginLeft"/> px
       </form>
       </div>
 };

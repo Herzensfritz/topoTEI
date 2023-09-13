@@ -29,7 +29,7 @@ declare
    %rest:form-param("elements", "{$elements}", "[]")
 function myrest:saveData($file as xs:string*,$elements as xs:string*) {
    let $newfile := local:updateFile($file, $elements)
-      
+       let $log := console:log($file)
    return 
      <rest:response>
         <http:response status="200" message="OK">
@@ -78,7 +78,7 @@ function myrest:transform($file as xs:string*) {
 };
 declare function local:storeFile($data, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {
     let $output-collection := xmldb:login($collection, 'test', 'test')
-     let $log := console:log($collection)
+    
     let $parsedData := myparsedata:parseData($data, $type, $targetType)
     return if (map:contains($parsedData, $targetType)) then (
         let $filename := $parsedData('filename')

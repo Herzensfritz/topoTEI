@@ -78,6 +78,11 @@
                      <xsl:value-of select="'padding-bottom:5em;'"/>
                   </xsl:attribute>
                </xsl:when>
+               <xsl:otherwise>
+                   <xsl:attribute name="type">
+                     <xsl:value-of select="'textBlock'"/>
+                  </xsl:attribute>
+               </xsl:otherwise>
             </xsl:choose>
             <xsl:call-template name="lines">
                <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
@@ -192,13 +197,13 @@
                      <xsl:when test="$lineType eq $AB_LINE_TYPE or $lineType eq $AB_LINE_TYPE_F">
                         <xsl:variable name="id" select="if (ancestor::tei:ab/@xml:id) then (ancestor::tei:ab/@xml:id) else (following-sibling::tei:ab[1]/@xml:id)"/>
                         <xsl:attribute name="xml:id">
-                           <xsl:value-of select="concat('srcD_zone_', $id)"/>
+                           <xsl:value-of select="concat('srcD_zone_', $id, '_',@xml:id)"/>
                         </xsl:attribute>
                         <xsl:attribute name="start">
                            <xsl:value-of select="concat('#', @xml:id)"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
-                           <xsl:value-of select="concat('ab-zone', tei:getStyle(1, 22,33))"/>
+                           <xsl:value-of select="'ab-zone'"/>
                         </xsl:attribute>
                      </xsl:when>
                      <xsl:otherwise>

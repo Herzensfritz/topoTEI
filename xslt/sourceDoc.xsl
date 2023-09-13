@@ -65,8 +65,9 @@
             </xsl:attribute>
          </xsl:if>
          <xsl:if test="@type">
+            <xsl:variable name="class" select="if (ends-with(@type,'Block') and not(starts-with(@type, 'text'))) then (concat(@type, ' textBlock')) else (@type)"/>
             <xsl:attribute name="class">
-               <xsl:value-of select="@type"/>
+               <xsl:value-of select="$class"/>
             </xsl:attribute>
          </xsl:if>
          <xsl:choose>

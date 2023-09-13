@@ -13,9 +13,11 @@ var DOWNLOAD_LINK = 'downloadLink';
 var VERSIONS = 'versions';
 var MARGIN_LEFT = 'marginLeft';
 var VALUE_CHANGED = 'valueChanged';
-var TEXT_BLOCK = 'textBlockInput';
+var TEXT_BLOCK = 'textBlock';
+var TEXT_BLOCK_INPUT = 'textBlockInput';
 var LINE_INPUT = 'lineInput';
 var LINE_POSITION = 'linePosition';
+var VERTICAL_POSITION = 'verticalPosition';
 var LINE_HEIGHT_INPUT = 'lineHeightInput';
 var PAGE_SETUP = 'pageSetup';
 var PAGE_WIDTH = 'pageWidth';
@@ -24,6 +26,7 @@ var PADDING_BOTTOM = 'paddingBottom';
 var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
+var ZONE_LINE = 'zoneLine';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
 var fileIsOpenedInEditor = false;
 var undoStack = [];
@@ -131,7 +134,6 @@ function downloadFile(button){
                 let newHref = link.href.substring(0, link.href.indexOf('?')) + "?file=bak/" + currentFile;
                 link.setAttribute('href', newHref)
             }
-            
             link.click();    
         } 
     }
@@ -273,29 +275,45 @@ function pageSetup(){
         }
     }   
 }
-function showLinePositionDialog(element, paramName){
+function showLinePositionDialog(element, paramName, alwaysOn){
     if (!runsOnBakFile){
         let input = document.getElementById(LINE_INPUT);
         hideOtherInputs(input.id);
         let id = element.parentElement.id;
         let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
-        if (lineInput.dataset.id == id){
+        let verticalInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == VERTICAL_POSITION)[0];
+        if (!alwaysOn && lineInput.dataset.id == id){
            lineInput.removeAttribute('data-id');
            input.style.visibility = 'hidden';
         } else {
+           if (!alwaysOn){
+                removeSelection();
+                currentItem = element.nextSibling;
+                currentItem.classList.add("selected");
+           }
            lineInput.setAttribute('data-param', paramName);
            setInputValue(lineInput, element.parentElement.style[paramName], id, false);
-           input.firstElementChild.innerText = "Zeilenposition für Zeile " + element.innerText;  
+           input.firstElementChild.innerText = "Position für Zeile " + element.innerText;  
            let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
            label.innerText = paramName;
+           let style = (element.nextSibling.style[verticalInput.dataset.param]) ? element.nextSibling.style[verticalInput.dataset.param] :  element.nextSibling.offsetLeft + 'px';
+           setInputValue(verticalInput, style, element.nextSibling.id, false);
            input.style.visibility = 'visible';
         }
     }
 }
+function removeSelection(){
+    currentItems.forEach(selected =>selected.classList.remove("selected"))
+    currentItems = [];
+    if (currentItem){
+        currentItem.classList.remove("selected");    
+    }   
+}
 function showTextBlockDialog(textBlockId){
      if (!runsOnBakFile){
-        let input = document.getElementById(TEXT_BLOCK);
+        let input = document.getElementById(TEXT_BLOCK_INPUT);
         hideOtherInputs(input.id);
+        removeSelection();
         let inputs =  Array.from(input.lastElementChild.children).filter(child =>TEXT_BLOCK_INPUTS.includes(child.id));
         let textBlock = document.getElementById(textBlockId);
         let firstLine = Array.from(document.getElementsByClassName(LINE))[0];
@@ -421,11 +439,7 @@ function clickItem(item, event){
                 
             }
         } else {
-            currentItems.forEach(selected =>selected.classList.remove("selected"))
-            currentItems = [];
-            if (currentItem){
-                currentItem.classList.remove("selected");    
-            }
+            removeSelection();
             if (currentItem === item){
                 currentItem = null;   
             } else {
@@ -533,6 +547,22 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     if (currentElement.className.includes(MARGIN_LEFT)){
         let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('px','')) : currentElement.offsetLeft;
         setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'marginLeft', unit: 'px'} );
+        let ancestor = getAncestorWithClassName(currentElement, ZONE_LINE);
+        if (ancestor){
+            if (ancestor.style['bottom']){
+                let textBlock = getAncestorWithClassName(ancestor, TEXT_BLOCK);
+                let oldBottom = textBlock.clientHeight-(ancestor.offsetTop+ancestor.offsetHeight);
+                let newBottom = oldBottom +offsetY*-1;
+                setStyleToElement(ancestor, newBottom/16, { paramName: 'bottom', unit: 'em'} );
+                showLinePositionDialog(ancestor.firstChild, 'bottom', true);
+            } else {
+                let oldTop = ancestor.offsetTop;
+                let newTop = (oldTop + offsetY)/16;
+                setStyleToElement(ancestor, newTop, { paramName: 'top', unit: 'em'} );
+                showLinePositionDialog(ancestor.firstChild, 'top', true);
+            }
+        }
+        
     } else {
         let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
         setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'left', unit: 'px'} );
@@ -557,6 +587,13 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
         }
     }
 }
+function getAncestorWithClassName(element, className){
+    if (element.parentElement){
+        return (element.parentElement.classList.contains(className)) ? element.parentElement : getAncestorWithClassName(element.parentElement, className);     
+    } 
+    return null;
+}
+
 
 var dragStartPosX = null;
 var dragStartPosY = null;
