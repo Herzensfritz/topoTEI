@@ -1,7 +1,12 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
    <xsl:import href="functions.xsl"/>
    <xsl:output method="html" encoding="UTF-8"/>
    <xsl:variable name="apos">'</xsl:variable>
+   <xsl:variable name="SIMPLE_BETWEEN_TWO_LBS" select="0" as="xs:decimal"/>
+   <xsl:variable name="SECOND_LB_INSIDE_TAG" select="1" as="xs:decimal"/>
+   <xsl:variable name="FIRST_LB_INSIDE_TAG" select="2" as="xs:decimal"/>
+   <xsl:variable name="CURRENT_LB_IS_LAST_INSIDE_TAG" select="3" as="xs:decimal"/>
+   <xsl:variable name="NO_ENDID" select="4" as="xs:decimal"/>
    <!-- process forme work by using a dictionary that translates @hand keys to human readable information  -->
    <xsl:template match="tei:fw">
       <xsl:variable name="dict">
@@ -220,9 +225,16 @@
    </xsl:template>
    <!-- Process highlights -->
    <xsl:template name="hi" match="tei:hi[not(@spanTo) and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
+      <xsl:param name="type" as="xs:decimal">-1</xsl:param>
+      <xsl:param name="startId"/>
       <xsl:choose>
          <xsl:when test="parent::tei:restore/@type = 'strike'">
             <span class="deleted-{@rend}">
+               <xsl:apply-templates/>
+            </span>
+         </xsl:when>
+         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS) and (ancestor::*[@rend]/tei:lb[@xml:id = $startId])">
+            <span class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId])]/@rend} {@rend}">
                <xsl:apply-templates/>
             </span>
          </xsl:when>
@@ -357,6 +369,29 @@
       </xsl:choose>
    </xsl:template>
 
+   <xsl:template match="text()">
+      <xsl:param name="type" as="xs:decimal">-1</xsl:param>
+      <xsl:param name="startId"/>
+      <xsl:choose>
+         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $CURRENT_LB_IS_LAST_INSIDE_TAG or $NO_ENDID) and (ancestor::*[@rend]/tei:lb[@xml:id = $startId] or ancestor::*[@rend]/preceding-sibling::*/tei:lb[@xml:id = $startId])">
+            <span data-debug="{$type}" class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId] or preceding-sibling::*/tei:lb[@xml:id = $startId])]/@rend}">
+               <xsl:value-of select="."/>
+            </span>
+         </xsl:when>
+         <xsl:when test="$type eq $SECOND_LB_INSIDE_TAG and ancestor::*[@rend]/preceding-sibling::tei:lb[@xml:id = $startId]">
+            <span data-debug="{$type}" class="{ancestor::*[@rend and (preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])]/@rend}">
+               <xsl:value-of select="."/>
+            </span>
+         </xsl:when>
+         <xsl:when test="$type gt -1">
+            <span data-debug="{$type}" class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId])]/@rend}"><xsl:value-of select="."/></span>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:value-of select="."/>
+         </xsl:otherwise>
+
+      </xsl:choose>
+   </xsl:template>
    <!-- unprocessed tags ...-->
    <xsl:template match="tei:note[@type = 'private']"/>
    <xsl:template match="tei:choice[tei:sic/tei:lb]"/>
