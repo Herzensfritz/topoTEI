@@ -88,7 +88,7 @@
                <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
             </xsl:call-template>
             <xsl:if test="count(following-sibling::tei:div2) lt 1">
-               <xsl:for-each select="following-sibling::tei:note">
+               <xsl:for-each select="following-sibling::tei:note|tei:note">
                      <xsl:call-template name="note-zone">
                         <xsl:with-param name="noteId" select="@xml:id"/>
                         <xsl:with-param name="place" select="@place"/>

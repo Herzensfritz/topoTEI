@@ -128,7 +128,9 @@
                      <xsl:choose>
                         <!-- Hierarchical case 2a: only one lb inside a tag -->
                         <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb) eq 1">
-                           <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] and count(following-sibling::tei:lb) eq 0)                             or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and ancestor::*/following-sibling::tei:lb[@xml:id = $endId])                            or (preceding-sibling::*//tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId])]">
+                           <!--
+                           <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] and count(following-sibling::tei:lb) eq 0) or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and ancestor::*/following-sibling::tei:lb[@xml:id = $endId]) or (preceding-sibling::*//tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId])]">-->
+                           <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] and count(following-sibling::tei:lb) eq 0) or (preceding-sibling::*//tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId])]">
                      <xsl:with-param name="startId" select="$startId"/>
                      <xsl:with-param name="type" select="$FIRST_LB_INSIDE_TAG"/>
                   </xsl:apply-templates>

@@ -22,7 +22,7 @@
       <xsl:element name="{name()}">
          <xsl:copy-of select="@*[not(local-name() = 'n')]"/>
          <xsl:attribute name="n">
-          <xsl:value-of select="@n + 2"/>
+          <xsl:value-of select="if (matches(@n, '.*[a-zA-Z]$')) then (concat(number(replace(@n, '[a-zA-Z]','')) + 2, replace(@n, '[0-9]+',''))) else (@n + 2)"/>
         </xsl:attribute>
          <xsl:attribute name="xml:id">
             <xsl:value-of select="if (not(@xml:id) or count(//tei:lb[@xml:id = current()/@xml:id]) gt 1) then (concat($TITLE,'_post_corr_',$name,$id)) else (@xml:id)"/>
@@ -38,7 +38,7 @@
             <xsl:when test="preceding-sibling::tei:lb/@n = current()/@n or ancestor::*/preceding-sibling::tei:lb/@n = current()/@n or preceding-sibling::*/tei:lb/@n = current()/@n">
                <xsl:copy-of select="@*[not(local-name() = 'n')]"/>
                <xsl:attribute name="n">
-                <xsl:value-of select="@n + 2"/>
+          <xsl:value-of select="if (matches(@n, '.*[a-zA-Z]$')) then (concat(number(replace(@n, '[a-zA-Z]','')) + 2, replace(@n, '[0-9]+',''))) else (@n + 2)"/>
               </xsl:attribute>
                <xsl:attribute name="xml:id">
                   <xsl:value-of select="if (not(@xml:id) or count(//tei:lb[@xml:id = current()/@xml:id]) gt 1) then (concat($TITLE,'_corr_',$name,$id)) else (@xml:id)"/>

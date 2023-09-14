@@ -227,6 +227,7 @@
    <xsl:template name="hi" match="tei:hi[not(@spanTo) and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
       <xsl:param name="type" as="xs:decimal">-1</xsl:param>
       <xsl:param name="startId"/>
+      <xsl:param name="debug"/>
       <xsl:choose>
          <xsl:when test="parent::tei:restore/@type = 'strike'">
             <span class="deleted-{@rend}">
@@ -239,8 +240,10 @@
             </span>
          </xsl:when>
          <xsl:otherwise>
-         <span class="{@rend}">
-               <xsl:apply-templates/>
+            <span data-debug="{$type}" data-msg="{$debug}" class="{@rend}">
+               <xsl:apply-templates>
+               <xsl:with-param name="type" select="-1"/>
+               </xsl:apply-templates>
          </span>
          </xsl:otherwise>
       </xsl:choose>
@@ -345,8 +348,8 @@
    <!-- Process notes -->
    <xsl:template match="tei:note[@type = 'authorial']">
       <xsl:param name="id"/>
-      <xsl:if test="preceding-sibling::tei:lb[1][@xml:id = $id]">
-         <span class="{@place} {replace(@hand, '#', '')}">
+      <xsl:if test="preceding-sibling::tei:lb[1][@xml:id = $id] or @xml:id = $id">
+         <span class="{@place} {replace(@hand, '#', '')} {@rend}">
             <xsl:apply-templates/>
          </span>
       </xsl:if>
@@ -373,7 +376,7 @@
       <xsl:param name="type" as="xs:decimal">-1</xsl:param>
       <xsl:param name="startId"/>
       <xsl:choose>
-         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $CURRENT_LB_IS_LAST_INSIDE_TAG or $NO_ENDID) and (ancestor::*[@rend]/tei:lb[@xml:id = $startId] or ancestor::*[@rend]/preceding-sibling::*/tei:lb[@xml:id = $startId])">
+         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $CURRENT_LB_IS_LAST_INSIDE_TAG or $type eq $NO_ENDID or $type eq $FIRST_LB_INSIDE_TAG) and (ancestor::*[@rend]/tei:lb[@xml:id = $startId] or ancestor::*[@rend]/preceding-sibling::*/tei:lb[@xml:id = $startId])">
             <span data-debug="{$type}" class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId] or preceding-sibling::*/tei:lb[@xml:id = $startId])]/@rend}">
                <xsl:value-of select="."/>
             </span>
@@ -383,9 +386,7 @@
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
-         <xsl:when test="$type gt -1">
-            <span data-debug="{$type}" class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId])]/@rend}"><xsl:value-of select="."/></span>
-         </xsl:when>
+        
          <xsl:otherwise>
             <xsl:value-of select="."/>
          </xsl:otherwise>
