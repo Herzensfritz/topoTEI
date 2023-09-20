@@ -28,6 +28,7 @@ var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
 var ZONE_LINE = 'zoneLine';
 const INSERTION_MARK_REGEX = /(insM|Ez)/g;
+var pixelLineHeight = 16;
 var fileIsOpenedInEditor = false;
 var undoStack = [];
 var redoStack = [];
@@ -547,22 +548,22 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     if (currentElement.className.includes(MARGIN_LEFT)){
         let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('px','')) : currentElement.offsetLeft;
         setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'marginLeft', unit: 'px'} );
-        let ancestor = getAncestorWithClassName(currentElement, ZONE_LINE);
-        if (ancestor){
-            if (ancestor.style['bottom']){
-                let textBlock = getAncestorWithClassName(ancestor, TEXT_BLOCK);
-                let oldBottom = textBlock.clientHeight-(ancestor.offsetTop+ancestor.offsetHeight);
-                let newBottom = oldBottom +offsetY*-1;
-                setStyleToElement(ancestor, newBottom/16, { paramName: 'bottom', unit: 'em'} );
-                showLinePositionDialog(ancestor.firstChild, 'bottom', true);
-            } else {
-                let oldTop = ancestor.offsetTop;
-                let newTop = (oldTop + offsetY)/16;
-                setStyleToElement(ancestor, newTop, { paramName: 'top', unit: 'em'} );
-                showLinePositionDialog(ancestor.firstChild, 'top', true);
+        if (offsetY != 0){
+            let ancestor = getAncestorWithClassName(currentElement, ZONE_LINE);
+            if (ancestor){
+                if (ancestor.style['bottom']){
+                    let oldBottom = Number(ancestor.style['bottom'].replace('em',''));
+                    let newBottom = oldBottom + offsetY*-1/pixelLineHeight;
+                    setStyleToElement(ancestor, newBottom, { paramName: 'bottom', unit: 'em'} );
+                    showLinePositionDialog(ancestor.firstChild, 'bottom', true);
+                } else {
+                    let oldTop = ancestor.offsetTop;
+                    let newTop = (oldTop + offsetY)/pixelLineHeight;
+                    setStyleToElement(ancestor, newTop, { paramName: 'top', unit: 'em'} );
+                    showLinePositionDialog(ancestor.firstChild, 'top', true);
+                }
             }
         }
-        
     } else {
         let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
         setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'left', unit: 'px'} );
@@ -625,6 +626,7 @@ window.onbeforeunload = function(event){
     }
 };
 window.addEventListener("load", (event) => {
+    pixelLineHeight = Number(window.getComputedStyle(document.body).fontSize.replace('px',''));
     let versions = document.getElementById(VERSIONS);
     if(versions){
         if (versions.elements.file == undefined){

@@ -38,6 +38,7 @@
    <xsl:template name="zones">
       <xsl:param name="anchor_id"/>
       <xsl:for-each select="tei:div2[ancestor::div1/tei:anchor[1]/@xml:id = $anchor_id]">
+         <xsl:variable name="blockType" select="tei:getBlockType(current())"/> 
          <xsl:element name="zone">
            <xsl:attribute name="xml:id">
                 <xsl:value-of select="concat('srcD_zone_', tei:anchor[1]/@xml:id)"/>
@@ -46,12 +47,12 @@
                <xsl:value-of select="concat('#', tei:anchor[1]/@xml:id)"/>
             </xsl:attribute>
             <xsl:choose>
-               <xsl:when test="count(preceding-sibling::tei:div2) lt 1">
+               <xsl:when test="$blockType eq $FIRST_BLOCK_TYPE or $blockType eq $SINGLE_BLOCK_TYPE">
                   <xsl:attribute name="type">
-                     <xsl:value-of select="if (count(following-sibling::tei:div2) lt 1) then ('singleBlock') else ('firstBlock')"/>
+                     <xsl:value-of select="if ($blockType eq $SINGLE_BLOCK_TYPE) then ('singleBlock') else ('firstBlock')"/>
                   </xsl:attribute>
                   <xsl:attribute name="style">
-                     <xsl:value-of select="if (count(following-sibling::tei:div2) lt 1) then ('padding-top:5em;padding-bottom:5em;') else ('padding-top:5em;')"/>
+                     <xsl:value-of select="if ($blockType eq $SINGLE_BLOCK_TYPE) then ('padding-top:5em;padding-bottom:5em;') else ('padding-top:5em;')"/>
                   </xsl:attribute>
                   <xsl:call-template name="fw-zone">
                      <xsl:with-param name="start_id" select="$anchor_id"/>
@@ -70,7 +71,7 @@
                      </xsl:call-template>
                   </xsl:if>
                </xsl:when>
-               <xsl:when test="count(following-sibling::tei:div2) lt 1">
+               <xsl:when test="$blockType eq $LAST_BLOCK_TYPE">
                   <xsl:attribute name="type">
                      <xsl:value-of select="'lastBlock'"/>
                   </xsl:attribute>
@@ -86,15 +87,25 @@
             </xsl:choose>
             <xsl:call-template name="lines">
                <xsl:with-param name="anchor_id" select="tei:anchor[1]/@xml:id"/>
+               <xsl:with-param name="blockType" select="$blockType"/>
             </xsl:call-template>
+            <xsl:if test="count(following-sibling::tei:div2) gt 0 and descendant::tei:note">
+               <xsl:for-each select="descendant::tei:note">
+                  <xsl:if test="tei:getLineType(preceding-sibling::tei:lb[1]) ne $NOTE_LINE_TYPE_F and not(descendant::tei:lb)">
+                     <xsl:call-template name="note-zone">
+                        <xsl:with-param name="noteId" select="@xml:id"/>
+                        <xsl:with-param name="place" select="'bottom'"/>
+                     </xsl:call-template>
+                  </xsl:if>
+               </xsl:for-each>
+            </xsl:if>
             <xsl:if test="count(following-sibling::tei:div2) lt 1">
                <xsl:for-each select="following-sibling::tei:note|tei:note">
                      <xsl:call-template name="note-zone">
                         <xsl:with-param name="noteId" select="@xml:id"/>
                         <xsl:with-param name="place" select="@place"/>
                      </xsl:call-template>
-                  </xsl:for-each>
-
+               </xsl:for-each>
                <xsl:call-template name="fw-zone">
                   <xsl:with-param name="start_id" select="$anchor_id"/>
                   <xsl:with-param name="end_id" select="tei:anchor[1]/@xml:id"/>
@@ -156,6 +167,7 @@
 
    <xsl:template name="lines">
       <xsl:param name="anchor_id"/>
+      <xsl:param name="blockType"/>
       <xsl:for-each select="//tei:lb[ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id]">
          <xsl:variable name="lineType" select="tei:getLineType(current())"/>
          <xsl:choose>
@@ -177,7 +189,7 @@
                <xsl:variable name="hand" select="tei:getAttribute(current(), 'hand', $lineType)"/>
                <xsl:variable name="rend" select="tei:getAttribute(current(), 'rend', $lineType)"/>
                <xsl:variable name="topValue" select="number(@n)"/>
-               <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
+               <xsl:variable name="bottomValue" select="if ($blockType eq $MIDDLE_BLOCK_TYPE) then (0) else (count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1)"/>
                <xsl:variable name="style" select="if (index-of(//tei:lb/@n, @n) lt (count(//tei:lb) div 2)) then (concat('top:',$topValue,'em;')) else (concat('bottom:',$bottomValue,'em;'))"/>
                <xsl:element name="zone">   
                   <xsl:choose>

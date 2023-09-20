@@ -58,7 +58,8 @@
      .singleBlock { position: relative; padding-top: 5em; padding-bottom: 5em;}
      .firstBlock { position: relative; padding-top: 5em; }
      .lastBlock { position: relative; padding-bottom: 5em; }
-     .add-zone { position: absolute; top: 0em; font-size: 90%; }
+     .textBlock { position: relative;}
+     .add-zone { font-size: 90%; }
      .ab-zone { }
      .zoneLine { position: absolute;}
      .note-zone-bottom-right { position: absolute; bottom: 1em;  font-style: italic;}
@@ -70,6 +71,7 @@
      .note-top-right { position: absolute; top: 1em; right: 0px;width: 100%;font-style: italic;}
      .note-bottom-right { position: absolute; bottom: 2em; right: 0px;font-style: italic;}
      .note-margin-left { position: absolute; bottom: 2em; left: 0px;font-style: italic;}
+     .note-left, .note-bottom { position: absolute;width: 100%;font-style: italic;}
      .note-top-center { position: absolute; top: 1em; margin-left: 60%;margin-right:60%;width: 100%;font-style: italic; }
      .head-zone { position: absolute; top: 1em; width: 100%;}
      .top-left { text-align: left }
