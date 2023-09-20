@@ -71,6 +71,7 @@
      .note-top-right { position: absolute; top: 1em; right: 0px;width: 100%;font-style: italic;}
      .note-bottom-right { position: absolute; bottom: 2em; right: 0px;font-style: italic;}
      .note-margin-left { position: absolute; bottom: 2em; left: 0px;font-style: italic;}
+      .note-right { position: absolute; right: 0px;font-style: italic;}
      .note-left, .note-bottom { position: absolute;width: 100%;font-style: italic;}
      .note-top-center { position: absolute; top: 1em; margin-left: 60%;margin-right:60%;width: 100%;font-style: italic; }
      .head-zone { position: absolute; top: 1em; width: 100%;}

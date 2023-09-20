@@ -168,7 +168,7 @@
    <xsl:template name="lines">
       <xsl:param name="anchor_id"/>
       <xsl:param name="blockType"/>
-      <xsl:for-each select="//tei:lb[ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id]">
+      <xsl:for-each select="//tei:lb[@n and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id]">
          <xsl:variable name="lineType" select="tei:getLineType(current())"/>
          <xsl:choose>
             <xsl:when test="$lineType eq $DEFAULT_LINE_TYPE">
@@ -376,7 +376,7 @@
       <xsl:param name="noteId"/>
       <xsl:param name="place">somewhere</xsl:param>
       <xsl:choose>
-         <xsl:when test="//tei:lb[parent::tei:note[@xml:id = $noteId]]">
+         <xsl:when test="//tei:lb[@n and parent::tei:note[@xml:id = $noteId]]">
             <xsl:for-each select="//tei:lb[ancestor::tei:note[@xml:id = $noteId]]">
                 <xsl:variable name="bottomValue" select="count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1"/>
                 <xsl:variable name="topValue" select="number(@n)"/>

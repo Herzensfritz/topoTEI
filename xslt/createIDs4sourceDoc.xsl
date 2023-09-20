@@ -16,7 +16,7 @@
         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="tei:lb[count(distinct-values(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))) lt count(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))]">
+   <xsl:template match="tei:lb[@n and count(distinct-values(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))) lt count(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))]">
       <xsl:variable name="id" select="if (@n) then (@n) else (generate-id())"/>
       <xsl:variable name="name" select="if (@n) then (local-name()) else (concat(local-name(), '_'))"/>
       <xsl:element name="{name()}">
@@ -30,7 +30,7 @@
         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="tei:lb[count(index-of(//tei:lb/@n, current()/@n)) gt 1]">
+   <xsl:template match="tei:lb[@n and count(index-of(//tei:lb/@n, current()/@n)) gt 1]">
       <xsl:variable name="id" select="if (@n) then (@n) else (generate-id())"/>
       <xsl:variable name="name" select="if (@n) then (local-name()) else (concat(local-name(), '_'))"/>
       <xsl:element name="{name()}">
@@ -54,7 +54,7 @@
         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="tei:lb[not(@xml:id) and (count(index-of(//tei:lb/@n, current()/@n)) eq 1) and (count(distinct-values(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))) eq count(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1])))]">
+   <xsl:template match="tei:lb[@n and not(@xml:id) and (count(index-of(//tei:lb/@n, current()/@n)) eq 1) and (count(distinct-values(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))) eq count(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1])))]">
       <xsl:variable name="id" select="if (@n) then (@n) else (generate-id())"/>
       <xsl:variable name="name" select="if (@n) then (local-name()) else (concat(local-name(), '_'))"/>
       <xsl:element name="{name()}">

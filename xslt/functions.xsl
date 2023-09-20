@@ -60,13 +60,13 @@
    <xsl:function name="tei:getBlockType" as="xs:decimal">
       <xsl:param name="currentNode" as="element()"/>
       <xsl:choose>
-         <xsl:when test="count($currentNode/preceding-sibling::tei:div2) lt 1 and count($currentNode/following-sibling::tei:div2) ne 1">
+         <xsl:when test="count($currentNode/preceding-sibling::tei:div2) lt 1 and count($currentNode/following-sibling::tei:div2) ne 0">
             <xsl:value-of select="$FIRST_BLOCK_TYPE"/>
          </xsl:when>
          <xsl:when test="count($currentNode/preceding-sibling::tei:div2) lt 1 and count($currentNode/following-sibling::tei:div2) lt 1">
             <xsl:value-of select="$SINGLE_BLOCK_TYPE"/>
          </xsl:when>
-         <xsl:when test="count($currentNode/preceding-sibling::tei:div2) ne 1 and count($currentNode/following-sibling::tei:div2) lt 1">
+         <xsl:when test="count($currentNode/preceding-sibling::tei:div2) ne 0 and count($currentNode/following-sibling::tei:div2) lt 1">
             <xsl:value-of select="$LAST_BLOCK_TYPE"/>
          </xsl:when>
          <xsl:otherwise>

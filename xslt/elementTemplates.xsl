@@ -393,6 +393,9 @@
 
       </xsl:choose>
    </xsl:template>
+   <xsl:template match="tei:lb[not(@n)]">
+       <br/>
+   </xsl:template>
    <!-- unprocessed tags ...-->
    <xsl:template match="tei:note[@type = 'private']"/>
    <xsl:template match="tei:choice[tei:sic/tei:lb]"/>
