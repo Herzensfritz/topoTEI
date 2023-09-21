@@ -35,6 +35,23 @@
          </xsl:element>
    </xsl:template>
 
+   <xsl:template match="tei:surface|tei:zone">
+      <xsl:element name="{name()}">
+         <xsl:copy-of select="@*"/>
+         <xsl:apply-templates/>
+      </xsl:element>
+   </xsl:template>
+   <xsl:template match="tei:line">
+      <xsl:element name="{name()}">
+         <xsl:copy-of select="@*"/>
+         <xsl:apply-templates select="tei:zone"/>
+         <xsl:call-template name="parentAdd">
+            <xsl:with-param name="anchor_id" select="substring-after(ancestor::tei:zone[ends-with(@type, 'Block')]/@start, '#')"/>
+            <xsl:with-param name="lb_id" select="substring-after(@start, '#')"/>
+            <xsl:with-param name="updateId" select="@xml:id"/>
+         </xsl:call-template>
+      </xsl:element>
+   </xsl:template>
    <xsl:template name="zones">
       <xsl:param name="anchor_id"/>
       <xsl:for-each select="tei:div2[ancestor::div1/tei:anchor[1]/@xml:id = $anchor_id]">
@@ -245,11 +262,19 @@
    <xsl:template name="parentAdd">
       <xsl:param name="anchor_id"/>
       <xsl:param name="lb_id"/>
+      <xsl:param name="updateId"/>
       <xsl:for-each select="//tei:add[@xml:id and (contains(@place, 'above') or contains(@place, 'below')) and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and preceding::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below'])]">
-         <xsl:call-template name="add">
-            <xsl:with-param name="id" select="@xml:id"/>
-            <xsl:with-param name="rend" select="@rend"/>
-         </xsl:call-template>
+         <xsl:choose>
+            <xsl:when test="$updateId and //tei:line[@xml:id = $updateId]//tei:*[@* = concat('#', current()/@xml:id)]">
+               <xsl:copy-of select="if (//tei:line[@xml:id = $updateId]//tei:metamark[@target=concat('#', current()/@xml:id)]) then (//tei:line[@xml:id = $updateId]//tei:metamark[@target=concat('#', current()/@xml:id)]) else (//tei:line[@xml:id = $updateId]//tei:add[@corresp = concat('#', current()/@xml:id)])"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:call-template name="add">
+                  <xsl:with-param name="id" select="@xml:id"/>
+                  <xsl:with-param name="rend" select="@rend"/>
+               </xsl:call-template>
+            </xsl:otherwise>
+         </xsl:choose>
       </xsl:for-each>
    </xsl:template>
    <xsl:template name="parentHeadAdd">
@@ -355,20 +380,6 @@
                   <xsl:with-param name="id" select="@xml:id"/>
                   <xsl:with-param name="head" select="$head"/>
                </xsl:call-template>
-               <!--<xsl:element name="line">
-                  <xsl:attribute name="start">
-                    <xsl:value-of select="concat('#', @xml:id)"/>
-                  </xsl:attribute>
-                  <xsl:element name="zone">
-                     <xsl:attribute name="type">
-                       <xsl:value-of select="'head'"/>
-                     </xsl:attribute>
-                     <xsl:call-template name="parentHeadAdd">
-                        <xsl:with-param name="head" select="$head"/>
-                        <xsl:with-param name="lb_id" select="@xml:id"/>
-                     </xsl:call-template>
-                  </xsl:element>
-               </xsl:element>-->
             </xsl:for-each>
          </xsl:element>
    </xsl:template>
