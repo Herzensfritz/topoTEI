@@ -65,6 +65,26 @@ declare function local:getLocalPath() as xs:string {
 };
 
 declare
+    %rest:path("/preview")
+    %rest:GET
+    %rest:query-param("file", "{$file}", "default.xml")
+    %output:media-type("text/html")
+    %output:method("html5")
+function myrest:preview($file as xs:string*) {
+   let $filepath := concat($config:data-root,'/', $file)
+        let $log := console:log($file)
+        let $node-tree := doc($filepath)
+    let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
+    let $param := <parameters>
+        <!-- TODO -->
+                    <param name="resources" value="../apps/topoTEI/resources/"/> 
+                    <param name="fullpage" value="true"/>   
+                </parameters>
+    return transform:transform($node-tree, $stylesheet, $param, (), "method=html5 media-type=text/html")
+   
+};
+
+declare
     %rest:path("/transform")
     %rest:GET
     %rest:query-param("file", "{$file}", "default.xml")

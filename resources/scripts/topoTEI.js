@@ -57,6 +57,10 @@ function showVersion(){
         location.href = '/exist/restxq/transform?file=' + currentFile;
     }
 }
+function showPreview () {
+   let file = document.getElementById(FILENAME); 
+   window.open('/exist/restxq/preview?file=' + file.value, '_blank');
+}
 function deleteVersion(all){
     if (all){
         let file = document.getElementById(FILENAME);

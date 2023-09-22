@@ -263,7 +263,7 @@
       <xsl:param name="anchor_id"/>
       <xsl:param name="lb_id"/>
       <xsl:param name="updateId"/>
-      <xsl:for-each select="//tei:add[@xml:id and (contains(@place, 'above') or contains(@place, 'below')) and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and preceding::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below'])]">
+      <xsl:for-each select="//tei:add[@xml:id and (contains(@place, 'above') or contains(@place, 'below')) and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and preceding::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[contains(@place, 'above') or contains(@place, 'below')])]">
          <xsl:choose>
             <xsl:when test="$updateId and //tei:line[@xml:id = $updateId]//tei:*[@* = concat('#', current()/@xml:id)]">
                <xsl:copy-of select="if (//tei:line[@xml:id = $updateId]//tei:metamark[@target=concat('#', current()/@xml:id)]) then (//tei:line[@xml:id = $updateId]//tei:metamark[@target=concat('#', current()/@xml:id)]) else (//tei:line[@xml:id = $updateId]//tei:add[@corresp = concat('#', current()/@xml:id)])"/>

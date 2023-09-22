@@ -159,8 +159,9 @@
       </xsl:variable>
       <span class="{if (parent::tei:fw) then ('fw-box') else ('box')}">
          <xsl:choose>
-            <xsl:when test="current()/tei:del/node()">
+            <xsl:when test="$fullpage = 'true' and current()/tei:del/node()">
                <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/>
+                
                     <span class="tooltip">
                         <xsl:value-of select="$dict/tei:entry[@key = current()/tei:del/@rend]/@value"/>
                   <span class="transkriptionField small">
@@ -169,7 +170,7 @@
                </span>
             </xsl:when>
             <xsl:otherwise>
-               <span class="{if (parent::tei:fw) then ('fw-box') else ('box')}" title="{current()/tei:del/text()} {$dict/tei:entry[@key = current()/tei:del/@rend]/@value}">
+               <span class="{if (parent::tei:fw) then ('fw-box') else ('box')}" title="{$dict/tei:entry[@key = current()/tei:del/@rend]/@value} {current()/tei:del/text()} ">
                   <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/>
                </span>
             </xsl:otherwise>
