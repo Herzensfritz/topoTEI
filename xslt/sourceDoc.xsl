@@ -89,7 +89,7 @@
       <xsl:param name="zoneId"/>
       <xsl:variable name="lineClass" select="if (empty(parent::tei:zone/@type) or ends-with(parent::tei:zone/@type, 'Block')) then ('line') else ('zoneLine')"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
-      <xsl:variable name="endId" select="if (following-sibling::tei:line) then (substring-after(following-sibling::tei:line[1]/@start, '#'))        else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#'))        else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[1]/@start,'#')))"/>
+      <xsl:variable name="endId" select="if (following::tei:line) then (substring-after(following::tei:line[1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#'))        else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[1]/@start,'#')))"/>
       <xsl:variable name="isZone" select="if (contains(parent::tei:zone/@type, 'zone') or tei:zone/@type = 'head') then ('true') else ('false')"/>
       <xsl:variable name="spanType" select="concat(@hand, ' ', @rend,' ',tei:zone/@type)"/>
       <xsl:variable name="spanStyle" select="if ($isZone = 'true') then (         if (tei:zone/@xml:id) then (tei:zone/@style) else (parent::tei:zone/@style)) else ()"/>
@@ -121,7 +121,6 @@
                      <xsl:with-param name="startId" select="$startId"/>
                      <xsl:with-param name="type" select="$SECOND_LB_INSIDE_TAG"/>
                   </xsl:apply-templates>
-
                </xsl:when>
                <!-- Hierarchical case 2: first lb inside a tag -->
                <xsl:when test="$endId">
@@ -147,6 +146,7 @@
                </xsl:when>
                <!-- Nodes/text after last lb in div2 -->
                <xsl:otherwise>
+                           <!--<span>|<xsl:apply-templates select="//(*|text())[ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]"/>|</span>-->
                   <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]">
                      <xsl:with-param name="id" select="$startId"/>
                      <xsl:with-param name="startId" select="$startId"/>

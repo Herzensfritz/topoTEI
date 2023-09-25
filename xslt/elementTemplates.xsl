@@ -152,17 +152,17 @@
       </span>
    </xsl:template>
    <!-- Process overwritten text in case of normal substitution, also for forme work -->
-   <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del                                             and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
+   <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
+      <xsl:variable name="hand" select="replace(tei:add[@place = 'superimposed']/@hand,'#','')"/>
       <xsl:variable name="dict">
          <tei:entry key="erased" value="radiert:"/>
          <tei:entry key="overwritten" value="überschrieben:"/>
       </xsl:variable>
-      <span class="{if (parent::tei:fw) then ('fw-box') else ('box')}">
+      <span class="{if (parent::tei:fw) then (concat($hand, ' ', 'fw-box')) else (concat('box ', $hand))}">
          <xsl:choose>
             <xsl:when test="$fullpage = 'true' and current()/tei:del/node()">
                <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/>
-                
-                    <span class="tooltip">
+                 <span class="tooltip">
                         <xsl:value-of select="$dict/tei:entry[@key = current()/tei:del/@rend]/@value"/>
                   <span class="transkriptionField small">
                             <xsl:apply-templates select="./tei:del/(*|text())"/>
@@ -321,7 +321,9 @@
    
    <!-- Process additions -->
    <xsl:template name="add" match="tei:add">
-      <xsl:variable name="hand" select="replace(@hand,'#','')"/>
+      <xsl:param name="id"/>
+      <xsl:param name="startId"/>
+      <xsl:variable name="hand" select="if (@hand) then (replace(@hand,'#','')) else (replace(ancestor::*[@hand and preceding::tei:lb[@xml:id = $startId]]/@hand, '#',''))"/>
       <xsl:choose>
          <xsl:when test="@place and (contains(@place,'above') or contains(@place,'below'))">
             <xsl:variable name="addId" select="concat('#', @xml:id)"/>
@@ -340,7 +342,8 @@
             </xsl:call-template>
          </xsl:when>
          <xsl:otherwise>
-            <span class="inline {$hand}">
+            <xsl:variable name="inline" select="if (//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@type = 'add-zone') then () else ('inline')"/>
+            <span id="{//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@type}" class="{$inline} {$hand}">
                <xsl:apply-templates/>
             </span>
          </xsl:otherwise>
@@ -382,8 +385,9 @@
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
-         <xsl:when test="$type eq $SECOND_LB_INSIDE_TAG and ancestor::*[@rend]/preceding-sibling::tei:lb[@xml:id = $startId]">
-            <span data-debug="{$type}" class="{ancestor::*[@rend and (preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])]/@rend}">
+         <xsl:when test="$type eq $SECOND_LB_INSIDE_TAG and ancestor::*[@rend or @hand]/preceding-sibling::tei:lb[@xml:id = $startId]">
+            <xsl:variable name="inline" select="if (ancestor::tei:add[empty(@place) or contains(@place, 'inline')]/preceding::tei:lb[@xml:id = $startId]) then ('inline') else ()"/>
+            <span data-debug="{$type}" class="{$inline} {replace(ancestor::*[@hand and (preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])]/@hand, '#','')} {ancestor::*[@rend and (preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])]/@rend}">
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
