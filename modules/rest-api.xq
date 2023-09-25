@@ -74,9 +74,13 @@ function myrest:preview($file as xs:string*) {
    let $filepath := concat($config:data-root,'/', $file)
         let $log := console:log($file)
         let $node-tree := doc($filepath)
+        let $config := doc(concat($config:app-root, '/config/gui_config.xml'))
+        let $links := $config/config/fonts/link/text()
+        let $currentFont := $config/config/fonts/current/text()
     let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
     let $param := <parameters>
-        <!-- TODO -->
+                    <param name="fontLinks" value="{$links}"/> 
+                    <param name="currentFont" value="{$currentFont}"/> 
                     <param name="resources" value="../apps/topoTEI/resources/"/> 
                     <param name="fullpage" value="true"/>   
                 </parameters>

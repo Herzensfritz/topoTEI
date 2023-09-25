@@ -5,6 +5,8 @@
    <xsl:param name="resources" select="'resources'"/>
    <!-- Param 'fullpage' specifies whether output should be a standalone html page or just a transkription as part of a <div> -->
    <xsl:param name="fullpage" select="'true'"/>
+   <xsl:param name="fontLinks"/>
+   <xsl:param name="currentFont"/>
    <xsl:variable name="TITLE" select="//tei:titleStmt/tei:title"/>
    <!-- Transform root to html either as standalone or as part of a page depending on param 'fullpage' -->
    <xsl:template match="/">
@@ -16,9 +18,22 @@
                       <xsl:value-of select="$TITLE"/>
                   </title>
                   <link rel="stylesheet" href="{concat($resources, '/css/gui_style.css')}"/>
-                  <script src="{concat($resources, '/scripts/gui_transcription.js')}"/>
+                  <xsl:for-each select="tokenize($fontLinks)">
+                      <link href="{.}" rel="stylesheet" type="text/css"/>
+                  </xsl:for-each>
+                  <xsl:if test="$currentFont">
+                    <style>
+                      <xsl:choose>
+                        <xsl:when test="contains($currentFont, '.')">
+                            <xsl:value-of select="concat('@font-face { font-family: MyFont; src: url(', $resources, '/fonts/', $currentFont, ');} .transkriptionField {                                         font-family: MyFont;                                 }')"/>
+                        </xsl:when>  
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('.transkriptionField { font-family:', $currentFont,'; }')"/>
+                        </xsl:otherwise>
+                      </xsl:choose>
+                    </style>
+                  </xsl:if>
               </head>
-              <!--<body onload="updatePositions()">-->
               <body>
                   <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>
                         </h1>

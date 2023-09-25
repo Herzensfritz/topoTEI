@@ -135,6 +135,7 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:function>
+   
    <xsl:function name="tei:getStyle" as="xs:string"> <!-- deprecated -->
       <xsl:param name="topValue"/>
       <xsl:param name="bottomValue"/>
