@@ -526,7 +526,8 @@ function recordChange(currentElement, offsetX, offsetY, isRedoing){
 }
 function handleButtons(){
     let onChangeActiveButtons = [ document.getElementById('undoButton'), document.getElementById('saveButton') ];
-    let onChangeDisabledButtons = [  document.getElementById('editButton'),  document.getElementById('exportButton'), document.getElementById('versionButton')];
+    //let onChangeDisabledButtons = [  document.getElementById('editButton'),  document.getElementById('exportButton'), document.getElementById('versionButton')];
+    let onChangeDisabledButtons = [  document.getElementById('exportButton'), document.getElementById('versionButton')];
     let redoButton = document.getElementById('redoButton');
     onChangeActiveButtons.forEach(button =>{
        setDisabledStatus(button, (undoStack.length == 0))

@@ -375,8 +375,18 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
+   <xsl:template match="text()[preceding::tei:handShift[1]]">
+      <xsl:param name="type" as="xs:decimal">-1</xsl:param>
+      <xsl:param name="startId"/>
+      <span class="{replace(preceding::tei:handShift[1]/@new, '#', '')}">
+         <xsl:call-template name="text">
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="startId" select="$startId"/>
+         </xsl:call-template>
+      </span>
+   </xsl:template>
 
-   <xsl:template match="text()">
+   <xsl:template name="text" match="text()">
       <xsl:param name="type" as="xs:decimal">-1</xsl:param>
       <xsl:param name="startId"/>
       <xsl:choose>
