@@ -82,7 +82,7 @@
                      <xsl:value-of select="'lastBlock'"/>
                   </xsl:attribute>
                   <xsl:attribute name="style">
-                     <xsl:value-of select="'padding-bottom:5em;'"/>
+                     <xsl:value-of select="if (//tei:zone[@xml:id = $xmlId]/@style) then (//tei:zone[@xml:id = $xmlId]/@style) else ('padding-bottom:5em;')"/>
                   </xsl:attribute>
                </xsl:when>
                <xsl:otherwise>
