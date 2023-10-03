@@ -6,9 +6,10 @@
   <license>GPL-3.0</license>
   <copyright>true</copyright>
   <type>application</type>
-  <target>topoTEI-1.1.0</target>
-  <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="dpa" mode="rw-rw-r--"/>
+  <target>topoTEI</target>
+  <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="test-group" mode="rw-rw-r--"/>
   <prepare>pre-install.xql</prepare>
+  <finish>post-install.xql</finish>
 
 
 

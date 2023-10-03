@@ -66,6 +66,7 @@
      .fw-top { position: absolute; top: -0.1em;}
      .fw-top-right { position: absolute; top: -0.1em; right: 50px;}
      .fw-top-left { position: absolute; top: -0.1em; left: 25px;}
+     .fw-top-center { position: absolute; top: -0.1em; left: 50%;}
      .fw-bottom-left { position: absolute; bottom: 0em; left: 25px;}
      .fw-container { margin-left: 30px; width: 90%; display: inline-block;font-style: italic;}
      .note-top-right { position: absolute; top: 1em; right: 0px;width: 100%;font-style: italic;}

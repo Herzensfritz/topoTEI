@@ -79,7 +79,11 @@ function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?,
         $default
     )
 };
-
+declare function app:link($node as node(), $model as map(*)) as node() {
+    let $msg := console:log( replace($config:app-root, 'db', 'exist'))
+    (: TODO create a link with the real path :)
+    return <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/test.css"/>
+};
 declare function app:title($node as node(), $model as map(*)) as element(h1) {
     let $msg := "Datei auswählen:"
     return if (map:contains($model, 'error')) then (
