@@ -13,6 +13,7 @@ import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace expath="http://expath.org/ns/pkg";
 import module namespace console="http://exist-db.org/xquery/console";
+declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 (:
     Determine the application root collection from the current module load path.
 :)
@@ -113,4 +114,29 @@ declare function config:app-info($node as node(), $model as map(*)) {
                 <td>{ request:get-attribute("$exist:controller") }</td>
             </tr>
         </table>
+};
+
+declare function config:app-changelog($node as node(), $model as map(*)) {
+    let $expath := config:expath-descriptor()
+    let $repo := config:repo-descriptor()
+    let $upgrade := doc(concat($config:app-root, '/config/upgrade.xml'))
+    return <div>
+    {if (xs:dateTime($upgrade/upgrade:upgrade/upgrade:deployed/text()) gt xs:dateTime($config:repo-descriptor//repo:deployed/text())) then (
+        <div><h2>Upgrade (deployed: {$upgrade/upgrade:upgrade/upgrade:deployed/text()})</h2>
+        { for $url in $upgrade/upgrade:upgrade/upgrade:url
+            return <div><h3>{$url/@target/string()}</h3>
+                    {$url}
+                    </div>
+        }
+        </div>
+        ) else ()}
+    
+   {for $change in $config:repo-descriptor//repo:change
+                    return <div>
+                        <h2>Version {$change/@version/string()} :</h2>
+                        {$change}
+                        <span>(deployed: { $config:repo-descriptor//repo:deployed/text()})</span>
+                    </div>}
+    </div>
+        
 };

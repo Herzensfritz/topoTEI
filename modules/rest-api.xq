@@ -10,17 +10,82 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 import module namespace console="http://exist-db.org/xquery/console";
 import module namespace transform="http://exist-db.org/xquery/transform";
+
 declare namespace system="http://exist-db.org/xquery/system";
 import module namespace config="http://exist-db.org/apps/topoTEI/config" at "config.xqm";
 import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace req="http://exquery.org/ns/request";
 import module namespace functx="http://www.functx.com";
+import module namespace file="http://exist-db.org/xquery/file";
 import module namespace app="http://exist-db.org/apps/topoTEI/templates" at "app.xqm";
+
+declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
+
+
+
 import module namespace myparsedata="http://exist-db.org/apps/myapp/myparsedata" at "myparsedata.xqm";
 
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace array="http://www.w3.org/2005/xpath-functions/array";
+import module namespace hc="http://expath.org/ns/http-client";
+
+
+(: downloads a file from a remote HTTP server at $file-url and save it to an eXist-db $collection.
+ : we try hard to recognize XML files and save them with the correct mimetype so that eXist-db can 
+ : efficiently index and query the files; if it doesn't appear to be XML, though, we just trust 
+ : the response headers :)
+declare function local:http-download($file-url as xs:string, $collection as xs:string, $file as xs:string?) as item()* {
+    let $request := <hc:request href="{$file-url}" method="GET"/>
+    let $response := hc:send-request($request)
+    let $head := $response[1]
+    
+
+    
+    return
+        (: check to ensure the remote server indicates success :)
+        if ($head/@status = '200') then
+            (: try to get the filename from the content-disposition header, otherwise construct from the $file-url :)
+            let $filename := if ($file) then ($file) else (
+                if (contains($head/hc:header[@name='content-disposition']/@value, 'filename=')) then 
+                    $head/hc:header[@name='content-disposition']/@value/substring-before(substring-after(., 'filename="'), '"')
+                else 
+                    (: use whatever comes after the final / as the file name:)
+                    replace($file-url, '^.*/([^/]*)$', '$1')
+            )
+            (: override the stated media type if the file is known to be .xml :)
+            let $media-type := $head/hc:body/@media-type
+            let $mime-type := 
+                if (ends-with($file-url, '.xml') and $media-type = 'text/plain') then
+                    'application/xml'
+                else 
+                    $media-type
+            (: if the file is XML and the payload is binary, we need convert the binary to string :)
+            let $content-transfer-encoding := $head/hc:body[@name = 'content-transfer-encoding']/@value
+            let $body := $response[2]
+            let $output-collection := xmldb:login($collection, 'test', 'test')
+            let $log := console:log($head/hc:header[@name='content-disposition']/@value/substring-after(., 'filename='))
+            return if (ends-with($file-url, '.xml') and $content-transfer-encoding = 'binary') then 
+                    let $file := util:binary-to-string($body) 
+                    return xmldb:store($collection, $filename, $file, $mime-type)
+                else 
+                    try {
+                    xmldb:store-as-binary($collection, $filename, $body)
+                    } catch * {
+                        console:log('Error (' || $err:code || '): ' || $err:description || " "|| xmldb:collection-available(concat($collection,'/')))
+                    }
+            
+                
+        else
+            <error>
+                <message>Oops, something went wrong:</message>
+                {$head}
+            </error>
+};
+
+
+
+
 
 declare
   %rest:path("/save")
@@ -39,23 +104,27 @@ function myrest:saveData($file as xs:string*,$elements as xs:string*) {
     </rest:response>
 };
 declare
-  %rest:path("/fix")
+  %rest:path("/upgrade")
   %rest:GET
-function myrest:fixD($file as xs:string*,$elements as xs:string*) {
-    let $bakDir := concat($config:data-root, '/bak')
-    let $output-collection := xmldb:login($bakDir, 'test', 'test')
-    (:  :let $output := for $bakFile in xmldb:get-child-resources($bakDir)
-        where not(ends-with($bakFile, '.xml'))
-        let $new := xmldb:remove($bakDir, $bakFile)
-        return $new :)
-   return 
-    
-      <rest:response>
-        <http:response status="200" message="OK">
-  
+  %rest:query-param("file", "{$file}", "/config/upgrade.xml")
+  %rest:header-param("Referer", "{$referer}", "none")
+function myrest:upgrade($file, $referer) {
+
+    let $target := concat($config:app-root, '/import')
+    let $upgrade := doc($file)
+    for $url in $upgrade//upgrade:url
+        let $result := local:http-download($url/@href, $target, $url/@target)
+    return
+    <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="{$referer}#reload"/>
+      
         </http:response>
-        
-    </rest:response>
+    </rest:response> 
    
 };
 
@@ -96,7 +165,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-        let $log := console:log($file)
+    let $log := console:log($file)
     return local:showTransformation($filepath)
    
 };

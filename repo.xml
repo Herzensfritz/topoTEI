@@ -7,10 +7,15 @@
   <copyright>true</copyright>
   <type>application</type>
   <target>topoTEI</target>
-  <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="test-group" mode="rw-rw-r--"/>
+  <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="dba" mode="rw-rw-r--"/>
   <prepare>pre-install.xql</prepare>
-  <finish>post-install.xql</finish>
-
-
-
+  <changelog>
+      <change version="1.1.1">
+         <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li>Positional information is stored in sourceDoc</li>
+                <li>Head, notes and added lines can be positioned relative to text blocks</li>
+            </ul>
+      </change>
+    </changelog>
+    
 </meta>

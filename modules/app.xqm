@@ -18,10 +18,12 @@ declare namespace request="http://exist-db.org/xquery/request";
 import module namespace console="http://exist-db.org/xquery/console";
 declare namespace system="http://exist-db.org/xquery/system";
 
+
 import module namespace transform="http://exist-db.org/xquery/transform";
 import module namespace functx="http://www.functx.com";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
+declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 
 declare
      %templates:wrap
@@ -65,7 +67,27 @@ function app:uploadDialog($node as node(), $model as map(*)) {
          
       </p>
 };
-
+declare 
+%templates:wrap
+function app:checkUpgrade ($node as node(), $model as map(*)) as node() {
+    let $filename := 'upgrade.xml'
+    let $local := doc(concat($config:app-root, '/config/', $filename))
+    let $href := $local/upgrade:upgrade/@href
+    return try {
+       let $remote := doc($href)
+       return if (xs:dateTime($local/upgrade:upgrade/upgrade:deployed/text()) lt xs:dateTime($remote/upgrade:upgrade/upgrade:deployed/text())) then (
+            let $collection := concat($config:app-root, '/config')
+            let $output-collection := xmldb:login($collection, 'test', 'test')
+            let $store := xmldb:store($collection, $filename, $remote,  'application/xml')
+            return <link class="updateMe" rel="stylesheet" type="text/css" href="resources/css/style.css" onLoad="window.location.href = '/exist/restxq/upgrade?file={concat($config:app-root, '/config/', $filename)}'"/>
+        ) else (
+           $node
+        )
+    } catch * {
+        <link class="error" data-msg="{$err:code}" />
+    }
+    
+};
 
 declare 
      %templates:wrap

@@ -1,6 +1,8 @@
 xquery version "1.0";
 
 import module namespace xdb="http://exist-db.org/xquery/xmldb";
+import module namespace console="http://exist-db.org/xquery/console";
+import module namespace system="http://exist-db.org/xquery/system";
 
 (: The following external variables are set by the repo:deploy function :)
 
@@ -26,6 +28,8 @@ declare function local:mkcol-recursive($collection, $components) {
 declare function local:mkcol($collection, $path) {
     local:mkcol-recursive($collection, tokenize($path, "/"))
 };
+
+
 
 (: store the collection configuration :)
 local:mkcol("/db/system/config", $target),
