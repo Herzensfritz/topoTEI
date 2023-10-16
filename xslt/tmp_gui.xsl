@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
    <xsl:import href="functions.xsl"/>
     <xsl:output method="html" encoding="UTF-8"/>
@@ -86,8 +85,7 @@
    <xsl:choose>
       <xsl:when test="@n != '' or name() = 'lb'">
          <xsl:variable name="oldtestAddSpan" select="count(following-sibling::tei:lb)"/>
-         <xsl:variable name="addSpan" 
-                       select="if (following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id) then ('addSpan') else ()"/>
+         <xsl:variable name="addSpan" select="if (following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id) then ('addSpan') else ()"/>
          <xsl:variable name="nextXmlId" select="following-sibling::tei:anchor[@xml:id = replace(preceding-sibling::tei:addSpan[1]/@spanTo, '#', '')]/@xml:id"/>
          <xsl:variable name="addSpanHand" select="preceding-sibling::tei:addSpan[@spanTo = concat('#', $nextXmlId)]/@hand"/>
          <div id="{@xml:id}" class="line {$handShift} {replace($addSpanHand[1], '#','')}" style="{@style}">
@@ -121,16 +119,14 @@
 </xsl:template>
 
 <!--or following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:hi[@spanTo][1]/@spanTo, '#','')]/preceding-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n-->
-<xsl:template match="text()[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n
-                  or tei:seqContains(current()/preceding-sibling::tei:hi/@spanTo, current()/following-sibling::tei:anchor/@xml:id) = 1]">
+<xsl:template match="text()[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n                   or tei:seqContains(current()/preceding-sibling::tei:hi/@spanTo, current()/following-sibling::tei:anchor/@xml:id) = 1]">
    <xsl:param name="show"/>
    <xsl:if test="$show = 'true' or tei:seqContains(preceding-sibling::tei:hi[@spanTo][1]/@spanTo, $show) = 1">
       <span><xsl:value-of select="tei:seqContains(preceding-sibling::tei:hi/@spanTo, $show)"/></span>
       <xsl:copy-of select="."/> 
    </xsl:if>
 </xsl:template>
-<xsl:template match="*[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n
-or following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:hi[@spanTo][1]/@spanTo, '#','')]/preceding-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
+<xsl:template match="*[preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n or following-sibling::tei:anchor[@xml:id = replace(current()/preceding-sibling::tei:hi[@spanTo][1]/@spanTo, '#','')]/preceding-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n]">
    <xsl:param name="show"/>
    <xsl:if test="$show = 'true' or $show = preceding-sibling::tei:hi[@spanTo][1]/@spanTo">
       <xsl:choose>

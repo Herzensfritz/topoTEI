@@ -4,7 +4,7 @@
     <param label="Up/Down Offset" name="toggleOffset">10</param>
     <fonts>
         <link>http://fonts.googleapis.com/css?family=Roboto|Scada</link>
-        <current>Roboto</current>
+        <current>LiberationSans-Regular.ttf</current>
         <webfont>Arial</webfont>
         <webfont>Verdana</webfont>
         <webfont>Tahoma</webfont>

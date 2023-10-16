@@ -17,6 +17,9 @@ import module namespace config="http://exist-db.org/apps/topoTEI/config" at "con
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace console="http://exist-db.org/xquery/console";
 declare namespace system="http://exist-db.org/xquery/system";
+import module namespace compression="http://exist-db.org/xquery/compression";
+import module namespace unzip="http://joewiz.org/ns/xquery/unzip" at "unzip.xql";
+import module namespace storage="http://exist-db.org/apps/myapp/storage" at "storage.xqm";
 
 
 import module namespace transform="http://exist-db.org/xquery/transform";
@@ -68,7 +71,6 @@ function app:uploadDialog($node as node(), $model as map(*)) {
       </p>
 };
 declare 
-%templates:wrap
 function app:checkUpgrade ($node as node(), $model as map(*)) as node() {
     let $filename := 'upgrade.xml'
     let $local := doc(concat($config:app-root, '/config/', $filename))
@@ -76,17 +78,49 @@ function app:checkUpgrade ($node as node(), $model as map(*)) as node() {
     return try {
        let $remote := doc($href)
        return if (xs:dateTime($local/upgrade:upgrade/upgrade:deployed/text()) lt xs:dateTime($remote/upgrade:upgrade/upgrade:deployed/text())) then (
-            let $collection := concat($config:app-root, '/config')
-            let $output-collection := xmldb:login($collection, 'test', 'test')
-            let $store := xmldb:store($collection, $filename, $remote,  'application/xml')
-            return <link class="updateMe" rel="stylesheet" type="text/css" href="resources/css/style.css" onLoad="window.location.href = '/exist/restxq/upgrade?file={concat($config:app-root, '/config/', $filename)}'"/>
+            <a href="/exist/restxq/upgrade?file={concat($config:app-root, '/config/', $filename)}">upgrade {$remote/upgrade:upgrade/upgrade:deployed/text()}</a>
         ) else (
-           $node
+           <a/>
         )
     } catch * {
-        <link class="error" data-msg="{$err:code}" />
+        <a class="error" data-msg="{$err:code}" />
     }
     
+};
+declare function app:importData($node as node(), $model as map(*)) as node()* {
+    let $importDir := concat($config:app-root, '/import')
+    let $output-collection := xmldb:login($importDir, 'test', 'test')
+    let $removeZip := for $zipFile in xmldb:get-child-resources($importDir)
+        where ends-with($zipFile, 'zip')
+        let $zipFile := concat($importDir, '/', $zipFile)
+        let $unzip := unzip:unzip($zipFile)
+        return xmldb:remove($importDir, $zipFile)
+    let $childCollection := for $child in xmldb:get-child-collections($importDir) 
+        let $targetDir := $config:dirMap($child)
+        let $login := xmldb:login($targetDir, 'test', 'test')
+        let $childDir := concat($importDir, '/', $child)
+        let $rMove := for $resource in xmldb:get-child-resources($childDir)
+            return local:moveResource($childDir, $targetDir, $resource)
+        return xmldb:remove(concat($importDir, '/', $child))
+    let $singleFiles := for $singleFile in xmldb:get-child-resources($importDir)
+        where ends-with($singleFile, '.xml')
+        return local:moveResource($importDir, $config:data-root, $singleFile)
+    return <div class="dataImported"/>
+};
+
+declare %private function local:moveResource($childDir, $targetDir, $resource){
+    
+    if (not(ends-with($resource, '.xml'))) then (
+        xmldb:move($childDir, $targetDir, $resource)    
+    ) else (
+        let $document := doc(concat($childDir, '/', $resource))
+        return if (local:isTeiFile($document)) then (
+            let $stored := storage:storeDocument($document, $targetDir, $resource)
+            return xmldb:remove($childDir, $resource)
+        ) else (
+            xmldb:move($childDir, $targetDir, $resource)     
+        )
+    )    
 };
 
 declare 

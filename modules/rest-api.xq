@@ -18,7 +18,7 @@ import module namespace req="http://exquery.org/ns/request";
 import module namespace functx="http://www.functx.com";
 import module namespace file="http://exist-db.org/xquery/file";
 import module namespace app="http://exist-db.org/apps/topoTEI/templates" at "app.xqm";
-
+import module namespace storage="http://exist-db.org/apps/myapp/storage" at "storage.xqm";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 
 
@@ -64,7 +64,7 @@ declare function local:http-download($file-url as xs:string, $collection as xs:s
             let $content-transfer-encoding := $head/hc:body[@name = 'content-transfer-encoding']/@value
             let $body := $response[2]
             let $output-collection := xmldb:login($collection, 'test', 'test')
-            let $log := console:log($head/hc:header[@name='content-disposition']/@value/substring-after(., 'filename='))
+           
             return if (ends-with($file-url, '.xml') and $content-transfer-encoding = 'binary') then 
                     let $file := util:binary-to-string($body) 
                     return xmldb:store($collection, $filename, $file, $mime-type)
@@ -112,8 +112,17 @@ function myrest:upgrade($file, $referer) {
 
     let $target := concat($config:app-root, '/import')
     let $upgrade := doc($file)
-    for $url in $upgrade//upgrade:url
-        let $result := local:http-download($url/@href, $target, $url/@target)
+    let $filename := substring-after($file, '/config/')
+    let $collection := substring-before($file, $filename)
+    let $result := for $url in $upgrade//upgrade:url
+        let $logDownload := console:log("Downloading " || $url/@target)
+        return local:http-download($url/@href, $target, $url/@target)
+    let $newUpgrade := doc($upgrade/upgrade:upgrade/@href)
+    let $collection := concat($config:app-root, '/config')
+    let $output-collection := xmldb:login($collection, 'test', 'test')
+    let $store := xmldb:store($collection, $filename, $newUpgrade,  'application/xml')
+    let $newUpgradeConfig := doc($store)
+    let $result := update value $newUpgradeConfig//upgrade:deployed with current-dateTime()
     return
     <rest:response>
         <http:response status="302" message="Temporary Redirect">
@@ -170,34 +179,8 @@ function myrest:transform($file as xs:string*) {
    
 };
 declare function local:storeFile($data, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {
-    let $output-collection := xmldb:login($collection, 'test', 'test')
-    
     let $parsedData := myparsedata:parseData($data, $type, $targetType)
-    return if (map:contains($parsedData, $targetType)) then (
-        let $filename := $parsedData('filename')
-        let $content := $parsedData($targetType)
-        return if (contains($targetType, 'xml')) then (
-            let $document := local:prepareDocument($content)
-            let $backup := local:backupFile($filename, $collection)
-            let $localUri := xmldb:store($collection, $filename, $document)
-            return map:merge(($parsedData, map{ 'localUri': $localUri }))
-        ) else (
-            let $localUri := xmldb:store($collection, $filename, $content)
-            return map:merge(($parsedData, map{ 'localUri': $localUri }))    
-        )
-    ) else (
-        $parsedData    
-    )
-};
-declare function local:prepareDocument($xmlContent as xs:string) as node() {
-    let $document := parse-xml($xmlContent)
-    let $stylesheet := config:resolve("xslt/createIDs4sourceDoc.xsl")
-    let $fix := config:resolve("xslt/remove_namespaces.xsl")
-    let $sourceDoc := config:resolve("xslt/updateSourceDoc.xsl")
-    let $new-document := transform:transform($document, $stylesheet, (), (), "method=xml media-type=text/xml")
-    let $fix-document := transform:transform($new-document, $fix, (), (), "method=xml media-type=text/xml")
-    let $source-document := transform:transform($fix-document, $sourceDoc, (), (), "method=xml media-type=text/xml")
-    return $source-document
+    return storage:storeFile($parsedData, $type, $targetType, $collection)
 };
 declare
  %rest:path("/revertVersion")
@@ -208,7 +191,7 @@ function myrest:revertVersion($file) {
     let $output-collection := xmldb:login($collection, 'test', 'test') 
     let $originalFile := concat(substring-after(substring-before($file, '.xml_'), 'bak/'), '.xml')
 
-    let $bakfile := local:backupFile($originalFile, $collection )
+    let $bakfile := storage:backupFile($originalFile, $collection )
     let $out-file := xmldb:store($collection, $originalFile, doc(concat($collection, $file)))
     return <rest:response>
         <http:response status="302" message="Temporary Redirect">
@@ -423,30 +406,7 @@ return (
   
     
 };
-declare function local:createCollection($collection as xs:string, $child as xs:string) as xs:string {
-    let $new-collection := concat($collection, $child)
-    return if  (not(xmldb:collection-available($new-collection))) then (
-           let $target-collection := xmldb:create-collection($collection, $child)
-           return $target-collection
-    ) else (
-        $new-collection    
-    )   
-};
-declare function local:getBackupFileName($file as xs:string) as xs:string {
-    let $damyrestring := format-dateTime(current-dateTime(), "[Y0001]-[M01]-[D01]_[H01][m01][s01]")
-    let $fileName := concat($file, "_", $damyrestring, '.xml')  
-    return string($fileName)
-};
-declare function local:backupFile($file as xs:string*, $collection as xs:string*) as xs:string* {
-   let $output-collection := xmldb:login($collection, 'test', 'test') 
-   return if (doc(concat($collection, $file))) then (
-      let $backup-collection := local:createCollection($collection, "bak")
-      let $backup := xmldb:store($backup-collection, local:getBackupFileName($file), doc(concat($collection, $file)))
-      (:  :let $remove := xmldb:remove($collection, $file):)
-      return $backup
-    ) else ()
-    
-};
+
 
 declare function local:parseHeader($data, $boundary){
     let $head := replace(substring-before(substring-after($data, $boundary), "Content-Type:"),  '(\r?\n|\r)', '')
@@ -480,7 +440,7 @@ function myrest:uploadFile($data, $type, $referer as xs:string*) {
     let $header := local:parseHeader($data, $boundary)
     let $xmlContent := replace(substring-after($content, $header('content-type')), '(^\s+)', '')
     let $filename := $header('filename')
-    let $backup := local:backupFile($filename, $collection)
+    let $backup := storage:backupFile($filename, $collection)
     
     let $response := xmldb:store($collection, $filename, $xmlContent)
     return 
@@ -509,7 +469,7 @@ declare function local:updateFile($file as xs:string, $elements as xs:string*) a
      let $array := parse-json($elements)
      let $collection := concat($config:data-root, "/")
      let $output-collection := xmldb:login($collection, 'test', 'test')
-     let $backup := local:backupFile($file, $collection)
+     let $backup := storage:backupFile($file, $collection)
      let $document := doc(concat($collection, $file))
      for $index in 1 to array:size($array)
         let $item := array:get($array, $index)

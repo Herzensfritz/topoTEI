@@ -38,6 +38,17 @@ declare variable $config:expath-descriptor := doc(concat($config:app-root, "/exp
 
 declare variable $config:data-root := $config:app-root || "/data";
 
+declare variable $config:dirMap := map{ "data": $config:data-root,
+                        "config" : concat($config:app-root, '/config'),
+                        "css" : concat($config:app-root, '/resources/css'),
+                        "fonts" : concat($config:app-root, '/resources/fonts'),
+                        "images" : concat($config:app-root, '/resources/images'),
+                        "scripts" : concat($config:app-root, '/resources/scripts'),
+                        "modules" : concat($config:app-root, '/modules'),
+                        "templates" : concat($config:app-root, '/templates'),
+                        "xslt" : concat($config:app-root, '/xslt')
+};
+
 (:~
  : Resolve the given path using the current application context.
  : If the app resides in the file system,

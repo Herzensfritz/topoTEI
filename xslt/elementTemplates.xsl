@@ -143,7 +143,7 @@
    </xsl:template>
    <xsl:template match="tei:choice[not(tei:sic/tei:lb)]">
       <span class="editorCorrection" title="{tei:sic/text()} &gt;{tei:corr/text()}">
-         <xsl:value-of select="normalize-space(tei:sic/text())"/>
+         <xsl:apply-templates select="tei:sic"/>
       </span>
    </xsl:template>
    <xsl:template match="text()[parent::tei:sic]|tei:sic">

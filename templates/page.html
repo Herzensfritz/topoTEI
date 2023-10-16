@@ -9,11 +9,12 @@
     <meta data-template="config:app-meta"/>
     <link rel="shortcut icon" href="resources/images/exist_icon_16x16.ico"/>
    <link rel="stylesheet" type="text/css" href="resources/css/exist-2.2.css"/>
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css" data-template="app:checkUpgrade"/>
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css"/>
    <script type="text/javascript" src="resources/scripts/bootstrap.bundle.min.js"/>
     <script type="text/javascript" src="resources/scripts/topoTEI.js"/>
 </head>
 <body id="grey-top" onunload="">
+<div data-template="app:importData"/>
 <div class="grey-bot">
     <div class="container" id="main-container">
         <div class="row">
@@ -28,6 +29,11 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"/>
                     </button>
+                    
+                </div>
+                <div class="container-fluid g-0">
+                    <a data-template="app:checkUpgrade" class="navbar-brand" href="./index.html">upgrade</a>
+                    
                     
                 </div>
             </nav>

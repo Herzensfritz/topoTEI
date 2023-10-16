@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" version="2.0">
     <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
     <xsl:param name="GENERIC_EDITOR" select="'knister0'"/>
@@ -20,8 +19,7 @@
                     </xsl:attribute>
                  </xsl:if>
                </xsl:for-each>
-               <xsl:apply-templates select="following-sibling::tei:anchor[@xml:id = $currentId]/preceding-sibling::*[count(preceding-sibling::*[@spanTo = concat('#', $currentId)])=1]
-                  |following-sibling::tei:anchor[@xml:id = $currentId]/preceding-sibling::text()[count(preceding-sibling::*[@spanTo = concat('#', $currentId)])=1]">
+               <xsl:apply-templates select="following-sibling::tei:anchor[@xml:id = $currentId]/preceding-sibling::*[count(preceding-sibling::*[@spanTo = concat('#', $currentId)])=1]                   |following-sibling::tei:anchor[@xml:id = $currentId]/preceding-sibling::text()[count(preceding-sibling::*[@spanTo = concat('#', $currentId)])=1]">
                    <xsl:with-param name="id" select="$currentId"/>
                </xsl:apply-templates>
           </xsl:element>
@@ -41,8 +39,7 @@
             <xsl:value-of select="if ($isEnclosed = 0) then (1) else (0)"/>
          </xsl:when>
          <xsl:otherwise>
-            <xsl:value-of select="if((number($indexOfSpanTo) gt 0 and number($indexOfXmlId) gt 0) 
-            and tei:seqContains($subSpanTo, $subXmlId) = 0) then (1) else (0)"/>
+            <xsl:value-of select="if((number($indexOfSpanTo) gt 0 and number($indexOfXmlId) gt 0)              and tei:seqContains($subSpanTo, $subXmlId) = 0) then (1) else (0)"/>
          </xsl:otherwise>
       </xsl:choose>
    </xsl:function>
