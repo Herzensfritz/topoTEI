@@ -36,6 +36,10 @@ declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.
 
 declare variable $config:expath-descriptor := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
 
+declare variable $config:gui-config := doc(concat($config:app-root, "/config/gui_config.xml"));
+
+declare variable $config:font-config := doc(concat($config:app-root, "/config/fonts.xml"));
+
 declare variable $config:data-root := $config:app-root || "/data";
 
 declare variable $config:dirMap := map{ "data": $config:data-root,
@@ -46,6 +50,7 @@ declare variable $config:dirMap := map{ "data": $config:data-root,
                         "scripts" : concat($config:app-root, '/resources/scripts'),
                         "modules" : concat($config:app-root, '/modules'),
                         "templates" : concat($config:app-root, '/templates'),
+                        "TEI" : concat($config:app-root, '/TEI'),
                         "xslt" : concat($config:app-root, '/xslt')
 };
 

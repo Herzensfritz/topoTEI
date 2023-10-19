@@ -242,65 +242,69 @@ declare function local:createFontFaces($current_font as xs:string?) as element(o
                 )
     ) else ()
 };
-declare function local:createWebFonts($document) as element(option)* {
-    for $localFont in $document/config/fonts/webfont/text()
-            return if ($localFont = $document/config/fonts/current/text()) then (
+declare function local:createWebFonts($currentFont) as element(option)* {
+    for $localFont in $config:font-config//webfont/text()
+            return if ($localFont = $currentFont) then (
                 <option selected="true">{$localFont}</option>
                 ) else (
                 <option>{$localFont}</option>    
                 )
    
 };
-declare function local:createFontFace($fontName) as xs:string {
-    if (contains($fontName, '.')) then (
+declare function local:createFontFace($css, $family, $name, $resources) as xs:string {
+    if (contains($name, '.')) then (
     '@font-face {
-                font-family: "MyFont";
-                src: url("../apps/topoTEI/resources/fonts/' || $fontName || '");}
-    .transkriptionField {
-        font-family: MyFont;    
+                font-family: "' || $family || '";
+                src: url("' || $resources || '/fonts/' || $name || '");}
+    .' || $css ||' {
+        font-family: ' || $family ||';    
     }
     ') else (
-        '.transkriptionField {
-            font-family: ' || $fontName ||';    
+        '.' || $css ||' {
+            font-family: ' || $name ||';    
         }'    
     )  
 };
 declare function app:fontLink($node as node(), $model as map(*)) as element(link)* {
-    let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
-    for $link in $configFile/config/fonts/link
+    for $link in $config:font-config/fonts/links/url/text()
         return <link href='{$link}' rel='stylesheet' type='text/css'/>
 };
+
 declare function app:fontFace($node as node(), $model as map(*)) as element(style)* {
-    let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
-    return 
-        if ($configFile/config/fonts/current/text()) then (
-            <style>{local:createFontFace($configFile/config/fonts/current/text())} 
-        </style>
- 
-          ) else ()
+    for $font in $config:font-config/fonts/currentFonts/current
+        return <style>{local:createFontFace($font/@css, $font/@family, $font/text(), "../apps/topoTEI/resources/")}</style>
+};
+declare function app:fontStyleStrings($resources) as  xs:string* {
+    for $font in $config:font-config/fonts/currentFonts/current
+        return local:createFontFace($font/@css, $font/@family, $font/text(), $resources)
 };
 declare function app:createConfig($node as node(), $model as map(*)) as element(div) {
-    let $configFile := doc(concat($config:app-root, '/config/gui_config.xml'))
-    return 
+ 
     <div id="editorInput" class="input">
         <h2>Konfiguration</h2>
         <form name="config">
-           { for $p in $configFile/config/param
+           { for $p in $config:gui-config/config/param
                    let $label := $p/@label
                    return <div><label class="config" for="{$p/@name}">{string($p/@label)}:</label><input type="number" id="{$p/@name}" value="{$p/text()}" step="any"/></div>
            }
             <div>
-                <label class="config" for="font">Schrift:</label>
-                <select id="fontSelection" name="font">
-                    { local:createFontFaces($configFile/config/fonts/current/text())}
-                    { local:createWebFonts($configFile) }
-                </select>
-                   
+               
+                {
+                    for $currentFont in $config:font-config/fonts/currentFonts/current
+                        return 
+                         <div>
+                             <label class="config" for="font"> {concat('Schrift ', $currentFont/@family)}:</label>    
+                            <select id="{  $currentFont/@family}" name="font">
+                                { local:createFontFaces($currentFont/text())}
+                                { local:createWebFonts($currentFont/text()) }
+                            </select></div>
+                }   
             </div>
         
         </form>
-        <button onClick="saveConfig('fontSelection', [{string-join(
-               for $item in $configFile/config/param/@name
+        <button onClick="saveConfig([{string-join( for $item in $config:font-config/fonts/currentFonts/current/@family
+            return concat("'", $item, "'"),',')}], [{string-join(
+               for $item in $config:gui-config/config/param/@name
                     return concat("'", $item, "'"),
                ',')}])">Speichern</button>
                

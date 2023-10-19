@@ -106,7 +106,7 @@
                </xsl:for-each>
             </xsl:if>
             <xsl:if test="count(following-sibling::tei:div2) lt 1">
-               <xsl:for-each select="following-sibling::tei:note|tei:note">
+               <xsl:for-each select="following-sibling::tei:note"> <!-- changed from "following-sibling::tei:note|tei:note" because of a18r -->
                      <xsl:call-template name="note-zone">
                         <xsl:with-param name="noteId" select="@xml:id"/>
                         <xsl:with-param name="place" select="@place"/>

@@ -1,3 +1,10 @@
+:root {
+         --highlight: yellow;
+         --radius: 1em 1em;
+         --red-marking: red;
+         --length: 0.2em;
+         --nbrown: #5C4033;
+}
    #input { position: fixed; left: 70%;}
    form { margin-top: 2px;}
    #message { color: red;}
@@ -124,13 +131,7 @@
      span.content  .Ezinsertion-above:-moz-first-node  .above   { background: red;} 
      .above2 { position:relative;top: -2.8em; left: -2em;font-size:80%;}
      .insert-mark-above, .insert-mark-below{ position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
-     :root {
-         --highlight: yellow;
-         --radius: 1em 1em;
-         --red-marking: red;
-         --length: 0.2em;
-         --nbrown: #5C4033;
-     }
+ 
      .insertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
      .insMinsertion-below, .Ezinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
      .insMinsertion-below:before, .Ezinsertion-below:before { 
@@ -238,4 +239,4 @@
         .old-insert-mark:before { content: '\23DF';}
         .headSpan { position: absolute; display: inline-block; left: 208px;}
         .head { margin-left: 20%; display: inline-block; }
-        .latin { font-family: Arial, Helvetica, sans-serif;}
+        .latin { font-family: MyLatin, Arial, Helvetica, sans-serif;}

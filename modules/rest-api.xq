@@ -150,16 +150,15 @@ declare
     %output:method("html5")
 function myrest:preview($file as xs:string*) {
    let $filepath := concat($config:data-root,'/', $file)
-        let $log := console:log($file)
+        let $resources := "../apps/topoTEI/resources/"
         let $node-tree := doc($filepath)
-        let $config := doc(concat($config:app-root, '/config/gui_config.xml'))
-        let $links := $config/config/fonts/link/text()
-        let $currentFont := $config/config/fonts/current/text()
+        let $links := $config:font-config/fonts/links/url/text()
+        let $styles := app:fontStyleStrings($resources)
     let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
     let $param := <parameters>
+                    <param name="fonts" value="{$styles}"/> 
                     <param name="fontLinks" value="{$links}"/> 
-                    <param name="currentFont" value="{$currentFont}"/> 
-                    <param name="resources" value="../apps/topoTEI/resources/"/> 
+                    <param name="resources" value="{$resources}"/> 
                     <param name="fullpage" value="true"/>   
                 </parameters>
     return transform:transform($node-tree, $stylesheet, $param, (), "method=html5 media-type=text/html")
@@ -476,25 +475,42 @@ declare function local:updateFile($file as xs:string, $elements as xs:string*) a
         let $out := local:update($item, $document)
      return $file
 };
-declare function local:saveConfigItems($configArray, $document)  {
+declare function local:saveConfigItems($configArray)  {
     for $index in 1 to array:size($configArray)
         let $item := array:get($configArray, $index) 
-        let $out := local:updateConfigFile($item, $document)
-        let $name := $item("name")
+        let $out := local:updateConfigFile($item)
     return 0
+};
+declare %private function local:getOldValue($document, $tag, $attr, $id) as xs:string* {
+    $document//*[name() = $tag and @*[name() = $attr] = $id]/text()  
+};
+declare %private function local:newValueNotEqualOldValue($document, $tag, $attr, $id, $value) as xs:boolean* {
+    local:getOldValue($document, $tag, $attr, $id) ne $value
+};
+declare %private function local:updateDocumentWithItemValue($document, $item){
+   update value $document//*[name() = $item('tag') and @*[name() = $item('attr')] = $item('id')] with $item("value")   
+};
+declare function local:saveArrayItems($array, $targetDoc, $index, $isUpdated){
+    if ($index le array:size($array)) then (
+        let $item := array:get($array, $index)
+        return if (local:newValueNotEqualOldValue($targetDoc, $item('tag'), $item('attr'), $item('id'), $item('value'))) then (
+            let $update := local:updateDocumentWithItemValue($targetDoc, $item)
+            return local:saveArrayItems($array, $targetDoc, $index+1, $isUpdated+1)
+        ) else (
+            local:saveArrayItems($array, $targetDoc, $index+1, $isUpdated)
+        )
+    ) else (
+        $isUpdated    
+    )
 };
 declare function local:processConfig($configuration as xs:string*) as xs:boolean {
     let $config := parse-json($configuration)
-    let $log := console:log($config)
+    let $output-collection := xmldb:login(concat($config:app-root, '/config'), 'test', 'test')
     let $configArray := $config('config')
-    let $collection := replace($config:data-root, "data", "config/")
-   
-   let $output-collection := xmldb:login($collection, 'test', 'test')
-   let $document := doc(concat($collection, "gui_config.xml"))
-   let $oldFontSameAsNew := ($document/config/fonts/current/text() = $config('font'))
-   let $update := local:updateConfigFontValue($config('font'), $document)
-   let $configItemsChanged := local:saveConfigItems($configArray, $document)
-    return $oldFontSameAsNew
+    let $configUpdateCount := local:saveArrayItems($configArray, $config:gui-config, 1, 0)
+    let $fontArray := $config('font')
+    let $fontUpdateCount := local:saveArrayItems($fontArray, $config:font-config, 1, 0)
+    return $fontUpdateCount eq 0
 };
 declare
   %rest:path("/config")
@@ -503,6 +519,7 @@ declare
 
 function myrest:updateConfig($configuration as xs:string*) {
     let $oldFontSameAsNew := local:processConfig($configuration) 
+    
     return if ($oldFontSameAsNew) then (
         <rest:response>
             <http:response status="200" message="OK"/>
@@ -516,12 +533,5 @@ function myrest:updateConfig($configuration as xs:string*) {
                 <http:header name="X-XQuery-Cached" value="false"/>
             </http:response>
         </rest:response>)
-};
-
-declare function local:updateConfigFontValue($font, $document){
-   update value $document/config/fonts/current with $font 
-};
-declare function local:updateConfigFile($item, $document){
-   update value $document/config/param[@name= $item("name") ] with $item("value")   
 };
 

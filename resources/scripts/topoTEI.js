@@ -365,14 +365,15 @@ function toggleConfig(){
     let config = document.getElementById("editorInput"); 
     config.style.visibility = (config.style.visibility == 'visible') ? 'hidden' : 'visible';
 }
-function createConfigObject(object){
-    return { name: object.id, value: String(object.value)}    
+function createConfigObject(objectId, objectValue, targetAttr, targetTag ){
+    return { id: objectId, value: String(objectValue), attr: targetAttr, tag: targetTag }    
 }
-function saveConfig(fontId, dataNameArray) {
-    let fontSelector = document.getElementById(fontId);
-    let font = fontSelector.options[fontSelector.selectedIndex].text;
-   let configData = dataNameArray.map(id =>createConfigObject(document.getElementById(id)));
-    let data = { font: font, config: configData }
+function saveConfig(fontIdArray, dataNameArray) {
+    
+    let fontSelectors = Array.from(fontIdArray.map(id =>document.getElementById(id)));
+    let fonts =  fontSelectors.map(fontSelector => createConfigObject(fontSelector.id, fontSelector.options[fontSelector.selectedIndex].text, 'family', 'current'));
+   let configData = dataNameArray.map(id =>createConfigObject(id, document.getElementById(id).value, 'name', 'param'));
+    let data = { font: fonts, config: configData }
     let jsonData = JSON.stringify(data);
     console.log(jsonData)
     let xhr = new XMLHttpRequest()

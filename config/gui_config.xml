@@ -1,18 +1,5 @@
 <config>
     <param label="Offset" name="offset">1</param>
-    <param label="Ctrl/Shift Offset" name="modOffset">10</param>
-    <param label="Up/Down Offset" name="toggleOffset">10</param>
-    <fonts>
-        <link>http://fonts.googleapis.com/css?family=Roboto|Scada</link>
-        <current>LiberationSans-Regular.ttf</current>
-        <webfont>Arial</webfont>
-        <webfont>Verdana</webfont>
-        <webfont>Tahoma</webfont>
-        <webfont>Trebuchet MS</webfont>
-        <webfont>Times New Roman</webfont>
-        <webfont>Georgia</webfont>
-        <webfont>Garamond</webfont>
-        <webfont>Scada</webfont>
-        <webfont>Roboto</webfont>        
-    </fonts>
+    <param label="Ctrl/Shift Offset" name="modOffset">8</param>
+    <param label="Up/Down Offset" name="toggleOffset">8</param>
 </config>

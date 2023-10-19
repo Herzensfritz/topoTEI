@@ -1,0 +1,20 @@
+<fonts>
+    <currentFonts>
+        <current family="MyFont" css="transkriptionField">DejaVuSans.ttf</current>
+        <current family="MyLatin" css="latin">FreeSans.ttf</current>
+    </currentFonts>
+    <links>
+        <url>http://fonts.googleapis.com/css?family=Roboto|Scada</url>
+    </links>
+    <options>
+        <webfont>Arial</webfont>
+        <webfont>Verdana</webfont>
+        <webfont>Tahoma</webfont>
+        <webfont>Trebuchet MS</webfont>
+        <webfont>Times New Roman</webfont>
+        <webfont>Georgia</webfont>
+        <webfont>Garamond</webfont>
+        <webfont>Scada</webfont>
+        <webfont>Roboto</webfont> 
+    </options>
+</fonts>
