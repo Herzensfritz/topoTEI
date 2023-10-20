@@ -475,12 +475,7 @@ declare function local:updateFile($file as xs:string, $elements as xs:string*) a
         let $out := local:update($item, $document)
      return $file
 };
-declare function local:saveConfigItems($configArray)  {
-    for $index in 1 to array:size($configArray)
-        let $item := array:get($configArray, $index) 
-        let $out := local:updateConfigFile($item)
-    return 0
-};
+
 declare %private function local:getOldValue($document, $tag, $attr, $id) as xs:string* {
     $document//*[name() = $tag and @*[name() = $attr] = $id]/text()  
 };

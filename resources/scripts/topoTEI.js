@@ -649,7 +649,7 @@ window.addEventListener("load", (event) => {
   let newest = document.getElementById(NEWEST);
   if (newest){
       
-    let checkNewest = (location.search && location.search.includes('newest=')) ? location.search.includes('newest=true') : true;  
+    let checkNewest = (location.search && location.search.includes('newest=')) ? location.search.includes('newest=true') : false;  
     //newest.style.setProperty('checked', String(checkNewest));
     if (checkNewest) {
         newest.setAttribute('checked', 'true');

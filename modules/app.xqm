@@ -28,6 +28,8 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 
+
+
 declare
      %templates:wrap
 function app:uploadDialog($node as node(), $model as map(*)) {
@@ -126,7 +128,7 @@ declare %private function local:moveResource($childDir, $targetDir, $resource){
 declare 
      %templates:wrap
 function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?, $newest as xs:string?) as map(*) {
-    let $default := map { "newest-first": ($newest = 'true' or empty($newest))}
+    let $default := map { "newest-first": ($newest = 'true' )}
     return if ($msg) then (
         switch($msg)
             case ("422") return map { "error": "Falscher Dateityp" }
@@ -149,19 +151,37 @@ declare function app:title($node as node(), $model as map(*)) as element(h1) {
     )
 };
 declare function local:getTeiFiles($newest as xs:boolean) as xs:string* {
-    if ($newest) then (
+    let $contentList := doc(concat($config:app-root, '/TEI/TEI-Header_D20.xml'))//tei:msContents//tei:locus/text()
+    return if ($newest) then (
         for $resource in xmldb:get-child-resources($config:data-root)
                         where local:isTeiFile(doc(concat($config:data-root, '/', $resource)))
                         
                         order by xmldb:last-modified($config:data-root, $resource) descending
                         return $resource
     ) else (
-        for $resource in xmldb:get-child-resources($config:data-root)
+        if (count($contentList) gt 0) then (
+            for $resource in xmldb:get-child-resources($config:data-root)
+                        where local:isTeiFile(doc(concat($config:data-root, '/', $resource)))
+                        order by local:getPageIndex(doc(concat($config:data-root, '/', $resource)), $contentList)
+                        return $resource    
+        ) else (
+            for $resource in xmldb:get-child-resources($config:data-root)
                         where local:isTeiFile(doc(concat($config:data-root, '/', $resource)))
                         order by $resource
                         return $resource
+        )
     )
                         
+};
+declare %private function local:getPageIndex($document as node(), $contentList) as xs:decimal {
+    let $pb := $document//tei:pb/@xml:id
+    let $index := index-of($contentList, $pb)
+    return if (count($index) gt 0) then (
+        $index[1]
+    ) else (
+        let $new-index := index-of($contentList, replace($pb, 'v','r'))
+        return if (count($new-index) gt 0) then (count($contentList) + $new-index[1]) else (count($contentList)*2)      
+    )
 };
 declare function local:isTeiFile($document as node()) {
     $document/tei:TEI    
@@ -338,6 +358,13 @@ declare function app:textBlockInput($node as node(), $model as map(*)) as elemen
       </form>
       
     </div>
+};
+
+declare    %templates:wrap
+function app:navigation-next($node as node(), $model as map(*))  {
+    let $file := $model('file')
+    let $node-tree := doc($file)
+    return concat('next: ',$node-tree//tei:pb/@xml:id)
 };
 
 declare function app:transform($node as node(), $model as map(*)) {
