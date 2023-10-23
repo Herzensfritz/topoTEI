@@ -5,16 +5,18 @@
          <xsl:apply-templates/>
    </xsl:template>
    <xsl:template match="tei:div2|tei:div1">
-      <xsl:variable name="id" select="if (@xml:id) then (@xml:id) else (generate-id())"/>
-      <xsl:element name="{name()}">
-         <xsl:copy-of select="@*"/>
-         <xsl:element name="anchor">
-            <xsl:attribute name="xml:id">
-             <xsl:value-of select="concat($TITLE,'_',local-name(),'_',$id)"/>
-           </xsl:attribute>
+      <xsl:variable name="id" select="if (@xml:id) then (translate(@xml:id, 'äöüÄÖÜ','aouAO')) else (generate-id())"/>
+         <xsl:element name="{name()}">
+            <xsl:copy-of select="@*"/>
+            <xsl:if test="*[1]/local-name() != 'anchor'">
+               <xsl:element name="anchor">
+                  <xsl:attribute name="xml:id">
+                   <xsl:value-of select="concat($TITLE,'_',local-name(),'_',$id)"/>
+                 </xsl:attribute>
+               </xsl:element>
+            </xsl:if>
+           <xsl:apply-templates/>
          </xsl:element>
-        <xsl:apply-templates/>
-      </xsl:element>
    </xsl:template>
    <xsl:template match="tei:lb[@n and count(distinct-values(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))) lt count(subsequence(//tei:lb/@n, 0, index-of(//tei:lb/@n, current()/@n)[1]))]">
       <xsl:variable name="id" select="if (@n) then (@n) else (generate-id())"/>
