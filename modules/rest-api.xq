@@ -10,6 +10,8 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 import module namespace console="http://exist-db.org/xquery/console";
 import module namespace transform="http://exist-db.org/xquery/transform";
+import module namespace compression="http://exist-db.org/xquery/compression";
+
 
 declare namespace system="http://exist-db.org/xquery/system";
 import module namespace config="http://exist-db.org/apps/topoTEI/config" at "config.xqm";
@@ -20,6 +22,7 @@ import module namespace file="http://exist-db.org/xquery/file";
 import module namespace app="http://exist-db.org/apps/topoTEI/templates" at "app.xqm";
 import module namespace storage="http://exist-db.org/apps/myapp/storage" at "storage.xqm";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
+import module namespace dbutil="http://exist-db.org/xquery/dbutil" at "dbutils.xqm";
 
 
 
@@ -173,7 +176,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    let $log := console:log($file)
+    
     return local:showTransformation($filepath)
    
 };
@@ -373,6 +376,55 @@ declare function local:showTransformation($file as xs:string){
 
 
 declare
+    %rest:path("/export")
+    %rest:GET
+     %output:media-type("application/zip")
+    %output:method("binary")
+function myrest:export() {
+    let $mimetype   := 'application/zip'
+    let $method     := 'zip'
+    let $collection := $config:data-root
+    let $entries :=  dbutil:scan(xs:anyURI($collection), function($coll as xs:anyURI, $res as xs:anyURI?) {
+            (: compression:zip doesn't seem to store empty collections, so we'll scan for only resources :)
+            if (exists($res)) then
+                let $relative-path := substring-after($res, $config:app-root || "/")
+                return
+                    if (util:binary-doc-available($res)) then
+                        <entry type="uri" name="{$relative-path}">{$res}</entry>
+                    else
+                        <entry type="xml" name="{$relative-path}">{
+                            (: workaround until https://github.com/eXist-db/exist/issues/2394 is resolved :)
+                            util:declare-option(
+                                "exist:serialize", 
+                                "expand-xincludes=" 
+                                || "yes" 
+                                || " indent=" 
+                                || "yes" 
+                                || " omit-xml-declaration=" 
+                                || "no"
+                            ),
+                            doc($res)
+                        }</entry>
+            else
+                ()
+        })
+  let $data := compression:zip($entries, true())
+  let $login := xmldb:login(concat($config:app-root,'/config'), 'test', 'test')
+  let $log := console:log(current-date())
+  let $date := format-dateTime(current-dateTime(), "[Y0001]-[M01]-[D01]_[H01][m01][s01]")
+  let $name := concat(substring-after($collection, $config:app-root || '/'), $date,'.zip')
+   return (
+    <rest:response>
+        <http:response>
+            <http:header name="Content-Disposition" value="{concat("attachment; filename=", $name)}"/>
+        </http:response>
+       
+    </rest:response>
+    , $data) 
+  
+    
+};
+declare
     %rest:path("/download")
     %rest:GET
     %rest:query-param("file", "{$file}", "D20_a28r_check2.xml")
@@ -386,22 +438,16 @@ function myrest:donwload($file as xs:string*) {
 
     let $export-data := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml") :)
 return (
-    <rest:response>
-        <http:response>
-            <http:header name="Content-Type" value="{$mimetype}"/>
-        </http:response>
-        <output:serialization-parameters>
-            <output:method value="{$method}"/>
-            <output:media-type value="{$mimetype}"/>
-        
-        </output:serialization-parameters>
-    </rest:response>
-    , $data
+   <rest:response>
+  <http:response status="200" message="Success">
+    <http:header name="Content-Disposition" value="attachment; filename=test.zip"/>
+  </http:response>
+</rest:response>,$data)
     (:  :<serverinfo accept="{req:header("Accept")}" method="{$method}" mimetype="{$mimetype}">
         <desc language="en-US"/>
         <database version="{system:get-version()}"/>
     </serverinfo>:)
-)
+
   
     
 };
