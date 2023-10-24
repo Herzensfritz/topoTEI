@@ -123,7 +123,7 @@ function exportFile(selectName){
        link.setAttribute('download', currentFile);
        let newHref = link.href.substring(0, link.href.indexOf('?')) + "?file=" + currentFile;
        link.setAttribute('href', newHref)
-      
+       console.log(link);
         link.click();    
     }
 }

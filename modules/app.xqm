@@ -94,6 +94,9 @@ function app:checkUpgrade ($node as node(), $model as map(*)) as node() {
 declare function app:importData($node as node(), $model as map(*)) as node()* {
     let $importDir := concat($config:app-root, '/import')
     let $output-collection := xmldb:login($importDir, 'test', 'test')
+    let $create-importDir := if (xmldb:collection-available($importDir)) then () else (
+        let $login := xmldb:login($config:app-root, 'test', 'test')
+        return xmldb:create-collection($config:app-root, 'import'))
     let $removeZip := for $zipFile in xmldb:get-child-resources($importDir)
         where ends-with($zipFile, 'zip')
         let $zipFile := concat($importDir, '/', $zipFile)

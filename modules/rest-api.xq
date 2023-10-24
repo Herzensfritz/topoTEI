@@ -438,15 +438,18 @@ function myrest:donwload($file as xs:string*) {
 
     let $export-data := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml") :)
 return (
-   <rest:response>
-  <http:response status="200" message="Success">
-    <http:header name="Content-Disposition" value="attachment; filename=test.zip"/>
-  </http:response>
-</rest:response>,$data)
-    (:  :<serverinfo accept="{req:header("Accept")}" method="{$method}" mimetype="{$mimetype}">
-        <desc language="en-US"/>
-        <database version="{system:get-version()}"/>
-    </serverinfo>:)
+    <rest:response>
+        <http:response>
+            <http:header name="Content-Type" value="{$mimetype}"/>
+        </http:response>
+        <output:serialization-parameters>
+            <output:method value="{$method}"/>
+            <output:media-type value="{$mimetype}"/>
+        
+        </output:serialization-parameters>
+    </rest:response>, $data
+    )
+    
 
   
     
