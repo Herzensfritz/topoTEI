@@ -20,7 +20,8 @@ declare namespace system="http://exist-db.org/xquery/system";
 import module namespace compression="http://exist-db.org/xquery/compression";
 import module namespace unzip="http://joewiz.org/ns/xquery/unzip" at "unzip.xql";
 import module namespace storage="http://exist-db.org/apps/myapp/storage" at "storage.xqm";
-
+import module namespace util="http://exist-db.org/xquery/util";
+import module namespace file="http://exist-db.org/xquery/file";
 
 import module namespace transform="http://exist-db.org/xquery/transform";
 import module namespace functx="http://www.functx.com";
@@ -52,6 +53,7 @@ function app:uploadDialog($node as node(), $model as map(*)) {
                 <button title="Ausgewählte Datei runterladen" class="fbutton" onclick="exportFile('fileSelection')">Download ...</button>
                     
                 <button title="Ausgewählte Datei löschen" class="fbutton"onClick="deleteFile('fileSelection')">Datei löschen</button>
+                <button title="Alle Dateien exportieren" class="fbutton" onClick="location.href = '/exist/restxq/export'">Exportieren</button>
              </span>
              </div>) else ()
            }
@@ -360,15 +362,29 @@ declare function app:textBlockInput($node as node(), $model as map(*)) as elemen
     </div>
 };
 
-declare    %templates:wrap
-function app:navigation-next($node as node(), $model as map(*))  {
+declare    
+function app:navigation($node as node(), $model as map(*), $direction as xs:string?) as element(a) {
     let $file := $model('file')
     let $node-tree := doc($file)
-    return concat('next: ',$node-tree//tei:pb/@xml:id)
+    let $log := console:log('test' || $direction)
+    let $contentList := doc(concat($config:app-root, '/TEI/TEI-Header_D20.xml'))//tei:msContents//tei:locus/text()
+    let $index := local:getPageIndex($node-tree, $contentList)
+    let $newIndex := if ($direction = 'next') then ($index + 1) else ($index - 1)
+    return if ($newIndex gt 0 and $index le count($contentList)) then (
+        let $newId := $contentList[$newIndex] 
+        let $newPb := xmldb:xcollection($config:data-root)//tei:pb[@xml:id = $newId]
+        return if (count($newPb) gt 0) then (
+             let $filename := util:document-name($newPb[1])
+             return 
+            <a class="{$node/@class}" href="/exist/restxq/transform?file={$filename}">{concat($direction,': ',$newId)}</a>
+        ) else (<a/>)
+    ) else ( <a/> )
 };
+
 
 declare function app:transform($node as node(), $model as map(*)) {
     let $file := $model('file')
+
     let $node-tree := doc($file)
     let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
     let $param := <parameters>

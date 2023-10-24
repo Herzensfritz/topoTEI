@@ -176,7 +176,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    
+    let $log := console:log($filepath)
     return local:showTransformation($filepath)
    
 };
@@ -330,7 +330,7 @@ declare
  %output:method("html5")
   %rest:header-param("Referer", "{$referer}", "none")
 function myrest:uploadTransform($data, $type, $referer) {
-    let $targetType := "text/xml"
+    let $targetType := 'text/xml'
     let $collection := concat($config:data-root, "/")
     let $response := local:storeFile($data, $type, $targetType, $collection)
     let $status := $response('status')

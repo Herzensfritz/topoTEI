@@ -12,6 +12,7 @@ declare function storage:storeFile($parsedData, $type as xs:string, $targetType 
             let $localUri := storage:storeDocument($parsedXML, $collection, $filename)
             return map:merge(($parsedData, map{ 'localUri': $localUri }))
         ) else (
+            let $output-collection := xmldb:login($collection, 'test', 'test')
             let $localUri := xmldb:store($collection, $filename, $content)
             return map:merge(($parsedData, map{ 'localUri': $localUri }))    
         )
