@@ -1,8 +1,19 @@
-<upgrade:upgrade xmlns="http://exist-db.org/apps/topoTEI/upgrade" xmlns:upgrade="http://exist-db.org/apps/topoTEI/upgrade" href="https://drive.switch.ch/index.php/s/8pTIMjAd5O8Tz4W/download">
-    <upgrade:deployed>2023-10-19T10:30:50.662+02:00</upgrade:deployed>
+<upgrade:upgrade xmlns="http://exist-db.org/apps/topoTEI/upgrade" xmlns:upgrade="http://exist-db.org/apps/topoTEI/upgrade" href="https://drive.switch.ch/index.php/s/mRkR0LgwMH7ixqS/download">
+    <upgrade:deployed>2023-10-25T10:30:50.662+02:00</upgrade:deployed>
     <upgrade:url target="xslt.zip" href="https://drive.switch.ch/index.php/s/hZQZNDymR9e6aQ9/download">
         <ul xmlns="http://www.w3.org/1999/xhtml">
-                <li>Bugfix for updateSourceDoc.xsl concerning note in a18r</li>
+                <li>Bugfix for updateSourceDoc.xsl: false xml:id of the head-zone corresponding to a2r,2</li>
+                <li>Bugfix for sourceDoc.xsl, elementTemplates.xsl: ab-zone and add[@place='inline'] in a4r</li>
+            </ul>
+    </upgrade:url>
+    <upgrade:url target="modules.zip" href="https://drive.switch.ch/index.php/s/UardyE3DU7TqIJS/download">
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li>transform.html: include gui_transcription.js for metamark highlight</li>
+            </ul>
+    </upgrade:url>  
+    <upgrade:url target="scripts.zip" href="https://drive.switch.ch/index.php/s/5pwWSdtcn0AeIq5/download">
+        <ul xmlns="http://www.w3.org/1999/xhtml">
+                <li>gui_transcription.js: metamark highlight</li>
             </ul>
     </upgrade:url>
 </upgrade:upgrade>

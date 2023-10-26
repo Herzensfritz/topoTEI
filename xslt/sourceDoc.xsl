@@ -27,6 +27,7 @@
                      </xsl:element>
                   </xsl:if>
                   <link rel="stylesheet" href="{concat($resources, '/css/gui_style.css')}"/>
+                  <script type="text/javascript" src="{concat($resources, '/scripts/gui_transcription.js')}"/>
               </head>
               <body>
                   <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>

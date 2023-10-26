@@ -395,6 +395,12 @@
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
+         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $NO_ENDID) and (ancestor::tei:add[empty(@place) or contains(@place, 'inline')]//tei:lb[@xml:id = $startId])">
+            <span data-debug="{$type}" class="inline {ancestor::tei:add[empty(@place) or contains(@place, 'inline') and tei:lb[@xml:id = $startId]]/replace(@hand, '#', '')}">
+               <xsl:value-of select="."/>
+            </span>
+         </xsl:when>
+
          <xsl:when test="$type eq $SECOND_LB_INSIDE_TAG and ancestor::*[@rend or @hand]/preceding-sibling::tei:lb[@xml:id = $startId]">
             <xsl:variable name="inline" select="if (ancestor::tei:add[empty(@place) or contains(@place, 'inline')]/preceding::tei:lb[@xml:id = $startId]) then ('inline') else ()"/>
             <span data-debug="{$type}" class="{$inline} {replace(ancestor::*[@hand and (preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])]/@hand, '#','')} {ancestor::*[@rend and (preceding-sibling::tei:lb[@xml:id = $startId] or ancestor::*/preceding-sibling::tei:lb[@xml:id = $startId])]/@rend}">

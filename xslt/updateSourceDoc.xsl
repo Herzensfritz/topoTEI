@@ -412,7 +412,7 @@
    </xsl:template>
    <xsl:template name="head-zone">
       <xsl:param name="head"/>
-      <xsl:variable name="xmlId" select="concat('srcD_head_', $head)"/>
+      <xsl:variable name="xmlId" select="concat('srcD_head_', $head/@xml:id)"/>
       <xsl:element name="zone">
             <xsl:attribute name="xml:id">
                 <xsl:value-of select="$xmlId"/>
