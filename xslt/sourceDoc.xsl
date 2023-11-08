@@ -5,6 +5,7 @@
    <xsl:param name="resources" select="'resources'"/>
    <!-- Param 'fullpage' specifies whether output should be a standalone html page or just a transkription as part of a <div> -->
    <xsl:param name="fullpage" select="'true'"/>
+   <xsl:param name="editorModus" select="'true'"/>
    <xsl:param name="fonts"/>
    <xsl:param name="fontLinks"/>
    <xsl:variable name="TITLE" select="//tei:titleStmt/tei:title"/>
@@ -38,8 +39,14 @@
          </xsl:when>
          <xsl:otherwise>
             <div>
-                <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>
-                    </h1>
+                <xsl:choose>
+                    <xsl:when test="$editorModus != 'false'">
+                        <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/></h1>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <h2 id="{$TITLE}"><xsl:value-of select="$TITLE"/></h2>
+                    </xsl:otherwise>
+                </xsl:choose>
                 <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
              </div>
          </xsl:otherwise>
@@ -136,7 +143,7 @@
                <xsl:when test="$endId">
                      <xsl:choose>
                         <!-- Hierarchical case 2a: only one lb inside a tag -->
-                        <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb) eq 1">
+                        <xsl:when test="count(//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]/../tei:lb[@xml:id = $endId]) eq 1">
                            <!--
                            <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] and count(following-sibling::tei:lb) eq 0) or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and ancestor::*/following-sibling::tei:lb[@xml:id = $endId]) or (preceding-sibling::*//tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId])]">-->
                            <xsl:apply-templates select="//(*|text())[(preceding-sibling::tei:lb[@xml:id = $startId] and count(following-sibling::tei:lb) eq 0) or (preceding-sibling::*//tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId])]">
@@ -146,8 +153,9 @@
                         </xsl:when>
                         <!-- Hierarchical case 2b: several lbs inside a tag, current lb is last lb inside tag -->
                         <xsl:otherwise>
-                           <!--<span>|<xsl:apply-templates select="//(*|text())[ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]"/>|</span>-->
-                           <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] or (preceding-sibling::*/tei:lb[@xml:id = $startId] and (following-sibling::*/tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId]) or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]))]">
+                           <xsl:apply-templates select="//(*|text())[preceding::tei:lb[@xml:id = $startId] and following::tei:lb[@xml:id = $endId]
+                           and not(parent::*/preceding::tei:lb[@xml:id = $startId] and parent::*/following::tei:lb[@xml:id = $endId])]">
+                           <!--TODO<xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] or (preceding-sibling::*/tei:lb[@xml:id = $startId] and (following-sibling::*/tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId]) or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]))]">-->
                               <xsl:with-param name="startId" select="$startId"/>
                               <xsl:with-param name="type" select="$CURRENT_LB_IS_LAST_INSIDE_TAG"/>
                            </xsl:apply-templates>

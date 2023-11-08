@@ -23,6 +23,7 @@ import module namespace app="http://exist-db.org/apps/topoTEI/templates" at "app
 import module namespace storage="http://exist-db.org/apps/myapp/storage" at "storage.xqm";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 import module namespace dbutil="http://exist-db.org/xquery/dbutil" at "dbutils.xqm";
+declare namespace json="http://www.json.org";
 
 
 
@@ -167,6 +168,52 @@ function myrest:preview($file as xs:string*) {
     return transform:transform($node-tree, $stylesheet, $param, (), "method=html5 media-type=text/html")
    
 };
+declare
+    %rest:path("/content")
+    %rest:GET
+    %rest:query-param("file", "{$file}", "default.xml")
+    %output:media-type("text/html")
+    %output:method("html5")
+function myrest:content($file as xs:string*) {
+   let $filepath := concat($config:data-root,'/', $file)
+        let $node-tree := doc($filepath)
+    let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
+ let $param := <parameters>
+                    <param name="fullpage" value="false"/>
+                    <param name="editorModus" value="false"/>   
+                </parameters>
+    return transform:transform($node-tree, $stylesheet, $param, (), "method=html5 media-type=text/html")
+   
+};
+
+declare
+    %rest:path("/toc")
+    %rest:GET
+    %rest:query-param("file", "{$file}", "TEI-Header_D20.xml")
+    %rest:produces("text/xml")
+    %output:media-type("text/xml")
+    %output:method("xml")
+function myrest:toc($file as xs:string*) {
+    let $document := doc(concat($config:app-root, '/TEI/', $file))
+    return 
+        <toc header="{$file}" title="{$document//tei:titleStmt/tei:title/text()}">
+        {   for $p in $document//tei:msContents//tei:p[tei:locus]
+                where collection($config:data-root)//tei:pb[@xml:id = $p//tei:locus/text()]
+                return <entries id="{$p//tei:locus/text()}" desc="{$p//tei:desc/text()}" resource="{util:document-name(xmldb:xcollection($config:data-root)//tei:pb[@xml:id = $p//tei:locus/text()][1])}"/>
+        }
+    </toc>
+};
+
+declare
+    %rest:path("/tocJson")
+    %rest:GET
+    %rest:query-param("file", "{$file}", "TEI-Header_D20.xml")
+    %rest:produces("application/json")
+    %output:media-type("application/json")
+    %output:method("json")
+function myrest:tocJson($file as xs:string*) {
+    myrest:toc($file)
+};
 
 declare
     %rest:path("/transform")
@@ -176,7 +223,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    let $log := console:log($filepath)
+   (:   let $log := console:log($filepath) :)
     return local:showTransformation($filepath)
    
 };

@@ -300,7 +300,7 @@
       <xsl:param name="id"/>
       <xsl:param name="rend"/>
       <xsl:choose>
-         <xsl:when test="$rend = 'insM' or starts-with($rend, 'Ez')">
+         <xsl:when test="starts-with($rend, 'insM') or starts-with($rend, 'Ez')">
             <xsl:variable name="metamarkXmlId" select="concat('srcD_metamark_', $id)"/>
             <xsl:element name="metamark">
                 <xsl:attribute name="xml:id">
@@ -330,7 +330,7 @@
                         <xsl:value-of select="//tei:add[@xml:id = $addXmlId]/@style"/>
                      </xsl:attribute>
                   </xsl:if>
-                  <xsl:for-each select="//tei:add[@xml:id = $id]//tei:add[contains(@place, 'above') or contains(@place, 'below')]">
+                  <xsl:for-each select="//tei:add[@xml:id = $id]//tei:add[contains(@place, 'above') or contains(@place, 'below') and not(ancestor::tei:add[ancestor::tei:add[@xml:id = $id]])]">
                      <xsl:call-template name="add">
                         <xsl:with-param name="id" select="@xml:id"/>
                         <xsl:with-param name="rend" select="@rend"/>
@@ -353,7 +353,7 @@
                         <xsl:value-of select="//tei:add[@xml:id = $addXmlId]/@style"/>
                      </xsl:attribute>
                   </xsl:if>
-               <xsl:for-each select="//tei:add[@xml:id = $id]//tei:add[contains(@place, 'above') or contains(@place, 'below')]">
+               <xsl:for-each select="//tei:add[@xml:id = $id]//tei:add[contains(@place, 'above') or contains(@place, 'below') and not(ancestor::tei:add[ancestor::tei:add[@xml:id = $id]])]">
                   <xsl:call-template name="add">
                      <xsl:with-param name="id" select="@xml:id"/>
                      <xsl:with-param name="rend" select="@rend"/>

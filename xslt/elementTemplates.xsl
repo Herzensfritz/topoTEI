@@ -25,9 +25,9 @@
       <xsl:param name="zoneId"/>
       <xsl:if test="$n">
          <xsl:choose>
-            <xsl:when test="$fullpage = 'true'">
+            <xsl:when test="$fullpage = 'true' or $editorModus = 'false'">
                <span class="lnr">
-                  <xsl:value-of select="$n"/>:
+                  <xsl:value-of select="if (number(replace($n, '[a-z]','')) lt 10) then (concat(' ', $n)) else ($n)"/>:
                </span>
             </xsl:when>
             <xsl:otherwise>
@@ -41,7 +41,7 @@
                    <xsl:attribute name="onClick">
                        <xsl:value-of select="$function"/>
                    </xsl:attribute>
-                   <xsl:value-of select="$n"/>:
+                   <xsl:value-of select="if (number(replace($n, '[a-z]','')) lt 10) then (concat(' ', $n)) else ($n)"/>:
                </xsl:element>
             </xsl:otherwise>
          </xsl:choose>
@@ -160,7 +160,7 @@
       </xsl:variable>
       <span class="{if (parent::tei:fw) then (concat($hand, ' ', 'fw-box')) else (concat('box ', $hand))}">
          <xsl:choose>
-            <xsl:when test="$fullpage = 'true' and current()/tei:del/node()">
+            <xsl:when test="($fullpage = 'true' or $editorModus = 'false') and current()/tei:del/node()">
                <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/>
                  <span class="tooltip">
                         <xsl:value-of select="$dict/tei:entry[@key = current()/tei:del/@rend]/@value"/>
@@ -269,7 +269,7 @@
             <xsl:value-of select="$class"/>
          </xsl:attribute>
       </xsl:if>
-      <xsl:if test="$isZone = 'true' and $fullpage != 'true'">
+      <xsl:if test="$isZone = 'true' and $fullpage != 'true' and $editorModus != 'false'">
          <xsl:attribute name="draggable">
             <xsl:value-of select="'true'"/>
          </xsl:attribute>
@@ -287,7 +287,7 @@
       <xsl:param name="childStyle"/>
       <xsl:param name="parentStyle"/>
       <xsl:choose>
-         <xsl:when test="$fullpage = 'true'">
+         <xsl:when test="$fullpage = 'true' and $editorModus != 'false'">
             <span id="{$parentId}" class="{$parentClass}" style="{$parentStyle}">
                <span id="{$childId}" class="{$childClass}" style="{$childStyle}">
                  <xsl:apply-templates/>
@@ -306,7 +306,7 @@
     <!-- Write zoneItems, in editor mode make text draggable and create a call to javascript function onClick -->
     <xsl:template name="zoneItems">
       <xsl:param name="id"/>
-      <xsl:if test="$fullpage != 'true'">
+      <xsl:if test="$fullpage != 'true' and $editorModus != 'false'">
           <xsl:attribute name="draggable">
               <xsl:value-of select="'true'"/>
           </xsl:attribute>
@@ -395,7 +395,7 @@
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
-         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $NO_ENDID) and (ancestor::tei:add[empty(@place) or contains(@place, 'inline')]//tei:lb[@xml:id = $startId])">
+         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $NO_ENDID or $type eq $CURRENT_LB_IS_LAST_INSIDE_TAG) and (ancestor::tei:add[empty(@place) or contains(@place, 'inline')]//tei:lb[@xml:id = $startId])">
             <span data-debug="{$type}" class="inline {ancestor::tei:add[empty(@place) or contains(@place, 'inline') and tei:lb[@xml:id = $startId]]/replace(@hand, '#', '')}">
                <xsl:value-of select="."/>
             </span>
@@ -409,7 +409,9 @@
          </xsl:when>
         
          <xsl:otherwise>
-            <xsl:value-of select="."/>
+            <span data-debug="{$type}">
+               <xsl:value-of select="."/>
+            </span>
          </xsl:otherwise>
 
       </xsl:choose>

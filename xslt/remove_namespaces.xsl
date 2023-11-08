@@ -14,7 +14,7 @@
     <xsl:element name="{local-name()}">
       <!-- process attributes -->
       <xsl:for-each select="@*">
-           <xsl:variable name="attName" select="if (name() = 'xml:id') then ('xml:id') else (local-name())"/>
+           <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
            <xsl:attribute name="{$attName}">
              <xsl:value-of select="."/>
            </xsl:attribute>
