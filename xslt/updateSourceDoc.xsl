@@ -1,5 +1,6 @@
 <xsl:stylesheet xmlns="http://www.tei-c.org/ns/1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xpath-default-namespace="http://www.tei-c.org/ns/1.0" exclude-result-prefixes="tei" version="2.0">
    <xsl:output method="xml" indent="yes" encoding="UTF-8"/>
+   <xsl:strip-space elements="tei:subst tei:del tei:add"/>
    <xsl:import href="functions.xsl"/>
    <xsl:template match="/">
       <xsl:apply-templates/>
@@ -309,6 +310,11 @@
                <xsl:attribute name="function">
                  <xsl:value-of select="'insertion'"/>
                </xsl:attribute>
+               <xsl:if test="matches(//tei:add[@xml:id = $id]/following-sibling::text()[1], '^[\.,!?].*')">
+                  <xsl:attribute name="rend">
+                    <xsl:value-of select="'beforePunctuation'"/>
+                  </xsl:attribute>
+               </xsl:if>
                <xsl:attribute name="target">
                  <xsl:value-of select="concat('#', $id)"/>
                </xsl:attribute>

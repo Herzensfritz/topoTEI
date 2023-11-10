@@ -2,6 +2,7 @@ xquery version "3.0";
 
 module namespace storage="http://exist-db.org/apps/myapp/storage";
 import module namespace config="http://exist-db.org/apps/topoTEI/config" at "config.xqm";
+import module namespace console="http://exist-db.org/xquery/console";
 
 declare function storage:storeFile($parsedData, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {
     if (map:contains($parsedData, $targetType)) then (
@@ -9,6 +10,7 @@ declare function storage:storeFile($parsedData, $type as xs:string, $targetType 
         let $content := $parsedData($targetType)
         return if (contains($targetType, 'xml')) then (
             let $parsedXML := parse-xml($content)
+            let $log := console:log($parsedXML)
             let $localUri := storage:storeDocument($parsedXML, $collection, $filename)
             return map:merge(($parsedData, map{ 'localUri': $localUri }))
         ) else (

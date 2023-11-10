@@ -331,12 +331,13 @@
             <xsl:variable name="childStyle" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@style"/>
             <xsl:variable name="parentId" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@xml:id"/>
             <xsl:variable name="parentStyle" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@style"/>
+            <xsl:variable name="rend" select="if (//tei:sourceDoc//tei:metamark[@target=$addId]/@rend) then (//tei:sourceDoc//tei:metamark[@target=$addId]/@rend) else (@rend)"/>
             <xsl:call-template name="writeAdd">
                 <xsl:with-param name="childId" select="$childId"/>
                 <xsl:with-param name="parentId" select="$parentId"/>
                <!-- <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/> -->
                <xsl:with-param name="childClass" select="@place"/>
-                <xsl:with-param name="parentClass" select="if (@rend) then (concat(@rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
+                <xsl:with-param name="parentClass" select="if ($rend) then (concat($rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
                 <xsl:with-param name="childStyle" select="$childStyle"/>
                 <xsl:with-param name="parentStyle" select="$parentStyle"/>
             </xsl:call-template>
@@ -385,7 +386,6 @@
          </xsl:call-template>
       </span>
    </xsl:template>
-
    <xsl:template name="text" match="text()">
       <xsl:param name="type" as="xs:decimal">-1</xsl:param>
       <xsl:param name="startId"/>
@@ -407,9 +407,10 @@
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
-        
+         <xsl:when test="matches(., '^\s*\n+\s*$', 's') or . = ''">
+         </xsl:when>
          <xsl:otherwise>
-            <span data-debug="{$type}">
+            <span data-debug="{$type}" data-msg="default">
                <xsl:value-of select="."/>
             </span>
          </xsl:otherwise>

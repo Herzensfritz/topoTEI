@@ -87,6 +87,7 @@
      .bottom-left { text-align: left }
      .top-right { margin-left: 60%; }
      .insertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
+     .beforePunctuationinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; padding-left: 3px;}
      .insMinsertion-above, .Ezinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
      .insMinsertion-above:before, .Ezinsertion-above:before { 
         position: absolute;
@@ -100,7 +101,19 @@
         border-top-left-radius: var(--radius);
         border-color: inherit;/* inherit color from text */
      }
-
+    .beforePunctuationinsertion-above:before { 
+        position: absolute;
+        content: "";
+        left: -2px;
+        height: inherit;
+        margin-left: 4px;
+        width: var(--length);
+        top: -3px;
+        border-top: 1px solid;
+        border-left: 1px solid;
+        border-top-left-radius: var(--radius);
+        border-color: inherit;/* inherit color from text */
+     }
      .below { 
         position: absolute;
         top: 1.8em;
@@ -133,6 +146,7 @@
      .insert-mark-above, .insert-mark-below{ position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
  
      .insertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
+     .beforePunctuationinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; padding-left: 3px;}
      .insMinsertion-below, .Ezinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
      .insMinsertion-below:before, .Ezinsertion-below:before { 
         position: absolute;
@@ -141,6 +155,19 @@
         width: var(--length);
         height: inherit;
         top: 2px;
+        border-bottom: 1px solid;
+        border-left: 0.5px solid;
+        border-bottom-left-radius:  var(--radius);
+        border-color: inherit;
+     }
+     .beforePunctuationinsertion-below:before { 
+        position: absolute;
+        content: "";
+        left: 20%;
+        width: var(--length);
+        height: inherit;
+        top: 2px;
+        margin-left: 4px;
         border-bottom: 1px solid;
         border-left: 0.5px solid;
         border-bottom-left-radius:  var(--radius);
