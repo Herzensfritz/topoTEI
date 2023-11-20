@@ -310,11 +310,28 @@
                <xsl:attribute name="function">
                  <xsl:value-of select="'insertion'"/>
                </xsl:attribute>
-               <xsl:if test="matches(//tei:add[@xml:id = $id]/following-sibling::text()[1], '^[\.,!?].*')">
-                  <xsl:attribute name="rend">
-                    <xsl:value-of select="'beforePunctuation'"/>
-                  </xsl:attribute>
-               </xsl:if>
+               <xsl:choose>
+                  <xsl:when test="matches(//tei:add[@xml:id = $id]/following::text()[1], '^[\.,!?;].*')">
+                     <xsl:attribute name="rend">
+                       <xsl:value-of select="'beforePunctuation'"/>
+                     </xsl:attribute>
+                  </xsl:when>
+                  <xsl:when test="matches(//tei:add[@xml:id = $id]/following::text()[1], '^\s.*') and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '^.*\s$')">
+                     <xsl:attribute name="rend">
+                       <xsl:value-of select="'inSpatium'"/>
+                     </xsl:attribute>
+                  </xsl:when>
+                  <xsl:when test="matches(//tei:add[@xml:id = $id]/preceding::text()[1], '.*[^\s]$') and matches(//tei:add[@xml:id = $id]/following::text()[1], '^[^\s].*')">
+                     <xsl:attribute name="rend">
+                       <xsl:value-of select="'inWord'"/>
+                     </xsl:attribute>
+                  </xsl:when>
+                  <xsl:when test="not(preceding-sibling::*[1][local-name() = 'lb']) and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '.*[^\s]$')">
+                     <xsl:attribute name="rend">
+                       <xsl:value-of select="'afterWord'"/>
+                     </xsl:attribute>
+                  </xsl:when>
+               </xsl:choose>
                <xsl:attribute name="target">
                  <xsl:value-of select="concat('#', $id)"/>
                </xsl:attribute>

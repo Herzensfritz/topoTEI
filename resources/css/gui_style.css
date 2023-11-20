@@ -86,10 +86,11 @@
      .top-left { text-align: left }
      .bottom-left { text-align: left }
      .top-right { margin-left: 60%; }
-     .insertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
-     .beforePunctuationinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; padding-left: 3px;}
-     .insMinsertion-above, .Ezinsertion-above { position:relative; top: -2px;height: 100%; width: 100%; }
-     .insMinsertion-above:before, .Ezinsertion-above:before { 
+     .afterWordinsertion-above, .beforePunctuationinsertion-above, .inWordinsertion-above, .inSpatiuminsertion-above, .insMinsertion-above, .Ezinsertion-above, .insertion-above { 
+         position:relative; top: -2px;height: 100%; width: 100%; }
+     .inSpatiuminsertion-above { padding-left: -3.5px;}
+     .beforePunctuationinsertion-above { padding-left: 3px;}
+     .afterWordinsertion-above:before, .beforePunctuationinsertion-above:before, .inWordinsertion-above:before, .inSpatiuminsertion-above:before, .insMinsertion-above:before, .Ezinsertion-above:before { 
         position: absolute;
         content: "";
         left: -2px;
@@ -101,19 +102,10 @@
         border-top-left-radius: var(--radius);
         border-color: inherit;/* inherit color from text */
      }
-    .beforePunctuationinsertion-above:before { 
-        position: absolute;
-        content: "";
-        left: -2px;
-        height: inherit;
-        margin-left: 4px;
-        width: var(--length);
-        top: -3px;
-        border-top: 1px solid;
-        border-left: 1px solid;
-        border-top-left-radius: var(--radius);
-        border-color: inherit;/* inherit color from text */
-     }
+    .inSpatiuminsertion-above:before { left: -3.5px; }
+    .afterWordinsertion-above:before { left: 1px;   }
+    .inWordinsertion-above:before { left: -0.5px; }
+    .beforePunctuationinsertion-above:before {  left: 2px;  }
      .below { 
         position: absolute;
         top: 1.8em;
@@ -141,14 +133,13 @@
      .centerLeft {
          transform: translateX(-30%);
      }
-     span.content  .Ezinsertion-above:-moz-first-node  .above   { background: red;} 
-     .above2 { position:relative;top: -2.8em; left: -2em;font-size:80%;}
-     .insert-mark-above, .insert-mark-below{ position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
- 
-     .insertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
-     .beforePunctuationinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; padding-left: 3px;}
-     .insMinsertion-below, .Ezinsertion-below { position:relative; top: 10px;height: 100%; width: 100%; }
-     .insMinsertion-below:before, .Ezinsertion-below:before { 
+     .insert-mark-above, .insert-mark-below { position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
+     .afterWordinsertion-below, .beforePunctuationinsertion-below, .inWordinsertion-below, .inSpatiuminsertion-below,.insMinsertion-below, .Ezinsertion-below, .insertion-below  { 
+         position:relative; top: 10px;height: 100%; width: 100%; 
+      }
+     .inSpatiuminsertion-below { padding-left: -3.5px;}
+     .beforePunctuationinsertion-below { padding-left: 3px;}
+     .afterWordinsertion-below:before, .beforePunctuationinsertion-below:before, .inWordinsertion-below:before, .inSpatiuminsertion-below:before, .insMinsertion-below:before, .Ezinsertion-below:before { 
         position: absolute;
         content: "";
         left: 20%;
@@ -160,23 +151,14 @@
         border-bottom-left-radius:  var(--radius);
         border-color: inherit;
      }
-     .beforePunctuationinsertion-below:before { 
-        position: absolute;
-        content: "";
-        left: 20%;
-        width: var(--length);
-        height: inherit;
-        top: 2px;
-        margin-left: 4px;
-        border-bottom: 1px solid;
-        border-left: 0.5px solid;
-        border-bottom-left-radius:  var(--radius);
-        border-color: inherit;
-     }
+    .inSpatiuminsertion-below:before { left: -3.5px; }
+    .afterWordinsertion-below:before { left: 1px;   }
+    .inWordinsertion-below:before { left: -0.5px; }
+   .beforePunctuationinsertion-below:before { margin-left: 4px;}
    .addSpan { font-size:90%;}
-        .erased { color: grey;}
-        .inline { font-size:90%;}
-        .overwritten { text-decoration: line-through; color: red;}
+   .erased { color: grey;}
+    .inline { font-size:90%;}
+    .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
         .deleted, .deleted-000, .hatching { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
         .red-deleted { cursor: context-menu; 
