@@ -183,7 +183,7 @@
       <xsl:variable name="deleted" select="concat('deleted',replace(replace(@hand, '@', '0'),'#','-'))"/>
       <xsl:choose>
          <xsl:when test="@rend != ''">
-            <span class="{@rend} {replace(@hand,'#','')}" title="{text()}">
+            <span class="{concat(@rend, replace(@hand,'#','-'))}" title="{text()}">
                <xsl:apply-templates/>
             </span>
          </xsl:when>

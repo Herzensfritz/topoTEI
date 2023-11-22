@@ -59,8 +59,11 @@
    }
    .indent { margin-left: 34px;}
    *[draggable] { cursor: grab; }
-   .deleted-N_brown1 { cursor: context-menu; 
-      background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='%235C4033' stroke-dasharray='0.1 0.2 0.1 0.2' d='M1,1 1500,1500'/></svg>") repeat; }
+    .deleted, .deleted-000, .hatching { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
+    .red-deleted { cursor: context-menu; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='red' stroke-dasharray='1.2 1.8 1.2' d='M1,1 1500,1500'/></svg>") repeat; }
+    .hex-deleted { background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='240' stroke='%23750606' stroke-dasharray='1' d='M1,1 150,150'/></svg>") repeat; }
+    .new-deleted { background:url("https://upload.wikimedia.org/wikipedia/commons/7/73/Schraffur_fein_diagonal_hoch.svg") repeat; }
+   .deleted-N_brown1, .hatching-N_brown1 { cursor: context-menu; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='%235C4033' stroke-dasharray='0.1 0.2 0.1 0.2' d='M1,1 1500,1500'/></svg>") repeat; }
    .GSA_pencil { color: #6b6b6b;font-family: cursive;} 
      .singleBlock { position: relative; padding-top: 5em; padding-bottom: 5em;}
      .firstBlock { position: relative; padding-top: 5em; }
@@ -142,12 +145,12 @@
      .afterWordinsertion-below:before, .beforePunctuationinsertion-below:before, .inWordinsertion-below:before, .inSpatiuminsertion-below:before, .insMinsertion-below:before, .Ezinsertion-below:before { 
         position: absolute;
         content: "";
-        left: 20%;
+        left: -2px;
         width: var(--length);
         height: inherit;
         top: 2px;
         border-bottom: 1px solid;
-        border-left: 0.5px solid;
+        border-left: 1px solid;
         border-bottom-left-radius:  var(--radius);
         border-color: inherit;
      }
@@ -160,11 +163,7 @@
     .inline { font-size:90%;}
     .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
-        .deleted, .deleted-000, .hatching { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
-        .red-deleted { cursor: context-menu; 
-	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='red' stroke-dasharray='1.2 1.8 1.2' d='M1,1 1500,1500'/></svg>") repeat; }
-        .hex-deleted { background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='240' stroke='%23750606' stroke-dasharray='1' d='M1,1 150,150'/></svg>") repeat; }
-        .new-deleted { background:url("https://upload.wikimedia.org/wikipedia/commons/7/73/Schraffur_fein_diagonal_hoch.svg") repeat; }
+  
         .strikethrough, .strikethrough1 { text-decoration: line-through; }
         .strikethrough2 { text-decoration: line-through; }
         .overwritten-punctuation { position: relative; color: red; }
