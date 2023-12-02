@@ -180,12 +180,15 @@ declare function local:getTeiFiles($newest as xs:boolean) as xs:string* {
 };
 declare %private function local:getPageIndex($document as node(), $contentList) as xs:decimal {
     let $pb := $document//tei:pb/@xml:id
-    let $index := index-of($contentList, $pb)
-    return if (count($index) gt 0) then (
-        $index[1]
-    ) else (
-        let $new-index := index-of($contentList, replace($pb, 'v','r'))
-        return if (count($new-index) gt 0) then (count($contentList) + $new-index[1]) else (count($contentList)*2)      
+    return if ($pb) then (
+        let $index := index-of($contentList, $pb)
+        return if (count($index) gt 0) then (
+            $index[1]
+        ) else (
+            let $new-index := index-of($contentList, replace($pb, 'v','r'))
+            return if (count($new-index) gt 0) then (count($contentList) + $new-index[1]) else (count($contentList)*2)      
+    )) else (
+        count($contentList)*2 + 1    
     )
 };
 declare function local:isTeiFile($document as node()) {

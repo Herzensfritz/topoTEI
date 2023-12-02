@@ -223,7 +223,7 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-   (:   let $log := console:log($filepath) :)
+    let $log := console:log($filepath) 
     return local:showTransformation($filepath)
    
 };

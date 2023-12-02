@@ -1,14 +1,8 @@
 <upgrade:upgrade xmlns="http://exist-db.org/apps/topoTEI/upgrade" xmlns:upgrade="http://exist-db.org/apps/topoTEI/upgrade" href="https://drive.switch.ch/index.php/s/8pTIMjAd5O8Tz4W/download">
-    <upgrade:deployed>2023-11-22T10:00:50.662+02:00</upgrade:deployed>
-    <upgrade:url target="xslt.zip" href="https://drive.switch.ch/index.php/s/hZQZNDymR9e6aQ9/download">
+    <upgrade:deployed>2023-12-02T14:30:50.662+02:00</upgrade:deployed>
+    <upgrade:url target="modules.zip" href="https://drive.switch.ch/index.php/s/UardyE3DU7TqIJS/download">
         <ul xmlns="http://www.w3.org/1999/xhtml">
-                <li>New feature in updateSourceDoc.xsl: different cases of insertion mark: in spatium, in word, after word.</li>
-                <li>Bugfix for elementTemplates.xsl: hatching with hand will result in a css class for the corresponding hatching style.</li>
+                <li>Bugfix for app.xqm: prevent error if there is no @xml:id in pb.</li>
             </ul>
     </upgrade:url>
-    <upgrade:url target="css.zip" href="https://drive.switch.ch/index.php/s/S4ND6JnqfBBJ5RA/download">
-        <ul xmlns="http://www.w3.org/1999/xhtml">
-                <li>css classes for different cases of insertion marks, adaption for hatching with a certain hand color.</li>
-            </ul>
-    </upgrade:url>  
 </upgrade:upgrade>
