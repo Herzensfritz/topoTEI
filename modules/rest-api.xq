@@ -471,6 +471,67 @@ function myrest:export() {
   
     
 };
+declare function local:getContentFiles($pb) {
+    let $stylesheet := config:resolve('xslt/expandSourceDoc.xsl')
+    return if (count($pb) gt 1) then (
+        let $file := (for $pbItem in $pb
+                        order by xmldb:last-modified($config:data-root, util:document-name($pbItem)) descending
+                        return util:document-name($pbItem))[1]
+        let $data := doc(concat($config:data-root, '/',$file))
+        let $transform := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml")
+        return $transform
+    ) else (
+        if (count($pb) gt 0) then (
+            let $file := util:document-name($pb)
+            let $data := doc(concat($config:data-root, '/',$file))
+            let $transform := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml")
+            return $transform
+        ) else ()    
+    )
+};
+declare function local:getFileContents($parentDoc) {
+    for $locus in $parentDoc//tei:sourceDesc/tei:msDesc/tei:msContents//tei:locus/text()
+        return local:getContentFiles(xmldb:xcollection($config:data-root)/tei:TEI[descendant::tei:title/text() = $locus]//tei:text//tei:pb)
+};
+declare
+    %rest:path("/manuscript")
+    %rest:GET
+    %rest:query-param("headerFile", "{$headerFile}", "TEI-Header_D20.xml")
+    %rest:produces("application/xml")
+function myrest:donwloadManuscript($headerFile as xs:string*) {
+    let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
+    let $mimetype   := 'application/xml'
+    let $method     := 'xml'
+    let $data := doc($doc-uri)
+    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
+    let $newFile := storage:store($data, 'output', $newFilename)
+    let $newLog := console:log($newFile)
+    let $newData := doc($newFile)
+    let $emptyText := for $textContent in $newData//tei:text/tei:body/*
+                        return update delete $textContent
+    let $transform := local:getFileContents($newData)
+    let $newText := for $text in $transform//tei:text/tei:body/*
+        return update insert $text into $newData//tei:text/tei:body
+    let $createSourceDoc := if ($newData/tei:sourceDoc) then () else (
+        update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
+    )    
+    let $newSurface := for $surface in $transform//tei:sourceDoc/*
+        return update insert $surface into $newData//tei:sourceDoc
+    
+    return (
+    <rest:response>
+        <http:response>
+            <http:header name="Content-Type" value="{$mimetype}"/>
+            <http:header name="Content-Disposition" value='Attachment; filename="{$newFilename}"'/>
+        </http:response>
+        <output:serialization-parameters>
+            <output:method value="{$method}"/>
+            <output:media-type value="{$mimetype}"/>
+        
+        </output:serialization-parameters>
+    </rest:response>, $newData
+    )
+};
 declare
     %rest:path("/download")
     %rest:GET

@@ -28,6 +28,13 @@ declare function storage:storeDocument($document, $collection, $filename){
     let $backup := storage:backupFile($filename, $collection)
     return xmldb:store($collection, $filename, $finalDocument)
 };
+declare function storage:store($document, $newCollection, $filename){
+    let $output-collection := xmldb:login($config:app-root, 'test', 'test')
+    let $collection := if (xmldb:collection-available(concat($config:app-root, '/',$newCollection)))        
+        then (concat($config:app-root, '/',$newCollection))
+        else (xmldb:create-collection($config:app-root, $newCollection))
+    return xmldb:store($collection, $filename, $document)
+};
 declare function local:prepareDocument($document) as node() {
     let $stylesheet := config:resolve("xslt/createIDs4sourceDoc.xsl")
     let $fix := config:resolve("xslt/remove_namespaces.xsl")
