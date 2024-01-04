@@ -1,0 +1,288 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" version="4.1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+          <title>Druckmanuskript D 20 (Zur Genealogie der Moral)</title>
+           <author xml:id="N">Friedrich Nietzsche</author>
+           <editor xml:id="BR"><name>Beat Röllin</name></editor>
+           <editor xml:id="CS"><name>Christian Steiner</name></editor>
+           <editor xml:id="RS"><name>René Stockmar</name></editor>
+           <respStmt>
+             <resp>Projektleiter: </resp><name>Hubert Thüring</name>
+           </respStmt>
+         </titleStmt>
+        <publicationStmt>
+           <publisher>Nietzsche-Edition, Universität Basel</publisher><date>tba</date>
+         </publicationStmt>
+        <seriesStmt>
+          <title>Der späte Nietzsche. Digitale Erschließung der Druckdokumente</title>
+        </seriesStmt>
+         <sourceDesc>
+           <msDesc>
+             <msIdentifier>
+                <repository>Goethe- und Schiller-Archiv, Weimar</repository>
+               <idno type="GSA-Signatur">71/27,1, 71/27,2</idno>
+               <idno type="Mette-Signatur">D 20</idno>
+               <idno type="N-Archiv-Signatur">D XII</idno>
+               <idno type="DFGA-Sigle">D-20a, D-20b</idno>
+               <idno type="SpN-Sigle">D 20a, D 20b</idno>
+              </msIdentifier>
+             <msContents>
+               <summary>Druckmanuskript zu Zur Genealogie der Moral. Eine Streitschrift. C. G. Naumann, Leipzig 1887.</summary>
+               <msItem><locus>a1r</locus><title xml:id="contents_a1r">Druckvorlage GM Titelseite</title></msItem><!-- alles noch zu überprüfen! -->
+               <msItem><locus>a1v</locus><title xml:id="contents_a1v">Druckvorlage GM Titelrückseite</title></msItem>
+               <msItem><locus>a2r</locus><title xml:id="contents_a2r">Druckvorlage GM Vorrede 1-3</title></msItem>
+               <msItem><locus>a2v</locus><title xml:id="contents_a2v">Druckvorlage GM Vorrede 3-4</title></msItem>
+               <msItem><locus>a3r</locus><title xml:id="contents_a3r">Druckvorlage GM Vorrede 4-6</title></msItem>
+               <msItem><locus>a3v</locus><title xml:id="contents_a3v">Druckvorlage GM Vorrede 6-7</title></msItem>
+               <msItem><locus>a4r</locus><title xml:id="contents_a4r">Druckvorlage GM Vorrede 8</title></msItem>
+               <msItem><locus>a5r</locus><title xml:id="contents_a5r">Druckvorlage GM I 1</title></msItem>
+               <msItem><locus>a6r</locus><title xml:id="contents_a6r">Druckvorlage GM I 2-3</title></msItem>
+               <msItem><locus>a7r</locus><title xml:id="contents_a7r">Druckvorlage GM I 3-5</title></msItem>
+               <msItem><locus>a8r</locus><title xml:id="contents_a8r">Druckvorlage GM I 5-6</title></msItem>
+               <msItem><locus>a9r</locus><title xml:id="contents_a9r">Druckvorlage GM I 6-7</title></msItem>
+               <msItem><locus>a10r</locus><title xml:id="contents_a10r">Druckvorlage GM I 7-9</title></msItem>
+               <msItem><locus>a11r</locus><title xml:id="contents_a11r">Druckvorlage GM I 9-10</title></msItem>
+               <msItem><locus>a12r</locus><title xml:id="contents_a12r">Druckvorlage GM I 10-11</title></msItem>
+               <msItem><locus>a13r</locus><title xml:id="contents_a13r">Druckvorlage GM I 11</title></msItem>
+               <msItem><locus>a14r</locus><title xml:id="contents_a14r">Druckvorlage GM I 11-13</title></msItem>
+               <msItem><locus>a15r</locus><title xml:id="contents_a15r">Druckvorlage GM I 13-14</title></msItem>
+               <msItem><locus>a16r</locus><title xml:id="contents_a16r">Druckvorlage GM I 14-15</title></msItem>
+               <msItem><locus>a17r</locus><title xml:id="contents_a17r">Druckvorlage GM I 15</title></msItem>
+               <msItem><locus>a18r</locus><title xml:id="contents_a18r">Druckvorlage GM I 15</title></msItem>
+               <msItem><locus>a18v</locus><title xml:id="contents_a18v">Druckvorlage GM I 15</title></msItem>
+               <msItem><locus>a19r</locus><title xml:id="contents_a19r">Druckvorlage GM I 16</title></msItem>
+               <msItem><locus>a20r</locus><title xml:id="contents_a20r">Druckvorlage GM I 16-17</title></msItem>
+               <msItem><locus>a20v</locus><title xml:id="contents_a20v">Notiz Ns</title></msItem>
+               <msItem><locus>a21r</locus><title xml:id="contents_a21r">Druckvorlage GM II 1-2</title></msItem>
+               <msItem><locus>a21v</locus><title xml:id="contents_a21v">Notiz Ns</title></msItem>
+               <msItem><locus>a22r</locus><title xml:id="contents_a22r">Druckvorlage GM II 3</title></msItem>
+               <msItem><locus>a23r</locus><title xml:id="contents_a23r">Druckvorlage GM II 3-5</title></msItem>
+               <msItem><locus>a24r</locus><title xml:id="contents_a24r">Druckvorlage GM II 5-6</title></msItem>
+               <msItem><locus>a25r</locus><title xml:id="contents_a25r">Druckvorlage GM II 6-7</title></msItem>
+               <msItem><locus>a26r</locus><title xml:id="contents_a26r">Druckvorlage GM II 7</title></msItem>
+               <msItem><locus>a27r</locus><title xml:id="contents_a27r">Druckvorlage GM II 8</title></msItem>
+               <msItem><locus>a28r</locus><title xml:id="contents_a28r">Druckvorlage GM II 9-10</title></msItem>
+               <msItem><locus>a29r</locus><title xml:id="contents_a29r">Druckvorlage GM II 11</title></msItem>
+               <msItem><locus>a29v</locus><title xml:id="contents_a29v">Vorstufen zu GM II 1 und 2</title></msItem>
+               <msItem><locus>a30r</locus><title xml:id="contents_a30r">Druckvorlage GM II 12</title></msItem>
+               <msItem><locus>a31r</locus><title xml:id="contents_a31r">Druckvorlage GM II 13-14</title></msItem>
+               <msItem><locus>a32r</locus><title xml:id="contents_a32r">Druckvorlage GM II 14-15</title></msItem>
+               <msItem><locus>a33r</locus><title xml:id="contents_a33r">Druckvorlage GM II 15-16</title></msItem>
+               <msItem><locus>a34r</locus><title xml:id="contents_a34r">Druckvorlage GM II 16-17</title></msItem>
+               <msItem><locus>a35r</locus><title xml:id="contents_a35r">Druckvorlage GM II 18-19</title></msItem>
+               <msItem><locus>a36r</locus><title xml:id="contents_a36r">Druckvorlage GM II 19-20</title></msItem>
+               <msItem><locus>a37r</locus><title xml:id="contents_a37r">Druckvorlage GM II 21-22</title></msItem>
+               <msItem><locus>a38r</locus><title xml:id="contents_a38r">Druckvorlage GM II 22-24</title></msItem>
+               <msItem><locus>a39r</locus><title xml:id="contents_a39r">Druckvorlage GM II 24</title></msItem>
+               <msItem><locus>a40r</locus><title xml:id="contents_a40r">Zusatz zu GM II 11</title></msItem>
+               <msItem><locus>a40v</locus><title xml:id="contents_a40v">Zusatz zu GM II 24</title></msItem>
+               <msItem><locus>a41r</locus><title xml:id="contents_a41r">Druckvorlage GM II 25</title></msItem>
+               <msItem><locus>b1r</locus><title xml:id="contents_b1r">Druckvorlage GM III 1</title></msItem>
+               <msItem><locus>b2r</locus><title xml:id="contents_b2r">Druckvorlage GM III 2</title></msItem>
+               <msItem><locus>b3r</locus><title xml:id="contents_b3r">Druckvorlage GM III 2-3</title></msItem>
+               <msItem><locus>b4r</locus><title xml:id="contents_b4r">Druckvorlage GM III 3</title></msItem>
+               <msItem><locus>b5r</locus><title xml:id="contents_b5r">Druckvorlage GM III 3-4</title></msItem>
+               <msItem><locus>b6r</locus><title xml:id="contents_b6r">Druckvorlage GM III 4-5</title></msItem>
+               <msItem><locus>b7r</locus><title xml:id="contents_b7r">Druckvorlage GM III 5</title></msItem>
+               <msItem><locus>b8r</locus><title xml:id="contents_b8r">Druckvorlage GM III 5-6</title></msItem>
+               <msItem><locus>b9r</locus><title xml:id="contents_b9r">Druckvorlage GM III 6</title></msItem>
+               <msItem><locus>b10r</locus><title xml:id="contents_b10r">Druckvorlage GM III 6</title></msItem>
+               <msItem><locus>b11r</locus><title xml:id="contents_b11r">Druckvorlage GM III 7</title></msItem>
+               <msItem><locus>b12r</locus><title xml:id="contents_b12r">Druckvorlage GM III 7</title></msItem>
+               <msItem><locus>b13r</locus><title xml:id="contents_b13r">Druckvorlage GM III 7-8</title></msItem>
+               <msItem><locus>b14r</locus><title xml:id="contents_b14r">Druckvorlage GM III 8</title></msItem>
+               <msItem><locus>b15r</locus><title xml:id="contents_b15r">Druckvorlage GM III 8</title></msItem>
+               <msItem><locus>b16r</locus><title xml:id="contents_b16r">Druckvorlage GM III 8</title></msItem>
+               <msItem><locus>b17r</locus><title xml:id="contents_b17r">Druckvorlage GM III 8-9</title></msItem>
+               <msItem><locus>b18r</locus><title xml:id="contents_b18r">Druckvorlage GM III 9</title></msItem>
+               <msItem><locus>b19r</locus><title xml:id="contents_b19r">Bogenkorrektur zu GM III 9</title></msItem>
+               <msItem><locus>b20r</locus><title xml:id="contents_b20r">Druckvorlage GM III 9</title></msItem>
+               <msItem><locus>b21r</locus><title xml:id="contents_b21r">Druckvorlage GM III 9-10</title></msItem>
+               <msItem><locus>b22r</locus><title xml:id="contents_b22r">Druckvorlage GM III 10</title></msItem>
+               <msItem><locus>b23r</locus><title xml:id="contents_b23r">Druckvorlage GM III 10-11</title></msItem>
+               <msItem><locus>b24r</locus><title xml:id="contents_b24r">Druckvorlage GM III 11</title></msItem>
+               <msItem><locus>b25r</locus><title xml:id="contents_b25r">Druckvorlage GM III 11-12</title></msItem>
+               <msItem><locus>b26r</locus><title xml:id="contents_b26r">Druckvorlage GM III 12</title></msItem>
+               <msItem><locus>b27r</locus><title xml:id="contents_b27r">Druckvorlage GM III 12-13</title></msItem>
+               <msItem><locus>b28r</locus><title xml:id="contents_b28r">Druckvorlage GM III 13</title></msItem>
+               <msItem><locus>b29r</locus><title xml:id="contents_b29r">Druckvorlage GM III 14</title></msItem>
+               <msItem><locus>b30r</locus><title xml:id="contents_b30r">Druckvorlage GM III 14</title></msItem>
+               <msItem><locus>b31r</locus><title xml:id="contents_b31r">Druckvorlage GM III 14</title></msItem>
+               <msItem><locus>b32r</locus><title xml:id="contents_b32r">Druckvorlage GM III 14</title></msItem>
+               <msItem><locus>b33r</locus><title xml:id="contents_b33r">Druckvorlage GM III 15</title></msItem>
+               <msItem><locus>b34r</locus><title xml:id="contents_b34r">Druckvorlage GM III 15</title></msItem>
+               <msItem><locus>b35r</locus><title xml:id="contents_b35r">Druckvorlage GM III 15-16</title></msItem>
+               <msItem><locus>b36r</locus><title xml:id="contents_b36r">Druckvorlage GM III 16</title></msItem>
+               <msItem><locus>b37r</locus><title xml:id="contents_b37r">Druckvorlage GM III 16-17</title></msItem>
+               <msItem><locus>b38r</locus><title xml:id="contents_b38r">Druckvorlage GM III 17</title></msItem>
+               <msItem><locus>b39r</locus><title xml:id="contents_b39r">Druckvorlage GM III 17</title></msItem>
+               <msItem><locus>b40r</locus><title xml:id="contents_b40r">Druckvorlage GM III 17-18</title></msItem>
+               <msItem><locus>b41r</locus><title xml:id="contents_b41r">Druckvorlage GM III 18</title></msItem>
+               <msItem><locus>b42r</locus><title xml:id="contents_b42r">Druckvorlage GM III 18</title></msItem>
+               <msItem><locus>b43r</locus><title xml:id="contents_b43r">Druckvorlage GM III 18-19</title></msItem>
+               <msItem><locus>b44r</locus><title xml:id="contents_b44r">Druckvorlage GM III 19</title></msItem>
+               <msItem><locus>b45r</locus><title xml:id="contents_b45r">Druckvorlage GM III 19-20</title></msItem>
+               <msItem><locus>b46r</locus><title xml:id="contents_b46r">Druckvorlage GM III 20</title></msItem>
+               <msItem><locus>b47r</locus><title xml:id="contents_b47r">Druckvorlage GM III 20</title></msItem>
+               <msItem><locus>b48r</locus><title xml:id="contents_b48r">Druckvorlage GM III 20-21</title></msItem>
+               <msItem><locus>b49r</locus><title xml:id="contents_b49r">Druckvorlage GM III 21-22</title></msItem>
+               <msItem><locus>b50r</locus><title xml:id="contents_b50r">Druckvorlage GM III 22</title></msItem>
+               <msItem><locus>b51r</locus><title xml:id="contents_b51r">Druckvorlage GM III 22</title></msItem>
+               <msItem><locus>b52r</locus><title xml:id="contents_b52r">Druckvorlage GM III 22-23</title></msItem>
+               <msItem><locus>b53r</locus><title xml:id="contents_b53r">Druckvorlage GM III 23</title></msItem>
+               <msItem><locus>b54r</locus><title xml:id="contents_b54r">Druckvorlage GM III 23-24</title></msItem>
+               <msItem><locus>b55r</locus><title xml:id="contents_b55r">Druckvorlage GM III 24</title></msItem>
+               <msItem><locus>b56r</locus><title xml:id="contents_b56r">Druckvorlage GM III 24</title></msItem>
+               <msItem><locus>b57r</locus><title xml:id="contents_b57r">Druckvorlage GM III 24-25</title></msItem>
+               <msItem><locus>b58r</locus><title xml:id="contents_b58r">Druckvorlage GM III 25</title></msItem>
+               <msItem><locus>b59r</locus><title xml:id="contents_b59r">Druckvorlage GM III 25</title></msItem>
+               <msItem><locus>b59v</locus><title xml:id="contents_b59v">Notiz fHd (Köselitz)</title></msItem>
+               <msItem><locus>b60r</locus><title xml:id="contents_b60r">Druckvorlage GM III 25</title></msItem>
+               <msItem><locus>b61r</locus><title xml:id="contents_b61r">Druckvorlage GM III 26</title></msItem>
+               <msItem><locus>b62r</locus><title xml:id="contents_b62r">Druckvorlage GM III 26</title></msItem>
+               <msItem><locus>b63r</locus><title xml:id="contents_b63r">Varianten zu GM III 26</title></msItem>
+               <msItem><locus>b64r</locus><title xml:id="contents_b64r">Bogenkorrekturen zu GM III 26 und 27</title></msItem>
+               <msItem><locus>b65r</locus><title xml:id="contents_b65r">Zusatz zu GM III 26</title></msItem>
+               <msItem><locus>b66r</locus><title xml:id="contents_b66r">Druckvorlage GM III 26-27</title></msItem>
+               <msItem><locus>b67r</locus><title xml:id="contents_b67r">Druckvorlage GM III 27</title></msItem>
+               <msItem><locus>b68r</locus><title xml:id="contents_b68r">Druckvorlage GM III 27-28</title></msItem>
+               <msItem><locus>b69r</locus><title xml:id="contents_b69r">Druckvorlage GM III 28</title></msItem>
+               <msItem><locus>b70r</locus><title xml:id="contents_b70r">Druckvorlage GM Inhaltsverzeichis</title></msItem>
+             </msContents>
+             <physDesc>
+               <ab type="descHead">
+                 2. Frühere Manuskriptbeschreibung (H. J. Mette)</ab>
+               <p>„D 20: Eigenhändiges Dm. zu E 40 (auf den Seiten V-VII sowie den Seiten 27 und 33 der ersten Gruppe finden sich offenbar von Nietzsche angeordnete Korrekturen von fremder Hand); 34 einseitig, 4 doppelseitig beschriebene, z. T. aus mehreren Blättern zusammengeklebte Foliobogen (Format im allgemeinen 23×36) und 67 einseitig beschriebene Quartblätter (17,5×21,5), mit der Paginierung I-VII, 1-13, 13a-c, 14-33, 1-66.“ (<ref target="#Mette1933">Mette 1933</ref>, XLIVf.)</p>
+               <ab type="descHead">3. Manuskriptbeschreibung</ab>
+               <p>Zwei Teilmanuskripte, 41+70 Bl.; D 20[a]: 38 Folioblätter, teils beschnitten, teils zusammengeklebt, 1 Quartblatt (ursprünglich Heftblatt), 2 Zusatzblätter; D 20[b]: 66 Quartblätter (ursprünglich Heftblätter), 4 Zusatzblätter.</p>
+               <ab type="descHead">
+                 3.1 Manuskriptblätter</ab>
+               <p><locus>a1rv</locus>: <desc xml:id="folDesc_a1rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a2rv</locus>: <desc xml:id="folDesc_a2rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a3rv</locus>: <desc xml:id="folDesc_a3rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a4rv</locus>: <desc xml:id="folDesc_a4rv"><material>Quartblatt</material>, <width>22,2</width>×<height>33,3</height>, liniiert, roter Farbschnitt, Rekto links beschnitten. Verso vakat. Ursprünglich wahrscheinlich aus gleichem Heft wie Quartblätter in D 20b.</desc></p>
+               <p><locus>a5rv</locus>: <desc xml:id="folDesc_a5rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a6rv</locus>: <desc xml:id="folDesc_a6rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a7rv</locus>: <desc xml:id="folDesc_a7rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a8rv</locus>: <desc xml:id="folDesc_a8rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p><locus>a9rv</locus>: <desc xml:id="folDesc_a9rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <!-- usw. -->
+               <p><locus>b1rv</locus>: <desc xml:id="folDesc_b1rv"><material>Quartblatt</material>, ca. <width>22,2</width>×<height>33,3</height>, liniiert, roter Farbschnitt, Rekto rechts beschnitten; minimer Textverlust durch Beschnitt. Verso vakat.</desc></p>
+               <!-- usw. -->
+               <ab type="descHead">
+                 3.2 Paginierung, Foliierung</ab>
+               <p>Paginierung, egh: D 20a Rekto und ggf. Verso oben rechts, a2v oben links; D 20b Rekto oben links. a1r-a3v und a5r-a12r: „I.“ bis „VI.“ und „1.“ bis „8“, <ref target="#N_red">Rotstift</ref>; a6r-a17r: „2“ bis „13“, <ref target="#N_pencil">Bleistift</ref>; a20r: „14.“, <ref target="#N_black1">schwarze Tinte</ref><!-- GSA? -->; a22r: „16“, unten rechts, <ref target="#N_red">Rotstift</ref> (egh?)<!-- GSA? -->. b1r: „1.“, <ref target="#N_black2">schwarze Tinte</ref>, b2r-b18r, b20r-b61r: „2“ bis „60“, <ref target="#N_pencil">Bleistift</ref>, b62r, b66r-b68r: „61“ bis „64“, <ref target="#N_black2">schwarze Tinte</ref>, b69r-b70r: „65“ bis „66“, <ref target="#N_pencil">Bleistift</ref>.</p>
+               <p>Paginierung, fHd: D 20a, D 20b Rekto und ggf. Verso oben rechts, a18r oben links. Durchgehend <ref target="#N-Archiv_red">Rotstift</ref>. a4r: „VII“; a18r, a18v, a19r: „13a“, „13b“, „13c“; a20r-a39r: „14.“ bis „33.“. Radierte frühere Paginierung: a18r-a39r, b1r-b18r, b20r-b62r, b65r, b67r-b70r: „14“ bis „102“; b66r: „98“ nicht radiert.</p>
+               <p>b19r oben links: „19.“, <ref target="#notIdentified_black">schwarze Tinte</ref>, Zuordnung unklar.<!-- so?? --></p>
+               <p>Foliierung, fHd: Archivfoliierung, Rekto unten links, <ref target="#GSA_pencil">Bleistift</ref>.</p>
+               <additions>
+                 <ab type="descHead">
+                   3.3 Bearbeitungsspuren von fremder Hand</ab>
+                 <p><locus>a1r</locus>: <desc xml:id="addDesc_a1r">Abgrenzungslinien, <ref target="#N-Archiv_pencil">Bleistift, fHd (N-Archiv?)</ref>.</desc></p><!-- √270423 -->
+                 <p><locus>a2r</locus>: <desc xml:id="addDesc_a2r">Markierung Seitenumbrüche Ed: III/IV, IV/V, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulationen („30“, „38“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; vereinzelte Anstreichungen (?), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>.</desc></p><!-- √020423 -->
+                 <p><locus>a2v</locus>: <desc xml:id="addDesc_a2v">Markierung Seitenumbrüche Ed: V/VI, VI/VII, VII/VIII, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („50“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichung, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc></p><!-- √050423 -->
+                 <p><locus>a3r</locus>: <desc xml:id="addDesc_a3r">Markierung Seitenumbrüche Ed: IX/X, X/XI, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („46“, „38“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Umstellung („2“, „1“), Anstreichungen <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √110423 -->
+                 <p><locus>a3v</locus>: <desc xml:id="addDesc_a3v">Markierung Seitenumbruch Ed: XI/XII, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („40“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √120423 -->
+                 <p><locus>a4r</locus>: <desc xml:id="addDesc_a4r">Markierung Seitenumbruch Ed: XIII/XIV, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √140423 -->
+                 <p><locus>a5r</locus>: <desc xml:id="addDesc_a5r">Markierung Seitenumbruch Ed: 1/2, <ref target="#typesetter_blue">Blaustift, fHd (Druckerei)</ref>.</desc></p><!-- √080523 -->
+                 <p><locus>a6r</locus>: <desc xml:id="addDesc_a6r">Anmerkung („!“, „NB: fehlt Aph. 2 / Sdl. [= A. Seidl, Mitarbeiter N-Archiv]“) und Korrektur („3“ statt 4.) zu Abschnittsnummerierung, Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichungen, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc></p><!-- √100523 -->
+                 <p><locus>a7r</locus>: <desc xml:id="addDesc_a7r">Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √230523 -->
+                 <p><locus>a8r</locus>: <desc xml:id="addDesc_a8r">Markierung Seitenumbrüche Ed: 7/8, 8/9, 9/10, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Korrektur („6.“ statt 7.) zu Abschnittsnummerierung, Umstellung („2“, „1“), Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichungen, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc></p><!-- √260523 -->
+                 <p><locus>a9r</locus>: <desc xml:id="addDesc_a9r">Markierung Seitenumbruch Ed: 11/12, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Korrektur („7“ statt 8.) zu Abschnittsnummerierung, Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √020623 -->
+                 
+                 <!-- usw. -->
+                 <p><locus>b21r</locus>: <desc xml:id="addDesc_b21r">Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anmerkungen (Z. 1 „gesperrt!“, Z. 5 „del“, Z. 7 „nicht gesperrt!“), <ref target="#N-Archiv_pencil">Bleistift, fHd (N-Archiv)</ref>.</desc></p>
+               </additions>
+             </physDesc>
+             <history>
+               <ab type="descHead">
+                 4. Entstehungsgeschichte</ab>
+               <p>Hier ausführlicher Text, von Vs bis Ed mit Schwerpunkt Dm; im Folgenden Kurzversion Antrag:</p>
+               <p>Im Juli und August 1887 entstanden. Über die Entstehungsgeschichte von Zur Genealogie der Moral ist wenig bekannt, die Vorarbeiten sind weitgehend verloren gegangen, laut N wurde die Schrift „rasch beschlossen, begonnen und fertig gemacht“ (<ref target="#apdx1887-08-08*">N an H. Köselitz, 8.8.1887</ref>); zunächst waren nur zwei Abhandlungen zum Druck vorgesehen, im Laufe des August folgte eine dritte Abhandlung, Korrektur und Druck dauerten bis Mitte Oktober.</p>
+               <p>Vs: Überlieferung nur sehr lückenhaft, vereinzelte Vs in KGW IX: N VII 3, W I 8, Mp XV, Mp XVI, Mp XVII.</p>
+               <p>Cb: K 11 (Mette-Signatur): Bogen 1, in doppelter Ausführung überliefert, Korrekturen von Ns und Köselitz’ Hand; Bogen 10, ohne Korrekturen.</p>
+               <p xml:id="CbTitel">Cb Titel, S. [I]-[XVI] (Titelei, Vorrede 1-8, Titelblatt GM I), nicht überliefert</p>
+               <p xml:id="Cb1">Cb 1, S. 1-16 (GM I 1-10), in doppelter Ausführung überliefert (Cb 1a, Cb 1b)</p>
+               <p>usw.</p>
+               <p>Ed: E 40 (Mette-Signatur): Zur Genealogie der Moral. Eine Streitschrift. Leipzig: C. G. Naumann 1887.</p>
+             </history>
+           </msDesc>
+           <listBibl>
+             <head>
+               Bibliographie</head><!-- NB! analog in teiHeader von Dm, Cb, Ed/KGW/KSA, QV -->
+             <bibl xml:id="Dm">Druckmanuskript zu Zur Genealogie der Moral. Eine Streitschrift. Leipzig: C. G. Naumann 1887. (Mette-Signatur: D 20; GSA-Signatur: 71/27,1, 71/27,2). Aufbewahrungsort: Goethe- und Schiller-Archiv, Weimar. [=Dm].</bibl>
+             <bibl xml:id="Cb">Zur Genealogie der Moral [Korrekturbogenexemplar] (Mette-Signatur: K 11; HAAB-Signatur: C 4616), Aufbewahrungsort: Herzogin Anna Amalia Bibliothek, Weimar. [=Cb]</bibl>
+             <bibl xml:id="Ed">Friedrich Nietzsche: Zur Genealogie der Moral. Eine Streitschrift. Leipzig: C. G. Naumann 1887. [=Ed]</bibl>
+             <bibl xml:id="KGW">Nietzsche: Werke. Kritische Gesamtausgabe. Herausgegeben von Giorgio Colli und Mazzino Montinari. Band VI 2: Friedrich Nietzsche: Jenseits von Gut und Böse. Zur Genealogie der Moral. (1886-1887). Berlin: Walter de Gruyter 1968. [=KGW]</bibl>
+             <bibl xml:id="KSA">Friedrich Nietzsche: Sämtliche Werke. Kritische Studienausgabe. Herausgegeben von Giorgio Colli und Mazzino Montinari. Band 5: Friedrich Nietzsche: Jenseits von Gut und Böse. Zur Genealogie der Moral. München: Deutscher Taschenbuch Verlag; Berlin/New York: Walter de Gruyter 1988 (2., durchgesehene Auflage). [=KSA]</bibl>
+             <bibl xml:id="Gast1908">Peter Gast [= Heinrich Köselitz] (Hg.): Friedrich Nietzsches Briefe an Peter Gast. 2. Aufl. Leipzig: Insel 1908.</bibl>
+             <bibl xml:id="Mette1933">Hans Joachim Mette: Sachlicher Vorbericht zur Gesamtausgabe der Werke Friedrich Nietzsches. In: Friedrich Nietzsche: Werke und Briefe. Historisch-kritische Gesamtausgabe. Werke. Bd. I. München: C. H. Beck’sche Verlagsbuchhandlung 1933 [=BAW I], XXXI-CXXVI.</bibl>
+             </listBibl>
+         </sourceDesc>
+      </fileDesc>
+     <encodingDesc><!-- relationship between an electronic text and the source -->
+       <projectDesc><p/></projectDesc>
+     </encodingDesc>
+     <profileDesc>
+       <creation>
+         <listChange ordered="true">
+           <change xml:id="GMformerVersion">Niederschrift einer (ersten) Abhandlung <date notBefore="1887-07-10" notAfter="1887-07-17">Anfang/Mitte Juli 1887 (ca. 10. bis 17. Juli 1887)</date>.</change>
+           <change xml:id="GMsent">Erste Dm-Fassung mit einer Abhandlung in 18 Abschnitten vermutlich mit dem Titel „Jenseits von Gut und Schlecht? Eine philosophische Streitschrift“ <date when="1887-07-17">am 17. Juli 1887</date> an die Druckerei geschickt; am 20. Juli zur weiteren Ausarbeitung zurückgefordert. (Titelblatt und Abschnitt 1 nicht erhalten geblieben, Abschnitte 2-18 weitgehend GM I 1-17 entsprechend.)</change>
+           <change xml:id="GM02firstVersion">Niederschrift der ersten Hälfte der zweiten Abhandlung <date notBefore="1887-07-17" notAfter="1887-07-29">Mitte/Ende Juli 1887</date>; nach 11 Abschnitten unterbrochen. (Nur fragmentarisch überliefert, in Teilen GM II 1-8 und 11-13 entsprechend.)</change>
+           <change xml:id="GM0201-13revision">Umarbeitung der ersten Hälfte der zweiten Abhandlung zu GM II 1-13 <date notBefore="1887-07-17" notAfter="1887-07-29">Ende Juli 1887</date>. (Neufassungen von GM II 1-2 und 7, Ergänzungen von II 6, 11 und 12, zwei neue Abschnitte mit II 9-10.)</change>
+           <change xml:id="GM0214-24record">Anschließend an die Umarbeitung der ersten Hälfte der zweiten Abhandlung Niederschrift von GM II 14-24 <date notBefore="1887-07-17" notAfter="1887-07-30">Ende Juli 1887</date>.</change>
+           <change xml:id="GMfrontRecord">Niederschrift von Vorrede 1-7 und Titelblatt <date notBefore="1887-07-17" notAfter="1887-07-30">Ende Juli 1887</date>.</change><!-- GSA?! Vorrede/Titelblatt sieht doch deutlich weniger braun aus als das übrige Braun2!? -->
+           <change xml:id="GM01-02sent">Dm mit GM I-II, Vorrede 1-7 und Titelblatt <date when="1887-07-30">am 30. Juli 1887</date> an die Druckerei geschickt.</change><!-- gem. 8.8. an Kö: am 30.7. verschickt! Br an CGN aber 29.7. -->
+           <change xml:id="GM02addenda"> Nachträgliche Textänderungen zu GM II, teilweise von Druckerei-Mitarbeiter in Dm eingetragen; Ns schriftliche Anordnungen nur zum Teil überliefert. Zeitpunkt unklar, <date notBefore="1887-07-31" notAfter="1887-09-30">frühestens Ende Juli, spätestens Anfang September 1887</date>.</change>
+           <change xml:id="GMVorrede06-07Addenda">Nachträgliche Textänderungen zu GM Vorrede 6-7, von Druckerei-Mitarbeiter in Dm eingetragen; Ns Anordnungen nicht überliefert. Zeitpunkt unklar, <date notBefore="1887-07-31" notAfter="1887-10-15">frühestens Ende Juli, spätestens Anfang/Mitte Oktober 1887</date>.</change>
+           <change xml:id="proofreading">Bogenkorrektur <date from="1887-08-09" to="1887-10-19">vom 9. August bis 19. Oktober 1887</date>. <note type="msDesc">12½ Bogen, Korrektur gelesen von N in Sils und Köselitz in Venedig, die letzten 5½ Bogen Ende September bis Mitte Oktober gemeinsam in Venedig.</note></change>
+           <change xml:id="GM03firstVersion">Niederschrift der ersten Fassung der dritten Abhandlung in 22 Abschnitten (GM III 2-23 entsprechend) <date notBefore="1887-08-01" notAfter="1887-08-20">Anfang/Mitte August 1887</date>.</change>
+           <change xml:id="GM03finalVersion">Niederschrift von GM III 1 und III 24-28 sowie Inhaltsverzeichnis <date notBefore="1887-08-15" notAfter="1887-08-28">Mitte/Ende August 1887</date>.</change>
+           <change xml:id="GMVorrede08record">Niederschrift von GM Vorrede 8  <date notBefore="1887-08-15" notAfter="1887-08-28">Mitte/Ende August 1887</date>.</change>
+           <change xml:id="GM03sent">Dm mit GM III sowie Vorrede 8 und Inhaltsverzeichnis <date when="1887-08-28">am 28. August 1887</date> an die Druckerei geschickt.</change>
+           <change xml:id="GMVorrede08Addendum">Nachträgliche Textänderung zu GM Vorrede 8, von Druckerei-Mitarbeiter in Dm eingetragen; Ns Anordnung nicht überliefert. Zeitpunkt unklar, <date notBefore="1887-08-01" notAfter="1887-10-15">frühestens Ende August, spätestens Anfang/Mitte Oktober 1887</date>.</change>
+           <change xml:id="proofreadingCb12Titel">Notizen von Köselitz zur Korrektur der letzten beiden Bogen (Cb 12 und Cb Titel, beide nicht überliefert) <date notBefore="1887-10-15" notAfter="1887-10-18">Mitte Oktober 1887</date>.</change>
+           <change xml:id="proofreadingCbTitel">Nachtrag zur Korrektur des Titelbogens, von Köselitz in Dm eingetragen, vermutlich <date when="1887-10-18">am 18. Oktober 1887</date>. (Vgl. <ref target="#KGB_KSB" n="III5/8, Nr. 928">N an Naumann, 18.10.1887; in KGB/KSB mit Fehllesung „hundertartige“, recte: „hundertactige“</ref>.)</change>
+           <!-- usw. -->
+       </listChange>
+       </creation>
+       <handNotes>
+         <handNote xml:id="N_black1" scribe="N" medium="black ink" scope="major" change="#GMformerVersion #GM02firstVersion">Schwarze Tinte (1), egh</handNote>
+         <handNote xml:id="N_brown1" scribe="N" medium="brown ink" scope="major" change="#GM0201-13revision #GM0214-24record #GMfrontRecord">Braune Tinte (1), egh</handNote>
+         <handNote xml:id="N_black2" scribe="N" medium="black ink" scope="major" change="#GM03firstVersion #GM03finalVersion #GM03Vorrede8record">Schwarze Tinte (2), egh</handNote>
+         <handNote xml:id="N_pencil" scribe="N" medium="pencil" scope="minor">Bleistift, egh</handNote>
+         <handNote xml:id="N_red" scribe="N" medium="red pencil" scope="minor">Rotstift, egh</handNote>
+         <handNote xml:id="N_blue" scribe="N" medium="blue pencil" scope="minor">Blaustift, egh</handNote>
+         <handNote xml:id="Koeselitz_black" scribe="Koeselitz" medium="black ink" scope="minor">schwarze Tinte, Köselitz</handNote>
+         <handNote xml:id="Koeselitz_pencil" scribe="Koeselitz" medium="pencil" scope="minor">Bleistift, Köselitz</handNote>
+         <handNote xml:id="Koeselitz_red" scribe="Koeselitz" medium="red pencil" scope="minor">Rotstift, Köselitz</handNote>
+         <handNote xml:id="Koeselitz_blue" scribe="Koeselitz" medium="red pencil" scope="minor">Blaustift, Köselitz</handNote>
+         <handNote xml:id="typesetter_black" scribe="typesetter" medium="black ink" scope="minor">Schwarze Tinte, fHd (N.N., Druckerei)<note type="msDesc">In einer dem Dm beiliegenden Archivnotiz fälschlicherweise wegen ähnlicher Handschrift Louise Röder-Wiederhold zugeschrieben.</note></handNote>
+         <handNote xml:id="typesetter_red" scribe="typesetter" medium="red pencil" scope="minor">Rotstift, fHd (Druckerei)<note type="msDesc">Satztechnische Markierungen und Hinweise von Mitarbeitern der Druckerei.</note></handNote>
+         <handNote xml:id="typesetter_blue" scribe="typesetter" medium="red pencil" scope="minor">Blaustift, fHd (Druckerei)<note type="msDesc">Satztechnische Markierungen und Hinweise von Mitarbeitern der Druckerei.</note></handNote>
+         <handNote xml:id="N-Archiv_red" scribe="N-Archiv" medium="red pencil" scope="minor">Rotstift, fHd (N-Archiv)<note type="msDesc">Paginierung(en) sowie editorische Markierungen und Anmerkungen von Mitarbeitern des Weimarer Nietzsche-Archivs.</note></handNote>
+         <handNote xml:id="N-Archiv_blue" scribe="N-Archiv" medium="blue pencil" scope="minor">Blaustift, fHd (N-Archiv)<note type="msDesc">Editorische Markierungen und Anmerkungen von Mitarbeitern des Weimarer Nietzsche-Archivs.</note></handNote>
+         <handNote xml:id="N-Archiv_pencil" scribe="N-Archiv" medium="pencil" scope="minor"><certainty match="@scribe" locus="value" cert="medium"/>Bleistift, fHd (N-Archiv?)<note type="msDesc">a1r: Abgrenzungslinien.</note></handNote><!-- so? oder so seitenspezifische notes besser auf der entsprechenden Seite selbst geben?! -->
+         <handNote xml:id="N-Archiv_redInk" scribe="N-Archiv" medium="red ink" scope="minor"><certainty match="@scribe" locus="value" cert="medium"/>Rote Tinte, fHd (N-Archiv?)<note type="msDesc">Markierung orthographischer Unregelmäßigkeiten und Fehler.</note></handNote>
+         <handNote xml:id="GSA_pencil" scribe="GSA" medium="pencil" scope="minor">Bleistift, fHd (GSA)<note type="msDesc">Foliierung durch Mitarbeiter:in des Goethe- und Schiller-Archivs.</note></handNote>
+         <handNote xml:id="notIdentified_black" scribe="notIdentified" medium="black ink" scope="minor">Schwarze Tinte (3), Zuordnung unklar<note type="msDesc">b19r: Schraffurstreichung und Pagina in differenter schwarzer Tinte, egh oder fHd?</note></handNote><!-- so? oder so seitenspezifische notes besser auf der entsprechenden Seite selbst geben?! -->
+         <!-- usw. -->
+       </handNotes>
+     </profileDesc>
+     <revisionDesc><!-- summarizes the revision history for a file -->
+       <listChange><change when="2022-01">first steps</change></listChange>
+     </revisionDesc>
+   </teiHeader>
+  
+  <facsimile>
+    <surface lrx="912.8" lry="1408.0" n="a1r" ulx="37.4" uly="45.9" xml:id="D-20a_I"/>
+    <!-- usw. -->
+  </facsimile>
+  <text>
+    <body>
+      <pb/>
+      <p><!--  --></p>
+    </body>
+   </text>
+</TEI>

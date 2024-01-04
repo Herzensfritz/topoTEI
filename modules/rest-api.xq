@@ -88,7 +88,28 @@ declare function local:http-download($file-url as xs:string, $collection as xs:s
 };
 
 
-
+declare
+  %rest:path("/knora")
+  %rest:POST
+  %rest:form-param("dsp-url", "{$dsp-url}", "http://0.0.0.0:3333/") 
+  %rest:form-param("json", "{$json}", "{}")
+function myrest:myPostKnoraIRIs($dsp-url, $json as xs:string*) {
+    let $data := parse-json($json)
+    
+    for $key in map:keys($data)
+        let $url := encode-for-uri(map:get($data, $key))
+        let $link := concat($dsp-url, "/v2/resources/", $url)
+        let $request := <hc:request href="{$link}" method="GET"><hc:header name="accept" value="application/rdf+xml"/></hc:request>
+        let $response := hc:send-request($request)
+        let $doc := parse-xml($response[2])
+        let $log := console:log($doc)
+    return 
+     <rest:response>
+        <http:response status="200" message="OK">
+        </http:response>
+        
+    </rest:response>
+};
 
 
 declare
