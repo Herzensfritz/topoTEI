@@ -140,6 +140,7 @@
    <xsl:template name="printTextParents">
       <xsl:param name="openingTags"/>
       <xsl:param name="text"/>
+      <xsl:param name="parentTag"/>
       <xsl:element name="{$openingTags[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyNodeAttributes">
             <xsl:with-param name="node" select="$openingTags[1]"/>
@@ -149,13 +150,39 @@
                <xsl:call-template name="printTextParents">
                   <xsl:with-param name="openingTags" select="subsequence($openingTags, 2)"/>
                   <xsl:with-param name="text" select="$text"/>
+                  <xsl:with-param name="parentTag" select="$parentTag"/>
                </xsl:call-template>
+            </xsl:when>
+            <xsl:when test="$parentTag">
+               <xsl:element name="{$parentTag/name()}" namespace="http://www.tei-c.org/ns/1.0">
+                  <xsl:call-template name="copyNodeAttributes">
+                     <xsl:with-param name="node" select="$parentTag"/>
+                  </xsl:call-template>
+                  <xsl:value-of select="$text"/>
+               </xsl:element>
             </xsl:when>
             <xsl:otherwise>
                <xsl:value-of select="$text"/>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
+   </xsl:template>
+   <xsl:template match="tei:pc">
+      <xsl:param name="startId"/>
+      <xsl:param name="endId"/>
+      <xsl:variable name="openingTags" select="if ($startId and $endId) then (ancestor::*[preceding::tei:lb[@xml:id = $startId] and not(following::tei:lb[@xml:id = $endId])]) else ()"/>
+      <xsl:choose>
+         <xsl:when test="count($openingTags) gt 0 and not(matches(., '^\s+$'))">
+            <xsl:call-template name="printTextParents">
+               <xsl:with-param name="openingTags" select="$openingTags"/>
+               <xsl:with-param name="text" select="text()"/>
+               <xsl:with-param name="parentTag" select="."/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:copy-of select="."/>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
    <xsl:template match="text()">
       <xsl:param name="startId"/>
