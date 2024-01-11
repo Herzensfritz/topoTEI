@@ -278,8 +278,672 @@
    </teiHeader>
   
   <facsimile>
-    <surface lrx="912.8" lry="1408.0" n="a1r" ulx="37.4" uly="45.9" xml:id="D-20a_I"/>
-    <!-- usw. -->
+   <surface lrx="907.0" lry="1401.8" n="9v" ulx="37.1" uly="39.7" xml:id="D-20a_5v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,5v" width="1215.2pt"/>
+   </surface>
+   <surface lrx="922.2" lry="1404.2" n="10v" ulx="52.5" uly="41.0" xml:id="D-20a_6v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,6v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="705.9" lry="872.5" n="57r" ulx="43.7" uly="45.6" xml:id="D-20b_56">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,56" width="1030.08pt"/>
+   </surface>
+   <surface lrx="716.3" lry="872.3" n="59r" ulx="49.9" uly="43.5" xml:id="D-20b_58">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,58" width="1030.08pt"/>
+   </surface>
+   <surface lrx="922.7" lry="955.5" n="19r" ulx="42.6" uly="30.2" xml:id="D-20a_13c">
+      <graphic height="981.92pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13c" width="1228.48pt"/>
+   </surface>
+   <surface lrx="702.1" lry="870.9" n="36r" ulx="44.0" uly="45.8" xml:id="D-20b_35">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,35" width="1020.64pt"/>
+   </surface>
+   <surface lrx="553.3" lry="826.9" n="64v" ulx="37.8" uly="25.1" xml:id="D-20b_61bv">
+      <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61bv" width="863.04pt"/>
+   </surface>
+   <surface lrx="722.4" lry="871.2" n="49v" ulx="56.8" uly="36.5" xml:id="D-20b_48v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,48v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="716.5" lry="869.0" n="48v" ulx="56.0" uly="42.7" xml:id="D-20b_47v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,47v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="706.2" lry="871.8" n="40v" ulx="43.4" uly="41.1" xml:id="D-20b_39v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,39v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="924.3" lry="1406.1" n="28v" ulx="46.2" uly="39.5" xml:id="D-20a_22v">
+      <graphic height="1442.88pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,22v" width="1231.2pt"/>
+   </surface>
+   <surface lrx="712.3" lry="877.6" n="24r" ulx="47.5" uly="49.8" xml:id="D-20b_23">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,23" width="1023.52pt"/>
+   </surface>
+   <surface lrx="704.8" lry="865.8" n="4v" ulx="42.4" uly="33.8" xml:id="D-20b_4v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,4v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="706.2" lry="871.5" n="39v" ulx="41.8" uly="40.0" xml:id="D-20b_38v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,38v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="701.9" lry="873.0" n="13r" ulx="44.2" uly="47.5" xml:id="D-20b_13">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,13" width="1010.56pt"/>
+   </surface>
+   <surface lrx="709.6" lry="877.3" n="47r" ulx="47.2" uly="45.8" xml:id="D-20b_46">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,46" width="1030.08pt"/>
+   </surface>
+   <surface lrx="917.0" lry="1396.6" n="20r" ulx="36.0" uly="37.0" xml:id="D-20a_14">
+      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,14" width="1235.68pt"/>
+   </surface>
+   <surface lrx="704.984" lry="873.492" n="43r" ulx="44.408" uly="43.054" xml:id="D-20b_42">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,42" width="1020.32pt"/>
+   </surface>
+   <surface lrx="720.2" lry="872.8" n="25r" ulx="55.4" uly="46.2" xml:id="D-20b_24">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,24" width="1023.52pt"/>
+   </surface>
+   <surface lrx="708.6" lry="869.0" n="33r" ulx="43.0" uly="40.3" xml:id="D-20b_32">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,32" width="1020.64pt"/>
+   </surface>
+   <surface lrx="700.5" lry="875.4" n="18r" ulx="39.7" uly="48.5" xml:id="D-20b_18">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,18" width="1010.56pt"/>
+   </surface>
+   <surface lrx="700.0" lry="866.4" n="37r" ulx="42.4" uly="43.5" xml:id="D-20b_36">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,36" width="1020.64pt"/>
+   </surface>
+   <surface lrx="921.582" lry="785.472" n="17v" ulx="48.282" uly="314.825" xml:id="D-20a_13v">
+      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13v" width="1227.04pt"/>
+   </surface>
+   <surface lrx="709.8" lry="873.4" n="23r" ulx="47.4" uly="47.0" xml:id="D-20b_22">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,22" width="1023.52pt"/>
+   </surface>
+   <surface lrx="703.7" lry="873.6" n="56r" ulx="39.8" uly="47.8" xml:id="D-20b_55">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,55" width="1030.08pt"/>
+   </surface>
+   <surface lrx="717.4" lry="869.6" n="49r" ulx="55.0" uly="41.3" xml:id="D-20b_48">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,48" width="1030.08pt"/>
+   </surface>
+   <surface lrx="700.5" lry="873.4" n="14r" ulx="41.3" uly="45.9" xml:id="D-20b_14">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,14" width="1010.56pt"/>
+   </surface>
+   <surface lrx="727.5" lry="868.2" n="67r" ulx="56.5" uly="40.5" xml:id="D-20b_63">
+      <graphic height="908.32pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,63" width="1045.28pt"/>
+   </surface>
+   <surface lrx="703.8" lry="871.5" n="40r" ulx="39.0" uly="43.0" xml:id="D-20b_39">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,39" width="1020.64pt"/>
+   </surface>
+   <surface lrx="699.0" lry="870.1" n="35r" ulx="38.7" uly="45.6" xml:id="D-20b_34">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,34" width="1020.64pt"/>
+   </surface>
+   <surface lrx="699.4" lry="864.6" n="35v" ulx="39.8" uly="38.1" xml:id="D-20b_34v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,34v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="921.4" lry="1405.0" n="16v" ulx="47.5" uly="40.8" xml:id="D-20a_12v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,12v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="707.4" lry="871.7" n="55r" ulx="42.6" uly="42.7" xml:id="D-20b_54">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,54" width="1030.08pt"/>
+   </surface>
+   <surface lrx="723.8" lry="874.6" n="66r" ulx="58.6" uly="48.2" xml:id="D-20b_62">
+      <graphic height="908.32pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,62" width="1046.4pt"/>
+   </surface>
+   <surface lrx="903.8" lry="852.8" n="5r" ulx="42.1" uly="33.4" xml:id="D-20a_1">
+      <graphic height="896.8pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,1" width="1225.6pt"/>
+   </surface>
+   <surface lrx="696.5" lry="864.8" n="6v" ulx="36.0" uly="35.4" xml:id="D-20b_6v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,6v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="718.9" lry="882.2" n="70v" ulx="52.6" uly="53.0" xml:id="D-20b_66v">
+      <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,66v" width="1028.64pt"/>
+   </surface>
+   <surface lrx="709.4" lry="871.4" n="53v" ulx="41.9" uly="38.2" xml:id="D-20b_52v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,52v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="705.4" lry="873.6" n="11v" ulx="39.0" uly="37.9" xml:id="D-20b_11v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,11v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="901.9" lry="1199.7" n="22v" ulx="35.2" uly="35.8" xml:id="D-20a_16v">
+      <graphic height="1246.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,16v" width="1218.24pt"/>
+   </surface>
+   <surface lrx="926.9" lry="1394.4" n="2v" ulx="49.4" uly="37.9" xml:id="D-20a_IV">
+      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,IV" width="1235.84pt"/>
+   </surface>
+   <surface lrx="915.747" lry="1405.546" n="30v" ulx="50.276" uly="26.538" xml:id="D-20a_24v">
+      <graphic height="1480.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,24v" width="1221.12pt"/>
+   </surface>
+   <surface lrx="703.0" lry="867.7" n="3r" ulx="43.4" uly="42.2" xml:id="D-20b_3">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,3" width="1010.4pt"/>
+   </surface>
+   <surface lrx="699.2" lry="870.6" n="7r" ulx="39.2" uly="44.8" xml:id="D-20b_7">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,7" width="1010.4pt"/>
+   </surface>
+   <surface lrx="923.5" lry="1410.7" n="32v" ulx="41.9" uly="41.9" xml:id="D-20a_26v">
+      <graphic height="1456.16pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,26v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="935.7" lry="1410.9" n="25v" ulx="53.6" uly="44.3" xml:id="D-20a_19v">
+      <graphic height="1450.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,19v" width="1237.12pt"/>
+   </surface>
+   <surface lrx="701.0" lry="876.0" n="44r" ulx="37.8" uly="48.8" xml:id="D-20b_43">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,43" width="1020.32pt"/>
+   </surface>
+   <surface lrx="932.5" lry="1410.7" n="26v" ulx="49.1" uly="43.7" xml:id="D-20a_20v">
+      <graphic height="1450.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,20v" width="1237.12pt"/>
+   </surface>
+   <surface lrx="701.8" lry="870.4" n="32r" ulx="40.8" uly="44.6" xml:id="D-20b_31">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,31" width="1020.64pt"/>
+   </surface>
+   <surface lrx="934.1" lry="1407.7" n="39r" ulx="46.4" uly="42.1" xml:id="D-20a_33">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,33" width="1243.2pt"/>
+   </surface>
+   <surface lrx="697.8" lry="874.1" n="13v" ulx="40.5" uly="47.7" xml:id="D-20b_13v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,13v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="929.6" lry="1413.1" n="34v" ulx="46.1" uly="47.4" xml:id="D-20a_28v">
+      <graphic height="1463.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,28v" width="1231.36pt"/>
+   </surface>
+   <surface lrx="707.7" lry="869.1" n="7v" ulx="48.3" uly="40.2" xml:id="D-20b_7v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,7v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="705.9" lry="874.2" n="20v" ulx="29.9" uly="46.4" xml:id="D-20b_19av">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19av" width="1023.52pt"/>
+   </surface>
+   <surface lrx="545.4" lry="824.8" n="64r" ulx="29.9" uly="25.6" xml:id="D-20b_61b">
+      <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61b" width="863.04pt"/>
+   </surface>
+   <surface lrx="714.4" lry="870.9" n="51r" ulx="49.3" uly="42.1" xml:id="D-20b_50">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,50" width="1030.08pt"/>
+   </surface>
+   <surface lrx="713.9" lry="873.0" n="55v" ulx="51.2" uly="47.4" xml:id="D-20b_54v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,54v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="707.5" lry="883.2" n="29v" ulx="45.3" uly="54.6" xml:id="D-20b_28v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,28v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="913.1" lry="1409.3" n="7v" ulx="36.2" uly="37.0" xml:id="D-20a_3v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,3v" width="1215.2pt"/>
+   </surface>
+   <surface lrx="699.0" lry="871.4" n="42v" ulx="36.0" uly="41.0" xml:id="D-20b_41v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,41v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="532.0" lry="824.5" n="65r" ulx="45.1" uly="53.9" xml:id="D-20b_61c">
+      <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61c" width="863.04pt"/>
+   </surface>
+   <surface lrx="903.2" lry="1406.1" n="7r" ulx="36.5" uly="42.1" xml:id="D-20a_3">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,3" width="1215.2pt"/>
+   </surface>
+   <surface lrx="693.4" lry="871.8" n="11r" ulx="33.9" uly="45.9" xml:id="D-20b_11">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,11" width="1010.56pt"/>
+   </surface>
+   <surface lrx="702.6" lry="872.5" n="16r" ulx="43.2" uly="47.0" xml:id="D-20b_16">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,16" width="1010.56pt"/>
+   </surface>
+   <surface lrx="714.6" lry="872.6" n="50v" ulx="53.3" uly="45.3" xml:id="D-20b_49v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,49v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="918.9" lry="1386.7" n="3v" ulx="48.0" uly="30.1" xml:id="D-20a_VI">
+      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VI" width="1235.84pt"/>
+   </surface>
+   <surface lrx="703.7" lry="861.9" n="4v" ulx="39.8" uly="37.4" xml:id="D-20a_VIIa">
+      <graphic height="905.6pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VIIa" width="1014.4pt"/>
+   </surface>
+   <surface lrx="916.5" lry="1409.8" n="13r" ulx="45.3" uly="45.3" xml:id="D-20a_9">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,9" width="1228.48pt"/>
+   </surface>
+   <surface lrx="690.4" lry="868.2" n="15r" ulx="35.5" uly="43.5" xml:id="D-20b_15">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,15" width="1010.56pt"/>
+   </surface>
+   <surface lrx="917.1" lry="1407.2" n="11r" ulx="48.8" uly="43.5" xml:id="D-20a_7">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,7" width="1228.48pt"/>
+   </surface>
+   <surface lrx="934.7" lry="1403.7" n="30r" ulx="50.1" uly="39.0" xml:id="D-20a_24">
+      <graphic height="1448.64pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,24" width="1248.96pt"/>
+   </surface>
+   <surface lrx="902.4" lry="1407.7" n="8r" ulx="35.4" uly="43.5" xml:id="D-20a_4">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,4" width="1215.2pt"/>
+   </surface>
+   <surface lrx="917.6" lry="1421.3" n="35r" ulx="39.0" uly="58.2" xml:id="D-20a_29">
+      <graphic height="1463.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,29" width="1231.36pt"/>
+   </surface>
+   <surface lrx="719.465" lry="884.305" n="69r" ulx="45.733" uly="57.757" xml:id="D-20b_65">
+      <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,65" width="1028.64pt"/>
+   </surface>
+   <surface lrx="710.2" lry="872.5" n="26r" ulx="48.0" uly="42.9" xml:id="D-20b_25">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,25" width="1023.52pt"/>
+   </surface>
+   <surface lrx="706.2" lry="868.8" n="23v" ulx="45.9" uly="42.1" xml:id="D-20b_22v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,22v" width="1023.52pt"/>
+   </surface>
+   <surface lrx="702.1" lry="869.8" n="17v" ulx="40.3" uly="41.1" xml:id="D-20b_17v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,17v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="701.1" lry="869.3" n="32v" ulx="39.7" uly="43.2" xml:id="D-20b_31v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,31v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="702.6" lry="871.4" n="31v" ulx="39.4" uly="42.7" xml:id="D-20b_30v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,30v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="711.8" lry="882.1" n="68v" ulx="39.7" uly="50.6" xml:id="D-20b_64v">
+      <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,64v" width="1028.64pt"/>
+   </surface>
+   <surface lrx="707.0" lry="874.9" n="27v" ulx="49.4" uly="47.0" xml:id="D-20b_26v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,26v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="719.4" lry="866.6" n="59v" ulx="43.5" uly="33.3" xml:id="D-20b_58v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,58v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="702.2" lry="872.6" n="14v" ulx="45.4" uly="48.5" xml:id="D-20b_14v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,14v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="911.5" lry="1395.8" n="24r" ulx="43.0" uly="32.0" xml:id="D-20a_18">
+      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,18" width="1222.56pt"/>
+   </surface>
+   <surface lrx="701.1" lry="870.2" n="2r" ulx="38.9" uly="41.4" xml:id="D-20b_2">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,2" width="1010.4pt"/>
+   </surface>
+   <surface lrx="719.418" lry="872.382" n="20r" ulx="45.519" uly="37.504" xml:id="D-20b_19a">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19a" width="1023.52pt"/>
+   </surface>
+   <surface lrx="920.0" lry="808.3" n="18v" ulx="40.3" uly="212.2" xml:id="D-20a_13b">
+      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13b" width="1227.04pt"/>
+   </surface>
+   <surface lrx="699.0" lry="873.8" n="30r" ulx="29.0" uly="46.1" xml:id="D-20b_29">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,29" width="1020.64pt"/>
+   </surface>
+   <surface lrx="939.5" lry="1412.0" n="37v" ulx="59.0" uly="44.6" xml:id="D-20a_31v">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,31v" width="1243.2pt"/>
+   </surface>
+   <surface lrx="702.1" lry="866.4" n="16v" ulx="45.4" uly="41.8" xml:id="D-20b_16v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,16v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="919.8" lry="1412.3" n="31r" ulx="39.7" uly="49.4" xml:id="D-20a_25">
+      <graphic height="1456.16pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,25" width="1228.48pt"/>
+   </surface>
+   <surface lrx="720.8" lry="878.2" n="61v" ulx="54.7" uly="49.9" xml:id="D-20b_60v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,60v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="936.0" lry="1413.6" n="36v" ulx="55.4" uly="48.3" xml:id="D-20a_30v">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,30v" width="1243.2pt"/>
+   </surface>
+   <surface lrx="530.432" lry="806.452" n="40v" ulx="48.832" uly="417.345" xml:id="D-20a_35">
+      <graphic height="851.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,35" width="827.68pt"/>
+   </surface>
+   <surface lrx="693.9" lry="865.8" n="5v" ulx="34.2" uly="37.0" xml:id="D-20b_5v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,5v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="937.9" lry="2090.7" n="21v" ulx="41.6" uly="32.6" xml:id="D-20a_15v">
+      <graphic height="2401.12pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,15v" width="973.28pt"/>
+   </surface>
+   <surface lrx="717.1" lry="868.3" n="61r" ulx="55.7" uly="43.8" xml:id="D-20b_60">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,60" width="1030.08pt"/>
+   </surface>
+   <surface lrx="923.5" lry="1412.3" n="32r" ulx="43.7" uly="45.9" xml:id="D-20a_26">
+      <graphic height="1456.16pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,26" width="1228.48pt"/>
+   </surface>
+   <surface lrx="701.1" lry="871.2" n="9r" ulx="42.4" uly="45.9" xml:id="D-20b_9">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,9" width="1010.4pt"/>
+   </surface>
+   <surface lrx="716.5" lry="872.0" n="21v" ulx="35.8" uly="40.8" xml:id="D-20b_20v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,20v" width="1023.52pt"/>
+   </surface>
+   <surface lrx="706.9" lry="871.2" n="41v" ulx="43.4" uly="41.3" xml:id="D-20b_40v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,40v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="713.1" lry="876.5" n="22r" ulx="50.7" uly="50.9" xml:id="D-20b_21">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,21" width="1023.52pt"/>
+   </surface>
+   <surface lrx="679.8" lry="368.2" n="19r" ulx="26.9" uly="26.4" xml:id="D-20b_19">
+      <graphic height="842.24pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19" width="997.12pt"/>
+   </surface>
+   <surface lrx="698.9" lry="874.6" n="10r" ulx="39.8" uly="49.4" xml:id="D-20b_10">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,10" width="1010.56pt"/>
+   </surface>
+   <surface lrx="919.4" lry="1410.2" n="25r" ulx="40.5" uly="44.0" xml:id="D-20a_19">
+      <graphic height="1450.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,19" width="1237.12pt"/>
+   </surface>
+   <surface lrx="696.2" lry="868.2" n="6r" ulx="38.9" uly="44.5" xml:id="D-20b_6">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,6" width="1010.4pt"/>
+   </surface>
+   <surface lrx="913.6" lry="861.0" n="5v" ulx="52.5" uly="35.0" xml:id="D-20a_1v">
+      <graphic height="909.92pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,1v" width="1225.6pt"/>
+   </surface>
+   <surface lrx="731.256" lry="869.775" n="67v" ulx="60.571" uly="41.606" xml:id="D-20b_63v">
+      <graphic height="908.32pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,63v" width="1045.28pt"/>
+   </surface>
+   <surface lrx="718.9" lry="868.8" n="52r" ulx="54.2" uly="41.4" xml:id="D-20b_51">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,51" width="1030.08pt"/>
+   </surface>
+   <surface lrx="702.2" lry="869.4" n="42r" ulx="41.4" uly="43.7" xml:id="D-20b_41">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,41" width="1020.64pt"/>
+   </surface>
+   <surface lrx="716.2" lry="870.6" n="51v" ulx="51.7" uly="38.9" xml:id="D-20b_50v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,50v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="705.1" lry="869.3" n="33v" ulx="42.1" uly="40.5" xml:id="D-20b_32v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,32v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="714.6" lry="877.3" n="62v" ulx="47.0" uly="47.8" xml:id="D-20b_61v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="523.8" lry="796.095" n="41r" ulx="42.9" uly="386.343" xml:id="D-20a_36">
+      <graphic height="851.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,36" width="827.68pt"/>
+   </surface>
+   <surface lrx="932.0" lry="1412.6" n="38v" ulx="58.9" uly="49.8" xml:id="D-20a_32v">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,32v" width="1243.2pt"/>
+   </surface>
+   <surface lrx="710.2" lry="875.5" n="1r" ulx="50.7" uly="47.2" xml:id="D-20b_1">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,1" width="1010.4pt"/>
+   </surface>
+   <surface lrx="919.7" lry="1390.9" n="3r" ulx="49.4" uly="35.5" xml:id="D-20a_V">
+      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,V" width="1235.84pt"/>
+   </surface>
+   <surface lrx="929.8" lry="1403.4" n="28r" ulx="51.7" uly="38.6" xml:id="D-20a_22">
+      <graphic height="1442.88pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,22" width="1243.2pt"/>
+   </surface>
+   <surface lrx="909.4" lry="1405.3" n="8v" ulx="38.1" uly="39.5" xml:id="D-20a_4v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,4v" width="1215.2pt"/>
+   </surface>
+   <surface lrx="710.9" lry="868.3" n="53r" ulx="47.2" uly="41.6" xml:id="D-20b_52">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,52" width="1030.08pt"/>
+   </surface>
+   <surface lrx="699.8" lry="873.3" n="41r" ulx="37.0" uly="47.4" xml:id="D-20b_40">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,40" width="1020.64pt"/>
+   </surface>
+   <surface lrx="709.4" lry="871.7" n="38r" ulx="49.3" uly="44.6" xml:id="D-20b_37">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,37" width="1020.64pt"/>
+   </surface>
+   <surface lrx="709.4" lry="864.0" n="24v" ulx="50.4" uly="38.9" xml:id="D-20b_23v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,23v" width="1023.52pt"/>
+   </surface>
+   <surface lrx="704.3" lry="869.6" n="38v" ulx="42.2" uly="40.5" xml:id="D-20b_37v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,37v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="720.579" lry="883.188" n="68r" ulx="39.046" uly="45.489" xml:id="D-20b_64">
+      <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,64" width="1028.64pt"/>
+   </surface>
+   <surface lrx="907.0" lry="1397.4" n="1v" ulx="35.0" uly="37.1" xml:id="D-20a_II">
+      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,II" width="1221.28pt"/>
+   </surface>
+   <surface lrx="702.357" lry="320.455" n="19v" ulx="213.441" uly="15.54" xml:id="D-20b_19v">
+      <graphic height="867.2pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19v" width="997.12pt"/>
+   </surface>
+   <surface lrx="713.6" lry="871.7" n="54v" ulx="50.9" uly="43.4" xml:id="D-20b_53v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,53v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="702.7" lry="878.6" n="28v" ulx="44.5" uly="48.5" xml:id="D-20b_27v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,27v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="705.0" lry="885.1" n="29r" ulx="38.2" uly="55.0" xml:id="D-20b_28">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,28" width="1020.64pt"/>
+   </surface>
+   <surface lrx="712.3" lry="866.7" n="26v" ulx="50.6" uly="38.4" xml:id="D-20b_25v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,25v" width="1023.52pt"/>
+   </surface>
+   <surface lrx="704.2" lry="873.0" n="34r" ulx="37.6" uly="43.5" xml:id="D-20b_33">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,33" width="1020.64pt"/>
+   </surface>
+   <surface lrx="704.0" lry="863.8" n="2v" ulx="41.4" uly="35.8" xml:id="D-20b_2v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,2v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="918.2" lry="1408.5" n="14r" ulx="47.8" uly="44.8" xml:id="D-20a_10">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,10" width="1228.48pt"/>
+   </surface>
+   <surface lrx="922.9" lry="1406.1" n="11v" ulx="43.5" uly="31.5" xml:id="D-20a_7v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,7v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="699.2" lry="869.6" n="10v" ulx="33.3" uly="37.9" xml:id="D-20b_10v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,10v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="720.5" lry="872.8" n="21r" ulx="43.0" uly="41.1" xml:id="D-20b_20">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,20" width="1023.52pt"/>
+   </surface>
+   <surface lrx="703.2" lry="874.6" n="8r" ulx="45.0" uly="49.6" xml:id="D-20b_8">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,8" width="1010.4pt"/>
+   </surface>
+   <surface lrx="915.8" lry="1401.1" n="23r" ulx="47.0" uly="31.7" xml:id="D-20a_17">
+      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,17" width="1222.56pt"/>
+   </surface>
+   <surface lrx="928.5" lry="1404.3" n="13v" ulx="53.3" uly="40.0" xml:id="D-20a_9v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,9v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="917.6" lry="1398.4" n="23v" ulx="47.4" uly="27.0" xml:id="D-20a_17v">
+      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,17v" width="1222.56pt"/>
+   </surface>
+   <surface lrx="902.6" lry="1391.8" n="6v" ulx="39.8" uly="35.4" xml:id="D-20a_2v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,2v" width="1215.2pt"/>
+   </surface>
+   <surface lrx="719.4" lry="875.2" n="62r" ulx="55.4" uly="49.0" xml:id="D-20b_61">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61" width="1030.08pt"/>
+   </surface>
+   <surface lrx="697.1" lry="865.6" n="3v" ulx="35.8" uly="35.5" xml:id="D-20b_3v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,3v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="913.3" lry="1396.6" n="24v" ulx="40.2" uly="28.6" xml:id="D-20a_18v">
+      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,18v" width="1222.56pt"/>
+   </surface>
+   <surface lrx="546.4" lry="827.2" n="63r" ulx="57.0" uly="50.9" xml:id="D-20b_61a">
+      <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61a" width="863.04pt"/>
+   </surface>
+   <surface lrx="899.7" lry="1390.7" n="6r" ulx="35.5" uly="32.8" xml:id="D-20a_2">
+      <graphic height="1432.48pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,2" width="1208.0pt"/>
+   </surface>
+   <surface lrx="708.5" lry="882.6" n="69v" ulx="45.1" uly="56.5" xml:id="D-20b_65v">
+      <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,65v" width="1028.64pt"/>
+   </surface>
+   <surface lrx="898.6" lry="1403.4" n="9r" ulx="31.7" uly="43.7" xml:id="D-20a_5">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,5" width="1215.2pt"/>
+   </surface>
+   <surface lrx="701.1" lry="875.0" n="12v" ulx="41.3" uly="49.3" xml:id="D-20b_12v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,12v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="719.2" lry="878.4" n="46r" ulx="56.5" uly="49.9" xml:id="D-20b_45">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,45" width="1030.08pt"/>
+   </surface>
+   <surface lrx="921.1" lry="1413.8" n="15r" ulx="45.4" uly="45.9" xml:id="D-20a_11">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,11" width="1228.48pt"/>
+   </surface>
+   <surface lrx="926.9" lry="1409.9" n="36r" ulx="47.8" uly="44.6" xml:id="D-20a_30">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,30" width="1243.2pt"/>
+   </surface>
+   <surface lrx="935.7" lry="1407.2" n="39v" ulx="46.9" uly="43.4" xml:id="D-20a_33v">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,33v" width="1243.2pt"/>
+   </surface>
+   <surface lrx="716.0" lry="874.6" n="47v" ulx="55.0" uly="45.9" xml:id="D-20b_46v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,46v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="514.803" lry="806.585" n="40r" ulx="32.103" uly="422.439" xml:id="D-20a_34">
+      <graphic height="851.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,34" width="827.68pt"/>
+   </surface>
+   <surface lrx="702.1" lry="868.6" n="31r" ulx="39.8" uly="40.5" xml:id="D-20b_30">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,30" width="1020.64pt"/>
+   </surface>
+   <surface lrx="715.7" lry="868.6" n="48r" ulx="54.6" uly="40.3" xml:id="D-20b_47">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,47" width="1030.08pt"/>
+   </surface>
+   <surface lrx="710.2" lry="867.2" n="56v" ulx="44.5" uly="37.4" xml:id="D-20b_55v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,55v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="910.2" lry="1401.3" n="10r" ulx="43.0" uly="42.2" xml:id="D-20a_6">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,6" width="1228.48pt"/>
+   </surface>
+   <surface lrx="914.1" lry="1396.0" n="2r" ulx="42.6" uly="40.8" xml:id="D-20a_III">
+      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,III" width="1235.84pt"/>
+   </surface>
+   <surface lrx="718.4" lry="870.7" n="60v" ulx="56.8" uly="48.8" xml:id="D-20b_59v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,59v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="924.0" lry="1410.7" n="31v" ulx="41.0" uly="44.2" xml:id="D-20a_25v">
+      <graphic height="1456.16pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,25v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="696.3" lry="866.7" n="1v" ulx="35.2" uly="41.0" xml:id="D-20b_1v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,1v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="709.4" lry="883.5" n="28r" ulx="49.4" uly="56.3" xml:id="D-20b_27">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,27" width="1020.64pt"/>
+   </surface>
+   <surface lrx="702.6" lry="870.2" n="5r" ulx="45.6" uly="43.7" xml:id="D-20b_5">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,5" width="1010.4pt"/>
+   </surface>
+   <surface lrx="704.2" lry="874.7" n="17r" ulx="43.2" uly="48.6" xml:id="D-20b_17">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,17" width="1010.56pt"/>
+   </surface>
+   <surface lrx="931.0" lry="2011.0" n="29v" ulx="38.7" uly="40.8" xml:id="D-20a_23v">
+      <graphic height="2314.56pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,23v" width="977.6pt"/>
+   </surface>
+   <surface lrx="924.2" lry="1403.5" n="34r" ulx="41.9" uly="40.3" xml:id="D-20a_28">
+      <graphic height="1448.64pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,28" width="1237.44pt"/>
+   </surface>
+   <surface lrx="924.5" lry="1409.3" n="26r" ulx="42.1" uly="47.4" xml:id="D-20a_20">
+      <graphic height="1450.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,20" width="1237.12pt"/>
+   </surface>
+   <surface lrx="712.0" lry="869.0" n="60r" ulx="53.4" uly="43.7" xml:id="D-20b_59">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,59" width="1030.08pt"/>
+   </surface>
+   <surface lrx="710.7" lry="873.4" n="27r" ulx="52.5" uly="48.0" xml:id="D-20b_26">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,26" width="1023.52pt"/>
+   </surface>
+   <surface lrx="712.6" lry="864.2" n="57v" ulx="47.7" uly="33.6" xml:id="D-20b_56v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,56v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="704.0" lry="873.3" n="39r" ulx="40.6" uly="45.3" xml:id="D-20b_38">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,38" width="1020.64pt"/>
+   </surface>
+   <surface lrx="736.762" lry="870.877" n="66v" ulx="58.368" uly="39.404" xml:id="D-20b_62v">
+      <graphic height="908.32pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,62v" width="1045.28pt"/>
+   </surface>
+   <surface lrx="933.9" lry="1411.7" n="38r" ulx="58.2" uly="45.9" xml:id="D-20a_32">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,32" width="1243.2pt"/>
+   </surface>
+   <surface lrx="911.0" lry="1408.5" n="12r" ulx="41.1" uly="45.4" xml:id="D-20a_8">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,8" width="1228.48pt"/>
+   </surface>
+   <surface lrx="698.7" lry="872.6" n="15v" ulx="42.2" uly="44.0" xml:id="D-20b_15v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,15v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="925.8" lry="1405.4" n="16r" ulx="51.4" uly="42.6" xml:id="D-20a_12">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,12" width="1228.48pt"/>
+   </surface>
+   <surface lrx="708.0" lry="871.0" n="22v" ulx="46.2" uly="45.1" xml:id="D-20b_21v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,21v" width="1023.52pt"/>
+   </surface>
+   <surface lrx="697.6" lry="859.2" n="4r" ulx="36.8" uly="39.4" xml:id="D-20a_VII">
+      <graphic height="905.6pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VII" width="1014.4pt"/>
+   </surface>
+   <surface lrx="717.0" lry="871.0" n="58v" ulx="53.4" uly="41.8" xml:id="D-20b_57v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,57v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="711.4" lry="868.2" n="46v" ulx="49.8" uly="39.8" xml:id="D-20b_45v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,45v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="701.4" lry="869.4" n="12r" ulx="42.9" uly="43.4" xml:id="D-20b_12">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,12" width="1010.56pt"/>
+   </surface>
+   <surface lrx="922.1" lry="1405.0" n="15v" ulx="46.6" uly="37.1" xml:id="D-20a_11v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,11v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="697.6" lry="861.3" n="18v" ulx="34.4" uly="35.0" xml:id="D-20b_18v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,18v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="697.213" lry="875.712" n="44v" ulx="31.086" uly="47.494" xml:id="D-20b_43v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,43v" width="1020.32pt"/>
+   </surface>
+   <surface lrx="931.0" lry="2108.0" n="21r" ulx="41.9" uly="45.9" xml:id="D-20a_15">
+      <graphic height="2401.12pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,15" width="973.28pt"/>
+   </surface>
+   <surface lrx="929.6" lry="1406.4" n="37r" ulx="55.0" uly="41.0" xml:id="D-20a_31">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,31" width="1243.2pt"/>
+   </surface>
+   <surface lrx="697.6" lry="867.0" n="8v" ulx="40.5" uly="40.2" xml:id="D-20b_8v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,8v" width="1010.4pt"/>
+   </surface>
+   <surface lrx="912.8" lry="1408.0" n="1r" ulx="37.4" uly="45.9" xml:id="D-20a_I">
+      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,I" width="1221.28pt"/>
+   </surface>
+   <surface lrx="701.4" lry="866.1" n="37v" ulx="44.0" uly="39.0" xml:id="D-20b_36v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,36v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="704.6" lry="860.0" n="45r" ulx="40.2" uly="33.8" xml:id="D-20b_44">
+      <graphic height="898.24pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,44" width="1025.76pt"/>
+   </surface>
+   <surface lrx="931.4" lry="1413.3" n="35v" ulx="53.9" uly="48.6" xml:id="D-20a_29v">
+      <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,29v" width="1243.2pt"/>
+   </surface>
+   <surface lrx="522.1" lry="805.353" n="41v" ulx="39.5" uly="389.708" xml:id="D-20a_36v">
+      <graphic height="851.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,36v" width="827.68pt"/>
+   </surface>
+   <surface lrx="700.2" lry="871.4" n="4r" ulx="38.6" uly="42.6" xml:id="D-20b_4">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,4" width="1010.4pt"/>
+   </surface>
+   <surface lrx="544.0" lry="822.6" n="63v" ulx="61.4" uly="54.2" xml:id="D-20b_61av">
+      <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61av" width="863.04pt"/>
+   </surface>
+   <surface lrx="692.2" lry="869.9" n="9v" ulx="34.1" uly="44.5" xml:id="D-20b_9v">
+      <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,9v" width="1010.56pt"/>
+   </surface>
+   <surface lrx="705.0" lry="875.8" n="70r" ulx="41.6" uly="51.0" xml:id="D-20b_66">
+      <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,66" width="1028.64pt"/>
+   </surface>
+   <surface lrx="922.4" lry="1409.0" n="33v" ulx="40.5" uly="43.2" xml:id="D-20a_27v">
+      <graphic height="1456.16pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,27v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="926.1" lry="1403.2" n="14v" ulx="46.9" uly="35.0" xml:id="D-20a_10v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,10v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="913.582" lry="797.188" n="17r" ulx="40.282" uly="321.351" xml:id="D-20a_13">
+      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13" width="1227.04pt"/>
+   </surface>
+   <surface lrx="713.9" lry="874.4" n="52v" ulx="47.4" uly="45.9" xml:id="D-20b_51v">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,51v" width="1030.08pt"/>
+   </surface>
+   <surface lrx="708.5" lry="868.2" n="54r" ulx="42.2" uly="41.4" xml:id="D-20b_53">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,53" width="1030.08pt"/>
+   </surface>
+   <surface lrx="555.874" lry="826.829" n="65v" ulx="59.224" uly="56.917" xml:id="D-20b_61cv">
+      <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61cv" width="863.04pt"/>
+   </surface>
+   <surface lrx="928.0" lry="1404.2" n="20v" ulx="39.2" uly="37.1" xml:id="D-20a_14v">
+      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,14v" width="1235.68pt"/>
+   </surface>
+   <surface lrx="920.2" lry="790.6" n="18r" ulx="43.8" uly="203.2" xml:id="D-20a_13a">
+      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13a" width="1227.04pt"/>
+   </surface>
+   <surface lrx="709.3" lry="869.4" n="36v" ulx="47.8" uly="38.7" xml:id="D-20b_35v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,35v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="711.0" lry="873.8" n="58r" ulx="47.7" uly="47.2" xml:id="D-20b_57">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,57" width="1030.08pt"/>
+   </surface>
+   <surface lrx="916.0" lry="948.3" n="19v" ulx="40.8" uly="28.6" xml:id="D-20a_13cv">
+      <graphic height="981.92pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13cv" width="1228.48pt"/>
+   </surface>
+   <surface lrx="711.2" lry="872.6" n="30v" ulx="47.0" uly="42.4" xml:id="D-20b_29v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,29v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="708.3" lry="869.1" n="34v" ulx="47.2" uly="40.0" xml:id="D-20b_33v">
+      <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,33v" width="1020.64pt"/>
+   </surface>
+   <surface lrx="917.0" lry="1398.4" n="12v" ulx="48.0" uly="37.9" xml:id="D-20a_8v">
+      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,8v" width="1228.48pt"/>
+   </surface>
+   <surface lrx="929.3" lry="787.4" n="27r" ulx="41.4" uly="104.3" xml:id="D-20a_21">
+      <graphic height="840.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,21" width="1235.68pt"/>
+   </surface>
+   <surface lrx="720.2" lry="889.4" n="45v" ulx="52.8" uly="55.5" xml:id="D-20b_44v">
+      <graphic height="926.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,44v" width="1027.2pt"/>
+   </surface>
+   <surface lrx="933.8" lry="2019.2" n="29r" ulx="43.0" uly="48.2" xml:id="D-20a_23">
+      <graphic height="2324.8pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,23" width="977.6pt"/>
+   </surface>
+   <surface lrx="929.1" lry="1410.9" n="33r" ulx="43.0" uly="44.2" xml:id="D-20a_27">
+      <graphic height="1456.16pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,27" width="1228.48pt"/>
+   </surface>
+   <surface lrx="706.7" lry="868.3" n="43v" ulx="43.5" uly="39.2" xml:id="D-20b_42v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,42v" width="1020.32pt"/>
+   </surface>
+   <surface lrx="718.7" lry="868.0" n="50r" ulx="56.8" uly="41.9" xml:id="D-20b_49">
+      <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,49" width="1030.08pt"/>
+   </surface>
+   <surface lrx="917.058" lry="1211.332" n="22r" ulx="45.324" uly="32.905" xml:id="D-20a_16">
+      <graphic height="1246.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,16" width="1218.24pt"/>
+   </surface>
+   <surface lrx="933.6" lry="800.0" n="27v" ulx="49.4" uly="114.1" xml:id="D-20a_21v">
+      <graphic height="840.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,21v" width="1235.68pt"/>
+   </surface>
+   <surface lrx="711.5" lry="874.6" n="25v" ulx="48.5" uly="47.0" xml:id="D-20b_24v">
+      <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,24v" width="1023.52pt"/>
+   </surface>
   </facsimile>
   <text>
     <body>
@@ -2066,11 +2730,11 @@
                </line><line xml:id="srcD_line_a1v_lb2" start="#a1v_lb2" n="2">Verdeutlichung beigegeben.
             
                
-                  </line><zone xml:id="srcD_zone_a1v_lb3" start="#a1v_lb3" type="note-zone" style="margin-left:221px;"><line xml:id="srcD_line_a1v_lb3" start="#a1v_lb3" hand="N_brown" style="bottom:2.5em;" n="3"><hi rend="markLine">mit kleinen Lettern!</hi></line></zone></zone></surface><surface xml:id="srcD_surface_a2r" type="relative" start="#a2r"><zone xml:id="srcD_zone_a2r_div2_GMVorrede01" start="#a2r_div2_GMVorrede01" type="firstBlock" style="padding-top:5em;"><zone xml:id="srcD_zone_a2r_fw_d2e26" type="fw-top-right" start="#a2r_fw_d2e26"><fw type="pageNumber" hand="#N_red" place="top-right" corresp="#a2r_fw_d2e26">III.</fw></zone><zone xml:id="srcD_head_a2r_head_d2e34" type="head-zone" start="#a2r_head_d2e34"><line xml:id="srcD_line_a2r_head_d2e34_a2r_lb1" start="#a2r_lb1" n="1"><zone xml:id="srcD_zone_a2r_head_d2e34_a2r_lb1" type="head"><add place="inline" corresp="#a2r_add_d2e37"><hi rend="underline">Vorrede</hi>.</add>
+                  </line><zone xml:id="srcD_zone_a1v_lb3" start="#a1v_lb3" type="note-zone" style="margin-left:221px;"><line xml:id="srcD_line_a1v_lb3" start="#a1v_lb3" hand="N_brown" style="bottom:2.5em;" n="3"><hi rend="markLine">mit kleinen Lettern!</hi></line></zone></zone></surface><surface xml:id="srcD_surface_a2r" type="relative" start="#a2r"><zone xml:id="srcD_zone_a2r_div2_GMVorrede01" start="#a2r_div2_GMVorrede01" type="firstBlock" style="padding-top:5em;"><zone xml:id="srcD_zone_a2r_fw_d2e26" type="fw-top-right" start="#a2r_fw_d2e26"><fw type="pageNumber" hand="#N_red" place="top-right" corresp="#a2r_fw_d2e26">III.</fw></zone><zone xml:id="srcD_head_a2r_head_d2e34" type="head-zone" start="#a2r_head_d2e34"><line xml:id="srcD_line_a2r_head_d2e34_a2r_lb1" start="#a2r_lb1" style="top:-0.9375em;" n="1"><zone xml:id="srcD_zone_a2r_head_d2e34_a2r_lb1" type="head" style="margin-left:260px;"><add place="inline" corresp="#a2r_add_d2e37"><hi rend="underline">Vorrede</hi>.</add>
             
             <anchor corresp="#a2r_div2_GMVorrede01"/>
                
-                  </zone></line></zone><zone xml:id="srcD_zone_a2r_lb2" start="#a2r_lb2" type="add-zone"><line xml:id="srcD_line_a2r_lb2" start="#a2r_lb2" style="top:2em;" n="2"><add place="inline" corresp="#a2r_add_d2e49">1.</add>
+                  </zone></line></zone><zone xml:id="srcD_zone_a2r_lb2" start="#a2r_lb2" type="add-zone" style="margin-left:287px;"><line xml:id="srcD_line_a2r_lb2" start="#a2r_lb2" style="top:1.6875em;" n="2"><add place="inline" corresp="#a2r_add_d2e49">1.</add>
                
                
                   </line></zone><line xml:id="srcD_line_a2r_lb3" start="#a2r_lb3" rend="indent" n="3">Wir sind uns unbekannt, wir Erkennenden, wir selbst uns selbst: das hat seinen guten Grund. Wir haben nie 
@@ -2273,7 +2937,7 @@
             
             
                </line></zone><zone xml:id="srcD_zone_a3v_note_d2e312_a3v_lb35" type="note-zone" start="#a3v_lb35" style="margin-left:397px;"><line xml:id="srcD_line_a3v_note_d2e312_a3v_lb35" start="#a3v_lb35" style="bottom:4em;" rend="#N_brown" n="35">
-               <hi rend="markLine">NB! Hierauf folgt ein leeres Blatt, auf dem nur diese Wor</hi><pc force="weak"><hi rend="markLine">-</hi></pc>
+               <hi rend="markLine">NB! Hierauf folgt ein leeres Blatt, auf dem nur diese Wor</hi><hi rend="markLine"><pc force="weak">-</pc></hi>
                   </line></zone><zone xml:id="srcD_zone_a3v_note_d2e312_a3v_lb36" type="note-zone" start="#a3v_lb36" style="margin-left:397px;"><line xml:id="srcD_line_a3v_note_d2e312_a3v_lb36" start="#a3v_lb36" style="bottom:3em;" rend="#N_brown" n="36"><hi rend="markLine">te stehn: 
                </hi></line></zone><zone xml:id="srcD_zone_a3v_note_d2e312_a3v_lb37" type="note-zone" start="#a3v_lb37" style="margin-left:397px;"><line xml:id="srcD_line_a3v_note_d2e312_a3v_lb37" start="#a3v_lb37" style="bottom:2em;" rend="#N_brown" n="37"><hi rend="markLine">
                   
@@ -2353,7 +3017,7 @@
                   </line><line xml:id="srcD_line_a6r_lb7" start="#a6r_lb7" n="7">kretieren sie – unegoistische Handlungen von Seiten derer gelobt und gut genannt, denen sie erwiesen wurden, 
                   </line><line xml:id="srcD_line_a6r_lb8" start="#a6r_lb8" n="8">also denen sie <hi rend="underline">nützlich</hi> waren; später hat man diesen Ursprung des Lobes <hi rend="underline">vergessen</hi> und die unegoistischen Handlungen 
                   </line><line xml:id="srcD_line_a6r_lb9" start="#a6r_lb9" n="9">einfach, weil sie <hi rend="underline">gewohnheitsmäßig</hi> immer als gut gelobt wurden, auch als gut empfunden – wie als ob sie an sich 
-                  </line><line xml:id="srcD_line_a6r_lb10" start="#a6r_lb10" n="10">etwas Gutes wären.“ Man sieht sofort: diese erste Ableitung enthält <metamark function="insertion"><add place="above">bereits all<add place="inline" corresp="#a6r_add_d2e119">e</add></add></metamark> <del rend="hatching">die</del> typischen Züge der <metamark function="insertion"><add place="above">englischen Psychologen-</add></metamark><del rend="hatching"><subst space="preserve">englisch-psychologi</subst><pc force="weak"><subst space="preserve">-</subst></pc></del>
+                  </line><line xml:id="srcD_line_a6r_lb10" start="#a6r_lb10" n="10">etwas Gutes wären.“ Man sieht sofort: diese erste Ableitung enthält <metamark function="insertion"><add place="above">bereits all<add place="inline" corresp="#a6r_add_d2e119">e</add></add></metamark> <del rend="hatching">die</del> typischen Züge der <metamark function="insertion"><add place="above">englischen Psychologen-</add></metamark><del rend="hatching"><subst space="preserve">englisch-psychologi</subst><subst space="preserve"><pc force="weak">-</pc></subst></del>
                   </line><line xml:id="srcD_line_a6r_lb11" start="#a6r_lb11" n="11"><del rend="hatching">schen</del><del rend="overwritten"> </del><add place="superimposed" corresp="#a6r_add_d2e140">-</add>Idiosynkrasie, – wir haben <add place="inline" corresp="#a6r_add_d2e145">„</add>die Nützlichkeit<add place="inline" corresp="#a6r_add_d2e148">“</add>, <add place="inline" corresp="#a6r_add_d2e151">„</add>das Vergessen<add place="inline" corresp="#a6r_add_d2e154">“</add>, <add place="inline" corresp="#a6r_add_d2e158">„</add>die Gewohnheit<add place="inline" corresp="#a6r_add_d2e161">“</add> <del instant="true" rend="strikethrough">–</del> und am Schluß <add place="inline" corresp="#a6r_add_d2e167">„</add>den Irr<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a6r_lb12" start="#a6r_lb12" n="12">thum<add place="inline" corresp="#a6r_add_d2e176">“</add><add place="inline" corresp="#a6r_add_d2e179">, <metamark function="insertion"><add place="above">Alles</add></metamark></add> als Unterlage einer Werthschätzung, auf welche der höhere Mensch <metamark function="insertion"><add place="above">bisher</add></metamark> wie auf eine Art Vorrecht des Menschen <metamark function="insertion" style="top:-2px;height:19px;"><add place="above">überhaupt</add></metamark> 
                   </line><line xml:id="srcD_line_a6r_lb13" start="#a6r_lb13" n="13">stolz <metamark function="insertion" style="top:-2px;height:19px;"><add place="above"><del rend="hatching">zu sein pflegte.</del><add place="inline" rend="insMExt" corresp="#a6r_add_d2e197">gewesen ist.</add></add></metamark><del rend="hatching">ist</del>. Dieser Stolz <hi rend="underline">soll</hi> gedemüthigt<add place="inline" corresp="#a6r_add_d2e206">, <metamark function="insertion" style="top:-2px;height:18px;"><add place="above">diese Werthschätzung entwerthet</add></metamark></add> werden: ist <metamark function="insertion"><add place="above">das</add></metamark><del rend="hatching">es</del> erreicht?… Nun liegt <metamark function="insertion"><add place="above">für mich</add></metamark> erstens auf der Hand, daß von 
@@ -2481,10 +3145,10 @@
                   </line><line xml:id="srcD_line_a9r_lb5" start="#a9r_lb5" n="5">Neurasthenie erscheint; <del corresp="#substDel1_a9r" rend="hatching">und</del> was <metamark function="insertion"><add place="above">aber</add></metamark> von ihnen selbst gegen diese <metamark function="insertion"><add place="above">ihre</add></metamark> <choice><sic>Krankheit<metamark function="insertion"><add place="above">haftigkeit</add></metamark><del rend="hatching">en</del></sic><corr resp="#editors">Krankhaftigkeit</corr></choice> als Heilmittel erfunden worden ist, <metamark function="insertion" style="top:-2px;height:19px;"><add place="above">– muß man nicht sagen,</add></metamark><del corresp="#substDel2a_a9r" rend="hatching"><subst space="preserve">hat</subst></del> 
                      </line><line xml:id="srcD_line_a9r_lb6" start="#a9r_lb6" n="6"><metamark function="insertion"><add place="above">daß es </add></metamark>sich zuletzt in seinen Nachwirkungen <metamark function="insertion"><add place="above">noch hundert Mal</add></metamark><del rend="hatching">fast</del> gefährlicher erwiesen <metamark function="insertion"><add place="above">hat</add></metamark> als die Krankheit<subst space="preserve"><add corresp="#substAdd2d_a9r" place="inline">, <metamark function="insertion"><add place="above"><add place="inline" rend="insMExt" corresp="#a9r_add_d2e154"><del rend="hatching">selbst, </del></add>von der es erlösen sollte?</add></metamark></add><del corresp="#substDel2b_a9r" rend="overwritten" cause="insM">,</del> <del corresp="#substDel2c_a9r" rend="hatching">–</del> <del corresp="#substDel2d_a9r" rend="overwritten">d</del><add corresp="#substAdd2f_a9r" place="superimposed">D</add></subst>ie Menschheit <metamark function="insertion"><add place="above">selbst</add></metamark> krankt noch an 
                   </line><line xml:id="srcD_line_a9r_lb7" start="#a9r_lb7" n="7">den Nachwirkungen dieser priesterlichen Kur-<metamark function="insertion"><add place="above">Naivetäten!</add></metamark><del rend="hatching">Methoden!</del> Denken wir zum Beispiel an gewisse Diätformen (Ver<pc force="weak">-</pc>
-                  </line><line xml:id="srcD_line_a9r_lb8" start="#a9r_lb8" n="8">meidung des Fleisches), an das Fasten, an die geschlechtliche Enthaltsamkeit, an die Flucht „in die Wüste“ (<hi rend="latin">Weir Mit</hi><pc force="weak"><hi rend="latin">-</hi></pc>
+                  </line><line xml:id="srcD_line_a9r_lb8" start="#a9r_lb8" n="8">meidung des Fleisches), an das Fasten, an die geschlechtliche Enthaltsamkeit, an die Flucht „in die Wüste“ (<hi rend="latin">Weir Mit</hi><hi rend="latin"><pc force="weak">-</pc></hi>
                      </line><line xml:id="srcD_line_a9r_lb9" start="#a9r_lb9" n="9"><hi rend="latin">chell’sche Isolirung, freilich ohne die <milestone unit="page" edRef="#Cb #Ed" n="11"/>darauf folgende Mastkur und Überernährung, in der das wirksamste Gegenmittel 
                   </hi></line><line xml:id="srcD_line_a9r_lb10" start="#a9r_lb10" n="10">gegen <metamark function="insertion"><add place="above">alle <add corresp="#substAdd3_a9r" place="inline" rend="insMExt">Hysterie des asketischen Ideals</add></add></metamark><del corresp="#substDel3_a9r" rend="hatching">asketische Ideal-Hysterie</del> besteht): hinzugerechnet <metamark function="insertion"><add place="above">die ganze</add></metamark><del rend="hatching">eine</del> sinnenfeindliche, faul<metamark function="insertion"><add place="above">- und raffinirt</add></metamark>machende Metaphysik<metamark function="insertion"><add place="above"> der Priester<add corresp="#substAdd4_a9r" place="inline" rend="insMExt">, ihre</add></add></metamark>, <del corresp="#substDel4_a9r" rend="hatching">die</del> Selbst-Hyp<pc force="weak">-</pc>
-                  </line><line xml:id="srcD_line_a9r_lb11" start="#a9r_lb11" n="11">notisirung <metamark function="insertion"><add place="above">nach Art</add></metamark> des Fakirs und Brahmanen <metamark function="insertion"><add place="above">– <hi rend="latin">Brahman</hi> als gläserner Knopf und fixe Idee benutzt –</add></metamark> und das schließliche <del rend="hatching"><subst seq="0" instant="true" change="#version0">allgemeine Satthaben und Verlangen nach einer </subst><hi rend="latin"><subst seq="0" instant="true" change="#version0">unio my</subst></hi><pc force="weak"><subst seq="0" instant="true" change="#version0">-</subst></pc></del><add xml:id="srcD_add_a9r_add_d2e250" corresp="#a9r_add_d2e250" style="left:-264px;top:-19px;" place="above">nur zu begreifliche allgemeine Satthaben mit seiner <choice><sic>Radikulkur</sic><corr resp="#editors">Radikalkur</corr></choice>, </add>
+                  </line><line xml:id="srcD_line_a9r_lb11" start="#a9r_lb11" n="11">notisirung <metamark function="insertion"><add place="above">nach Art</add></metamark> des Fakirs und Brahmanen <metamark function="insertion"><add place="above">– <hi rend="latin">Brahman</hi> als gläserner Knopf und fixe Idee benutzt –</add></metamark> und das schließliche <del rend="hatching"><subst seq="0" instant="true" change="#version0">allgemeine Satthaben und Verlangen nach einer </subst><hi rend="latin"><subst seq="0" instant="true" change="#version0">unio my</subst></hi><subst seq="0" instant="true" change="#version0"><pc force="weak">-</pc></subst></del><add xml:id="srcD_add_a9r_add_d2e250" corresp="#a9r_add_d2e250" style="left:-264px;top:-19px;" place="above">nur zu begreifliche allgemeine Satthaben mit seiner <choice><sic>Radikulkur</sic><corr resp="#editors">Radikalkur</corr></choice>, </add>
                      </line><line xml:id="srcD_line_a9r_lb12" start="#a9r_lb12" n="12"><metamark function="insertion"><add place="above">dem <hi rend="underline">Nich<retrace>t</retrace>s</hi> (oder Gott: – das Verlangen nach eine*r <hi rend="latin">unio mystica</hi> mit Gott ist das Verlangen des Buddhisten ins Nichts, <hi rend="latin">Nirvâna</hi><subst instant="false"><del rend="overwritten">)</del><add place="superimposed" corresp="#a9r_add_d2e274"> –</add></subst><add place="inline" rend="insMExt" instant="false" corresp="#a9r_add_d2e276"> und nicht mehr!</add></add></metamark><del rend="hatching"><hi rend="latin">stica</hi>, sei es mit Gott, sei es mit dem Nichts (– es ist Ein Verlangen*)</del> <space unit="char" quantity="30"/> Bei den Priestern 
                   </line><line xml:id="srcD_line_a9r_lb13" start="#a9r_lb13" n="13">wird eben <hi rend="underline">Alles</hi> gefährlicher, <metamark function="insertion"><add place="above">nicht nur <del rend="hatching">ihre</del> Kurmittel und Heilkünste, sondern auch</add></metamark> Hochmuth, Rache, Scharfsinn, Ausschweifung, Liebe, Herrschsucht, Tugend, Krankheit; – mit einiger 
                   </line><line xml:id="srcD_line_a9r_lb14" start="#a9r_lb14" n="14">Billigkeit ließe sich allerdings auch hinzufügen, daß erst auf dem Boden dieser <hi rend="underline">wesentlich</hi> <hi rend="underline">gefährlichen</hi> Daseinsform des 
@@ -2719,7 +3383,7 @@
             <anchor corresp="#a14r_div2_GM0113"/>
                </line></zone><zone xml:id="srcD_zone_a14r_note_d2e488" type="note-bottom" start="#a14r_note_d2e488"/></zone><zone xml:id="srcD_zone_a14r_div2_GM0113" start="#a14r_div2_GM0113" type="lastBlock" style="padding-bottom:5em;"><line xml:id="srcD_line_a14r_head_d2e498_a14r_lb27" start="#a14r_lb27" n="27"><zone xml:id="srcD_zone_a14r_head_d2e498_a14r_lb27" type="head"><head corresp="#a14r_head_d2e498"><milestone unit="page" edRef="#Ed" n="26"/><choice><sic change="#GMformerVersion">14.</sic><corr resp="#editors" change="#GM01finalVersion">13.</corr></choice></head>
                
-                  </zone></line><line xml:id="srcD_line_a14r_lb28" start="#a14r_lb28" rend="indent" n="28">– Doch kommen wir zurück: das Problem vom <hi rend="underline">andren</hi> Ursprung des „Guten“, vom Guten, wie ihn der Mensch des <hi rend="latin">Res</hi><pc force="weak"><hi rend="latin">-</hi></pc>
+                  </zone></line><line xml:id="srcD_line_a14r_lb28" start="#a14r_lb28" rend="indent" n="28">– Doch kommen wir zurück: das Problem vom <hi rend="underline">andren</hi> Ursprung des „Guten“, vom Guten, wie ihn der Mensch des <hi rend="latin">Res</hi><hi rend="latin"><pc force="weak">-</pc></hi>
                   </line><line xml:id="srcD_line_a14r_lb29" start="#a14r_lb29" n="29"><hi rend="latin">sentiment<del rend="strikethrough">s</del> sich ausgedacht hat, verlangt nach seinem Abschluß. – Daß die Lämmer den großen Raubvögeln gram sind, 
                   </hi></line><line xml:id="srcD_line_a14r_lb30" start="#a14r_lb30" n="30">das befremdet nicht: nur liegt darin kein Grund, es den großen Raubvögeln zu verargen, daß sie sich kleine Lämmer holen. 
                   </line><line xml:id="srcD_line_a14r_lb31" start="#a14r_lb31" n="31">Und wenn die Lämmer unter sich sagen „diese Raubvögel sind böse; und wer so wenig als möglich ein Raubvogel ist, 
@@ -2796,7 +3460,7 @@
                   </line><line xml:id="srcD_line_a16r_lb15" start="#a16r_lb15" rend="indent" n="15">– „Jetzt geben sie mir zu verstehen, daß sie nicht nur besser seien als die Mächtigen, die Herrn der Erde, deren 
                   </line><line xml:id="srcD_line_a16r_lb16" start="#a16r_lb16" n="16">Speichel sie lecken müssen (<hi rend="underline">nicht</hi> aus Furcht, ganz und gar nicht aus Furcht<add place="inline" corresp="#a16r_add_d2e183">!</add><del rend="strikethrough">,</del> sondern weil es Gott gebietet, alle 
                   </line><line xml:id="srcD_line_a16r_lb17" start="#a16r_lb17" n="17">Obrigkeit zu ehren) – daß sie nicht nur besser seien, sondern es auch „besser hätten“, jedenfalls einmal <metamark function="insertion"><add place="above">besser</add></metamark> haben würden. 
-                  </line><line xml:id="srcD_line_a16r_lb18" start="#a16r_lb18" n="18">Aber genug! genug! Ich halte es nicht mehr aus. Schlechte Luft! Schlechte Luft! Diese <choice><sic>Werkstatte</sic><corr resp="#editors">Werkstätte</corr></choice>, wo man <hi rend="underline">Ideale</hi> <hi rend="underline">fa</hi><pc force="weak"><hi rend="underline">-</hi></pc>
+                  </line><line xml:id="srcD_line_a16r_lb18" start="#a16r_lb18" n="18">Aber genug! genug! Ich halte es nicht mehr aus. Schlechte Luft! Schlechte Luft! Diese <choice><sic>Werkstatte</sic><corr resp="#editors">Werkstätte</corr></choice>, wo man <hi rend="underline">Ideale</hi> <hi rend="underline">fa</hi><hi rend="underline"><pc force="weak">-</pc></hi>
                   </line><line xml:id="srcD_line_a16r_lb19" start="#a16r_lb19" n="19"><hi rend="underline">brizirt – mich dünkt, sie stinkt vor lauter Lügen.“
                
                   </hi></line><line xml:id="srcD_line_a16r_lb20" start="#a16r_lb20" rend="indent" n="20">– Nein! Noch einen Augenblick! Sie sagten noch nichts<del rend="strikethrough">,</del> von dem Meisterstücke <metamark function="insertion"><add place="above">dieser Schwarzkünstler, welche <subst><del rend="overwritten">w</del><add place="superimposed" corresp="#a16r_add_d2e226">W</add></subst>eiß, englisches </add></metamark><del rend="hatching"><subst>schwarzer Kunst, mit der man</subst></del> 
@@ -2848,7 +3512,7 @@
                   </line><line xml:id="srcD_line_a18r_lb6" start="#a18r_lb6" n="6">doch? „Der Glaube bietet uns ja viel mehr, <metamark function="insertion"><add place="above">– sagt er <hi rend="latin">de spectac. c. 29 ss.</hi> –</add></metamark> <hi rend="underline">viel Stärkeres</hi>; Dank der Erlösung stehen uns ja ganz andre Freu<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a18r_lb7" start="#a18r_lb7" n="7">den zu Gebote; an Stelle der Athleten haben wir unsre Märtyrer; wollen wir Blut, nun, so haben wir das 
                   </line><line xml:id="srcD_line_a18r_lb8" start="#a18r_lb8" n="8">Blut Christi… Aber was erwartet uns erst am Tage seiner Wiederkunft, seines Triumphes!“ – und nun fährt er 
-                  </line><line xml:id="srcD_line_a18r_lb9" start="#a18r_lb9" n="9">fort, der entzückte Visionär – <hi rend="latin">at enim supersunt alia spectacula, ille ultimus et perpetuus judicii dies, ille nati</hi><pc force="weak"><hi rend="latin">-</hi></pc>
+                  </line><line xml:id="srcD_line_a18r_lb9" start="#a18r_lb9" n="9">fort, der entzückte Visionär – <hi rend="latin">at enim supersunt alia spectacula, ille ultimus et perpetuus judicii dies, ille nati</hi><hi rend="latin"><pc force="weak">-</pc></hi>
                   </line><line xml:id="srcD_line_a18r_lb10" start="#a18r_lb10" n="10"><hi rend="latin">onibus insperatus, ille derisus, cum tanta saeculi vetustas et tot ejus nativitates uno igne haurientur. Quae tunc 
                      </hi></line><line xml:id="srcD_line_a18r_lb11" start="#a18r_lb11" n="11"><hi rend="latin">spectaculi latitudo! <hi rend="underline">Quid</hi> <hi rend="underline">admirer</hi>! <hi rend="underline">Quid</hi> <hi rend="underline">rideam</hi>! <hi rend="underline">Ubi</hi> <hi rend="underline">gaudeam</hi>! <hi rend="underline">Ubi</hi> <hi rend="underline">exultem</hi>, spectans tot et tantos reges, qui 
                   </hi></line><line xml:id="srcD_line_a18r_lb12" start="#a18r_lb12" n="12"><hi rend="latin">in coelum recepti nuntiabantur, cum ipso Jove et ipsis suis testibus in imis tenebris congemescentes! Item prae<pc force="weak">-</pc>
@@ -2857,7 +3521,7 @@
                   </hi></line><line xml:id="srcD_line_a18r_lb15" start="#a18r_lb15" n="15"><hi rend="latin">erubescentes, quibus nihil ad deum pertinere suadebant, quibus animas aut nullas aut non in pristina corpora reditu<pc force="weak">-</pc>
                   </hi></line><line xml:id="srcD_line_a18r_lb16" start="#a18r_lb16" n="16"><hi rend="latin">ras affirmabant! Etiam poetas non ad Rhadamanti nec ad Minois, sed ad inopinati Christi tribunal palpitantes! 
                   
-                     </hi></line><zone xml:id="srcD_zone_a18r_lb17" start="#a18r_lb17" type="note-zone" style="margin-left:909px;"><line xml:id="srcD_line_a18r_lb17" start="#a18r_lb17" style="bottom:1em;" hand="N_black1" n="17">v.s.</line></zone><zone xml:id="srcD_zone_a18r_fw_d2e37" type="fw-bottom-left" start="#a18r_fw_d2e37"><fw type="folNumber" hand="#GSA_pencil" place="bottom-left" corresp="#a18r_fw_d2e37">18</fw></zone></zone></surface><surface xml:id="srcD_surface_a18v" type="relative" start="#a18v"><zone xml:id="srcD_zone_a18v_div2_d2e33" start="#a18v_div2_d2e33" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a18v_fw_d2e26" type="fw-top-right" start="#a18v_fw_d2e26"><fw type="pageNumber" hand="#N-Archiv_red" place="top-right" corresp="#a18v_fw_d2e26"><subst><del rend="overwritten">15</del><add place="superimposed" corresp="#a18v_add_d2e30">13b</add></subst></fw></zone><line xml:id="srcD_line_a18v_lb1" start="#a18v_lb1" n="1"><hi rend="latin">Tunc magis tragoedi audiendi, magis scilicet vocales</hi> (besser <del rend="strikethrough">„</del>bei Stimme<del rend="strikethrough">“</del>, noch ärgere Schreier) <hi rend="latin">in sua propria calami</hi><pc force="weak"><hi rend="latin">-</hi></pc>
+                     </hi></line><zone xml:id="srcD_zone_a18r_lb17" start="#a18r_lb17" type="note-zone" style="margin-left:909px;"><line xml:id="srcD_line_a18r_lb17" start="#a18r_lb17" style="bottom:1em;" hand="N_black1" n="17">v.s.</line></zone><zone xml:id="srcD_zone_a18r_fw_d2e37" type="fw-bottom-left" start="#a18r_fw_d2e37"><fw type="folNumber" hand="#GSA_pencil" place="bottom-left" corresp="#a18r_fw_d2e37">18</fw></zone></zone></surface><surface xml:id="srcD_surface_a18v" type="relative" start="#a18v"><zone xml:id="srcD_zone_a18v_div2_d2e33" start="#a18v_div2_d2e33" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a18v_fw_d2e26" type="fw-top-right" start="#a18v_fw_d2e26"><fw type="pageNumber" hand="#N-Archiv_red" place="top-right" corresp="#a18v_fw_d2e26"><subst><del rend="overwritten">15</del><add place="superimposed" corresp="#a18v_add_d2e30">13b</add></subst></fw></zone><line xml:id="srcD_line_a18v_lb1" start="#a18v_lb1" n="1"><hi rend="latin">Tunc magis tragoedi audiendi, magis scilicet vocales</hi> (besser <del rend="strikethrough">„</del>bei Stimme<del rend="strikethrough">“</del>, noch ärgere Schreier) <hi rend="latin">in sua propria calami</hi><hi rend="latin"><pc force="weak">-</pc></hi>
                   </line><line xml:id="srcD_line_a18v_lb2" start="#a18v_lb2" n="2"><hi rend="latin">tate; tunc histriones cognoscendi, solutiores multo per ignem; tunc spectandus auriga in flammea rota totus ru<pc force="weak">-</pc>
                   </hi></line><line xml:id="srcD_line_a18v_lb3" start="#a18v_lb3" n="3"><hi rend="latin">bens, tunc xystici contemplandi non in gymnasiis, sed in igne jaculati, nisi quod ne tunc quidem illos velim vivos, 
                   </hi></line><line xml:id="srcD_line_a18v_lb4" start="#a18v_lb4" n="4"><hi rend="latin">ut qui malim ad eos potius conspectum <hi rend="underline">insatiabilem</hi> conferre, qui in dominum desaevierunt. „Hic est ille, dicam, 
@@ -2868,7 +3532,7 @@
                      </hi></line><line xml:id="srcD_line_a18v_lb9" start="#a18v_lb9" n="9"><hi rend="latin">tia commeantium laederentur.“ Ut talia spectes, <hi rend="underline">ut</hi> <hi rend="underline">talibus</hi> <hi rend="underline">exultes</hi>, quis tibi praetor aut consul aut quaestor aut sacerdos 
                      </hi></line><line xml:id="srcD_line_a18v_lb10" start="#a18v_lb10" n="10"><hi rend="latin">de sua liberalitate praestabit? Et tamen haec jam habemus quodammodo <hi rend="underline">per</hi> <hi rend="underline">fidem</hi> spiritu imaginante repraesen<pc force="weak">-</pc>
                   </hi></line><line xml:id="srcD_line_a18v_lb11" start="#a18v_lb11" n="11"><hi rend="latin">tata. Ceterum qualia illa sunt, quae nec oculus vidit nec auris audivit nec in cor hominis ascenderunt? (I Cor. 2, 9) 
-                  </hi></line><line xml:id="srcD_line_a18v_lb12" start="#a18v_lb12" n="12"><hi rend="latin">Credo circo et utraque cavea (erster und vierter Rang oder, nach Anderen, komische und tragische Bühne) <hi rend="latin">et omni stadio gra</hi><pc force="weak"><hi rend="latin">-</hi></pc>
+                  </hi></line><line xml:id="srcD_line_a18v_lb12" start="#a18v_lb12" n="12"><hi rend="latin">Credo circo et utraque cavea (erster und vierter Rang oder, nach Anderen, komische und tragische Bühne) <hi rend="latin">et omni stadio gra</hi><hi rend="latin"><pc force="weak">-</pc></hi>
                   </hi></line><line xml:id="srcD_line_a18v_lb13" start="#a18v_lb13" n="13"><hi rend="latin">tiora.“ – Per fidem</hi></line></zone></surface><surface xml:id="srcD_surface_a19r" type="relative" start="#a19r"><zone xml:id="srcD_zone_a19r_div2_GM0116" start="#a19r_div2_GM0116" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a19r_fw_d2e26" type="fw-top-right" start="#a19r_fw_d2e26"><fw type="pageNumber" hand="#N-Archiv_red" place="top-right" corresp="#a19r_fw_d2e26"><subst><del rend="overwritten"><del rend="erased">16</del></del><add place="superimposed" corresp="#a19r_add_d2e31">13c</add></subst></fw></zone><line xml:id="srcD_line_a19r_head_d2e50_a19r_lb1" start="#a19r_lb1" n="1"><zone xml:id="srcD_zone_a19r_head_d2e50_a19r_lb1" type="head"><head corresp="#a19r_head_d2e50"><choice><sic change="#GMformerVersion">17.</sic><corr resp="#editors" change="#GM01finalVersion">16.</corr></choice></head>
                
                   </zone></line><line xml:id="srcD_line_a19r_lb2" start="#a19r_lb2" n="2">Kommen wir zum Schluß. Die beiden <hi rend="underline">entgegengesetzten</hi> Werthe „gut und schlecht“, „gut und böse“ haben einen furchtbaren
@@ -2960,7 +3624,7 @@
                   </line><line xml:id="srcD_line_a21r_lb48" start="#a21r_lb48" n="48" hand="#N_brown1">Willensakten dazwischengelegt werden darf, ohne daß diese lange Kette des Willens springt. Was setzt das aber Alles voraus! 
                   </line><line xml:id="srcD_line_a21r_lb50" start="#a21r_lb50" n="50" hand="#N_brown1">Wie muß der Mensch, um dermaaßen über die Zukunft vorauszuverfügen, erst gelernt haben, das nothwendige vom zufälligen 
                   </line><line xml:id="srcD_line_a21r_lb52" start="#a21r_lb52" n="52" hand="#N_brown1">Geschehen scheiden, causal denken, das Ferne wie gegenwärtig sehn und vorwegnehmen, was Zweck ist, was Mittel <metamark function="insertion"><add place="above">dazu</add></metamark> ist, mit 
-                  </line><line xml:id="srcD_line_a21r_lb54" start="#a21r_lb54" n="54" hand="#N_brown1">Sicherheit ansetzen, überhaupt rechnen, berechnen können – wie muß dazu der Mensch selbst vorerst <pb edRef="#Ed" n="43"/><hi rend="underline">berechenbar</hi>, <hi rend="underline"> regelmä</hi><pc force="weak"><hi rend="underline">-</hi></pc>
+                  </line><line xml:id="srcD_line_a21r_lb54" start="#a21r_lb54" n="54" hand="#N_brown1">Sicherheit ansetzen, überhaupt rechnen, berechnen können – wie muß dazu der Mensch selbst vorerst <pb edRef="#Ed" n="43"/><hi rend="underline">berechenbar</hi>, <hi rend="underline"> regelmä</hi><hi rend="underline"><pc force="weak">-</pc></hi>
                      </line><line xml:id="srcD_line_a21r_lb56" start="#a21r_lb56" n="56" hand="#N_brown1"><hi rend="underline">ßig,<hi rend="underline"> nothwendig</hi> geworden sein, auch sich selbst für seine eigne Vorstellung, um endlich dergestalt, wie es ein Versprechender 
                   </hi></line><line xml:id="srcD_line_a21r_lb58" start="#a21r_lb58" n="58" hand="#N_brown1">thut, für sich <hi rend="underline">als</hi> <hi rend="underline">Zukunft</hi> gut sagen zu können!
                   
@@ -2972,7 +3636,7 @@
                   </zone></line><line xml:id="srcD_line_a21r_lb62" start="#a21r_lb62" n="62" hand="#N_brown1">Eben das ist die lange Geschichte von der Herkunft der <hi rend="underline">Verantwortlichkeit</hi>. Jene Aufgabe, ein Thier heranzuzüchten, das 
                   </line><line xml:id="srcD_line_a21r_lb64" start="#a21r_lb64" n="64" hand="#N_brown1">versprechen darf, schließt, wie wir bereits begriffen haben, als Bedingung und Vorbereitung die nähere Aufgabe in sich, den 
                   </line><line xml:id="srcD_line_a21r_lb66" start="#a21r_lb66" n="66" hand="#N_brown1">Menschen zuerst bis zu einem gewissen Grade nothwendig, einförmig, gleich unter Gleichen, regelmäßig und folglich berechen<pc force="weak">-</pc>
-                  </line><line xml:id="srcD_line_a21r_lb68" start="#a21r_lb68" n="68" hand="#N_brown1">bar zu <hi rend="underline">machen</hi>. Die ungeheure Arbeit dessen, was von mir „Sittlichkeit der Sitte“ genannt worden ist (vergl. <hi rend="latin">Morgen</hi><pc force="weak"><hi rend="latin">-</hi></pc>
+                  </line><line xml:id="srcD_line_a21r_lb68" start="#a21r_lb68" n="68" hand="#N_brown1">bar zu <hi rend="underline">machen</hi>. Die ungeheure Arbeit dessen, was von mir „Sittlichkeit der Sitte“ genannt worden ist (vergl. <hi rend="latin">Morgen</hi><hi rend="latin"><pc force="weak">-</pc></hi>
                   </line><line xml:id="srcD_line_a21r_lb70" start="#a21r_lb70" n="70" hand="#N_brown1"><hi rend="latin">röthe S. 7. 13. 16) – die eigentliche Arbeit des Menschen an sich selber in der längsten Zeitdauer des Menschengeschlechts, seine 
                   </hi></line><line xml:id="srcD_line_a21r_lb72" start="#a21r_lb72" n="72" hand="#N_brown1">ganze <hi rend="underline">vorhistorische</hi> Arbeit hat hierin ihren Sinn, ihre große Rechtfertigung, wie viel ihr auch von Härte, Tyrannei, Stumpf<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a21r_lb74" start="#a21r_lb74" n="74" hand="#N_brown1">sinn und Idiotismus innewohnt: <subst><del rend="overwritten">D</del><add place="superimposed" corresp="#a21r_add_d2e272">d</add></subst>er Mensch wurde mit Hülfe der Sittlichkeit der Sitte und der socialen Zwangsjacke wirk<pc force="weak">-</pc>
@@ -3114,7 +3778,7 @@
                         </line><line xml:id="srcD_line_a24r_lb27" start="#a24r_lb27" n="27">Geschädigte für <metamark function="insertion"><add place="above">den Nachtheil, hinzugerechnet die Unlust über den Nachtheil,</add></metamark><del rend="hatching">die Unlust</del>  <del rend="hatching">geschädigt zu sein</del>, einen <metamark function="insertion"><add place="above">außerordentlichen Gegen-</add></metamark>Genuß eintauscht<add place="inline" corresp="#a24r_add_d2e354">,</add> <add place="inline" corresp="#a24r_add_d2e358"><del rend="strikethrough">–</del></add> <add xml:id="srcD_add_a24r_add_d2e362" corresp="#a24r_add_d2e362" place="above">:</add> <metamark function="insertion"><add place="above">das</add></metamark> <subst><del rend="overwritten">l</del><add place="superimposed" corresp="#a24r_add_d2e371">L</add></subst>eiden-<hi rend="underline">machen</hi>, wie gesagt, <metamark function="insertion"><add place="above"><add place="inline" rend="insMExt" corresp="#a24r_add_d2e382"><add place="inline" rend="insMExt" corresp="#a24r_add_d2e383"><restore type="dotUnderline"><del rend="hatching">–</del></restore> </add>ein eigentliches <hi rend="underline">Fest</hi>, </add><subst><del rend="overwritten">e</del><add place="superimposed" corresp="#a24r_add_d2e395">E</add></subst>twas, das <metamark function="insertion"><add place="above">wie gesagt,</add></metamark> um so höher </add></metamark><del rend="hatching"><subst instant="true" change="#version0">einen ausgesuchten</subst></del> 
                            </line><line xml:id="srcD_line_a24r_lb28" start="#a24r_lb28" n="28"><del rend="hatching">und</del> im Preise st<add xml:id="srcD_add_a24r_add_d2e411" corresp="#a24r_add_d2e411" place="above">and</add><del rend="strikethrough">eht</del>, <metamark function="insertion"><add place="above"><del rend="strikethrough">wenn</del></add></metamark><del rend="hatching">als</del><metamark function="insertion"><add place="below">je mehr</add></metamark> es <metamark function="insertion"><add place="above"><del rend="hatching">*eigentlich</del></add></metamark> dem Range und der gesellschaftlichen Stellung des Gläubigers <metamark function="insertion"><add place="above"><del rend="hatching">im Grunde</del></add></metamark> widerspr<subst><del rend="overwritten">icht.</del><add place="superimposed" corresp="#a24r_add_d2e436">ach.</add></subst> <metamark function="insertion"><add place="above">Dies vermuthungsweise gesprochen:</add></metamark> <del rend="hatching"><subst>Diesen Dingen ist</subst></del>
                               </line><line xml:id="srcD_line_a24r_lb29" start="#a24r_lb29" n="29"><metamark function="insertion"><add place="above">denn solchen unterirdischen Dingen ist </add></metamark>schwer auf den Grund zu sehn, abgesehn davon, daß es peinlich ist; und wer hier den Begriff der „Rache“ plump da<pc force="weak">-</pc>
-                        </line><line xml:id="srcD_line_a24r_lb30" start="#a24r_lb30" n="30">zwischen wirft, hat sich den Einblick eher noch verdeckt und verdunkelt als leichter gemacht<subst instant="true"><del rend="overwritten">.</del><add place="superimposed" corresp="#a24r_add_d2e460"> (</add></subst> – Rache <metamark function="insertion"><add place="above">selbst fü<subst instant="true"><del rend="overwritten">r</del><add place="superimposed" corresp="#a24r_add_d2e470">hrt</add></subst> ja eben</add></metamark><del rend="hatching"><subst>ist nur eine Wür</subst></del><del rend="none"><pc force="weak"><subst>-</subst></pc></del>
+                        </line><line xml:id="srcD_line_a24r_lb30" start="#a24r_lb30" n="30">zwischen wirft, hat sich den Einblick eher noch verdeckt und verdunkelt als leichter gemacht<subst instant="true"><del rend="overwritten">.</del><add place="superimposed" corresp="#a24r_add_d2e460"> (</add></subst> – Rache <metamark function="insertion"><add place="above">selbst fü<subst instant="true"><del rend="overwritten">r</del><add place="superimposed" corresp="#a24r_add_d2e470">hrt</add></subst> ja eben</add></metamark><del rend="hatching"><subst>ist nur eine Wür</subst></del><del rend="none"><subst><pc force="weak">-</pc></subst></del>
                         </line><line xml:id="srcD_line_a24r_lb31" start="#a24r_lb31" n="31"><metamark function="insertion"><add place="above">auf das gleiche Problem zurück: „wie kann Leidenmachen eine Genugthuung sein?“)</add></metamark><del rend="hatching">ze, eine Zuthat mehr, sie ist nicht das Wesentliche<add place="inline" corresp="#a24r_add_d2e486">*, <metamark function="insertion"><add place="above"><del rend="hatching">*wie ich fürchte,</del></add></metamark></add> an jenem Genusse*)</del> Es widersteht<add place="inline" corresp="#a24r_add_d2e494">, <metamark function="insertion"><add place="above">wie mir scheint,</add></metamark></add> de<subst space="preserve"><del rend="overwritten">m</del><add place="superimposed" corresp="#a24r_add_d2e502">r</add> <metamark function="insertion"><add place="above">Delikatesse</add></metamark><del rend="hatching">Instinkte</del></subst>, noch mehr der Tar<pc force="weak">-</pc>
                         </line><line xml:id="srcD_line_a24r_lb32" start="#a24r_lb32" n="32">tüfferie zahmer Hausthiere, <metamark function="insertion"><add place="above">will sagen</add></metamark><del rend="hatching">wie wir</del> moderne<subst corresp="#subst7b_a24r"><del rend="overwritten">n</del><add place="superimposed" corresp="#a24r_add_d2e524">r</add></subst> Menschen<metamark function="insertion"><add place="above">, will sagen uns</add></metamark>, es <del rend="hatching">sich</del><add xml:id="srcD_add_a24r_add_d2e534" corresp="#a24r_add_d2e534" place="below">uns</add> in aller Kraft vorstellig zu machen, bis zu welchem Grade 
                         </line><line xml:id="srcD_line_a24r_lb33" start="#a24r_lb33" n="33">die <hi rend="underline">Grausamkeit</hi> die große Festfreude der älteren Menschheit ausmacht, ja als Ingredienz fast jeder ihrer Freuden <metamark function="insertion"><add place="above">zu<pc force="weak">-</pc></add></metamark><del rend="hatching">ein</del><del rend="none"><pc force="weak">-</pc></del>
@@ -3259,7 +3923,7 @@
                   </line><line xml:id="srcD_line_a28r_lb28" start="#a28r_lb28" n="28" hand="#N_brown1">Der Compromiß mit dem Zorn der zunächst durch die Übelthat Betroffenen; ein Bemühen darum, den Fall zu loka<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a28r_lb29" start="#a28r_lb29" n="29" hand="#N_brown1">lisiren und einer weiteren oder gar allgemeinen Betheiligung und Beunruhigung vorzubeugen; Versuche Äquivalente 
                   </line><line xml:id="srcD_line_a28r_lb30" start="#a28r_lb30" n="30" hand="#N_brown1">zu finden und den ganzen Handel beizulegen (die <hi rend="latin">compositio</hi>); vor allem der immer bestimmter auftretende Wille, 
-                  </line><line xml:id="srcD_line_a28r_lb31" start="#a28r_lb31" n="31" hand="#N_brown1">jedes Vergehn als in irgend einem Sinne <hi rend="underline">abzahlbar</hi> zu nehmen, <add xml:id="srcD_add_a28r_add_d2e328" corresp="#a28r_add_d2e328" place="above">also, <subst instant="true"><del rend="overwritten">*in</del><add place="superimposed" corresp="#a28r_add_d2e333">w</add></subst>enigstens bis zu einem gewissen Maaße, den Verbrecher und </add><del rend="hatching"><subst instant="true" change="#version0">und auch *dies so viel wie möglich auch nur in Hin</subst><pc force="weak"><subst instant="true" change="#version0">-</subst></pc></del>
+                  </line><line xml:id="srcD_line_a28r_lb31" start="#a28r_lb31" n="31" hand="#N_brown1">jedes Vergehn als in irgend einem Sinne <hi rend="underline">abzahlbar</hi> zu nehmen, <add xml:id="srcD_add_a28r_add_d2e328" corresp="#a28r_add_d2e328" place="above">also, <subst instant="true"><del rend="overwritten">*in</del><add place="superimposed" corresp="#a28r_add_d2e333">w</add></subst>enigstens bis zu einem gewissen Maaße, den Verbrecher und </add><del rend="hatching"><subst instant="true" change="#version0">und auch *dies so viel wie möglich auch nur in Hin</subst><subst instant="true" change="#version0"><pc force="weak">-</pc></subst></del>
                      </line><line xml:id="srcD_line_a28r_lb32" start="#a28r_lb32" n="32" hand="#N_brown1"><add xml:id="srcD_add_a28r_add_d2e342" corresp="#a28r_add_d2e342" place="above">seine That von einander zu <hi rend="underline">isoliren</hi> –</add><del rend="hatching">sicht auf den direkten Schaden</del> das sind die Züge, die der ferneren Entwicklung des Strafrechts immer deutlicher aufge<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a28r_lb33" start="#a28r_lb33" n="33" hand="#N_brown1">prägt sind. Wächst die Macht und das Selbstbewußtsein eines Gemeinwesens, so mildert sich immer auch das Strafrecht; 
                   </line><line xml:id="srcD_line_a28r_lb34" start="#a28r_lb34" n="34" hand="#N_brown1">jede Schwächung und tiefere Gefährdung von jenem bringt dessen härtere Formen wieder an’s Licht. Der „Gläubiger“ 
@@ -3312,7 +3976,7 @@
                   </line><line xml:id="srcD_line_a30r_lb14" start="#a30r_lb14" n="14">Nutzen umgebildet und umgerichtet wird; daß alles Geschehen <metamark function="insertion" rend="inSpatium"><add place="above">in der organischen Welt</add></metamark> ein <hi rend="underline">Überwältigen</hi>, <hi rend="underline">Herrwerden</hi> und daß wiederum alles 
                   </line><line xml:id="srcD_line_a30r_lb15" start="#a30r_lb15" n="15">Überwältigen und Herrwerden <del corresp="#substDel7a_a30r" rend="hatching">in der organischen und</del> <del corresp="#substDel7b_a30r" rend="hatching">unorganischen Welt</del> ein Neu-Interpretieren, ein Zurechtmachen ist, 
                   </line><line xml:id="srcD_line_a30r_lb16" start="#a30r_lb16" n="16">bei dem der bisherige „Sinn“ <metamark function="insertion" rend="inSpatium"><add place="above">und „Zweck“</add></metamark> nothwendig verdunkelt oder ganz ausgelöscht werden muß. Wenn man die <hi rend="underline">Nützlichkeit</hi> 
-                  </line><line xml:id="srcD_line_a30r_lb17" start="#a30r_lb17" n="17">von irgend welchem physiologischen Organ (oder auch einer Rechts-Institution, einer <metamark function="insertion" rend="inSpatium"><add place="above">gesellschaftlichen</add></metamark> Sitte, eines <metamark function="insertion" rend="inSpatium"><add place="above">politischen</add></metamark> Brauchs, einer Form <add xml:id="srcD_add_a30r_add_d2e498" corresp="#a30r_add_d2e498" place="above">in den</add><del rend="hatching"><subst>des</subst></del></line><line xml:id="srcD_line_a30r_lb18" start="#a30r_lb18" n="18"><metamark function="insertion"><add place="above">Künsten oder im</add></metamark> religiösen Cultus) noch so gut begriffen hat, so hat man damit noch nichts in Betreff seiner Entstehung<del rend="hatching"><subst xml:space="preserve">, noch nicht ein</subst></del><del rend="none"><pc force="weak"><subst xml:space="preserve">-</subst></pc></del> 
+                  </line><line xml:id="srcD_line_a30r_lb17" start="#a30r_lb17" n="17">von irgend welchem physiologischen Organ (oder auch einer Rechts-Institution, einer <metamark function="insertion" rend="inSpatium"><add place="above">gesellschaftlichen</add></metamark> Sitte, eines <metamark function="insertion" rend="inSpatium"><add place="above">politischen</add></metamark> Brauchs, einer Form <add xml:id="srcD_add_a30r_add_d2e498" corresp="#a30r_add_d2e498" place="above">in den</add><del rend="hatching"><subst>des</subst></del></line><line xml:id="srcD_line_a30r_lb18" start="#a30r_lb18" n="18"><metamark function="insertion"><add place="above">Künsten oder im</add></metamark> religiösen Cultus) noch so gut begriffen hat, so hat man damit noch nichts in Betreff seiner Entstehung<del rend="hatching"><subst xml:space="preserve">, noch nicht ein</subst></del><del rend="none"><subst xml:space="preserve"><pc force="weak">-</pc></subst></del> 
                   </line><line xml:id="srcD_line_a30r_lb19" start="#a30r_lb19" n="19"><del rend="hatching">mal in Betreff seiner bisherigen</del> <del rend="hatching">Entwicklung</del> begriffen: so unbequem und unangenehm dies älteren Ohren klingen 
                   </line><line xml:id="srcD_line_a30r_lb20" start="#a30r_lb20" n="20">mag, – denn <metamark function="insertion"><add place="above">von Alters her</add></metamark><del rend="hatching">bisher</del> hatte man in dem nachweisbaren Zwecke<add place="inline" corresp="#a30r_add_d2e531">, <metamark function="insertion" rend="inSpatium"><add place="above">in der Nützlichkeit</add></metamark></add> eines Dings, <milestone unit="page" edRef="#Ed" n="68"/>einer Form, einer Einrichtung auch <metamark function="insertion"><add place="above">deren</add></metamark><del rend="hatching">ihren</del> Ent<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a30r_lb21" start="#a30r_lb21" n="21">stehungsgrund zu begreifen <subst><del rend="hatching">gewähnt</del><del rend="overwritten" cause="insM">.</del><metamark function="insertion" rend="afterWord"><add place="above">geglaubt, das Auge <metamark function="insertion"><add place="above">als gemacht zum</add></metamark><del rend="hatching">aus dem</del> Sehen, die Hand <metamark function="insertion"><add place="above">als gemacht <hi rend="underline">zum</hi></add></metamark><del rend="hatching">aus dem</del> Greifen.<add place="inline" rend="insMExt" corresp="#a30r_add_d2e571"> So hat man sich auch die Strafe vorgestellt als erfunden <hi rend="underline">zum</hi> Strafen.</add></add></metamark></subst> Aber alle Zwecke, alle Nützlichkeiten sind nur <hi rend="underline">Anzeichen</hi> davon, daß <metamark function="insertion" rend="inSpatium"><add place="above"><del rend="hatching">wieder</del></add></metamark> ein Wille zur 
@@ -3322,7 +3986,7 @@
                   </line><line xml:id="srcD_line_a30r_lb25" start="#a30r_lb25" n="25">einander folgen und ablösen. „Entwicklung“ <metamark function="insertion" rend="inSpatium"><add place="above">eines Dings<add place="inline" rend="insMExt" corresp="#a30r_add_d2e612">, eines Brauchs<add place="inline" rend="insMExt" corresp="#a30r_add_d2e614">, eines Organs</add></add></add></metamark> ist demgemäß nichts weniger als sein <hi rend="latin">progressus</hi> auf ein Ziel hin, noch weni<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a30r_lb26" start="#a30r_lb26" n="26">ger ein logischer und kürzester, mit dem kleinsten Aufwand von Kraft und Kosten erreichter <hi rend="latin">progressus</hi>, – sondern die Auf<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a30r_lb27" start="#a30r_lb27" n="27">einanderfolge von mehr oder minder tiefgehenden, mehr oder minder von einander unabhängigen <metamark function="insertion" rend="inSpatium"><add place="above"><add corresp="#substAdd11_a30r" place="inline" rend="insMExt">an ihm sich abspielenden<space unit="char" quantity="5"/></add><del corresp="#substDel11a_a30r" rend="hatching">an irgend etwas Festerem und Widerstehenden </del><metamark function="insertion"><add place="above"><del corresp="#substDel11b_a30r" rend="hatching">sich abspielenden</del></add></metamark><del corresp="#substDel10a_a30r" rend="hatching">zu Stande</del><add xml:id="srcD_add_a30r_add_d2e646" corresp="#a30r_add_d2e646" place="below"><del corresp="#substDel10b_a30r" rend="hatching">gekommenen</del></add></add></metamark> Überwältigung<subst corresp="#subst10_a30r" xml:space="preserve"><del rend="overwritten">en</del><add place="superimposed" corresp="#a30r_add_d2e654">s-</add><add xml:id="srcD_add_a30r_add_d2e656" corresp="#a30r_add_d2e656" place="below">-Prozessen</add></subst>
-                        <add place="inline" corresp="#a30r_add_d2e660"><subst xml:id="subst9_a30r" seq="1">,</subst></add><del rend="hatching"><subst xml:id="subst9_a30r" seq="1">und Versu</subst><pc force="weak"><subst xml:id="subst9_a30r" seq="1">-</subst></pc></del></line><line xml:id="srcD_line_a30r_lb28" start="#a30r_lb28" n="28"><del rend="hatching">chen</del><del rend="hatching">der Überwältigung</del>, hinzugerechnet die dagegen <metamark function="insertion" rend="inSpatium"><add place="above">jedes Mal</add></metamark> aufgewendeten Widerstände, die <metamark function="insertion" rend="inSpatium"><add place="above">jedesmaligen</add></metamark> Form-Verwandlungen zum Zweck der 
+                        <add place="inline" corresp="#a30r_add_d2e660"><subst xml:id="subst9_a30r" seq="1">,</subst></add><del rend="hatching"><subst xml:id="subst9_a30r" seq="1">und Versu</subst><subst xml:id="subst9_a30r" seq="1"><pc force="weak">-</pc></subst></del></line><line xml:id="srcD_line_a30r_lb28" start="#a30r_lb28" n="28"><del rend="hatching">chen</del><del rend="hatching">der Überwältigung</del>, hinzugerechnet die dagegen <metamark function="insertion" rend="inSpatium"><add place="above">jedes Mal</add></metamark> aufgewendeten Widerstände, die <metamark function="insertion" rend="inSpatium"><add place="above">jedesmaligen</add></metamark> Form-Verwandlungen zum Zweck der 
                   </line><line xml:id="srcD_line_a30r_lb29" start="#a30r_lb29" n="29">Vertheidigung und Reaktion, <metamark function="insertion" rend="inSpatium"><add place="above">auch</add></metamark> die Resultate von gelungenen Gegenaktionen<subst corresp="#subst14_a30r"><del rend="overwritten">,</del><add place="superimposed" corresp="#a30r_add_d2e689">.</add></subst> <del corresp="#substDel14a_a30r" rend="hatching">von spontanen</del>
                         <del corresp="#substDel14b_a30r" rend="hatching"><subst instant="true" xml:space="preserve"><del rend="overwritten">,</del><add place="superimposed" corresp="#a30r_add_d2e699"> <del rend="hatching">A</del></add></subst>ngriffen</del>
                         <del corresp="#substDel14c_a30r" rend="hatching">, Eingriffen, Aneignungen</del>.<metamark function="insertion" rend="afterWord"><add place="above"><del corresp="#substDel14d_a30r" rend="hatching">seitens des Dings, das sich entwickelt</del>.</add></metamark>
@@ -3339,7 +4003,7 @@
                   </line><line xml:id="srcD_line_a30r_lb38" start="#a30r_lb38" n="38">ihm <metamark function="insertion" rend="inSpatium"><add place="above">Alles</add></metamark> <hi rend="underline">geopfert</hi> werden mußte<subst xml:space="preserve"><del rend="overwritten">.</del><add place="superimposed" corresp="#a30r_add_d2e831">;</add> <metamark function="insertion"><add place="above">die Menschheit als Masse dem Gedeihen einer </add></metamark><metamark function="insertion" rend="inSpatium"><add place="below">einzelnen stärkeren <hi rend="latin">Species</hi> Mensch <metamark function="insertion" rend="inSpatium"><add place="above">geopfert</add></metamark> – das <hi rend="underline">wäre</hi> ein Fortschritt…</add></metamark></subst> – Ich hebe diesen <metamark function="insertion"><add place="above">Haupt-</add></metamark>Gesichtspunkt <metamark function="insertion" rend="inSpatium"><add place="above">der historischen Methodik</add></metamark> hervor, <del rend="hatching">so sehr</del><metamark function="insertion" rend="inWord"><add place="above">um so mehr als<add place="inline" corresp="#a30r_add_d2e861"> er</add></add></metamark><del rend="hatching">er</del> <del rend="hatching">auch</del> <metamark function="insertion" rend="inSpatium"><add place="above">im Grunde <add corresp="#substAdd15_a30r" place="inline" rend="insMExt">dem gerade</add></add></metamark> <del corresp="#substDel15_a30r" rend="hatching">dem</del> herrschenden Instinkte <metamark function="insertion" rend="inSpatium"><add place="above">und Zeitgeschmacke</add></metamark> entgegengeht, 
                   </line><line xml:id="srcD_line_a30r_lb39" start="#a30r_lb39" n="39">welcher lieber sich noch mit der absoluten Zufälligkeit, ja <metamark function="insertion" rend="inSpatium"><add place="above">mechanistischen</add></metamark> Unsinnigkeit alles Geschehens <del instant="unknown">sich</del> vertragen würde als mit der The<pc force="weak">-</pc>
                   </line><line xml:id="srcD_line_a30r_lb40" start="#a30r_lb40" n="40">orie eines in allem Geschehen sich abspielenden <hi rend="underline">Macht-Willens</hi>. D<subst corresp="#subst16a_a30r"><del rend="overwritten">er</del><add place="superimposed" corresp="#a30r_add_d2e905">ie</add></subst> demokratische <metamark function="insertion"><add place="above">Idiosynkrasie</add></metamark><del rend="hatching">Haß</del> gegen alles, was herrscht und herrschen 
-                  </line><line xml:id="srcD_line_a30r_lb41" start="#a30r_lb41" n="41">will, der moderne <hi rend="underline">Misarchismus</hi> <metamark function="insertion" rend="inSpatium"><add place="above">(um ein <subst corresp="#subst17a_a30r"><del rend="overwritten">neues</del><add place="superimposed" corresp="#a30r_add_d2e924">schlechtes</add></subst> Wort für <subst corresp="#subst17b_a30r"><del rend="overwritten">diese</del><add place="superimposed" corresp="#a30r_add_d2e930">eine</add></subst><subst corresp="#subst17c_a30r"><del rend="overwritten">neue</del><add place="superimposed" corresp="#a30r_add_d2e936">schlechte</add></subst> Sache zu bilden)</add></metamark> hat sich <metamark function="insertion"><add place="above"><del rend="hatching">allmählich</del> <add place="inline" rend="insMExt" corresp="#a30r_add_d2e945">allmählich</add></add></metamark><del rend="hatching">bereits</del> dermaaßen <metamark function="insertion" rend="inSpatium"><add place="above"><del rend="hatching">schon</del></add></metamark> ins Geistige, Geistigste umgesetzt<metamark function="insertion" rend="beforePunctuation"><add place="above"> und verkleidet</add></metamark>, daß er <metamark function="insertion" rend="inSpatium"><add place="above">heute</add></metamark> <metamark function="insertion"><add place="above"><del rend="hatching">bereits</del></add></metamark><del rend="hatching">bereits</del> <metamark function="insertion"><add place="above">Schritt für Schritt <del rend="strikethrough" instant="true">bere</del></add></metamark><del rend="hatching"><subst>in den streng</subst></del><del rend="none"><pc force="weak"><subst>-</subst></pc></del></line><line xml:id="srcD_line_a30r_lb42" start="#a30r_lb42" n="42"><metamark function="insertion" rend="inWord"><add place="above">bereits in die streng<pc force="weak">-</pc></add></metamark>sten<add place="inline" corresp="#a30r_add_d2e986">,</add> <del rend="hatching">und</del> anscheinend objektivsten Wissenschaften <metamark function="insertion"><add place="above">eindringt<add place="inline" corresp="#a30r_add_d2e999"><del rend="overwritten">;</del><add hand="#N_brown1" place="superimposed" corresp="#a30r_add_d2e1002">,</add></add> <del rend="hatching">und in ihnen Unfug</del> <add hand="#N_brown1" place="inline" rend="insMExt" corresp="#a30r_add_d2e1008">eindringen <hi rend="underline">darf</hi>;</add></add></metamark><del rend="hatching">sein Unwesen</del> <del rend="hatching">treibt;</del> ja er scheint mir <metamark function="insertion" rend="inSpatium"><add place="above"><del rend="hatching">bereits</del><add place="inline" rend="insMExt" corresp="#a30r_add_d2e1024">schon über</add></add></metamark> die ganze Physiologie und Lehre 
+                  </line><line xml:id="srcD_line_a30r_lb41" start="#a30r_lb41" n="41">will, der moderne <hi rend="underline">Misarchismus</hi> <metamark function="insertion" rend="inSpatium"><add place="above">(um ein <subst corresp="#subst17a_a30r"><del rend="overwritten">neues</del><add place="superimposed" corresp="#a30r_add_d2e924">schlechtes</add></subst> Wort für <subst corresp="#subst17b_a30r"><del rend="overwritten">diese</del><add place="superimposed" corresp="#a30r_add_d2e930">eine</add></subst><subst corresp="#subst17c_a30r"><del rend="overwritten">neue</del><add place="superimposed" corresp="#a30r_add_d2e936">schlechte</add></subst> Sache zu bilden)</add></metamark> hat sich <metamark function="insertion"><add place="above"><del rend="hatching">allmählich</del> <add place="inline" rend="insMExt" corresp="#a30r_add_d2e945">allmählich</add></add></metamark><del rend="hatching">bereits</del> dermaaßen <metamark function="insertion" rend="inSpatium"><add place="above"><del rend="hatching">schon</del></add></metamark> ins Geistige, Geistigste umgesetzt<metamark function="insertion" rend="beforePunctuation"><add place="above"> und verkleidet</add></metamark>, daß er <metamark function="insertion" rend="inSpatium"><add place="above">heute</add></metamark> <metamark function="insertion"><add place="above"><del rend="hatching">bereits</del></add></metamark><del rend="hatching">bereits</del> <metamark function="insertion"><add place="above">Schritt für Schritt <del rend="strikethrough" instant="true">bere</del></add></metamark><del rend="hatching"><subst>in den streng</subst></del><del rend="none"><subst><pc force="weak">-</pc></subst></del></line><line xml:id="srcD_line_a30r_lb42" start="#a30r_lb42" n="42"><metamark function="insertion" rend="inWord"><add place="above">bereits in die streng<pc force="weak">-</pc></add></metamark>sten<add place="inline" corresp="#a30r_add_d2e986">,</add> <del rend="hatching">und</del> anscheinend objektivsten Wissenschaften <metamark function="insertion"><add place="above">eindringt<add place="inline" corresp="#a30r_add_d2e999"><del rend="overwritten">;</del><add hand="#N_brown1" place="superimposed" corresp="#a30r_add_d2e1002">,</add></add> <del rend="hatching">und in ihnen Unfug</del> <add hand="#N_brown1" place="inline" rend="insMExt" corresp="#a30r_add_d2e1008">eindringen <hi rend="underline">darf</hi>;</add></add></metamark><del rend="hatching">sein Unwesen</del> <del rend="hatching">treibt;</del> ja er scheint mir <metamark function="insertion" rend="inSpatium"><add place="above"><del rend="hatching">bereits</del><add place="inline" rend="insMExt" corresp="#a30r_add_d2e1024">schon über</add></add></metamark> die ganze Physiologie und Lehre 
                   </line><line xml:id="srcD_line_a30r_lb43" start="#a30r_lb43" n="43">vom Leben <metamark function="insertion"><add place="above">Herr geworden zu sein<add hand="#N_brown1" place="inline" rend="insMExt" corresp="#a30r_add_d2e1032">, zu ihrem Schaden, wie sich von selbst versteht,</add></add></metamark><del corresp="#substDel18_a30r" rend="hatching">in eine falsche Richtung gedrängt zu haben</del>, indem er ihr <metamark function="insertion"><add place="above">einen Grundbegriff, den der</add></metamark><del rend="hatching">den Begriff</del> der eigentlichen <hi rend="underline">Aktivität</hi>, <metamark function="insertion"><add place="above">eskamotirt hat.</add></metamark><del rend="hatching"><subst>vorenthält oder</subst></del></line><line xml:id="srcD_line_a30r_lb44" start="#a30r_lb44" n="44"><del rend="hatching">eskamotirt</del>. Man stellt dagegen <metamark function="insertion" rend="inSpatium"><add place="above">unter dem Druck jener Idiosynkrasie</add></metamark> die „Anpassung“ in den Vordergrund<metamark function="insertion" rend="beforePunctuation"><add place="above"> das heißt eine Aktivität zweiten Ranges, <milestone unit="page" edRef="#Ed" n="70"/>eine bloße Reaktivität</add></metamark>, ja man hat das Leben selbst als eine immer zweckmäßigere 
                   </line><line xml:id="srcD_line_a30r_lb45" start="#a30r_lb45" n="45">innere Anpassung an äußere Umstände definirt (<hi rend="latin">Herbert Spencer</hi>) Damit ist aber das Wesen des Lebens verkannt, sein <hi rend="underline">Wille</hi> <hi rend="underline">zur</hi> 
                   </line><line xml:id="srcD_line_a30r_lb46" start="#a30r_lb46" n="46">

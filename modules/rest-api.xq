@@ -87,22 +87,26 @@ declare function local:http-download($file-url as xs:string, $collection as xs:s
             </error>
 };
 
+declare %private function local:updateFacsimile($id, $iiif, $document){
+    update insert attribute url { $iiif } into $document//tei:surface[@xml:id = $id]/tei:graphic
+};
 
 declare
-  %rest:path("/knora")
+  %rest:path("/updateIIIF")
   %rest:POST
-  %rest:form-param("dsp-url", "{$dsp-url}", "http://0.0.0.0:3333/") 
-  %rest:form-param("json", "{$json}", "{}")
-function myrest:myPostKnoraIRIs($dsp-url, $json as xs:string*) {
-    let $data := parse-json($json)
-    
-    for $key in map:keys($data)
-        let $url := encode-for-uri(map:get($data, $key))
-        let $link := concat($dsp-url, "/v2/resources/", $url)
-        let $request := <hc:request href="{$link}" method="GET"><hc:header name="accept" value="application/rdf+xml"/></hc:request>
-        let $response := hc:send-request($request)
-        let $doc := parse-xml($response[2])
-        let $log := console:log($doc)
+  %rest:form-param("json", "{$json}", "[]")
+   %rest:query-param("headerFile", "{$headerFile}", "TEI-Header_D20.xml")
+function myrest:myPostKnoraIRIs($json as xs:string*, $headerFile as xs:string*) {
+    let $array := parse-json($json)
+    let $output-collection := xmldb:login(concat($config:app-root, '/TEI/'), 'test', 'test')
+    let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
+    let $document := doc($doc-uri)
+    for $index in 1 to array:size($array)
+        let $facsimile := array:get($array, $index)
+        let $id := map:get($facsimile, 'id')
+        let $iiif := map:get($facsimile, 'iiif')
+        let $update := local:updateFacsimile($id, $iiif, $document)
+        let $log := console:log($update)
     return 
      <rest:response>
         <http:response status="200" message="OK">
@@ -111,6 +115,35 @@ function myrest:myPostKnoraIRIs($dsp-url, $json as xs:string*) {
     </rest:response>
 };
 
+declare
+  %rest:path("/facsimiles")
+  %rest:GET
+    %rest:query-param("headerFile", "{$headerFile}", "TEI-Header_D20.xml")
+    %rest:query-param("filename", "{$filename}", "nietzsche.xml")
+    %rest:query-param("shortcode", "{$shortcode}", "0837")
+    %rest:query-param("debug", "{$debug}", "")
+    %rest:produces("application/xml")
+function myrest:createFacsimiles4DSP($headerFile as xs:string*, $filename as xs:string*, $shortcode as xs:string*, $debug as xs:string*) {
+    let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
+    let $newData := local:createManuscript($doc-uri)
+    let $mimetype := "application/xml"
+    
+    let $stylesheet := doc(concat($config:app-root, "/xslt/facsimile2knora.xsl"))
+    let $param := <parameters>
+                    <param name="shortcode" value="{$shortcode}"/>
+                    <param name="debug" value="{$debug}"/>
+                </parameters>
+    let $output := transform:transform($newData, $stylesheet, $param, (), "method=xml media-type=text/xml")
+    return (
+    <rest:response>
+        <http:response>
+            <http:header name="Content-Type" value="{$mimetype}"/>
+            <http:header name="Content-Disposition" value='Attachment; filename="{$filename}"'/>
+        </http:response>
+       
+    </rest:response>, $output
+    )
+};
 
 declare
   %rest:path("/save")
@@ -514,6 +547,43 @@ declare function local:getFileContents($parentDoc) {
     for $locus in $parentDoc//tei:sourceDesc/tei:msDesc/tei:msContents//tei:locus/text()
         return local:getContentFiles(xmldb:xcollection($config:data-root)/tei:TEI[descendant::tei:title/text() = $locus]//tei:text//tei:pb)
 };
+declare function local:getNewestFile() {
+    let $filelist := for $resource in xmldb:get-child-resources($config:data-root)
+            order by xmldb:last-modified($config:data-root, $resource) descending
+            return xmldb:last-modified($config:data-root, $resource)
+    return $filelist[1]
+};
+declare function local:createManuscript($doc-uri) {
+    let $mimetype   := 'application/xml'
+    let $method     := 'xml'
+   
+    let $data := doc($doc-uri)
+    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
+    return if (doc-available(concat($config:app-root, '/output/',$newFilename)) 
+                and (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt local:getNewestFile())
+                and  (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt xmldb:last-modified(concat($config:app-root, '/TEI'),  util:document-name($data)))  
+    ) then (
+            let $log := console:log('taking old data')
+            return doc(concat($config:app-root, '/output/', $newFilename))
+        ) else (
+        let $newFile := storage:store($data, 'output', $newFilename)
+        let $log := if (doc-available($newFile)) then (console:log(local:getNewestFile())) else ()
+        let $newLog := console:log($newFile)
+        let $newData := doc($newFile)
+        let $emptyText := for $textContent in $newData//tei:text/tei:body/*
+                            return update delete $textContent
+        let $transform := local:getFileContents($newData)
+        let $newText := for $text in $transform//tei:text/tei:body/*
+            return update insert $text into $newData//tei:text/tei:body
+        let $createSourceDoc := if ($newData/tei:sourceDoc) then () else (
+            update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
+        )    
+        let $newSurface := for $surface in $transform//tei:sourceDoc/*
+            return update insert $surface into $newData//tei:sourceDoc
+        return $newData
+    )
+};
+
 declare
     %rest:path("/manuscript")
     %rest:GET
@@ -521,23 +591,7 @@ declare
     %rest:produces("application/xml")
 function myrest:donwloadManuscript($headerFile as xs:string*) {
     let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
-    let $mimetype   := 'application/xml'
-    let $method     := 'xml'
-    let $data := doc($doc-uri)
-    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
-    let $newFile := storage:store($data, 'output', $newFilename)
-    let $newLog := console:log($newFile)
-    let $newData := doc($newFile)
-    let $emptyText := for $textContent in $newData//tei:text/tei:body/*
-                        return update delete $textContent
-    let $transform := local:getFileContents($newData)
-    let $newText := for $text in $transform//tei:text/tei:body/*
-        return update insert $text into $newData//tei:text/tei:body
-    let $createSourceDoc := if ($newData/tei:sourceDoc) then () else (
-        update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
-    )    
-    let $newSurface := for $surface in $transform//tei:sourceDoc/*
-        return update insert $surface into $newData//tei:sourceDoc
+    let $newData := local:createManuscript($doc-uri)
     
     return (
     <rest:response>
