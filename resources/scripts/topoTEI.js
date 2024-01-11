@@ -114,6 +114,13 @@ function deleteFile(selectName){
        }
     }
 }
+function exportManuscript(button){
+    button.setAttribute('disabled', true)
+    let promiseA = new Promise((resolve, reject) => {
+        resolve(location.href = '/exist/restxq/manuscript');
+    });
+    promiseA.then(() => button.removeAttribute('disabled'));
+}
 function exportFile(selectName){
    
     let select = document.getElementById(selectName);

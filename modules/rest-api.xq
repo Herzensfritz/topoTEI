@@ -88,7 +88,9 @@ declare function local:http-download($file-url as xs:string, $collection as xs:s
 };
 
 declare %private function local:updateFacsimile($id, $iiif, $document){
-    update insert attribute url { $iiif } into $document//tei:surface[@xml:id = $id]/tei:graphic
+    let $oldurl := $document//tei:surface[@xml:id = $id]/tei:graphic/@url
+    let $old := update insert attribute corresp { $oldurl } into $document//tei:surface[@xml:id = $id]/tei:graphic 
+    return update insert attribute url { $iiif } into $document//tei:surface[@xml:id = $id]/tei:graphic
 };
 
 declare
@@ -125,7 +127,9 @@ declare
     %rest:produces("application/xml")
 function myrest:createFacsimiles4DSP($headerFile as xs:string*, $filename as xs:string*, $shortcode as xs:string*, $debug as xs:string*) {
     let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
-    let $newData := local:createManuscript($doc-uri)
+    let $data := doc($doc-uri)
+    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
+    let $newData := local:createManuscript($data, $newFilename)
     let $mimetype := "application/xml"
     
     let $stylesheet := doc(concat($config:app-root, "/xslt/facsimile2knora.xsl"))
@@ -553,13 +557,8 @@ declare function local:getNewestFile() {
             return xmldb:last-modified($config:data-root, $resource)
     return $filelist[1]
 };
-declare function local:createManuscript($doc-uri) {
-    let $mimetype   := 'application/xml'
-    let $method     := 'xml'
-   
-    let $data := doc($doc-uri)
-    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
-    return if (doc-available(concat($config:app-root, '/output/',$newFilename)) 
+declare function local:createManuscript($data, $newFilename) {
+   if (doc-available(concat($config:app-root, '/output/',$newFilename)) 
                 and (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt local:getNewestFile())
                 and  (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt xmldb:last-modified(concat($config:app-root, '/TEI'),  util:document-name($data)))  
     ) then (
@@ -591,8 +590,12 @@ declare
     %rest:produces("application/xml")
 function myrest:donwloadManuscript($headerFile as xs:string*) {
     let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
-    let $newData := local:createManuscript($doc-uri)
-    
+    let $mimetype   := 'application/xml'
+    let $method     := 'xml'
+   
+    let $data := doc($doc-uri)
+    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
+    let $newData := local:createManuscript($data, $newFilename)
     return (
     <rest:response>
         <http:response>

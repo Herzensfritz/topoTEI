@@ -4,13 +4,17 @@
          <titleStmt>
           <title>Druckmanuskript D 20 (Zur Genealogie der Moral)</title>
            <author xml:id="N">Friedrich Nietzsche</author>
-           <editor xml:id="editors"><name>Beat Röllin</name>, <name>Christian Steiner</name>, <name>René Stockmar</name></editor>
+           <editor xml:id="editors">
+                    <name>Beat Röllin</name>, <name>Christian Steiner</name>, <name>René Stockmar</name>
+                </editor>
            <respStmt>
-             <resp>Projektleiter: </resp><name>Hubert Thüring</name>
+             <resp>Projektleiter: </resp>
+                    <name>Hubert Thüring</name>
            </respStmt>
          </titleStmt>
         <publicationStmt>
-           <publisher>Nietzsche-Edition, Universität Basel</publisher><date>tba</date>
+           <publisher>Nietzsche-Edition, Universität Basel</publisher>
+                <date>tba</date>
          </publicationStmt>
         <seriesStmt>
           <title>Der späte Nietzsche. Digitale Erschließung der Druckdokumente</title>
@@ -31,126 +35,366 @@
                <p>Druckmanuskript zu Zur Genealogie der Moral. Eine Streitschrift. C. G. Naumann, Leipzig 1887.</p>
                <ab type="descHead">
                  1.1 Inhaltsverzeichnis</ab>
-               <p><locus>a1r</locus>: <desc xml:id="contents_a1r">Druckvorlage GM Titelseite</desc></p><!-- alles noch zu überprüfen! -->
-               <p><locus>a1v</locus>: <desc xml:id="contents_a1v">Druckvorlage GM Titelrückseite</desc></p>
-               <p><locus>a2r</locus>: <desc xml:id="contents_a2r">Druckvorlage GM Vorrede 1-3</desc></p>
-               <p><locus>a2v</locus>: <desc xml:id="contents_a2v">Druckvorlage GM Vorrede 3-4</desc></p>
-               <p><locus>a3r</locus>: <desc xml:id="contents_a3r">Druckvorlage GM Vorrede 4-6</desc></p>
-               <p><locus>a3v</locus>: <desc xml:id="contents_a3v">Druckvorlage GM Vorrede 6-7</desc></p>
-               <p><locus>a4r</locus>: <desc xml:id="contents_a4r">Druckvorlage GM Vorrede 8</desc></p>
-               <p><locus>a5r</locus>: <desc xml:id="contents_a5r">Druckvorlage GM I 1</desc></p>
-               <p><locus>a6r</locus>: <desc xml:id="contents_a6r">Druckvorlage GM I 2-3</desc></p>
-               <p><locus>a7r</locus>: <desc xml:id="contents_a7r">Druckvorlage GM I 3-5</desc></p>
-               <p><locus>a8r</locus>: <desc xml:id="contents_a8r">Druckvorlage GM I 5-6</desc></p>
-               <p><locus>a9r</locus>: <desc xml:id="contents_a9r">Druckvorlage GM I 6-7</desc></p>
-               <p><locus>a10r</locus>: <desc xml:id="contents_a10r">Druckvorlage GM I 7-9</desc></p>
-               <p><locus>a11r</locus>: <desc xml:id="contents_a11r">Druckvorlage GM I 9-10</desc></p>
-               <p><locus>a12r</locus>: <desc xml:id="contents_a12r">Druckvorlage GM I 10-11</desc></p>
-               <p><locus>a13r</locus>: <desc xml:id="contents_a13r">Druckvorlage GM I 11</desc></p>
-               <p><locus>a14r</locus>: <desc xml:id="contents_a14r">Druckvorlage GM I 11-13</desc></p>
-               <p><locus>a15r</locus>: <desc xml:id="contents_a15r">Druckvorlage GM I 13-14</desc></p>
-               <p><locus>a16r</locus>: <desc xml:id="contents_a16r">Druckvorlage GM I 14-15</desc></p>
-               <p><locus>a17r</locus>: <desc xml:id="contents_a17r">Druckvorlage GM I 15</desc></p>
-               <p><locus>a18r</locus>: <desc xml:id="contents_a18r">Druckvorlage GM I 15</desc></p>
-               <p><locus>a18v</locus>: <desc xml:id="contents_a18v">Druckvorlage GM I 15</desc></p>
-               <p><locus>a19r</locus>: <desc xml:id="contents_a19r">Druckvorlage GM I 16</desc></p>
-               <p><locus>a20r</locus>: <desc xml:id="contents_a20r">Druckvorlage GM I 16-17</desc></p>
-               <p><locus>a20v</locus>: <desc xml:id="contents_a20v">Notiz Ns</desc></p>
-               <p><locus>a21r</locus>: <desc xml:id="contents_a21r">Druckvorlage GM II 1-2</desc></p>
-               <p><locus>a21v</locus>: <desc xml:id="contents_a21v">Notiz Ns</desc></p>
-               <p><locus>a22r</locus>: <desc xml:id="contents_a22r">Druckvorlage GM II 3</desc></p>
-               <p><locus>a23r</locus>: <desc xml:id="contents_a23r">Druckvorlage GM II 3-5</desc></p>
-               <p><locus>a24r</locus>: <desc xml:id="contents_a24r">Druckvorlage GM II 5-6</desc></p>
-               <p><locus>a25r</locus>: <desc xml:id="contents_a25r">Druckvorlage GM II 6-7</desc></p>
-               <p><locus>a26r</locus>: <desc xml:id="contents_a26r">Druckvorlage GM II 7</desc></p>
-               <p><locus>a27r</locus>: <desc xml:id="contents_a27r">Druckvorlage GM II 8</desc></p>
-               <p><locus>a28r</locus>: <desc xml:id="contents_a28r">Druckvorlage GM II 9-10</desc></p>
-               <p><locus>a29r</locus>: <desc xml:id="contents_a29r">Druckvorlage GM II 11</desc></p>
-               <p><locus>a29v</locus>: <desc xml:id="contents_a29v">Vorstufen zu GM II 1 und 2</desc></p>
-               <p><locus>a30r</locus>: <desc xml:id="contents_a30r">Druckvorlage GM II 12</desc></p>
-               <p><locus>a31r</locus>: <desc xml:id="contents_a31r">Druckvorlage GM II 13-14</desc></p>
-               <p><locus>a32r</locus>: <desc xml:id="contents_a32r">Druckvorlage GM II 14-15</desc></p>
-               <p><locus>a33r</locus>: <desc xml:id="contents_a33r">Druckvorlage GM II 15-16</desc></p>
-               <p><locus>a34r</locus>: <desc xml:id="contents_a34r">Druckvorlage GM II 16-17</desc></p>
-               <p><locus>a35r</locus>: <desc xml:id="contents_a35r">Druckvorlage GM II 18-19</desc></p>
-               <p><locus>a36r</locus>: <desc xml:id="contents_a36r">Druckvorlage GM II 19-20</desc></p>
-               <p><locus>a37r</locus>: <desc xml:id="contents_a37r">Druckvorlage GM II 21-22</desc></p>
-               <p><locus>a38r</locus>: <desc xml:id="contents_a38r">Druckvorlage GM II 22-24</desc></p>
-               <p><locus>a39r</locus>: <desc xml:id="contents_a39r">Druckvorlage GM II 24</desc></p>
-               <p><locus>a40r</locus>: <desc xml:id="contents_a40r">Zusatz zu GM II 11</desc></p>
-               <p><locus>a40v</locus>: <desc xml:id="contents_a40v">Zusatz zu GM II 24</desc></p>
-               <p><locus>a41r</locus>: <desc xml:id="contents_a41r">Druckvorlage GM II 25</desc></p>
-               <p><locus>b1r</locus>: <desc xml:id="contents_b1r">Druckvorlage GM III 1</desc></p>
-               <p><locus>b2r</locus>: <desc xml:id="contents_b2r">Druckvorlage GM III 2</desc></p>
-               <p><locus>b3r</locus>: <desc xml:id="contents_b3r">Druckvorlage GM III 2-3</desc></p>
-               <p><locus>b4r</locus>: <desc xml:id="contents_b4r">Druckvorlage GM III 3</desc></p>
-               <p><locus>b5r</locus>: <desc xml:id="contents_b5r">Druckvorlage GM III 3-4</desc></p>
-               <p><locus>b6r</locus>: <desc xml:id="contents_b6r">Druckvorlage GM III 4-5</desc></p>
-               <p><locus>b7r</locus>: <desc xml:id="contents_b7r">Druckvorlage GM III 5</desc></p>
-               <p><locus>b8r</locus>: <desc xml:id="contents_b8r">Druckvorlage GM III 5-6</desc></p>
-               <p><locus>b9r</locus>: <desc xml:id="contents_b9r">Druckvorlage GM III 6</desc></p>
-               <p><locus>b10r</locus>: <desc xml:id="contents_b10r">Druckvorlage GM III 6</desc></p>
-               <p><locus>b11r</locus>: <desc xml:id="contents_b11r">Druckvorlage GM III 7</desc></p>
-               <p><locus>b12r</locus>: <desc xml:id="contents_b12r">Druckvorlage GM III 7</desc></p>
-               <p><locus>b13r</locus>: <desc xml:id="contents_b13r">Druckvorlage GM III 7-8</desc></p>
-               <p><locus>b14r</locus>: <desc xml:id="contents_b14r">Druckvorlage GM III 8</desc></p>
-               <p><locus>b15r</locus>: <desc xml:id="contents_b15r">Druckvorlage GM III 8</desc></p>
-               <p><locus>b16r</locus>: <desc xml:id="contents_b16r">Druckvorlage GM III 8</desc></p>
-               <p><locus>b17r</locus>: <desc xml:id="contents_b17r">Druckvorlage GM III 8-9</desc></p>
-               <p><locus>b18r</locus>: <desc xml:id="contents_b18r">Druckvorlage GM III 9</desc></p>
-               <p><locus>b19r</locus>: <desc xml:id="contents_b19r">Bogenkorrektur zu GM III 9</desc></p>
-               <p><locus>b20r</locus>: <desc xml:id="contents_b20r">Druckvorlage GM III 9</desc></p>
-               <p><locus>b21r</locus>: <desc xml:id="contents_b21r">Druckvorlage GM III 9-10</desc></p>
-               <p><locus>b22r</locus>: <desc xml:id="contents_b22r">Druckvorlage GM III 10</desc></p>
-               <p><locus>b23r</locus>: <desc xml:id="contents_b23r">Druckvorlage GM III 10-11</desc></p>
-               <p><locus>b24r</locus>: <desc xml:id="contents_b24r">Druckvorlage GM III 11</desc></p>
-               <p><locus>b25r</locus>: <desc xml:id="contents_b25r">Druckvorlage GM III 11-12</desc></p>
-               <p><locus>b26r</locus>: <desc xml:id="contents_b26r">Druckvorlage GM III 12</desc></p>
-               <p><locus>b27r</locus>: <desc xml:id="contents_b27r">Druckvorlage GM III 12-13</desc></p>
-               <p><locus>b28r</locus>: <desc xml:id="contents_b28r">Druckvorlage GM III 13</desc></p>
-               <p><locus>b29r</locus>: <desc xml:id="contents_b29r">Druckvorlage GM III 14</desc></p>
-               <p><locus>b30r</locus>: <desc xml:id="contents_b30r">Druckvorlage GM III 14</desc></p>
-               <p><locus>b31r</locus>: <desc xml:id="contents_b31r">Druckvorlage GM III 14</desc></p>
-               <p><locus>b32r</locus>: <desc xml:id="contents_b32r">Druckvorlage GM III 14</desc></p>
-               <p><locus>b33r</locus>: <desc xml:id="contents_b33r">Druckvorlage GM III 15</desc></p>
-               <p><locus>b34r</locus>: <desc xml:id="contents_b34r">Druckvorlage GM III 15</desc></p>
-               <p><locus>b35r</locus>: <desc xml:id="contents_b35r">Druckvorlage GM III 15-16</desc></p>
-               <p><locus>b36r</locus>: <desc xml:id="contents_b36r">Druckvorlage GM III 16</desc></p>
-               <p><locus>b37r</locus>: <desc xml:id="contents_b37r">Druckvorlage GM III 16-17</desc></p>
-               <p><locus>b38r</locus>: <desc xml:id="contents_b38r">Druckvorlage GM III 17</desc></p>
-               <p><locus>b39r</locus>: <desc xml:id="contents_b39r">Druckvorlage GM III 17</desc></p>
-               <p><locus>b40r</locus>: <desc xml:id="contents_b40r">Druckvorlage GM III 17-18</desc></p>
-               <p><locus>b41r</locus>: <desc xml:id="contents_b41r">Druckvorlage GM III 18</desc></p>
-               <p><locus>b42r</locus>: <desc xml:id="contents_b42r">Druckvorlage GM III 18</desc></p>
-               <p><locus>b43r</locus>: <desc xml:id="contents_b43r">Druckvorlage GM III 18-19</desc></p>
-               <p><locus>b44r</locus>: <desc xml:id="contents_b44r">Druckvorlage GM III 19</desc></p>
-               <p><locus>b45r</locus>: <desc xml:id="contents_b45r">Druckvorlage GM III 19-20</desc></p>
-               <p><locus>b46r</locus>: <desc xml:id="contents_b46r">Druckvorlage GM III 20</desc></p>
-               <p><locus>b47r</locus>: <desc xml:id="contents_b47r">Druckvorlage GM III 20</desc></p>
-               <p><locus>b48r</locus>: <desc xml:id="contents_b48r">Druckvorlage GM III 20-21</desc></p>
-               <p><locus>b49r</locus>: <desc xml:id="contents_b49r">Druckvorlage GM III 21-22</desc></p>
-               <p><locus>b50r</locus>: <desc xml:id="contents_b50r">Druckvorlage GM III 22</desc></p>
-               <p><locus>b51r</locus>: <desc xml:id="contents_b51r">Druckvorlage GM III 22</desc></p>
-               <p><locus>b52r</locus>: <desc xml:id="contents_b52r">Druckvorlage GM III 22-23</desc></p>
-               <p><locus>b53r</locus>: <desc xml:id="contents_b53r">Druckvorlage GM III 23</desc></p>
-               <p><locus>b54r</locus>: <desc xml:id="contents_b54r">Druckvorlage GM III 23-24</desc></p>
-               <p><locus>b55r</locus>: <desc xml:id="contents_b55r">Druckvorlage GM III 24</desc></p>
-               <p><locus>b56r</locus>: <desc xml:id="contents_b56r">Druckvorlage GM III 24</desc></p>
-               <p><locus>b57r</locus>: <desc xml:id="contents_b57r">Druckvorlage GM III 24-25</desc></p>
-               <p><locus>b58r</locus>: <desc xml:id="contents_b58r">Druckvorlage GM III 25</desc></p>
-               <p><locus>b59r</locus>: <desc xml:id="contents_b59r">Druckvorlage GM III 25</desc></p>
-               <p><locus>b59v</locus>: <desc xml:id="contents_b59v">Notiz fHd (Köselitz)</desc></p>
-               <p><locus>b60r</locus>: <desc xml:id="contents_b60r">Druckvorlage GM III 25</desc></p>
-               <p><locus>b61r</locus>: <desc xml:id="contents_b61r">Druckvorlage GM III 26</desc></p>
-               <p><locus>b62r</locus>: <desc xml:id="contents_b62r">Druckvorlage GM III 26</desc></p>
-               <p><locus>b63r</locus>: <desc xml:id="contents_b63r">Varianten zu GM III 26</desc></p>
-               <p><locus>b64r</locus>: <desc xml:id="contents_b64r">Bogenkorrekturen zu GM III 26 und 27</desc></p>
-               <p><locus>b65r</locus>: <desc xml:id="contents_b65r">Zusatz zu GM III 26</desc></p>
-               <p><locus>b66r</locus>: <desc xml:id="contents_b66r">Druckvorlage GM III 26-27</desc></p>
-               <p><locus>b67r</locus>: <desc xml:id="contents_b67r">Druckvorlage GM III 27</desc></p>
-               <p><locus>b68r</locus>: <desc xml:id="contents_b68r">Druckvorlage GM III 27-28</desc></p>
-               <p><locus>b69r</locus>: <desc xml:id="contents_b69r">Druckvorlage GM III 28</desc></p>
-               <p><locus>b70r</locus>: <desc xml:id="contents_b70r">Druckvorlage GM Inhaltsverzeichis</desc></p>
+               <p>
+                            <locus>a1r</locus>: <desc xml:id="contents_a1r">Druckvorlage GM Titelseite</desc>
+                        </p><!-- alles noch zu überprüfen! -->
+               <p>
+                            <locus>a1v</locus>: <desc xml:id="contents_a1v">Druckvorlage GM Titelrückseite</desc>
+                        </p>
+               <p>
+                            <locus>a2r</locus>: <desc xml:id="contents_a2r">Druckvorlage GM Vorrede 1-3</desc>
+                        </p>
+               <p>
+                            <locus>a2v</locus>: <desc xml:id="contents_a2v">Druckvorlage GM Vorrede 3-4</desc>
+                        </p>
+               <p>
+                            <locus>a3r</locus>: <desc xml:id="contents_a3r">Druckvorlage GM Vorrede 4-6</desc>
+                        </p>
+               <p>
+                            <locus>a3v</locus>: <desc xml:id="contents_a3v">Druckvorlage GM Vorrede 6-7</desc>
+                        </p>
+               <p>
+                            <locus>a4r</locus>: <desc xml:id="contents_a4r">Druckvorlage GM Vorrede 8</desc>
+                        </p>
+               <p>
+                            <locus>a5r</locus>: <desc xml:id="contents_a5r">Druckvorlage GM I 1</desc>
+                        </p>
+               <p>
+                            <locus>a6r</locus>: <desc xml:id="contents_a6r">Druckvorlage GM I 2-3</desc>
+                        </p>
+               <p>
+                            <locus>a7r</locus>: <desc xml:id="contents_a7r">Druckvorlage GM I 3-5</desc>
+                        </p>
+               <p>
+                            <locus>a8r</locus>: <desc xml:id="contents_a8r">Druckvorlage GM I 5-6</desc>
+                        </p>
+               <p>
+                            <locus>a9r</locus>: <desc xml:id="contents_a9r">Druckvorlage GM I 6-7</desc>
+                        </p>
+               <p>
+                            <locus>a10r</locus>: <desc xml:id="contents_a10r">Druckvorlage GM I 7-9</desc>
+                        </p>
+               <p>
+                            <locus>a11r</locus>: <desc xml:id="contents_a11r">Druckvorlage GM I 9-10</desc>
+                        </p>
+               <p>
+                            <locus>a12r</locus>: <desc xml:id="contents_a12r">Druckvorlage GM I 10-11</desc>
+                        </p>
+               <p>
+                            <locus>a13r</locus>: <desc xml:id="contents_a13r">Druckvorlage GM I 11</desc>
+                        </p>
+               <p>
+                            <locus>a14r</locus>: <desc xml:id="contents_a14r">Druckvorlage GM I 11-13</desc>
+                        </p>
+               <p>
+                            <locus>a15r</locus>: <desc xml:id="contents_a15r">Druckvorlage GM I 13-14</desc>
+                        </p>
+               <p>
+                            <locus>a16r</locus>: <desc xml:id="contents_a16r">Druckvorlage GM I 14-15</desc>
+                        </p>
+               <p>
+                            <locus>a17r</locus>: <desc xml:id="contents_a17r">Druckvorlage GM I 15</desc>
+                        </p>
+               <p>
+                            <locus>a18r</locus>: <desc xml:id="contents_a18r">Druckvorlage GM I 15</desc>
+                        </p>
+               <p>
+                            <locus>a18v</locus>: <desc xml:id="contents_a18v">Druckvorlage GM I 15</desc>
+                        </p>
+               <p>
+                            <locus>a19r</locus>: <desc xml:id="contents_a19r">Druckvorlage GM I 16</desc>
+                        </p>
+               <p>
+                            <locus>a20r</locus>: <desc xml:id="contents_a20r">Druckvorlage GM I 16-17</desc>
+                        </p>
+               <p>
+                            <locus>a20v</locus>: <desc xml:id="contents_a20v">Notiz Ns</desc>
+                        </p>
+               <p>
+                            <locus>a21r</locus>: <desc xml:id="contents_a21r">Druckvorlage GM II 1-2</desc>
+                        </p>
+               <p>
+                            <locus>a21v</locus>: <desc xml:id="contents_a21v">Notiz Ns</desc>
+                        </p>
+               <p>
+                            <locus>a22r</locus>: <desc xml:id="contents_a22r">Druckvorlage GM II 3</desc>
+                        </p>
+               <p>
+                            <locus>a23r</locus>: <desc xml:id="contents_a23r">Druckvorlage GM II 3-5</desc>
+                        </p>
+               <p>
+                            <locus>a24r</locus>: <desc xml:id="contents_a24r">Druckvorlage GM II 5-6</desc>
+                        </p>
+               <p>
+                            <locus>a25r</locus>: <desc xml:id="contents_a25r">Druckvorlage GM II 6-7</desc>
+                        </p>
+               <p>
+                            <locus>a26r</locus>: <desc xml:id="contents_a26r">Druckvorlage GM II 7</desc>
+                        </p>
+               <p>
+                            <locus>a27r</locus>: <desc xml:id="contents_a27r">Druckvorlage GM II 8</desc>
+                        </p>
+               <p>
+                            <locus>a28r</locus>: <desc xml:id="contents_a28r">Druckvorlage GM II 9-10</desc>
+                        </p>
+               <p>
+                            <locus>a29r</locus>: <desc xml:id="contents_a29r">Druckvorlage GM II 11</desc>
+                        </p>
+               <p>
+                            <locus>a29v</locus>: <desc xml:id="contents_a29v">Vorstufen zu GM II 1 und 2</desc>
+                        </p>
+               <p>
+                            <locus>a30r</locus>: <desc xml:id="contents_a30r">Druckvorlage GM II 12</desc>
+                        </p>
+               <p>
+                            <locus>a31r</locus>: <desc xml:id="contents_a31r">Druckvorlage GM II 13-14</desc>
+                        </p>
+               <p>
+                            <locus>a32r</locus>: <desc xml:id="contents_a32r">Druckvorlage GM II 14-15</desc>
+                        </p>
+               <p>
+                            <locus>a33r</locus>: <desc xml:id="contents_a33r">Druckvorlage GM II 15-16</desc>
+                        </p>
+               <p>
+                            <locus>a34r</locus>: <desc xml:id="contents_a34r">Druckvorlage GM II 16-17</desc>
+                        </p>
+               <p>
+                            <locus>a35r</locus>: <desc xml:id="contents_a35r">Druckvorlage GM II 18-19</desc>
+                        </p>
+               <p>
+                            <locus>a36r</locus>: <desc xml:id="contents_a36r">Druckvorlage GM II 19-20</desc>
+                        </p>
+               <p>
+                            <locus>a37r</locus>: <desc xml:id="contents_a37r">Druckvorlage GM II 21-22</desc>
+                        </p>
+               <p>
+                            <locus>a38r</locus>: <desc xml:id="contents_a38r">Druckvorlage GM II 22-24</desc>
+                        </p>
+               <p>
+                            <locus>a39r</locus>: <desc xml:id="contents_a39r">Druckvorlage GM II 24</desc>
+                        </p>
+               <p>
+                            <locus>a40r</locus>: <desc xml:id="contents_a40r">Zusatz zu GM II 11</desc>
+                        </p>
+               <p>
+                            <locus>a40v</locus>: <desc xml:id="contents_a40v">Zusatz zu GM II 24</desc>
+                        </p>
+               <p>
+                            <locus>a41r</locus>: <desc xml:id="contents_a41r">Druckvorlage GM II 25</desc>
+                        </p>
+               <p>
+                            <locus>b1r</locus>: <desc xml:id="contents_b1r">Druckvorlage GM III 1</desc>
+                        </p>
+               <p>
+                            <locus>b2r</locus>: <desc xml:id="contents_b2r">Druckvorlage GM III 2</desc>
+                        </p>
+               <p>
+                            <locus>b3r</locus>: <desc xml:id="contents_b3r">Druckvorlage GM III 2-3</desc>
+                        </p>
+               <p>
+                            <locus>b4r</locus>: <desc xml:id="contents_b4r">Druckvorlage GM III 3</desc>
+                        </p>
+               <p>
+                            <locus>b5r</locus>: <desc xml:id="contents_b5r">Druckvorlage GM III 3-4</desc>
+                        </p>
+               <p>
+                            <locus>b6r</locus>: <desc xml:id="contents_b6r">Druckvorlage GM III 4-5</desc>
+                        </p>
+               <p>
+                            <locus>b7r</locus>: <desc xml:id="contents_b7r">Druckvorlage GM III 5</desc>
+                        </p>
+               <p>
+                            <locus>b8r</locus>: <desc xml:id="contents_b8r">Druckvorlage GM III 5-6</desc>
+                        </p>
+               <p>
+                            <locus>b9r</locus>: <desc xml:id="contents_b9r">Druckvorlage GM III 6</desc>
+                        </p>
+               <p>
+                            <locus>b10r</locus>: <desc xml:id="contents_b10r">Druckvorlage GM III 6</desc>
+                        </p>
+               <p>
+                            <locus>b11r</locus>: <desc xml:id="contents_b11r">Druckvorlage GM III 7</desc>
+                        </p>
+               <p>
+                            <locus>b12r</locus>: <desc xml:id="contents_b12r">Druckvorlage GM III 7</desc>
+                        </p>
+               <p>
+                            <locus>b13r</locus>: <desc xml:id="contents_b13r">Druckvorlage GM III 7-8</desc>
+                        </p>
+               <p>
+                            <locus>b14r</locus>: <desc xml:id="contents_b14r">Druckvorlage GM III 8</desc>
+                        </p>
+               <p>
+                            <locus>b15r</locus>: <desc xml:id="contents_b15r">Druckvorlage GM III 8</desc>
+                        </p>
+               <p>
+                            <locus>b16r</locus>: <desc xml:id="contents_b16r">Druckvorlage GM III 8</desc>
+                        </p>
+               <p>
+                            <locus>b17r</locus>: <desc xml:id="contents_b17r">Druckvorlage GM III 8-9</desc>
+                        </p>
+               <p>
+                            <locus>b18r</locus>: <desc xml:id="contents_b18r">Druckvorlage GM III 9</desc>
+                        </p>
+               <p>
+                            <locus>b19r</locus>: <desc xml:id="contents_b19r">Bogenkorrektur zu GM III 9</desc>
+                        </p>
+               <p>
+                            <locus>b20r</locus>: <desc xml:id="contents_b20r">Druckvorlage GM III 9</desc>
+                        </p>
+               <p>
+                            <locus>b21r</locus>: <desc xml:id="contents_b21r">Druckvorlage GM III 9-10</desc>
+                        </p>
+               <p>
+                            <locus>b22r</locus>: <desc xml:id="contents_b22r">Druckvorlage GM III 10</desc>
+                        </p>
+               <p>
+                            <locus>b23r</locus>: <desc xml:id="contents_b23r">Druckvorlage GM III 10-11</desc>
+                        </p>
+               <p>
+                            <locus>b24r</locus>: <desc xml:id="contents_b24r">Druckvorlage GM III 11</desc>
+                        </p>
+               <p>
+                            <locus>b25r</locus>: <desc xml:id="contents_b25r">Druckvorlage GM III 11-12</desc>
+                        </p>
+               <p>
+                            <locus>b26r</locus>: <desc xml:id="contents_b26r">Druckvorlage GM III 12</desc>
+                        </p>
+               <p>
+                            <locus>b27r</locus>: <desc xml:id="contents_b27r">Druckvorlage GM III 12-13</desc>
+                        </p>
+               <p>
+                            <locus>b28r</locus>: <desc xml:id="contents_b28r">Druckvorlage GM III 13</desc>
+                        </p>
+               <p>
+                            <locus>b29r</locus>: <desc xml:id="contents_b29r">Druckvorlage GM III 14</desc>
+                        </p>
+               <p>
+                            <locus>b30r</locus>: <desc xml:id="contents_b30r">Druckvorlage GM III 14</desc>
+                        </p>
+               <p>
+                            <locus>b31r</locus>: <desc xml:id="contents_b31r">Druckvorlage GM III 14</desc>
+                        </p>
+               <p>
+                            <locus>b32r</locus>: <desc xml:id="contents_b32r">Druckvorlage GM III 14</desc>
+                        </p>
+               <p>
+                            <locus>b33r</locus>: <desc xml:id="contents_b33r">Druckvorlage GM III 15</desc>
+                        </p>
+               <p>
+                            <locus>b34r</locus>: <desc xml:id="contents_b34r">Druckvorlage GM III 15</desc>
+                        </p>
+               <p>
+                            <locus>b35r</locus>: <desc xml:id="contents_b35r">Druckvorlage GM III 15-16</desc>
+                        </p>
+               <p>
+                            <locus>b36r</locus>: <desc xml:id="contents_b36r">Druckvorlage GM III 16</desc>
+                        </p>
+               <p>
+                            <locus>b37r</locus>: <desc xml:id="contents_b37r">Druckvorlage GM III 16-17</desc>
+                        </p>
+               <p>
+                            <locus>b38r</locus>: <desc xml:id="contents_b38r">Druckvorlage GM III 17</desc>
+                        </p>
+               <p>
+                            <locus>b39r</locus>: <desc xml:id="contents_b39r">Druckvorlage GM III 17</desc>
+                        </p>
+               <p>
+                            <locus>b40r</locus>: <desc xml:id="contents_b40r">Druckvorlage GM III 17-18</desc>
+                        </p>
+               <p>
+                            <locus>b41r</locus>: <desc xml:id="contents_b41r">Druckvorlage GM III 18</desc>
+                        </p>
+               <p>
+                            <locus>b42r</locus>: <desc xml:id="contents_b42r">Druckvorlage GM III 18</desc>
+                        </p>
+               <p>
+                            <locus>b43r</locus>: <desc xml:id="contents_b43r">Druckvorlage GM III 18-19</desc>
+                        </p>
+               <p>
+                            <locus>b44r</locus>: <desc xml:id="contents_b44r">Druckvorlage GM III 19</desc>
+                        </p>
+               <p>
+                            <locus>b45r</locus>: <desc xml:id="contents_b45r">Druckvorlage GM III 19-20</desc>
+                        </p>
+               <p>
+                            <locus>b46r</locus>: <desc xml:id="contents_b46r">Druckvorlage GM III 20</desc>
+                        </p>
+               <p>
+                            <locus>b47r</locus>: <desc xml:id="contents_b47r">Druckvorlage GM III 20</desc>
+                        </p>
+               <p>
+                            <locus>b48r</locus>: <desc xml:id="contents_b48r">Druckvorlage GM III 20-21</desc>
+                        </p>
+               <p>
+                            <locus>b49r</locus>: <desc xml:id="contents_b49r">Druckvorlage GM III 21-22</desc>
+                        </p>
+               <p>
+                            <locus>b50r</locus>: <desc xml:id="contents_b50r">Druckvorlage GM III 22</desc>
+                        </p>
+               <p>
+                            <locus>b51r</locus>: <desc xml:id="contents_b51r">Druckvorlage GM III 22</desc>
+                        </p>
+               <p>
+                            <locus>b52r</locus>: <desc xml:id="contents_b52r">Druckvorlage GM III 22-23</desc>
+                        </p>
+               <p>
+                            <locus>b53r</locus>: <desc xml:id="contents_b53r">Druckvorlage GM III 23</desc>
+                        </p>
+               <p>
+                            <locus>b54r</locus>: <desc xml:id="contents_b54r">Druckvorlage GM III 23-24</desc>
+                        </p>
+               <p>
+                            <locus>b55r</locus>: <desc xml:id="contents_b55r">Druckvorlage GM III 24</desc>
+                        </p>
+               <p>
+                            <locus>b56r</locus>: <desc xml:id="contents_b56r">Druckvorlage GM III 24</desc>
+                        </p>
+               <p>
+                            <locus>b57r</locus>: <desc xml:id="contents_b57r">Druckvorlage GM III 24-25</desc>
+                        </p>
+               <p>
+                            <locus>b58r</locus>: <desc xml:id="contents_b58r">Druckvorlage GM III 25</desc>
+                        </p>
+               <p>
+                            <locus>b59r</locus>: <desc xml:id="contents_b59r">Druckvorlage GM III 25</desc>
+                        </p>
+               <p>
+                            <locus>b59v</locus>: <desc xml:id="contents_b59v">Notiz fHd (Köselitz)</desc>
+                        </p>
+               <p>
+                            <locus>b60r</locus>: <desc xml:id="contents_b60r">Druckvorlage GM III 25</desc>
+                        </p>
+               <p>
+                            <locus>b61r</locus>: <desc xml:id="contents_b61r">Druckvorlage GM III 26</desc>
+                        </p>
+               <p>
+                            <locus>b62r</locus>: <desc xml:id="contents_b62r">Druckvorlage GM III 26</desc>
+                        </p>
+               <p>
+                            <locus>b63r</locus>: <desc xml:id="contents_b63r">Varianten zu GM III 26</desc>
+                        </p>
+               <p>
+                            <locus>b64r</locus>: <desc xml:id="contents_b64r">Bogenkorrekturen zu GM III 26 und 27</desc>
+                        </p>
+               <p>
+                            <locus>b65r</locus>: <desc xml:id="contents_b65r">Zusatz zu GM III 26</desc>
+                        </p>
+               <p>
+                            <locus>b66r</locus>: <desc xml:id="contents_b66r">Druckvorlage GM III 26-27</desc>
+                        </p>
+               <p>
+                            <locus>b67r</locus>: <desc xml:id="contents_b67r">Druckvorlage GM III 27</desc>
+                        </p>
+               <p>
+                            <locus>b68r</locus>: <desc xml:id="contents_b68r">Druckvorlage GM III 27-28</desc>
+                        </p>
+               <p>
+                            <locus>b69r</locus>: <desc xml:id="contents_b69r">Druckvorlage GM III 28</desc>
+                        </p>
+               <p>
+                            <locus>b70r</locus>: <desc xml:id="contents_b70r">Druckvorlage GM Inhaltsverzeichis</desc>
+                        </p>
              </msContents>
              <physDesc>
                <ab type="descHead">
@@ -160,41 +404,96 @@
                <p>Zwei Teilmanuskripte, 41+70 Bl.; D 20[a]: 38 Folioblätter, teils beschnitten, teils zusammengeklebt, 1 Quartblatt (ursprünglich Heftblatt), 2 Zusatzblätter; D 20[b]: 66 Quartblätter (ursprünglich Heftblätter), 4 Zusatzblätter.</p>
                <ab type="descHead">
                  3.1 Manuskriptblätter</ab>
-               <p><locus>a1rv</locus>: <desc xml:id="folDesc_a1rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a2rv</locus>: <desc xml:id="folDesc_a2rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a3rv</locus>: <desc xml:id="folDesc_a3rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a4rv</locus>: <desc xml:id="folDesc_a4rv"><material>Quartblatt</material>, <width>22,2</width>×<height>33,3</height>, liniiert, roter Farbschnitt, Rekto links beschnitten. Verso vakat. Ursprünglich wahrscheinlich aus gleichem Heft wie Quartblätter in D 20b.</desc></p>
-               <p><locus>a5rv</locus>: <desc xml:id="folDesc_a5rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a6rv</locus>: <desc xml:id="folDesc_a6rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a7rv</locus>: <desc xml:id="folDesc_a7rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a8rv</locus>: <desc xml:id="folDesc_a8rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
-               <p><locus>a9rv</locus>: <desc xml:id="folDesc_a9rv"><material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc></p>
+               <p>
+                            <locus>a1rv</locus>: <desc xml:id="folDesc_a1rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a2rv</locus>: <desc xml:id="folDesc_a2rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a3rv</locus>: <desc xml:id="folDesc_a3rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a4rv</locus>: <desc xml:id="folDesc_a4rv">
+                                <material>Quartblatt</material>, <width>22,2</width>×<height>33,3</height>, liniiert, roter Farbschnitt, Rekto links beschnitten. Verso vakat. Ursprünglich wahrscheinlich aus gleichem Heft wie Quartblätter in D 20b.</desc>
+                        </p>
+               <p>
+                            <locus>a5rv</locus>: <desc xml:id="folDesc_a5rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a6rv</locus>: <desc xml:id="folDesc_a6rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a7rv</locus>: <desc xml:id="folDesc_a7rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a8rv</locus>: <desc xml:id="folDesc_a8rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
+               <p>
+                            <locus>a9rv</locus>: <desc xml:id="folDesc_a9rv">
+                                <material>Folioblatt</material>, <width>11,1</width>×<height>22,2</height>, liniiert.</desc>
+                        </p>
                <!-- usw. -->
-               <p><locus>b1rv</locus>: <desc xml:id="folDesc_b1rv"><material>Quartblatt</material>, ca. <width>22,2</width>×<height>33,3</height>, liniiert, roter Farbschnitt, Rekto rechts beschnitten; minimer Textverlust durch Beschnitt. Verso vakat.</desc></p>
+               <p>
+                            <locus>b1rv</locus>: <desc xml:id="folDesc_b1rv">
+                                <material>Quartblatt</material>, ca. <width>22,2</width>×<height>33,3</height>, liniiert, roter Farbschnitt, Rekto rechts beschnitten; minimer Textverlust durch Beschnitt. Verso vakat.</desc>
+                        </p>
                <!-- usw. -->
                <ab type="descHead">
                  3.2 Paginierung, Foliierung</ab>
                <p>Paginierung, egh: D 20a Rekto und ggf. Verso oben rechts, a2v oben links; D 20b Rekto oben links. a1r-a3v und a5r-a12r: „I.“ bis „VI.“ und „1.“ bis „8“, <ref target="#N_red">Rotstift</ref>; a6r-a17r: „2“ bis „13“, <ref target="#N_pencil">Bleistift</ref>; a20r: „14.“, <ref target="#N_black1">schwarze Tinte</ref><!-- GSA? -->; a22r: „16“, unten rechts, <ref target="#N_red">Rotstift</ref> (egh?)<!-- GSA? -->. b1r: „1.“, <ref target="#N_black2">schwarze Tinte</ref>, b2r-b18r, b20r-b61r: „2“ bis „60“, <ref target="#N_pencil">Bleistift</ref>, b62r, b66r-b68r: „61“ bis „64“, <ref target="#N_black2">schwarze Tinte</ref>, b69r-b70r: „65“ bis „66“, <ref target="#N_pencil">Bleistift</ref>.</p>
                <p>Paginierung, fHd: D 20a, D 20b Rekto und ggf. Verso oben rechts, a18r oben links. Durchgehend <ref target="#N-Archiv_red">Rotstift</ref>. a4r: „VII“; a18r, a18v, a19r: „13a“, „13b“, „13c“; a20r-a39r: „14.“ bis „33.“. Radierte frühere Paginierung: a18r-a39r, b1r-b18r, b20r-b62r, b65r, b67r-b70r: „14“ bis „102“; b66r: „98“ nicht radiert.</p>
-               <p>b19r oben links: „19.“, <ref target="#notIdentified_black">schwarze Tinte</ref>, Zuordnung unklar.<!-- so?? --></p>
+               <p>b19r oben links: „19.“, <ref target="#notIdentified_black">schwarze Tinte</ref>, Zuordnung unklar.<!-- so?? -->
+                        </p>
                <p>Foliierung, fHd: Archivfoliierung, Rekto unten links, <ref target="#GSA_pencil">Bleistift</ref>.</p>
                <additions>
                  <ab type="descHead">
                    3.3 Bearbeitungsspuren von fremder Hand</ab>
-                 <p><locus>a1r</locus>: <desc xml:id="addDesc_a1r">Abgrenzungslinien, <ref target="#N-Archiv_pencil">Bleistift, fHd (N-Archiv?)</ref>.</desc></p><!-- √270423 -->
-                 <p><locus>a2r</locus>: <desc xml:id="addDesc_a2r">Markierung Seitenumbrüche Ed: III/IV, IV/V, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulationen („30“, „38“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; vereinzelte Anstreichungen (?), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>.</desc></p><!-- √020423 -->
-                 <p><locus>a2v</locus>: <desc xml:id="addDesc_a2v">Markierung Seitenumbrüche Ed: V/VI, VI/VII, VII/VIII, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („50“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichung, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc></p><!-- √050423 -->
-                 <p><locus>a3r</locus>: <desc xml:id="addDesc_a3r">Markierung Seitenumbrüche Ed: IX/X, X/XI, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („46“, „38“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Umstellung („2“, „1“), Anstreichungen <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √110423 -->
-                 <p><locus>a3v</locus>: <desc xml:id="addDesc_a3v">Markierung Seitenumbruch Ed: XI/XII, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („40“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √120423 -->
-                 <p><locus>a4r</locus>: <desc xml:id="addDesc_a4r">Markierung Seitenumbruch Ed: XIII/XIV, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √140423 -->
-                 <p><locus>a5r</locus>: <desc xml:id="addDesc_a5r">Markierung Seitenumbruch Ed: 1/2, <ref target="#typesetter_blue">Blaustift, fHd (Druckerei)</ref>.</desc></p><!-- √080523 -->
-                 <p><locus>a6r</locus>: <desc xml:id="addDesc_a6r">Anmerkung („!“, „NB: fehlt Aph. 2 / Sdl. [= A. Seidl, Mitarbeiter N-Archiv]“) und Korrektur („3“ statt 4.) zu Abschnittsnummerierung, Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichungen, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc></p><!-- √100523 -->
-                 <p><locus>a7r</locus>: <desc xml:id="addDesc_a7r">Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √230523 -->
-                 <p><locus>a8r</locus>: <desc xml:id="addDesc_a8r">Markierung Seitenumbrüche Ed: 7/8, 8/9, 9/10, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Korrektur („6.“ statt 7.) zu Abschnittsnummerierung, Umstellung („2“, „1“), Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichungen, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc></p><!-- √260523 -->
-                 <p><locus>a9r</locus>: <desc xml:id="addDesc_a9r">Markierung Seitenumbruch Ed: 11/12, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Korrektur („7“ statt 8.) zu Abschnittsnummerierung, Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc></p><!-- √020623 -->
+                 <p>
+                                <locus>a1r</locus>: <desc xml:id="addDesc_a1r">Abgrenzungslinien, <ref target="#N-Archiv_pencil">Bleistift, fHd (N-Archiv?)</ref>.</desc>
+                            </p><!-- √270423 -->
+                 <p>
+                                <locus>a2r</locus>: <desc xml:id="addDesc_a2r">Markierung Seitenumbrüche Ed: III/IV, IV/V, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulationen („30“, „38“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; vereinzelte Anstreichungen (?), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>.</desc>
+                            </p><!-- √020423 -->
+                 <p>
+                                <locus>a2v</locus>: <desc xml:id="addDesc_a2v">Markierung Seitenumbrüche Ed: V/VI, VI/VII, VII/VIII, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („50“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichung, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc>
+                            </p><!-- √050423 -->
+                 <p>
+                                <locus>a3r</locus>: <desc xml:id="addDesc_a3r">Markierung Seitenumbrüche Ed: IX/X, X/XI, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („46“, „38“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Umstellung („2“, „1“), Anstreichungen <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc>
+                            </p><!-- √110423 -->
+                 <p>
+                                <locus>a3v</locus>: <desc xml:id="addDesc_a3v">Markierung Seitenumbruch Ed: XI/XII, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Zeilenkalkulation („40“), <ref target="#typesetter_black">schwarze Tinte, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc>
+                            </p><!-- √120423 -->
+                 <p>
+                                <locus>a4r</locus>: <desc xml:id="addDesc_a4r">Markierung Seitenumbruch Ed: XIII/XIV, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc>
+                            </p><!-- √140423 -->
+                 <p>
+                                <locus>a5r</locus>: <desc xml:id="addDesc_a5r">Markierung Seitenumbruch Ed: 1/2, <ref target="#typesetter_blue">Blaustift, fHd (Druckerei)</ref>.</desc>
+                            </p><!-- √080523 -->
+                 <p>
+                                <locus>a6r</locus>: <desc xml:id="addDesc_a6r">Anmerkung („!“, „NB: fehlt Aph. 2 / Sdl. [= A. Seidl, Mitarbeiter N-Archiv]“) und Korrektur („3“ statt 4.) zu Abschnittsnummerierung, Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichungen, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc>
+                            </p><!-- √100523 -->
+                 <p>
+                                <locus>a7r</locus>: <desc xml:id="addDesc_a7r">Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc>
+                            </p><!-- √230523 -->
+                 <p>
+                                <locus>a8r</locus>: <desc xml:id="addDesc_a8r">Markierung Seitenumbrüche Ed: 7/8, 8/9, 9/10, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Korrektur („6.“ statt 7.) zu Abschnittsnummerierung, Umstellung („2“, „1“), Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anstreichungen, <ref target="#N-Archiv_redInk">rote Tinte, fHd (N-Archiv?)</ref>.</desc>
+                            </p><!-- √260523 -->
+                 <p>
+                                <locus>a9r</locus>: <desc xml:id="addDesc_a9r">Markierung Seitenumbruch Ed: 11/12, <ref target="#typesetter_red">Rotstift, fHd (Druckerei)</ref>; Korrektur („7“ statt 8.) zu Abschnittsnummerierung, Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>.</desc>
+                            </p><!-- √020623 -->
                  
                  <!-- usw. -->
-                 <p><locus>b21r</locus>: <desc xml:id="addDesc_b21r">Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anmerkungen (Z. 1 „gesperrt!“, Z. 5 „del“, Z. 7 „nicht gesperrt!“), <ref target="#N-Archiv_pencil">Bleistift, fHd (N-Archiv)</ref>.</desc></p>
+                 <p>
+                                <locus>b21r</locus>: <desc xml:id="addDesc_b21r">Anstreichungen, <ref target="#N-Archiv_blue">Blaustift, fHd (N-Archiv)</ref>; Anmerkungen (Z. 1 „gesperrt!“, Z. 5 „del“, Z. 7 „nicht gesperrt!“), <ref target="#N-Archiv_pencil">Bleistift, fHd (N-Archiv)</ref>.</desc>
+                            </p>
                </additions>
              </physDesc>
              <history>
@@ -224,7 +523,9 @@
          </sourceDesc>
       </fileDesc>
      <encodingDesc><!-- relationship between an electronic text and the source -->
-       <projectDesc><p/></projectDesc>
+       <projectDesc>
+                <p/>
+            </projectDesc>
      </encodingDesc>
      <profileDesc>
        <creation>
@@ -238,7 +539,8 @@
            <change xml:id="GM01-02sent">Dm mit GM I-II, Vorrede 1-7 und Titelblatt <date when="1887-07-30">am 30. Juli 1887</date> an die Druckerei geschickt.</change><!-- gem. 8.8. an Kö: am 30.7. verschickt! Br an CGN aber 29.7. -->
            <change xml:id="GM02addenda"> Nachträgliche Textänderungen zu GM II, teilweise von Druckerei-Mitarbeiter in Dm eingetragen; Ns schriftliche Anordnungen nur zum Teil überliefert. Zeitpunkt unklar, <date notBefore="1887-07-31" notAfter="1887-09-30">frühestens Ende Juli, spätestens Anfang September 1887</date>.</change>
            <change xml:id="GMVorrede06-07Addenda">Nachträgliche Textänderungen zu GM Vorrede 6-7, von Druckerei-Mitarbeiter in Dm eingetragen; Ns Anordnungen nicht überliefert. Zeitpunkt unklar, <date notBefore="1887-07-31" notAfter="1887-10-15">frühestens Ende Juli, spätestens Anfang/Mitte Oktober 1887</date>.</change>
-           <change xml:id="proofreading">Bogenkorrektur <date from="1887-08-09" to="1887-10-19">vom 9. August bis 19. Oktober 1887</date>. <note type="msDesc">12½ Bogen, Korrektur gelesen von N in Sils und Köselitz in Venedig, die letzten 5½ Bogen Ende September bis Mitte Oktober gemeinsam in Venedig.</note></change>
+           <change xml:id="proofreading">Bogenkorrektur <date from="1887-08-09" to="1887-10-19">vom 9. August bis 19. Oktober 1887</date>. <note type="msDesc">12½ Bogen, Korrektur gelesen von N in Sils und Köselitz in Venedig, die letzten 5½ Bogen Ende September bis Mitte Oktober gemeinsam in Venedig.</note>
+                    </change>
            <change xml:id="GM03firstVersion">Niederschrift der ersten Fassung der dritten Abhandlung in 22 Abschnitten (GM III 2-23 entsprechend) <date notBefore="1887-08-01" notAfter="1887-08-20">Anfang/Mitte August 1887</date>.</change>
            <change xml:id="GM03finalVersion">Niederschrift von GM III 1 und III 24-28 sowie Inhaltsverzeichnis <date notBefore="1887-08-15" notAfter="1887-08-28">Mitte/Ende August 1887</date>.</change>
            <change xml:id="GMVorrede08record">Niederschrift von GM Vorrede 8  <date notBefore="1887-08-15" notAfter="1887-08-28">Mitte/Ende August 1887</date>.</change>
@@ -260,20 +562,33 @@
          <handNote xml:id="Koeselitz_pencil" scribe="Koeselitz" medium="pencil" scope="minor">Bleistift, Köselitz</handNote>
          <handNote xml:id="Koeselitz_red" scribe="Koeselitz" medium="red pencil" scope="minor">Rotstift, Köselitz</handNote>
          <handNote xml:id="Koeselitz_blue" scribe="Koeselitz" medium="red pencil" scope="minor">Blaustift, Köselitz</handNote>
-         <handNote xml:id="typesetter_black" scribe="typesetter" medium="black ink" scope="minor">Schwarze Tinte, fHd (N.N., Druckerei)<note type="msDesc">In einer dem Dm beiliegenden Archivnotiz fälschlicherweise wegen ähnlicher Handschrift Louise Röder-Wiederhold zugeschrieben.</note></handNote>
-         <handNote xml:id="typesetter_red" scribe="typesetter" medium="red pencil" scope="minor">Rotstift, fHd (Druckerei)<note type="msDesc">Satztechnische Markierungen und Hinweise von Mitarbeitern der Druckerei.</note></handNote>
-         <handNote xml:id="typesetter_blue" scribe="typesetter" medium="red pencil" scope="minor">Blaustift, fHd (Druckerei)<note type="msDesc">Satztechnische Markierungen und Hinweise von Mitarbeitern der Druckerei.</note></handNote>
-         <handNote xml:id="N-Archiv_red" scribe="N-Archiv" medium="red pencil" scope="minor">Rotstift, fHd (N-Archiv)<note type="msDesc">Paginierung(en) sowie editorische Markierungen und Anmerkungen von Mitarbeitern des Weimarer Nietzsche-Archivs.</note></handNote>
-         <handNote xml:id="N-Archiv_blue" scribe="N-Archiv" medium="blue pencil" scope="minor">Blaustift, fHd (N-Archiv)<note type="msDesc">Editorische Markierungen und Anmerkungen von Mitarbeitern des Weimarer Nietzsche-Archivs.</note></handNote>
-         <handNote xml:id="N-Archiv_pencil" scribe="N-Archiv" medium="pencil" scope="minor"><certainty match="@scribe" locus="value" cert="medium"/>Bleistift, fHd (N-Archiv?)<note type="msDesc">a1r: Abgrenzungslinien.</note></handNote><!-- so? oder so seitenspezifische notes besser auf der entsprechenden Seite selbst geben?! -->
-         <handNote xml:id="N-Archiv_redInk" scribe="N-Archiv" medium="red ink" scope="minor"><certainty match="@scribe" locus="value" cert="medium"/>Rote Tinte, fHd (N-Archiv?)<note type="msDesc">Markierung orthographischer Unregelmäßigkeiten und Fehler.</note></handNote>
-         <handNote xml:id="GSA_pencil" scribe="GSA" medium="pencil" scope="minor">Bleistift, fHd (GSA)<note type="msDesc">Foliierung durch Mitarbeiter:in des Goethe- und Schiller-Archivs.</note></handNote>
-         <handNote xml:id="notIdentified_black" scribe="notIdentified" medium="black ink" scope="minor">Schwarze Tinte (3), Zuordnung unklar<note type="msDesc">b19r: Schraffurstreichung und Pagina in differenter schwarzer Tinte, egh oder fHd?</note></handNote><!-- so? oder so seitenspezifische notes besser auf der entsprechenden Seite selbst geben?! -->
+         <handNote xml:id="typesetter_black" scribe="typesetter" medium="black ink" scope="minor">Schwarze Tinte, fHd (N.N., Druckerei)<note type="msDesc">In einer dem Dm beiliegenden Archivnotiz fälschlicherweise wegen ähnlicher Handschrift Louise Röder-Wiederhold zugeschrieben.</note>
+                </handNote>
+         <handNote xml:id="typesetter_red" scribe="typesetter" medium="red pencil" scope="minor">Rotstift, fHd (Druckerei)<note type="msDesc">Satztechnische Markierungen und Hinweise von Mitarbeitern der Druckerei.</note>
+                </handNote>
+         <handNote xml:id="typesetter_blue" scribe="typesetter" medium="red pencil" scope="minor">Blaustift, fHd (Druckerei)<note type="msDesc">Satztechnische Markierungen und Hinweise von Mitarbeitern der Druckerei.</note>
+                </handNote>
+         <handNote xml:id="N-Archiv_red" scribe="N-Archiv" medium="red pencil" scope="minor">Rotstift, fHd (N-Archiv)<note type="msDesc">Paginierung(en) sowie editorische Markierungen und Anmerkungen von Mitarbeitern des Weimarer Nietzsche-Archivs.</note>
+                </handNote>
+         <handNote xml:id="N-Archiv_blue" scribe="N-Archiv" medium="blue pencil" scope="minor">Blaustift, fHd (N-Archiv)<note type="msDesc">Editorische Markierungen und Anmerkungen von Mitarbeitern des Weimarer Nietzsche-Archivs.</note>
+                </handNote>
+         <handNote xml:id="N-Archiv_pencil" scribe="N-Archiv" medium="pencil" scope="minor">
+                    <certainty match="@scribe" locus="value" cert="medium"/>Bleistift, fHd (N-Archiv?)<note type="msDesc">a1r: Abgrenzungslinien.</note>
+                </handNote><!-- so? oder so seitenspezifische notes besser auf der entsprechenden Seite selbst geben?! -->
+         <handNote xml:id="N-Archiv_redInk" scribe="N-Archiv" medium="red ink" scope="minor">
+                    <certainty match="@scribe" locus="value" cert="medium"/>Rote Tinte, fHd (N-Archiv?)<note type="msDesc">Markierung orthographischer Unregelmäßigkeiten und Fehler.</note>
+                </handNote>
+         <handNote xml:id="GSA_pencil" scribe="GSA" medium="pencil" scope="minor">Bleistift, fHd (GSA)<note type="msDesc">Foliierung durch Mitarbeiter:in des Goethe- und Schiller-Archivs.</note>
+                </handNote>
+         <handNote xml:id="notIdentified_black" scribe="notIdentified" medium="black ink" scope="minor">Schwarze Tinte (3), Zuordnung unklar<note type="msDesc">b19r: Schraffurstreichung und Pagina in differenter schwarzer Tinte, egh oder fHd?</note>
+                </handNote><!-- so? oder so seitenspezifische notes besser auf der entsprechenden Seite selbst geben?! -->
          <!-- usw. -->
        </handNotes>
      </profileDesc>
      <revisionDesc><!-- summarizes the revision history for a file -->
-       <listChange><change when="2022-01">first steps</change></listChange>
+       <listChange>
+                <change when="2022-01">first steps</change>
+            </listChange>
      </revisionDesc>
    </teiHeader>
   
@@ -291,7 +606,7 @@
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,58" width="1030.08pt"/>
    </surface>
    <surface lrx="922.7" lry="955.5" n="19r" ulx="42.6" uly="30.2" xml:id="D-20a_13c">
-      <graphic height="981.92pt" width="1228.48pt" url="http://0.0.0.0:1024/0837/IH41KUYBmyI-Bm2LeE9bFoM.jp2/full/7678,6137/0/default.jpg"/>
+      <graphic height="981.92pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13c" url="http://0.0.0.0:1024/0837/9DZY5mT9WYU-CBJC3jjgESU.jp2/full/7678,6137/0/default.jpg"/>
    </surface>
    <surface lrx="702.1" lry="870.9" n="36r" ulx="44.0" uly="45.8" xml:id="D-20b_35">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,35" width="1020.64pt"/>
@@ -327,7 +642,7 @@
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,46" width="1030.08pt"/>
    </surface>
    <surface lrx="917.0" lry="1396.6" n="20r" ulx="36.0" uly="37.0" xml:id="D-20a_14">
-      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,14" width="1235.68pt"/>
+      <graphic height="1441.28pt" width="1235.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,14" url="http://0.0.0.0:1024/0837/GAZWdIfJZYl-DvWOdRo7XdY.jp2/full/7723,9008/0/default.jpg"/>
    </surface>
    <surface lrx="704.984" lry="873.492" n="43r" ulx="44.408" uly="43.054" xml:id="D-20b_42">
       <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,42" width="1020.32pt"/>
@@ -381,7 +696,7 @@
       <graphic height="908.32pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,62" width="1046.4pt"/>
    </surface>
    <surface lrx="903.8" lry="852.8" n="5r" ulx="42.1" uly="33.4" xml:id="D-20a_1">
-      <graphic height="896.8pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,1" width="1225.6pt"/>
+      <graphic height="896.8pt" width="1225.6pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,1" url="http://0.0.0.0:1024/0837/J2qdN6KgYbc-DAG48JOoGVI.jp2/full/7660,5605/0/default.jpg"/>
    </surface>
    <surface lrx="696.5" lry="864.8" n="6v" ulx="36.0" uly="35.4" xml:id="D-20b_6v">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,6v" width="1010.4pt"/>
@@ -399,7 +714,7 @@
       <graphic height="1246.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,16v" width="1218.24pt"/>
    </surface>
    <surface lrx="926.9" lry="1394.4" n="2v" ulx="49.4" uly="37.9" xml:id="D-20a_IV">
-      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,IV" width="1235.84pt"/>
+      <graphic height="1446.08pt" width="1235.84pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,IV" url="http://0.0.0.0:1024/0837/4Bx0ZYS1g66-BgBkXxWCZuq.jp2/full/7724,9038/0/default.jpg"/>
    </surface>
    <surface lrx="915.747" lry="1405.546" n="30v" ulx="50.276" uly="26.538" xml:id="D-20a_24v">
       <graphic height="1480.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,24v" width="1221.12pt"/>
@@ -462,7 +777,7 @@
       <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61c" width="863.04pt"/>
    </surface>
    <surface lrx="903.2" lry="1406.1" n="7r" ulx="36.5" uly="42.1" xml:id="D-20a_3">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,3" width="1215.2pt"/>
+      <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,3" url="http://0.0.0.0:1024/0837/C6QudauxmCZ-F0Up8grycVi.jp2/full/7595,8999/0/default.jpg"/>
    </surface>
    <surface lrx="693.4" lry="871.8" n="11r" ulx="33.9" uly="45.9" xml:id="D-20b_11">
       <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,11" width="1010.56pt"/>
@@ -474,25 +789,25 @@
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,49v" width="1030.08pt"/>
    </surface>
    <surface lrx="918.9" lry="1386.7" n="3v" ulx="48.0" uly="30.1" xml:id="D-20a_VI">
-      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VI" width="1235.84pt"/>
+      <graphic height="1446.08pt" width="1235.84pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VI" url="http://0.0.0.0:1024/0837/1FMehA77RqE-DEfkotqGHhX.jp2/full/7724,9038/0/default.jpg"/>
    </surface>
    <surface lrx="703.7" lry="861.9" n="4v" ulx="39.8" uly="37.4" xml:id="D-20a_VIIa">
       <graphic height="905.6pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VIIa" width="1014.4pt"/>
    </surface>
    <surface lrx="916.5" lry="1409.8" n="13r" ulx="45.3" uly="45.3" xml:id="D-20a_9">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,9" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,9" url="http://0.0.0.0:1024/0837/C5NF1ZuBfYa-G7tfdz94YjG.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="690.4" lry="868.2" n="15r" ulx="35.5" uly="43.5" xml:id="D-20b_15">
       <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,15" width="1010.56pt"/>
    </surface>
    <surface lrx="917.1" lry="1407.2" n="11r" ulx="48.8" uly="43.5" xml:id="D-20a_7">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,7" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,7" url="http://0.0.0.0:1024/0837/FAXAO5UPcNb-B5ozP3vrOUR.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="934.7" lry="1403.7" n="30r" ulx="50.1" uly="39.0" xml:id="D-20a_24">
-      <graphic height="1448.64pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,24" width="1248.96pt"/>
+      <graphic height="1448.64pt" width="1248.96pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,24" url="http://0.0.0.0:1024/0837/Ajhk4BnbePw-Eh2MbgMH1z8.jp2/full/7806,9054/0/default.jpg"/>
    </surface>
    <surface lrx="902.4" lry="1407.7" n="8r" ulx="35.4" uly="43.5" xml:id="D-20a_4">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,4" width="1215.2pt"/>
+      <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,4" url="http://0.0.0.0:1024/0837/8fro4yIx5Pp-FteshFuqZAq.jp2/full/7595,8999/0/default.jpg"/>
    </surface>
    <surface lrx="917.6" lry="1421.3" n="35r" ulx="39.0" uly="58.2" xml:id="D-20a_29">
       <graphic height="1463.36pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,29" width="1231.36pt"/>
@@ -528,7 +843,7 @@
       <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,14v" width="1010.56pt"/>
    </surface>
    <surface lrx="911.5" lry="1395.8" n="24r" ulx="43.0" uly="32.0" xml:id="D-20a_18">
-      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,18" width="1222.56pt"/>
+      <graphic height="1441.28pt" width="1222.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,18" url="http://0.0.0.0:1024/0837/WwLJdPykUv-Eg0IYXrfufy.jp2/full/7641,9008/0/default.jpg"/>
    </surface>
    <surface lrx="701.1" lry="870.2" n="2r" ulx="38.9" uly="41.4" xml:id="D-20b_2">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,2" width="1010.4pt"/>
@@ -537,7 +852,7 @@
       <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19a" width="1023.52pt"/>
    </surface>
    <surface lrx="920.0" lry="808.3" n="18v" ulx="40.3" uly="212.2" xml:id="D-20a_13b">
-      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13b" width="1227.04pt"/>
+      <graphic height="839.68pt" width="1227.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13b" url="http://0.0.0.0:1024/0837/5lsjZSyPuSb-GQI2Byi1pUW.jp2/full/7669,5248/0/default.jpg"/>
    </surface>
    <surface lrx="699.0" lry="873.8" n="30r" ulx="29.0" uly="46.1" xml:id="D-20b_29">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,29" width="1020.64pt"/>
@@ -564,7 +879,7 @@
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,5v" width="1010.4pt"/>
    </surface>
    <surface lrx="937.9" lry="2090.7" n="21v" ulx="41.6" uly="32.6" xml:id="D-20a_15v">
-      <graphic height="2401.12pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,15v" width="973.28pt"/>
+      <graphic height="2401.12pt" width="973.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,15v" url="http://0.0.0.0:1024/0837/D8acgtMQaG3-C77VJK9RmlO.jp2/full/6083,15007/0/default.jpg"/>
    </surface>
    <surface lrx="717.1" lry="868.3" n="61r" ulx="55.7" uly="43.8" xml:id="D-20b_60">
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,60" width="1030.08pt"/>
@@ -591,7 +906,7 @@
       <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,10" width="1010.56pt"/>
    </surface>
    <surface lrx="919.4" lry="1410.2" n="25r" ulx="40.5" uly="44.0" xml:id="D-20a_19">
-      <graphic height="1450.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,19" width="1237.12pt"/>
+      <graphic height="1450.08pt" width="1237.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,19" url="http://0.0.0.0:1024/0837/JuaUoSF7nFf-GNjgkonod2W.jp2/full/7732,9063/0/default.jpg"/>
    </surface>
    <surface lrx="696.2" lry="868.2" n="6r" ulx="38.9" uly="44.5" xml:id="D-20b_6">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,6" width="1010.4pt"/>
@@ -627,10 +942,10 @@
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,1" width="1010.4pt"/>
    </surface>
    <surface lrx="919.7" lry="1390.9" n="3r" ulx="49.4" uly="35.5" xml:id="D-20a_V">
-      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,V" width="1235.84pt"/>
+      <graphic height="1446.08pt" width="1235.84pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,V" url="http://0.0.0.0:1024/0837/LinvRUNVx4e-Bj9hjWJ5t8p.jp2/full/7724,9038/0/default.jpg"/>
    </surface>
    <surface lrx="929.8" lry="1403.4" n="28r" ulx="51.7" uly="38.6" xml:id="D-20a_22">
-      <graphic height="1442.88pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,22" width="1243.2pt"/>
+      <graphic height="1442.88pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,22" url="http://0.0.0.0:1024/0837/U1J09d59Ze-BH7453dNv8V.jp2/full/7770,9018/0/default.jpg"/>
    </surface>
    <surface lrx="909.4" lry="1405.3" n="8v" ulx="38.1" uly="39.5" xml:id="D-20a_4v">
       <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,4v" width="1215.2pt"/>
@@ -654,7 +969,7 @@
       <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,64" width="1028.64pt"/>
    </surface>
    <surface lrx="907.0" lry="1397.4" n="1v" ulx="35.0" uly="37.1" xml:id="D-20a_II">
-      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,II" width="1221.28pt"/>
+      <graphic height="1446.08pt" width="1221.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,II" url="http://0.0.0.0:1024/0837/5b6Obn6FxEB-EK9fSrEUxnb.jp2/full/7633,9038/0/default.jpg"/>
    </surface>
    <surface lrx="702.357" lry="320.455" n="19v" ulx="213.441" uly="15.54" xml:id="D-20b_19v">
       <graphic height="867.2pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19v" width="997.12pt"/>
@@ -678,7 +993,7 @@
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,2v" width="1010.4pt"/>
    </surface>
    <surface lrx="918.2" lry="1408.5" n="14r" ulx="47.8" uly="44.8" xml:id="D-20a_10">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,10" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,10" url="http://0.0.0.0:1024/0837/AyuufPgbwU3-CPDkspHiCqZ.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="922.9" lry="1406.1" n="11v" ulx="43.5" uly="31.5" xml:id="D-20a_7v">
       <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,7v" width="1228.48pt"/>
@@ -693,7 +1008,7 @@
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,8" width="1010.4pt"/>
    </surface>
    <surface lrx="915.8" lry="1401.1" n="23r" ulx="47.0" uly="31.7" xml:id="D-20a_17">
-      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,17" width="1222.56pt"/>
+      <graphic height="1441.28pt" width="1222.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,17" url="http://0.0.0.0:1024/0837/97KRjtfT0zi-GGn5F0vnZMa.jp2/full/7641,9008/0/default.jpg"/>
    </surface>
    <surface lrx="928.5" lry="1404.3" n="13v" ulx="53.3" uly="40.0" xml:id="D-20a_9v">
       <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,9v" width="1228.48pt"/>
@@ -717,13 +1032,13 @@
       <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61a" width="863.04pt"/>
    </surface>
    <surface lrx="899.7" lry="1390.7" n="6r" ulx="35.5" uly="32.8" xml:id="D-20a_2">
-      <graphic height="1432.48pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,2" width="1208.0pt"/>
+      <graphic height="1432.48pt" width="1208.0pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,2" url="http://0.0.0.0:1024/0837/DfwhysDbyH6-FxBNJnteIp8.jp2/full/7550,8953/0/default.jpg"/>
    </surface>
    <surface lrx="708.5" lry="882.6" n="69v" ulx="45.1" uly="56.5" xml:id="D-20b_65v">
       <graphic height="920.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,65v" width="1028.64pt"/>
    </surface>
    <surface lrx="898.6" lry="1403.4" n="9r" ulx="31.7" uly="43.7" xml:id="D-20a_5">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,5" width="1215.2pt"/>
+      <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,5" url="http://0.0.0.0:1024/0837/KbNmn5DtS0w-Eyn8W0caZ2u.jp2/full/7595,8999/0/default.jpg"/>
    </surface>
    <surface lrx="701.1" lry="875.0" n="12v" ulx="41.3" uly="49.3" xml:id="D-20b_12v">
       <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,12v" width="1010.56pt"/>
@@ -732,7 +1047,7 @@
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,45" width="1030.08pt"/>
    </surface>
    <surface lrx="921.1" lry="1413.8" n="15r" ulx="45.4" uly="45.9" xml:id="D-20a_11">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,11" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,11" url="http://0.0.0.0:1024/0837/ByyzS9XGiV5-Fuox3oIkdqy.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="926.9" lry="1409.9" n="36r" ulx="47.8" uly="44.6" xml:id="D-20a_30">
       <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,30" width="1243.2pt"/>
@@ -756,10 +1071,10 @@
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,55v" width="1030.08pt"/>
    </surface>
    <surface lrx="910.2" lry="1401.3" n="10r" ulx="43.0" uly="42.2" xml:id="D-20a_6">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,6" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,6" url="http://0.0.0.0:1024/0837/I32I1VkPTmo-F2D9RYscpJr.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="914.1" lry="1396.0" n="2r" ulx="42.6" uly="40.8" xml:id="D-20a_III">
-      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,III" width="1235.84pt"/>
+      <graphic height="1446.08pt" width="1235.84pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,III" url="http://0.0.0.0:1024/0837/LRhLeOaooXi-BE2lcKZuyBF.jp2/full/7724,9038/0/default.jpg"/>
    </surface>
    <surface lrx="718.4" lry="870.7" n="60v" ulx="56.8" uly="48.8" xml:id="D-20b_59v">
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,59v" width="1030.08pt"/>
@@ -786,7 +1101,7 @@
       <graphic height="1448.64pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,28" width="1237.44pt"/>
    </surface>
    <surface lrx="924.5" lry="1409.3" n="26r" ulx="42.1" uly="47.4" xml:id="D-20a_20">
-      <graphic height="1450.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,20" width="1237.12pt"/>
+      <graphic height="1450.08pt" width="1237.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,20" url="http://0.0.0.0:1024/0837/6yCsrfzZVzZ-DStBm0n6Hxf.jp2/full/7732,9063/0/default.jpg"/>
    </surface>
    <surface lrx="712.0" lry="869.0" n="60r" ulx="53.4" uly="43.7" xml:id="D-20b_59">
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,59" width="1030.08pt"/>
@@ -807,19 +1122,19 @@
       <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,32" width="1243.2pt"/>
    </surface>
    <surface lrx="911.0" lry="1408.5" n="12r" ulx="41.1" uly="45.4" xml:id="D-20a_8">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,8" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,8" url="http://0.0.0.0:1024/0837/F17ZG2dLSxB-D0qtUr8iMAt.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="698.7" lry="872.6" n="15v" ulx="42.2" uly="44.0" xml:id="D-20b_15v">
       <graphic height="916.0pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,15v" width="1010.56pt"/>
    </surface>
    <surface lrx="925.8" lry="1405.4" n="16r" ulx="51.4" uly="42.6" xml:id="D-20a_12">
-      <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,12" width="1228.48pt"/>
+      <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,12" url="http://0.0.0.0:1024/0837/JzqhxFRMg0o-DjQC8wjiiEP.jp2/full/7678,8999/0/default.jpg"/>
    </surface>
    <surface lrx="708.0" lry="871.0" n="22v" ulx="46.2" uly="45.1" xml:id="D-20b_21v">
       <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,21v" width="1023.52pt"/>
    </surface>
    <surface lrx="697.6" lry="859.2" n="4r" ulx="36.8" uly="39.4" xml:id="D-20a_VII">
-      <graphic height="905.6pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VII" width="1014.4pt"/>
+      <graphic height="905.6pt" width="1014.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VII" url="http://0.0.0.0:1024/0837/F7kqkiR5UvO-BHIUirXXS2f.jp2/full/6340,5660/0/default.jpg"/>
    </surface>
    <surface lrx="717.0" lry="871.0" n="58v" ulx="53.4" uly="41.8" xml:id="D-20b_57v">
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,57v" width="1030.08pt"/>
@@ -840,7 +1155,7 @@
       <graphic height="915.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,43v" width="1020.32pt"/>
    </surface>
    <surface lrx="931.0" lry="2108.0" n="21r" ulx="41.9" uly="45.9" xml:id="D-20a_15">
-      <graphic height="2401.12pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,15" width="973.28pt"/>
+      <graphic height="2401.12pt" width="973.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,15" url="http://0.0.0.0:1024/0837/ICmvqX9vga-G3yNa5f0yNB.jp2/full/6083,15007/0/default.jpg"/>
    </surface>
    <surface lrx="929.6" lry="1406.4" n="37r" ulx="55.0" uly="41.0" xml:id="D-20a_31">
       <graphic height="1455.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,31" width="1243.2pt"/>
@@ -849,7 +1164,7 @@
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,8v" width="1010.4pt"/>
    </surface>
    <surface lrx="912.8" lry="1408.0" n="1r" ulx="37.4" uly="45.9" xml:id="D-20a_I">
-      <graphic height="1446.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,I" width="1221.28pt"/>
+      <graphic height="1446.08pt" width="1221.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,I" url="http://0.0.0.0:1024/0837/Fyv0zs0vKad-AzP0F4Uxxxc.jp2/full/7633,9038/0/default.jpg"/>
    </surface>
    <surface lrx="701.4" lry="866.1" n="37v" ulx="44.0" uly="39.0" xml:id="D-20b_36v">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,36v" width="1020.64pt"/>
@@ -882,7 +1197,7 @@
       <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,10v" width="1228.48pt"/>
    </surface>
    <surface lrx="913.582" lry="797.188" n="17r" ulx="40.282" uly="321.351" xml:id="D-20a_13">
-      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13" width="1227.04pt"/>
+      <graphic height="839.68pt" width="1227.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13" url="http://0.0.0.0:1024/0837/IM6DrpRa5yD-EI83HB6h47S.jp2/full/7669,5248/0/default.jpg"/>
    </surface>
    <surface lrx="713.9" lry="874.4" n="52v" ulx="47.4" uly="45.9" xml:id="D-20b_51v">
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,51v" width="1030.08pt"/>
@@ -894,10 +1209,10 @@
       <graphic height="856.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61cv" width="863.04pt"/>
    </surface>
    <surface lrx="928.0" lry="1404.2" n="20v" ulx="39.2" uly="37.1" xml:id="D-20a_14v">
-      <graphic height="1441.28pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,14v" width="1235.68pt"/>
+      <graphic height="1441.28pt" width="1235.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,14v" url="http://0.0.0.0:1024/0837/Li5EvXqubk4-C7JRQ9ZC5Sk.jp2/full/7723,9008/0/default.jpg"/>
    </surface>
    <surface lrx="920.2" lry="790.6" n="18r" ulx="43.8" uly="203.2" xml:id="D-20a_13a">
-      <graphic height="839.68pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13a" width="1227.04pt"/>
+      <graphic height="839.68pt" width="1227.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13a" url="http://0.0.0.0:1024/0837/3sSYSyulzBf-D0M9Y7CP3yN.jp2/full/7669,5248/0/default.jpg"/>
    </surface>
    <surface lrx="709.3" lry="869.4" n="36v" ulx="47.8" uly="38.7" xml:id="D-20b_35v">
       <graphic height="915.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,35v" width="1020.64pt"/>
@@ -918,7 +1233,7 @@
       <graphic height="1439.84pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,8v" width="1228.48pt"/>
    </surface>
    <surface lrx="929.3" lry="787.4" n="27r" ulx="41.4" uly="104.3" xml:id="D-20a_21">
-      <graphic height="840.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,21" width="1235.68pt"/>
+      <graphic height="840.96pt" width="1235.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,21" url="http://0.0.0.0:1024/0837/3xHrheX5HW2-FOrymFmcMRS.jp2/full/7723,5256/0/default.jpg"/>
    </surface>
    <surface lrx="720.2" lry="889.4" n="45v" ulx="52.8" uly="55.5" xml:id="D-20b_44v">
       <graphic height="926.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,44v" width="1027.2pt"/>
@@ -936,7 +1251,7 @@
       <graphic height="909.76pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,49" width="1030.08pt"/>
    </surface>
    <surface lrx="917.058" lry="1211.332" n="22r" ulx="45.324" uly="32.905" xml:id="D-20a_16">
-      <graphic height="1246.08pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,16" width="1218.24pt"/>
+      <graphic height="1246.08pt" width="1218.24pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,16" url="http://0.0.0.0:1024/0837/9QQ8dWNa5xa-GIMrL19n1ND.jp2/full/7614,7788/0/default.jpg"/>
    </surface>
    <surface lrx="933.6" lry="800.0" n="27v" ulx="49.4" uly="114.1" xml:id="D-20a_21v">
       <graphic height="840.96pt" url="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,21v" width="1235.68pt"/>

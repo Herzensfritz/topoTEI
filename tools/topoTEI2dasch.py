@@ -31,7 +31,7 @@ import xml.dom.minidom as MD
 from xml.etree import ElementTree
 import lxml.etree as LET
 
-DEBUG = True
+DEBUG = False 
 
 def get_credentials(server: str, email: str) -> dict:
     username = email.split('@')[0].replace('.','')
@@ -91,26 +91,29 @@ def erase_resource(resource: dict, context: dict, dsp_credentials: dict):
             headers=headers,
             json=delete)
     if d.status_code != 200:
+        print(d.status_code)
         print(d.json())
 
-def erase_old_facsimiles(xml_tree: ElementTree, dsp_credentials: dict):
+def erase_old_facsimiles(xml_tree: ElementTree, dsp_credentials: dict, namespaces: dict):
     count_endpoint = dsp_credentials["server"] + '/v2/searchbylabel/count/'
     graph_endpoint = dsp_credentials["server"] + '/v2/searchbylabel/'
-    namespaces = { k if k is not None else 'ns': v for k, v in xml_tree.getroot().nsmap.items() }
     for label in xml_tree.getroot().xpath('//ns:resource/@label', namespaces=namespaces):
         searchterm = label.split(' ')[1] if len(label.split(' ')) > 1 else label
         r = requests.get(count_endpoint + searchterm + '?token=' + dsp_credentials['token'])
         if r.status_code == 200:
             if int(r.json()["schema:numberOfItems"]) > 0:
+                print(f'Found {r.json()["schema:numberOfItems"]} old resource(s) with label {searchterm} ...')
+                #print(graph_endpoint + searchterm + '?token=' + dsp_credentials['token'])
                 results = requests.get(graph_endpoint + searchterm + '?token=' + dsp_credentials['token'])
                 if results.status_code == 200:
                     context = { '@context': results.json()['@context'] }
-                    for result in results.json()['@graph']:
-                        erase_resource(result, context, dsp_credentials)
-            else:
-                raise Exception(r.status_code)
-
-
+                    if int(r.json()["schema:numberOfItems"]) > 1:
+                        for result in results.json()['@graph']:
+                            erase_resource(result, context, dsp_credentials)
+                    else:
+                        erase_resource(results.json(), results.json(), dsp_credentials)
+        else:
+            raise Exception(r.status_code)
 
 def upload_faksimile(xml_file: str, dsp_credentials: dict, debug: bool) -> str:
     sipi = dsp_credentials["server"].replace('api','iiif').replace('3333','1024')
@@ -124,13 +127,13 @@ def upload_faksimile(xml_file: str, dsp_credentials: dict, debug: bool) -> str:
     else:
         return ''
 
-def upload_faksimile_tree(xml_tree: ElementTree, dsp_credentials: dict, debug: bool) -> str:
+def upload_faksimile_tree(xml_tree: ElementTree, dsp_credentials: dict, debug: bool, image_dir: str) -> str:
     sipi = dsp_credentials["server"].replace('api','iiif').replace('3333','1024')
     endswith =  '_id2iri_mapping.json'
     if debug:
         list_of_files = [ file for file in glob.glob('*.json') if file.startswith(fileprefix) ]
         return max(list_of_files, key=os.path.getctime)
-    if xml_upload(xml_tree, dsp_credentials["server"], dsp_credentials["email"], dsp_credentials["password"], './', sipi, True, False, False, False):
+    if xml_upload(xml_tree, dsp_credentials["server"], dsp_credentials["email"], dsp_credentials["password"], image_dir, sipi, True, False, False, False):
         list_of_files = [ file for file in glob.glob('*.json') if file.endswith(endswith) ]
         return max(list_of_files, key=os.path.getctime)
     else:
@@ -177,11 +180,12 @@ def main(argv):
     username = 'root@example.com'
     dsp_server = 'http://0.0.0.0:3333/'
     project = '0837'
-    id2iri_mapping = '2024-01-10_191412_id2iri_mapping.json'
+    id2iri_mapping = ''
     xml_file = ''
     deleteAll = False
+    image_dir = './'
     try:
-        opts, args = getopt.getopt(argv, "chm:p:s:u:x:", ["clear","help", "mapping=","project=", "server=", "user=", "xml="])
+        opts, args = getopt.getopt(argv, "ci:hm:p:s:u:x:", ["clear","images=","help", "mapping=","project=", "server=", "user=", "xml="])
     except getopt.GetoptError:
         usage()
         return 2
@@ -191,6 +195,8 @@ def main(argv):
             return 0
         elif opt in ('-c', '--clear'):
             deleteAll = True
+        elif opt in ('-c', '--clear'):
+            image_dir = arg 
         elif opt in ('-m', '--mapping'):
             id2iri_mapping = arg
         elif opt in ('-p', '--project'):
@@ -204,18 +210,27 @@ def main(argv):
     exit_status = 0
     dsp_credentials = get_credentials(dsp_server.removesuffix('/'), username)
     create_token(dsp_credentials)
-    if DEBUG:
-        xml_tree = LET.parse('debug.xml')
-        erase_old_facsimiles(xml_tree, dsp_credentials)
-        return exit_status
-    elif xml_file == '' and id2iri_mapping == '':
+#    if DEBUG:
+#        xml_tree = LET.parse('debug.xml')
+#        erase_old_facsimiles(xml_tree, dsp_credentials)
+#        return exit_status
+#    elif xml_file == '' and id2iri_mapping == '':
+    if xml_file == '' and id2iri_mapping == '':
         xml_tree = create_facsimile_data(project)
-        id2iri_file = upload_faksimile_tree(xml_tree, dsp_credentials, False)
+        namespaces = { k if k is not None else 'ns': v for k, v in xml_tree.getroot().nsmap.items() }
+        resources = xml_tree.getroot().xpath('//ns:resource',namespaces=namespaces)
+        print(f'Facsimile data created with {len(resources)} resources ...')
+        erase_old_facsimiles(xml_tree, dsp_credentials, namespaces)
+        print(f'Uploading faksimile tree ...')
+        id2iri_file = upload_faksimile_tree(xml_tree, dsp_credentials, False, image_dir)
     elif id2iri_mapping == '':
-        id2iri_file = upload_faksimile(xml_file, dsp_credentials, False)
+        xml_tree = LET.parse(xml_tree)
+        erase_old_facsimiles(xml_tree, dsp_credentials)
+        id2iri_file = upload_faksimile_tree(xml_tree, dsp_credentials, False, image_dir)
     else:
         id2iri_file = id2iri_mapping
     if id2iri_file != '':
+        print(f'Getting iiif urls for iri ...')
         idList = get_iiif_urls(id2iri_file, dsp_credentials)
         print(idList)
         insert_iiif_urls(idList)

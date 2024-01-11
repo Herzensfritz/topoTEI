@@ -41,7 +41,7 @@
    </knora>
   </xsl:template>
  
-  <xsl:template match="tei:surface">
+  <xsl:template match="tei:surface[empty(tei:graphic/@corresp)]">
      <xsl:if test="//tei:pb[@facs = concat('#', current()/@xml:id)]">
         <xsl:variable name="label" select="//tei:pb[@facs = concat('#', current()/@xml:id)]/@xml:id"/>
         <xsl:variable name="filename" select="substring-after(tei:graphic/@url, 'download/')"/>
