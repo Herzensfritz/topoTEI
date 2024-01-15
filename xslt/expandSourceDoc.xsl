@@ -2,6 +2,7 @@
    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
    <xsl:variable name="METAMARK_EXCLUDE_STRING" select="'xml:id target'"/>
    <xsl:variable name="ADD_EXCLUDE_STRING" select="'xml:id'"/>
+   <xsl:variable name="DEFAULT_EXCLUDE_STRING" select="'xml:id'"/>
    <xsl:template match="/tei:TEI">
       <xsl:element name="TEI" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyAttributes"/>
@@ -108,6 +109,7 @@
             <xsl:element name="add" namespace="http://www.tei-c.org/ns/1.0">
                   <xsl:call-template name="copyNodeAttributes">
                      <xsl:with-param name="node" select="//tei:add[@corresp = concat('#', current()/@xml:id)]"/>
+                     <xsl:with-param name="excludeString" select="$ADD_EXCLUDE_STRING"/>
                   </xsl:call-template>
                   <xsl:attribute name="place">
                       <xsl:value-of select="current()/@place"/>
@@ -144,6 +146,7 @@
       <xsl:element name="{$openingTags[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyNodeAttributes">
             <xsl:with-param name="node" select="$openingTags[1]"/>
+            <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
          </xsl:call-template>
          <xsl:choose>
             <xsl:when test="count($openingTags) gt 1">
@@ -157,6 +160,7 @@
                <xsl:element name="{$parentTag/name()}" namespace="http://www.tei-c.org/ns/1.0">
                   <xsl:call-template name="copyNodeAttributes">
                      <xsl:with-param name="node" select="$parentTag"/>
+                     <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
                   </xsl:call-template>
                   <xsl:value-of select="$text"/>
                </xsl:element>

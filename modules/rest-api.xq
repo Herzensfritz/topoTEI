@@ -150,6 +150,37 @@ function myrest:createFacsimiles4DSP($headerFile as xs:string*, $filename as xs:
 };
 
 declare
+  %rest:path("/fixnamespace")
+  %rest:GET
+   %rest:form-param("term", "{$term}", "space")
+   %rest:header-param("Referer", "{$referer}", "/exist/apps/topoTEI/index.html")
+function myrest:fixnamespace($term, $referer) {
+     let $stylesheet := doc(concat($config:app-root, "/xslt/fix_xml_namespace.xsl"))
+    let $param := <parameters>
+                    <param name="term" value="{$term}"/>
+                </parameters>
+   let $o := for $resource in xmldb:get-child-resources($config:data-root)
+        where doc(concat($config:data-root, '/', $resource))//@*[name() = $term]
+        return (
+            let $output := transform:transform(doc(concat($config:data-root, '/', $resource)), $stylesheet, $param, (), "method=xml media-type=text/xml")
+             let $output-collection := xmldb:login($config:data-root, 'test', 'test')
+            return xmldb:store($config:data-root, $resource, $output)
+            )
+     let $log := console:log($o)
+   return 
+      <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="{$referer}#reload"/>
+      
+        </http:response>
+    </rest:response> 
+};
+
+declare
   %rest:path("/save")
   %rest:POST
    %rest:form-param("file", "{$file}", "unknown.xml")
@@ -557,27 +588,68 @@ declare function local:getNewestFile() {
             return xmldb:last-modified($config:data-root, $resource)
     return $filelist[1]
 };
+
+declare %private function local:updateTextContentV1($content, $newData)  {
+    let $idList := $content//(tei:div1|tei:div2|tei:div|tei:p)/@xml:id
+    return if ($newData//*[contains($idList, @xml:id)]) then (
+        let $targetId := $newData//*[contains($idList, @xml:id)][1]/@xml:id
+        let $target := $newData//*[@xml:id = $targetId]
+        let $source := $content//*[@xml:id = $targetId]
+        let $updateInOld := update insert $source into $target
+        
+        return  update insert $content into $newData//tei:text/tei:body
+    ) else (
+        update insert $content into $newData//tei:text/tei:body
+    )  
+};
+declare %private function local:updateTextContent($content, $newData)  {
+    for $div1 in $content//tei:div1
+        return if (empty($div1/@xml:id) or $newData//tei:div1[@xml:id = $div1/@xml:id]) then (
+            let $lastDiv1 := $newData//tei:div1[last()]
+            let $pb := $div1//tei:pb
+            return for $div2 in $div1/tei:div2
+                return if (empty($div2/@xml:id) or $lastDiv1/tei:div2[@xml:id = $div2/@xml:id]) then (
+                    let $lastDiv2 := $lastDiv1/tei:div2[last()]
+                    return for $p in $div2/tei:p
+                         return if ($p/position() = 1) then (
+                                for $pContent in $p/*
+                                    return update insert $pContent into $lastDiv2/tei:p[last()]
+                             ) else (
+                                update insert $p into $lastDiv2
+                             )
+                ) else (
+                    update insert $div2 into $lastDiv1
+                )
+        ) else ( 
+            update insert $div1 into $newData//tei:text/tei:body
+        )
+    
+};
 declare function local:createManuscript($data, $newFilename) {
-   if (doc-available(concat($config:app-root, '/output/',$newFilename)) 
+   if (empty($data) and doc-available(concat($config:app-root, '/output/',$newFilename)) 
                 and (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt local:getNewestFile())
                 and  (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt xmldb:last-modified(concat($config:app-root, '/TEI'),  util:document-name($data)))  
     ) then (
             let $log := console:log('taking old data')
             return doc(concat($config:app-root, '/output/', $newFilename))
-        ) else (
+    ) else (
         let $newFile := storage:store($data, 'output', $newFilename)
-        let $log := if (doc-available($newFile)) then (console:log(local:getNewestFile())) else ()
-        let $newLog := console:log($newFile)
         let $newData := doc($newFile)
         let $emptyText := for $textContent in $newData//tei:text/tei:body/*
                             return update delete $textContent
-        let $transform := local:getFileContents($newData)
+        let $contents := local:getFileContents($newData)
+        
+        let $newText := for $content in $contents
+                            return local:updateTextContent($content, $newData)
+        
+      (:  :   let $transform := local:getFileContents($newData)
         let $newText := for $text in $transform//tei:text/tei:body/*
-            return update insert $text into $newData//tei:text/tei:body
+                return update insert $text into $newData//tei:text/tei:body :)
+        
         let $createSourceDoc := if ($newData/tei:sourceDoc) then () else (
             update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
         )    
-        let $newSurface := for $surface in $transform//tei:sourceDoc/*
+        let $newSurface := for $surface in $contents//tei:sourceDoc/*
             return update insert $surface into $newData//tei:sourceDoc
         return $newData
     )

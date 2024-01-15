@@ -36,6 +36,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
+        <!-- <div><button title="test" onclick="location.href = '/exist/restxq/fixnamespace'">test</button></div> -->
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
