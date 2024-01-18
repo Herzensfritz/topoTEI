@@ -106,7 +106,7 @@
          <xsl:attribute name="rend">
             <xsl:value-of select="@xml:lang"/>
          </xsl:attribute>
-         <xsl:apply-templates select="tei:reg/text()"/>
+         <xsl:apply-templates select="if (tei:reg) then (tei:reg/text()) else (text())"/>
       </xsl:element>
    </xsl:template>
    <xsl:template match="tei:subst|tei:head|tei:reg">
@@ -192,7 +192,17 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
-   <xsl:template match="tei:sic|tei:corr"/>
+   <xsl:template match="tei:corr"/>
+   <xsl:template match="tei:sic">
+      <xsl:param name="startId"/>
+      <xsl:param name="endId"/>
+      <xsl:param name="parents"/>
+      <xsl:apply-templates>
+         <xsl:with-param name="parents" select="if($parents) then ($parents|current()) else (current())"/>
+         <xsl:with-param name="endId" select="$endId"/>
+         <xsl:with-param name="startId" select="$startId"/>
+      </xsl:apply-templates>
+   </xsl:template>
    <xsl:template name="choice" match="tei:choice">
       <xsl:param name="startId"/>
       <xsl:param name="endId"/>
@@ -216,7 +226,7 @@
          </xsl:element>
       </xsl:if>
       <xsl:if test="not($choice)">
-         <xsl:apply-templates select="tei:sic/text()">
+         <xsl:apply-templates select="tei:sic">
             <xsl:with-param name="parents" select="if($parents) then ($parents|current()) else (current())"/>
             <xsl:with-param name="endId" select="$endId"/>
             <xsl:with-param name="startId" select="$startId"/>

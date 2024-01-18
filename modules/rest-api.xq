@@ -607,21 +607,29 @@ declare %private function local:updateTextContentV1($content, $newData)  {
 };
 declare %private function local:updateTextContent($content, $newData)  {
     for $div1 in $content//tei:div1
+        let $pb := $div1/tei:pb
+        let $substJoins := $div1/tei:substJoin
         return if (empty($div1/@xml:id) or $newData//tei:div1[@xml:id = $div1/@xml:id]) then (
             let $lastDiv1 := $newData//tei:div1[last()]
-            let $pb := $div1//tei:pb
             return for $div2 in $div1/tei:div2
                 return if (empty($div2/@xml:id) or $lastDiv1/tei:div2[@xml:id = $div2/@xml:id]) then (
                     let $lastDiv2 := $lastDiv1/tei:div2[last()]
+                    
                     return for $p in $div2/tei:p
                          return if ($p/position() = 1) then (
-                                for $pContent in $p/*
+                                let $pbInsert := update insert $pb into $lastDiv2/tei:p[last()]
+                                let $substJInsert := for $sub in $substJoins 
+                                                        return update insert $sub into $lastDiv2/tei:p[last()]
+                                for $pContent in $p/(*|text())
                                     return update insert $pContent into $lastDiv2/tei:p[last()]
                              ) else (
                                 update insert $p into $lastDiv2
                              )
                 ) else (
-                    update insert $div2 into $lastDiv1
+                    let $pbInsert := update insert $pb into $lastDiv1
+                    let $substJInsert := for $sub in $substJoins 
+                                            return update insert $sub into $lastDiv1
+                    return update insert $div2 into $lastDiv1
                 )
         ) else ( 
             update insert $div1 into $newData//tei:text/tei:body
