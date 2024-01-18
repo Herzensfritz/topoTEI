@@ -561,19 +561,22 @@ function myrest:export() {
     
 };
 declare function local:getContentFiles($pb) {
+    let $createIds := config:resolve('xslt/createIDs4sourceDoc.xsl')
     let $stylesheet := config:resolve('xslt/expandSourceDoc.xsl')
     return if (count($pb) gt 1) then (
         let $file := (for $pbItem in $pb
                         order by xmldb:last-modified($config:data-root, util:document-name($pbItem)) descending
                         return util:document-name($pbItem))[1]
         let $data := doc(concat($config:data-root, '/',$file))
-        let $transform := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml")
+        let $dataWithId := transform:transform($data, $createIds, (), (), "method=xml media-type=text/xml")
+        let $transform := transform:transform($dataWithId, $stylesheet, (), (), "method=xml media-type=text/xml")
         return $transform
     ) else (
         if (count($pb) gt 0) then (
             let $file := util:document-name($pb)
             let $data := doc(concat($config:data-root, '/',$file))
-            let $transform := transform:transform($data, $stylesheet, (), (), "method=xml media-type=text/xml")
+            let $dataWithId := transform:transform($data, $createIds, (), (), "method=xml media-type=text/xml")
+            let $transform := transform:transform($dataWithId, $stylesheet, (), (), "method=xml media-type=text/xml")
             return $transform
         ) else ()    
     )

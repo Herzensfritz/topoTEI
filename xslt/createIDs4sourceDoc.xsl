@@ -67,7 +67,7 @@
         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="(tei:add|tei:fw|tei:head|tei:note|tei:ab)[not(@xml:id)]">
+   <xsl:template match="(tei:add|tei:choice|tei:fw|tei:subst|tei:head|tei:note|tei:ab)[not(@xml:id)]">
       <xsl:variable name="id" select="if (@n) then (@n) else (generate-id())"/>
       <xsl:variable name="name" select="if (@n) then (local-name()) else (concat(local-name(), '_'))"/>
       <xsl:element name="{name()}">
