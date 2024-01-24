@@ -616,7 +616,7 @@ declare %private function local:updateTextContent($content, $newData)  {
                     let $lastDiv2 := $lastDiv1/tei:div2[last()]
                     
                     return for $p in $div2/tei:p
-                         return if ($p/position() = 1) then (
+                         return if (not($p/preceding-sibling::tei:p)) then (
                                 let $pbInsert := update insert $pb into $lastDiv2/tei:p[last()]
                                 let $substJInsert := for $sub in $substJoins 
                                                         return update insert $sub into $lastDiv2/tei:p[last()]
@@ -626,7 +626,10 @@ declare %private function local:updateTextContent($content, $newData)  {
                                 update insert $p into $lastDiv2
                              )
                 ) else (
-                    let $pbInsert := update insert $pb into $lastDiv1
+                    let $pbInsert := if ($div2/preceding-sibling::tei:div2[not(@xml:id) or @xml:id = $lastDiv1/tei:div2/@xml:id]) then () else (
+                        let $log := console:log(string($div2/position()))
+                        return update insert $pb into $lastDiv1
+                    )
                     let $substJInsert := for $sub in $substJoins 
                                             return update insert $sub into $lastDiv1
                     return update insert $div2 into $lastDiv1

@@ -132,19 +132,58 @@
       </xsl:apply-templates>
    </xsl:template>
    <xsl:template match="tei:add[@place='superimposed']|tei:del[(@rend='overwritten' or (@rend='erased' and parent::tei:subst and not(ancestor::tei:del[@rend='overwritten']))) and not(@cause)]">
-      <xsl:param name="superimposed_key"><xsl:value-of select="concat(@place,'_', generate-id(.))"/></xsl:param>
-      <xsl:param name="overwritten_key"><xsl:value-of select="concat(@rend,'_', generate-id(.))"/></xsl:param>
-      <xsl:variable name="id" select="if (@place = 'superimposed') then (concat($superimposed_key, '_',generate-id(.))) else (concat($overwritten_key, '_',generate-id(.)))"/>
-      <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-            <xsl:call-template name="copyNodeAttributes">
-               <xsl:with-param name="node" select="current()"/>
-               <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
-            </xsl:call-template>
-            <xsl:attribute name="xml:id">
-                <xsl:value-of select="$id"/>
-           </xsl:attribute>
-           <xsl:apply-templates/>
-      </xsl:element>
+      <xsl:param name="superimposed_key"/>
+      <xsl:param name="overwritten_key"/>
+      <xsl:variable name="other" select="if (@place = 'superimposed') then (if (preceding-sibling::tei:del[@rend = 'overwritten' or @rend = 'erased']) then (preceding-sibling::tei:del[@rend = 'overwritten' or @rend = 'erased'][1]/@rend) else (following-sibling::tei:del[@rend = 'overwritten' or @rend = 'erased'][1]/@rend)) else ('superimposed')"/>
+      <xsl:variable name="self" select="if (@place = 'superimposed') then (@place) else (@rend)"/>
+      <xsl:choose>
+         <xsl:when test="not($overwritten_key) and not($superimposed_key) and following-sibling::tei:*[(@place= $other or @rend = $other) and parent::tei:subst]">
+            <xsl:variable name="parentId" select="parent::tei:subst/@xml:id"/>
+            <xsl:variable name="id" select="concat($parentId, '_', $self, '_',generate-id(.))"/>
+            <xsl:variable name="otherId" select="concat($parentId, '_',$other,'_',generate-id(parent::tei:subst/tei:*[@place= $other or @rend = $other][1]))"/>
+            <xsl:element name="substJoin" namespace="http://www.tei-c.org/ns/1.0">
+               <xsl:attribute name="target">
+                  <xsl:sequence select="concat('#', $otherId, ' ', '#', $id)"/>
+               </xsl:attribute>
+            </xsl:element>
+            <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+                  <xsl:call-template name="copyNodeAttributes">
+                     <xsl:with-param name="node" select="current()"/>
+                     <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                  </xsl:call-template>
+                  <xsl:attribute name="xml:id">
+                      <xsl:value-of select="$id"/>
+                 </xsl:attribute>
+                 <xsl:apply-templates/>
+            </xsl:element>
+         </xsl:when>
+         <xsl:when test="not($superimposed_key) and not($overwritten_key)">
+            <xsl:variable name="id" select="concat(parent::tei:subst/@xml:id, '_', $self, '_', generate-id(.))"/>
+            <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+                  <xsl:call-template name="copyNodeAttributes">
+                     <xsl:with-param name="node" select="current()"/>
+                     <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                  </xsl:call-template>
+                  <xsl:attribute name="xml:id">
+                      <xsl:value-of select="$id"/>
+                 </xsl:attribute>
+                 <xsl:apply-templates/>
+            </xsl:element>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:variable name="id" select="if (@place = 'superimposed') then (concat($superimposed_key, '_',generate-id(.))) else (concat($overwritten_key, '_',generate-id(.)))"/>
+            <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+                  <xsl:call-template name="copyNodeAttributes">
+                     <xsl:with-param name="node" select="current()"/>
+                     <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                  </xsl:call-template>
+                  <xsl:attribute name="xml:id">
+                      <xsl:value-of select="$id"/>
+                 </xsl:attribute>
+                 <xsl:apply-templates/>
+            </xsl:element>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
    <xsl:template match="tei:add[@place='above' or @place='below']">
       <xsl:variable name="content" select="."/>
