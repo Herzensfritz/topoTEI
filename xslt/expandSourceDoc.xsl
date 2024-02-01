@@ -1,8 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
-   <xsl:variable name="METAMARK_EXCLUDE_STRING" select="'xml:id target'"/>
+   <xsl:variable name="METAMARK_EXCLUDE_STRING" select="'target'"/>
    <xsl:variable name="ADD_EXCLUDE_STRING" select="'xml:id'"/>
-   <xsl:variable name="DEFAULT_EXCLUDE_STRING" select="'xml:id'"/>
+   <xsl:variable name="DEFAULT_EXCLUDE_STRING" select="'xml:id seq'"/>
    <xsl:function name="tei:filterOpeningTags">
       <xsl:param name="openingTags"/>
       <xsl:if test="count($openingTags) gt 0">
@@ -112,7 +112,7 @@
    <xsl:template match="tei:subst|tei:head|tei:reg">
       <xsl:apply-templates/>
    </xsl:template>
-   <xsl:template match="tei:subst[descendant::*[@place='superimposed'] and descendant::*[@rend='overwritten' or @rend='erased']]">
+   <!-- <xsl:template match="tei:subst[descendant::*[@place='superimposed'] and descendant::*[@rend='overwritten' or @rend='erased']]">
       <xsl:variable name="subst_id" select="@xml:id"/>
       <xsl:variable name="superimposed_key" select="concat($subst_id, '_superimposed')"/>
       <xsl:variable name="overwritten_key" select="concat($subst_id, '_overwritten')"/>
@@ -130,7 +130,7 @@
          <xsl:with-param name="superimposed_key" select="$superimposed_key"/>
          <xsl:with-param name="overwritten_key" select="$overwritten_key"/>
       </xsl:apply-templates>
-   </xsl:template>
+   </xsl:template> 
    <xsl:template match="tei:add[@place='superimposed']|tei:del[(@rend='overwritten' or (@rend='erased' and parent::tei:subst and not(ancestor::tei:del[@rend='overwritten']))) and not(@cause)]">
       <xsl:param name="superimposed_key"/>
       <xsl:param name="overwritten_key"/>
@@ -184,9 +184,35 @@
             </xsl:element>
          </xsl:otherwise>
       </xsl:choose>
-   </xsl:template>
+   </xsl:template> -->
+   <xsl:template match="tei:del[@rend='overwritten' and starts-with(@cause, 'insM') and (following-sibling::tei:add[@rend = current()/@cause and parent::tei:subst/@xml:id = current()/parent::tei:subst/@xml:id] or preceding-sibling::tei:add[@rend = current()/@cause and parent::tei:subst/@xml:id = current()/parent::tei:subst/@xml:id])]">
+      <xsl:variable name="causeId" select="if (following-sibling::tei:add[@rend = current()/@cause and parent::tei:subst/@xml:id = current()/parent::tei:subst/@xml:id]) then (following-sibling::tei:add[@rend = current()/@cause and parent::tei:subst/@xml:id = current()/parent::tei:subst/@xml:id][1]/@xml:id) else (preceding-sibling::tei:add[@rend = current()/@cause and parent::tei:subst/@xml:id = current()/parent::tei:subst/@xml:id][1]/@xml:id)"/>
+      <xsl:variable name="metamarkId" select="//tei:metamark[@target= concat('#', $causeId)]/@xml:id"/>
+      <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+         <xsl:call-template name="copyNodeAttributes">
+            <xsl:with-param name="node" select="current()"/>
+            <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+         </xsl:call-template>
+         <xsl:attribute name="cause">
+             <xsl:value-of select="concat('#', $metamarkId)"/>
+        </xsl:attribute>
+        <xsl:apply-templates/>
+      </xsl:element>
+   </xsl:template> 
+   <xsl:template match="tei:del[(following-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id] or preceding-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id]) and (@rend='overwritten' or (@rend='erased' and ancestor::tei:subst and not(ancestor::tei:del[@rend='overwritten']))) and not(@cause)]">
+      <xsl:variable name="causeId" select="if (following-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id]) then (following-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id][1]/@xml:id) else (preceding-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id][1]/@xml:id)"/>
+      <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+         <xsl:call-template name="copyNodeAttributes">
+            <xsl:with-param name="node" select="current()"/>
+            <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+         </xsl:call-template>
+         <xsl:attribute name="cause">
+             <xsl:value-of select="concat('#', $causeId)"/>
+        </xsl:attribute>
+        <xsl:apply-templates/>
+      </xsl:element>
+   </xsl:template> 
    <xsl:template match="tei:add[@place='above' or @place='below']">
-      <xsl:variable name="content" select="."/>
       <xsl:choose>
          <xsl:when test="//tei:metamark[@target= concat('#', current()/@xml:id)]">
             <xsl:element name="metamark" namespace="http://www.tei-c.org/ns/1.0">
@@ -202,12 +228,11 @@
                      <xsl:attribute name="hand">
                          <xsl:value-of select="current()/@hand"/>
                     </xsl:attribute>
-
+                  </xsl:if>
                   <xsl:call-template name="copyNodeAttributes">
                      <xsl:with-param name="node" select="//tei:metamark[@target= concat('#', current()/@xml:id)]/tei:add"/>
                      <xsl:with-param name="excludeString" select="$ADD_EXCLUDE_STRING"/>
                   </xsl:call-template>
-                  </xsl:if>
                   <xsl:apply-templates/>
                </xsl:element>
             </xsl:element>
@@ -418,6 +443,28 @@
                            <xsl:with-param name="parentSequence" select="subsequence($parentSequence, 2)"/>
                      </xsl:call-template>
                   </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:variable name="newParentNode" select="$parentSequence[1]"/>
+                     <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+                        <xsl:for-each select="$parentSequence[1]/@*">
+                             <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
+                             <xsl:attribute name="{$attName}">
+                               <xsl:value-of select="."/>
+                             </xsl:attribute>
+                        </xsl:for-each>
+                        <xsl:call-template name="selectLbContent">
+                           <xsl:with-param name="startId" select="$startId"/>
+                           <xsl:with-param name="parentNode" select="$newParentNode"/>
+                           <xsl:with-param name="parentSequence" select="subsequence($parentSequence, 2)"/>
+                        </xsl:call-template>
+                     </xsl:element>
+                     <xsl:call-template name="selectLbContent">
+                           <xsl:with-param name="startNode" select="$parentSequence[1]"/>
+                           <xsl:with-param name="endId" select="$endId"/>
+                           <xsl:with-param name="parentNode" select="$parentNode"/>
+                           <xsl:with-param name="parentSequence" select="subsequence($parentSequence, 2)"/>
+                     </xsl:call-template>
+                  </xsl:otherwise>
                </xsl:choose>
             </xsl:when>
             <xsl:when test="$startNode and $parentNode">
@@ -444,6 +491,13 @@
                <xsl:apply-templates select="//tei:text//(*|text())[preceding::tei:lb[@xml:id = $startId] and following::tei:lb[@xml:id = $endId] and not((parent::*[preceding::tei:lb[@xml:id = $startId] and following::tei:lb[@xml:id = $endId]]))]">
                   <xsl:with-param name="endId" select="$endId"/>
                   <xsl:with-param name="startId" select="$startId"/>
+               </xsl:apply-templates>
+            </xsl:when>
+            <xsl:when test="$startNode">
+               <xsl:apply-templates select="//tei:text//(*|text())[preceding::* = $startNode and ancestor::tei:p and not(parent::*[preceding::* = $startNode and ancestor::tei:p ])]">
+                  <xsl:with-param name="endId" select="$endId"/>
+                  <xsl:with-param name="startId" select="$startId"/>
+                  <xsl:with-param name="parentNode" select="$parentNode"/>
                </xsl:apply-templates>
             </xsl:when>
             <xsl:otherwise>
