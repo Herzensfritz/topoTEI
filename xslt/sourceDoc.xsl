@@ -170,8 +170,8 @@
                </xsl:when>
                <!-- Nodes/text after last lb in div2 -->
                <xsl:otherwise>
-                           <!--<span>|<xsl:apply-templates select="//(*|text())[ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]]"/>|</span>-->
-                  <xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId]]">
+                  <!--<DATA><xsl:copy-of select="//(*|text())[ancestor::tei:div2 and preceding::tei:lb[@xml:id = $startId] and not(parent::*/preceding::tei:lb[@xml:id = $startId])]"/></DATA>-->
+                  <xsl:apply-templates select="//(*|text())[ancestor::tei:div2 and preceding::tei:lb[@xml:id = $startId] and not(parent::*/preceding::tei:lb[@xml:id = $startId])]">
                      <xsl:with-param name="id" select="$startId"/>
                      <xsl:with-param name="startId" select="$startId"/>
                      <xsl:with-param name="type" select="$NO_ENDID"/>
