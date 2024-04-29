@@ -617,9 +617,12 @@ declare %private function local:updateTextContentV1($content, $newData)  {
 declare %private function local:updateTextContent($content, $newData)  {
     for $div1 in $content//tei:div1
         let $pb := $div1/tei:pb
-        let $substJoins := $div1/tei:substJoin
+        let $substJoins := $div1//tei:substJoin
+        
         return if (empty($div1/@xml:id) or $newData//tei:div1[@xml:id = $div1/@xml:id]) then (
             let $lastDiv1 := $newData//tei:div1[last()]
+            let $substJInsert := for $sub in $substJoins 
+                                return update insert $sub into $lastDiv1
             return for $div2 in $div1/tei:div2
                 return if (empty($div2/@xml:id) or $lastDiv1/tei:div2[@xml:id = $div2/@xml:id]) then (
                     let $lastDiv2 := $lastDiv1/tei:div2[last()]
@@ -627,8 +630,9 @@ declare %private function local:updateTextContent($content, $newData)  {
                     return for $p in $div2/tei:p
                          return if (not($p/preceding-sibling::tei:p)) then (
                                 let $pbInsert := update insert $pb into $lastDiv2/tei:p[last()]
-                                let $substJInsert := for $sub in $substJoins 
-                                                        return update insert $sub into $lastDiv2/tei:p[last()]
+                                (:  let $substJInsert := for $sub in $substJoins 
+                                                        let $sub1Log := console:log($sub)
+                                                        return update insert $sub into $lastDiv2/tei:p[last()] :)
                                 for $pContent in $p/(*|text())
                                     return update insert $pContent into $lastDiv2/tei:p[last()]
                              ) else (
@@ -636,11 +640,9 @@ declare %private function local:updateTextContent($content, $newData)  {
                              )
                 ) else (
                     let $pbInsert := if ($div2/preceding-sibling::tei:div2[not(@xml:id) or @xml:id = $lastDiv1/tei:div2/@xml:id]) then () else (
-                        let $log := console:log(string($div2/position()))
-                        return update insert $pb into $lastDiv1
+                        update insert $pb into $lastDiv1
                     )
-                    let $substJInsert := for $sub in $substJoins 
-                                            return update insert $sub into $lastDiv1
+                    
                     return update insert $div2 into $lastDiv1
                 )
         ) else ( 

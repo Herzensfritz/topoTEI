@@ -24,6 +24,9 @@
          <xsl:when test="$tagName = 'corr'">
             <xsl:value-of select="false()"/>
          </xsl:when>
+         <xsl:when test="$tagName = 'supplied'">
+            <xsl:value-of select="false()"/>
+         </xsl:when>
          <xsl:otherwise>
             <xsl:value-of select="true()"/>
          </xsl:otherwise>
@@ -112,7 +115,7 @@
          <xsl:apply-templates select="if (tei:reg) then (tei:reg/text()) else (text())"/>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="tei:subst|tei:head|tei:reg">
+   <xsl:template match="tei:subst|tei:head|tei:reg|tei:supplied">
       <xsl:apply-templates/>
    </xsl:template>
    <!-- <xsl:template match="tei:subst[descendant::*[@place='superimposed'] and descendant::*[@rend='overwritten' or @rend='erased']]">
