@@ -260,16 +260,24 @@ function myrest:preview($file as xs:string*) {
 declare
     %rest:path("/content")
     %rest:GET
+    %rest:query-param("header", "{$header}", "TEI-Header_D20.xml")
     %rest:query-param("file", "{$file}", "default.xml")
     %output:media-type("text/html")
     %output:method("html5")
-function myrest:content($file as xs:string*) {
+function myrest:content($file as xs:string*, $header as xs:string*) {
+   let $headerFile := doc(concat($config:app-root, '/TEI/', $header))
    let $filepath := concat($config:data-root,'/', $file)
-        let $node-tree := doc($filepath)
+    let $node-tree := doc($filepath)
+    let $facs := substring-after($node-tree//tei:pb[1]/@facs, '#')
+    let $graphic := $headerFile//tei:facsimile/tei:surface[@xml:id = $facs]/tei:graphic
+    let $url := if ($graphic/@corresp) then ($graphic/@corresp) else ($graphic/@url)
+    let $facsimile := concat('http://www.nietzschesource.org/DFGA/', substring-after($url, 'download/'))
+    let $log := console:log($facsimile)
     let $stylesheet := doc(concat($config:app-root, "/xslt/sourceDoc.xsl"))
- let $param := <parameters>
+    let $param := <parameters>
                     <param name="fullpage" value="false"/>
-                    <param name="editorModus" value="false"/>   
+                    <param name="editorModus" value="false"/>
+                    <param name="facsimileUrl" value="{$facsimile}"/> 
                 </parameters>
     return transform:transform($node-tree, $stylesheet, $param, (), "method=html5 media-type=text/html")
    
@@ -489,6 +497,7 @@ function myrest:uploadTransform($data, $type, $referer) {
 };
 declare function local:showTransformation($file as xs:string){
    let $content := doc('transform.html')
+   let $log := console:log($file)
     let $config := map {
         (: The following function will be called to look up template parameters :)
         $templates:CONFIG_APP_ROOT: $config:app-root,

@@ -6,6 +6,7 @@
    <!-- Param 'fullpage' specifies whether output should be a standalone html page or just a transkription as part of a <div> -->
    <xsl:param name="fullpage" select="'true'"/>
    <xsl:param name="editorModus" select="'true'"/>
+   <xsl:param name="facsimileUrl"/>
    <xsl:param name="fonts"/>
    <xsl:param name="fontLinks"/>
    <xsl:variable name="TITLE" select="//tei:titleStmt/tei:title"/>
@@ -41,12 +42,18 @@
             <div>
                 <xsl:choose>
                     <xsl:when test="$editorModus != 'false'">
-                        <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/></h1>
+                        <h1>Diplomatische Transkription: <xsl:value-of select="$TITLE"/>
+                            </h1>
                     </xsl:when>
                     <xsl:otherwise>
-                        <h2 id="{$TITLE}"><xsl:value-of select="$TITLE"/></h2>
+                        <h2 id="{$TITLE}">
+                                <xsl:value-of select="$TITLE"/>
+                            </h2>
                     </xsl:otherwise>
                 </xsl:choose>
+                <xsl:if test="$facsimileUrl">
+                    <a class="facsimileUrl" href="{$facsimileUrl}" target="_blank"><xsl:value-of select="$facsimileUrl"/></a>
+                </xsl:if>
                 <xsl:apply-templates select="/tei:TEI/tei:text/tei:body"/>
              </div>
          </xsl:otherwise>

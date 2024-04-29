@@ -41,6 +41,9 @@
    <xsl:template match="tei:surface">
       <xsl:element name="surface" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyAttributes"/>
+         <xsl:attribute name="facs">
+            <xsl:value-of select="//tei:pb[@xml:id = substring-after(current()/@start, '#')]/@facs"/>
+         </xsl:attribute>
       <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>

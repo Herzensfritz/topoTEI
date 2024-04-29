@@ -69,7 +69,7 @@
      .firstBlock { position: relative; padding-top: 5em; }
      .lastBlock { position: relative; padding-bottom: 5em; }
      .textBlock { position: relative;}
-     .add-zone { font-size: 90%; }
+     .add-zone { font-size: 80%; }
      .ab-zone { }
      .zoneLine { position: absolute;}
      .note-zone-bottom-right { position: absolute; bottom: 1em;  font-style: italic;}
@@ -158,9 +158,9 @@
     .afterWordinsertion-below:before { left: 1px;   }
     .inWordinsertion-below:before { left: -0.5px; }
    .beforePunctuationinsertion-below:before { margin-left: 4px;}
-   .addSpan { font-size:90%;}
+   .addSpan { font-size:80%;}
    .erased { color: grey;}
-    .inline { font-size:90%;}
+    .inline { font-size:80%;}
     .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
   

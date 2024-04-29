@@ -282,14 +282,23 @@ declare function local:createWebFonts($currentFont) as element(option)* {
    
 };
 declare function local:createFontFace($css, $family, $name, $resources) as xs:string {
-    if (contains($name, '.')) then (
+    let $log := console:log($name)
+    return if (contains($name, '.')) then (
+        if (starts-with($name, 'http')) then (
+            '@font-face {
+                font-family: "' || $family || '";
+                src: url("' || $name || '");}
+    .' || $css ||' {
+        font-family: ' || $family ||';    
+    }
+       ' ) else (
     '@font-face {
                 font-family: "' || $family || '";
                 src: url("' || $resources || '/fonts/' || $name || '");}
     .' || $css ||' {
         font-family: ' || $family ||';    
     }
-    ') else (
+    ')) else (
         '.' || $css ||' {
             font-family: ' || $name ||';    
         }'    
