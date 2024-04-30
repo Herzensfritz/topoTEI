@@ -31,6 +31,7 @@
        border-radius: 5px;
        font-size: 80%;
     }
+    
     .box:hover .tooltip, .fw-box:hover .tooltip {
      display: block;
      z-index: 100;
@@ -112,21 +113,27 @@
      .below { 
         position: absolute;
         top: 1.8em;
-        font-size:80%;
         width: max-content;
         line-height: 1em;
-         transition: color 1s;
-         
      }
+     .below.instantaneous {
+       font-size: 100%; 
+    }
+    .below {
+       font-size:80%; 
+    }
      .above  {
          position: absolute;
          top: -1.5em;
-         font-size:80%;
          width: max-content;
          line-height: 1em;
-         /*height: max-content;*/
-         transition: color 1s;
      }
+     .above.instantaneous {
+       font-size: 100%; 
+    }
+    .above {
+       font-size:80%; 
+    }
      .centered{
          display: inline-block;
          text-align: center;
