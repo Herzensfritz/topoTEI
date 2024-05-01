@@ -1,9 +1,12 @@
-:root {
+body {
          --highlight: yellow;
          --radius: 1em 1em;
          --red-marking: red;
          --length: 0.2em;
          --nbrown: #5C4033;
+         --nblack2: #46494c;
+         --typesetter_black: #373a3d;
+         
 }
    #input { position: fixed; left: 70%;}
    form { margin-top: 2px;}
@@ -45,6 +48,13 @@
      text-decoration: none;
     }
    .EOL { color: red;}
+   .typesetter_black {
+       color: var(--typesetter_black);
+       font-weight: 600;
+   }
+   .N_black2 {
+       color: var(--nblack2);
+   }
    .XXX_red, .N_red { color: #dc4731;}
    .N-Archiv_red { color: #b8390e;font-face: bold;}
    .N_pencil { color: gray; font-weight: bold;}

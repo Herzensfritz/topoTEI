@@ -167,6 +167,12 @@
               <xsl:value-of select="$hand"/>
             </xsl:attribute>
          </xsl:if>
+         <xsl:if test="//tei:lb[@xml:id = $id]/preceding::tei:handShift and not(//tei:lb[@xml:id = $id]/ancestor::*[@hand])">
+            <xsl:attribute name="hand">
+               <xsl:value-of select="//tei:lb[@xml:id = $id]/preceding::tei:handShift[1]/@new"/>
+            </xsl:attribute>
+         </xsl:if>
+
          <xsl:call-template name="parentAdd">
             <xsl:with-param name="anchor_id" select="$anchor_id"/>
             <xsl:with-param name="lb_id" select="$id"/>
@@ -198,8 +204,8 @@
                <xsl:variable name="hand" select="tei:getAttribute(current(), 'hand', $lineType)"/>
                <xsl:variable name="rend" select="tei:getAttribute(current(), 'rend', $lineType)"/>
                <xsl:variable name="topValue" select="number(replace(@n, '[a-zA-Z]', ''))"/>
-               <xsl:variable name="bottomValue" select="if ($blockType eq $MIDDLE_BLOCK_TYPE) then (0) else (count(//tei:lb/@n) - index-of(//tei:lb/@n, @n) + 1)"/>
-               <xsl:variable name="style" select="if (index-of(//tei:lb/@n, @n) lt (count(//tei:lb) div 2)) then (concat('top:',$topValue,'em;')) else (concat('bottom:',$bottomValue,'em;'))"/>
+               <xsl:variable name="bottomValue" select="if ($blockType eq $MIDDLE_BLOCK_TYPE) then (0) else (count(//tei:lb/@n) - index-of(//tei:lb/@n, @n)[1] + 1)"/>
+               <xsl:variable name="style" select="if (index-of(//tei:lb/@n, @n)[1] lt (count(//tei:lb) div 2)) then (concat('top:',$topValue,'em;')) else (concat('bottom:',$bottomValue,'em;'))"/>
                <xsl:element name="zone">   
                   <xsl:choose>
                      <xsl:when test="$lineType eq $NOTE_LINE_TYPE or $lineType eq $NOTE_LINE_TYPE_F">
@@ -488,7 +494,7 @@
                       <xsl:call-template name="line">
                         <xsl:with-param name="id" select="@xml:id"/>
                         <xsl:with-param name="id_prefix" select="$line_id_prefix"/>
-                        <xsl:with-param name="rend" select="//tei:note[@xml:id = $noteId]/@hand"/>
+                        <xsl:with-param name="hand" select="//tei:note[@xml:id = $noteId]/@hand"/>
                         <xsl:with-param name="style" select="$style"/>
                      </xsl:call-template>
                </xsl:element>

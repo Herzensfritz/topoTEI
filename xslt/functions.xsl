@@ -81,22 +81,22 @@
       <xsl:param name="lineType" as="xs:decimal"/> <!-- line type from tei:getLineType -->
       <xsl:choose>
          <xsl:when test="$lineType eq $NOTE_LINE_TYPE">
-            <xsl:value-of select="replace($currentNode/ancestor::tei:note[1]/@*[local-name() = $attr], '[#\*]', '')"/>
+            <xsl:value-of select="replace($currentNode/ancestor::tei:note[1]/@*[local-name() = $attr], '[\*]', '')"/>
          </xsl:when>
          <xsl:when test="$lineType eq $NOTE_LINE_TYPE_F">
-            <xsl:value-of select="replace($currentNode/following-sibling::tei:note[1]/@*[local-name() = $attr], '[#\*]', '')"/>
+            <xsl:value-of select="replace($currentNode/following-sibling::tei:note[1]/@*[local-name() = $attr], '[\*]', '')"/>
          </xsl:when>
          <xsl:when test="$lineType eq $ADD_LINE_TYPE">
-            <xsl:value-of select="replace($currentNode/ancestor::tei:add[1]/@*[local-name() = $attr], '[#\*]', '')"/>
+            <xsl:value-of select="replace($currentNode/ancestor::tei:add[1]/@*[local-name() = $attr], '[\*]', '')"/>
          </xsl:when>
          <xsl:when test="$lineType eq $ADD_LINE_TYPE_F">
-            <xsl:value-of select="replace($currentNode/following-sibling::tei:add[1]/@*[local-name() = $attr], '[#\*]', '')"/>
+            <xsl:value-of select="replace($currentNode/following-sibling::tei:add[1]/@*[local-name() = $attr], '[\*]', '')"/>
          </xsl:when>
          <xsl:when test="$lineType eq $HEAD_LINE_TYPE">
-            <xsl:value-of select="replace($currentNode/ancestor::tei:head[1]/@*[local-name() = $attr], '[#\*]', '')"/>
+            <xsl:value-of select="replace($currentNode/ancestor::tei:head[1]/@*[local-name() = $attr], '[\*]', '')"/>
          </xsl:when>
          <xsl:when test="$lineType eq $HEAD_LINE_TYPE_F">
-            <xsl:value-of select="replace($currentNode/following-sibling::tei:head[1]/@*[local-name() = $attr], '[#\*]', '')"/>
+            <xsl:value-of select="replace($currentNode/following-sibling::tei:head[1]/@*[local-name() = $attr], '[\*]', '')"/>
          </xsl:when>
          <xsl:otherwise>
             <xsl:value-of select="''"/>
