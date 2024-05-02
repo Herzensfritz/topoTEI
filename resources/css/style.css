@@ -38,6 +38,12 @@
 .fbutton {
     margin: 3px;
 }
+.positionLabel {
+    width: 100px;
+}
+.positionClass {
+    display: grid;
+}
 label.config {
     width: 150px;
 }

@@ -23,6 +23,9 @@ var PAGE_SETUP = 'pageSetup';
 var PAGE_WIDTH = 'pageWidth';
 var PADDING_TOP = 'paddingTop';
 var PADDING_BOTTOM = 'paddingBottom';
+var POSITION_INFO = 'positionInfo';
+var POSITION_FORM = 'addPositionForm'
+var POSITION_CLASS = 'positionClass';
 var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
@@ -247,6 +250,10 @@ function setNewValue(input, isRedoing){
 function setStyleToElement(element, newValue, paramObject){
     element.style[paramObject.paramName] = newValue + paramObject.unit;
     element.classList.add(VALUE_CHANGED);
+    if (element.inputMap && Object.hasOwn(element.inputMap,paramObject.paramName)) {
+        element.inputMap[paramObject.paramName].value = newValue; 
+        element.inputMap[paramObject.paramName].setAttribute('title', paramObject.paramName + ': ' + newValue);
+    }
 }
 function getStyleFromElement(element, targetArray){
     let length = (element.dataset.index) ? Number(element.dataset.index) : 0;
@@ -272,6 +279,93 @@ function hideOtherInputs(id){
     inputs.forEach(input =>{
         input.style.visibility = 'hidden'
     });
+}
+function deselect(item){
+    console.log(item);    
+}
+function getElementTop(currentElement, currentFontSize){
+    
+    const parentFontSize = getComputedFontSize(currentElement.parentElement)
+    if (currentElement.className.includes('below') || currentElement.parentElement.className.search(INSERTION_MARK_REGEX) == -1 ) {
+        return (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;    
+    }else {
+        return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : currentElement.parentElement.offsetTop/parentFontSize;
+    }
+}
+function getElementLeft(currentElement, currentFontSize){
+    return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize;    
+}
+function addInput(item, parent){
+  const currentFontSize = getComputedFontSize(item);
+  let itemDiv = document.createElement('span');
+  let newField = document.createElement('input');
+  newField.setAttribute('type','checkbox');
+  if (item.classList.contains('selected')) {
+    newField.setAttribute('checked', true);
+  } else {
+     newField.removeAttribute('checked');
+  }
+  itemDiv.appendChild(newField)
+  let textSpan = document.createElement('input');
+  textSpan.setAttribute('type','text');
+  textSpan.setAttribute('size', 10);
+  textSpan.setAttribute('readonly', true);
+  textSpan.value =  item.innerText;
+  textSpan.setAttribute('title', item.innerText + ' (font-size: ' + currentFontSize + 'px)');
+  let topInput = document.createElement('input');
+  topInput.setAttribute('readonly', true);
+  topInput.setAttribute('type', 'number');
+  topInput.setAttribute('size', 8);
+  
+  topInput.value = getElementTop(item, currentFontSize);
+  topInput.setAttribute('title', 'top: ' + topInput.value);
+   let leftInput = document.createElement('input');
+  leftInput.setAttribute('readonly', true);
+  leftInput.setAttribute('type', 'number');
+  leftInput.setAttribute('size', 8);
+  leftInput.value = getElementLeft(item, currentFontSize);
+  leftInput.setAttribute('title', 'left: ' + leftInput.value);
+  itemDiv.appendChild(textSpan);
+  itemDiv.appendChild(topInput);
+  itemDiv.appendChild(leftInput);
+  newField.onchange = function(event) {
+        clickItem(item, event)    
+  };
+  item.inputMap = { top: topInput, left: leftInput};
+  parent.appendChild(itemDiv);
+}
+function addLine(line, form){
+    let mainDiv = document.createElement('div');
+    mainDiv.setAttribute('class', POSITION_CLASS)
+    let heading = document.createElement('h3');
+    const lnr = line.getElementsByClassName('lnr')[0];
+    heading.innerText = 'Zeile ' + lnr.innerText;
+    mainDiv.appendChild(heading);
+    Array.from(line.getElementsByClassName('above')).forEach(item =>{
+        addInput(item, mainDiv)    
+    })
+    Array.from(line.getElementsByClassName('below')).forEach(item =>{
+        addInput(item, mainDiv)    
+    })
+    form.appendChild(mainDiv);
+    
+}
+function positionInfo(){
+    if (!runsOnBakFile){
+        let form = document.getElementById(POSITION_INFO);
+        hideOtherInputs(form.id);
+        const rootForm = form.getElementsByTagName('form')[0]
+        rootForm.replaceChildren()
+        const selected = Array.from(document.getElementsByClassName('selected')).map(item =>item.closest("div.line"));
+        const selectedLines = Array.from(new Set(selected))
+        form.style.visibility = (selectedLines.length == 0) ? 'hidden' : 'visible';
+        if (selectedLines.length > 0){
+           selectedLines.forEach(line  =>{
+               addLine(line, rootForm)
+            });
+            
+        }
+    }     
 }
 function pageSetup(){
     if (!runsOnBakFile){
@@ -426,6 +520,8 @@ var offset =  1;
 var modOffset =  10;
 var clickOffset = 10;
 
+
+
 function clickItem(item, event){
     if (!runsOnBakFile){
         event.stopPropagation();
@@ -462,6 +558,7 @@ function clickItem(item, event){
                 currentItem.classList.add("selected");
             }
         }
+        positionInfo()
     }
 }
 var modifierPressed = false;
@@ -561,6 +658,7 @@ function getComputedFontSize(element){
     return Number(window.getComputedStyle(element, null).getPropertyValue('font-size').replace('px', ''))     
 }
 function saveReplaceLength(length, currentFontSize){
+   
    return (length.endsWith('em')) ? Number(length.replace('em','')) : Number(length.replace('px',''))/currentFontSize
 }
 function repositionElement(currentElement, offsetX, offsetY, isRedoing){
@@ -595,8 +693,7 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
         let currentOffsetY = offsetY/currentFontSize
         if(currentElement.parentElement && currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
             let parentFontSize = getComputedFontSize(currentElement.parentElement) 
-            if (currentElement.parentElement.className.includes('below')){
-                console.log(currentElement)
+            if (currentElement.className.includes('below')){
                 let oldHeight =  (currentElement.parentElement.style.height) ? saveReplaceLength(currentElement.parentElement.style.height, parentFontSize) : currentElement.parentElement.offsetHeight/parentFontSize;
                 let newHeight = oldHeight + (offsetY/parentFontSize);
                 setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', unit: 'em'} );
