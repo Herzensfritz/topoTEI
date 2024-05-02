@@ -258,7 +258,7 @@ function getStyleFromElement(element, targetArray){
 }
 function setInputValue(input, styleValue, id, isClass){
     if (styleValue) {
-        input.value = Number(styleValue.replace(input.dataset.unit, '')) 
+        input.value = saveReplaceLength(styleValue, pixelLineHeight) 
     }
     input.setAttribute('data-is-class', String(isClass));
     input.setAttribute('data-id', id);

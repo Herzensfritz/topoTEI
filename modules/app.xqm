@@ -353,7 +353,7 @@ declare function app:pageSetup($node as node(), $model as map(*)) as element(div
      <div id="pageSetup" class="input">
         <h2>Seiten Setup</h2>
          <form name="page">
-            min-width <input type="number" value="900" id="pageWidth" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="px" data-param="minWidth"/> px<br/>
+            min-width <input type="number" value="900" id="pageWidth" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minWidth"/> em<br/>
              min-height <input type="number" value="30" id="pageHeight" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minHeight"/> em
       </form>
       </div>
@@ -400,8 +400,7 @@ function app:navigation($node as node(), $model as map(*), $direction as xs:stri
 
 declare    
 function app:zoom($node as node(), $model as map(*), $direction as xs:string?) as element(a) {
-   let $icon := if ($direction = 'in') then ( 'zoom-in') else ('zoom-out')
-   return <a class="{$node/@class}" onClick="zoom(this)" data-direction="{$direction}"><iron-icon icon="{$icon}"></iron-icon></a>
+    <a class="{$node/@class}" title="zoom {$direction}" onClick="zoom(this)" data-direction="{$direction}"><iron-icon icon="zoom-{$direction}"></iron-icon></a>
 };
 
 declare function app:transform($node as node(), $model as map(*)) {
