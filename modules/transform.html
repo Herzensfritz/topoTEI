@@ -14,6 +14,10 @@
     <link data-template="app:fontLink"/>
     <script type="text/javascript" src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
     <script type="text/javascript" src="../apps/topoTEI/resources/scripts/gui_transcription.js"/>
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.7.0/webcomponents-loader.js"/>
+    <script src="https://cdn.jsdelivr.net/npm/web-animations-js/web-animations.min.js"/>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@teipublisher/pb-components@2.4.5/dist/pb-components-bundle.js"/>
+
 </head>
 <body id="grey-top">
 <div class="grey-bot">
@@ -55,6 +59,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" onClick="showPreview()">Preview</a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link active" data-template="app:zoom" data-template-direction="in"><iron-icon icon="zoom-in"/></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" data-template="app:zoom" data-template-direction="out"><iron-icon icon="zoom-out"/></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" data-template="app:navigation" data-template-direction="prev">Previous</a>

@@ -36,7 +36,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
-        <!-- <div><button title="test" onclick="location.href = '/exist/restxq/fixnamespace'">test</button></div> -->
+        <!-- <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=D20_a1v_GMTitelrueckseite.xml'">debug</button></div> -->
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
@@ -363,7 +363,7 @@ declare function app:lineInput($node as node(), $model as map(*)) as element(div
         <h2>Zeilenposition</h2>
          <form name="line">
             <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom"/> em<br/>
-            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="px" data-param="marginLeft"/> px
+            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="marginLeft"/> em
       </form>
       </div>
 };
@@ -398,6 +398,11 @@ function app:navigation($node as node(), $model as map(*), $direction as xs:stri
     ) else ( <a/> )
 };
 
+declare    
+function app:zoom($node as node(), $model as map(*), $direction as xs:string?) as element(a) {
+   let $icon := if ($direction = 'in') then ( 'zoom-in') else ('zoom-out')
+   return <a class="{$node/@class}" onClick="zoom(this)" data-direction="{$direction}"><iron-icon icon="{$icon}"></iron-icon></a>
+};
 
 declare function app:transform($node as node(), $model as map(*)) {
     let $file := $model('file')

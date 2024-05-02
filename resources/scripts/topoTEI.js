@@ -27,7 +27,7 @@ var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
 var ZONE_LINE = 'zoneLine';
-const INSERTION_MARK_REGEX = /(insM|Ez)/g;
+const INSERTION_MARK_REGEX = /[a-z]+insertion-(above|below)/g;
 var pixelLineHeight = 16;
 var fileIsOpenedInEditor = false;
 var undoStack = [];
@@ -308,7 +308,9 @@ function showLinePositionDialog(element, paramName, alwaysOn){
            input.firstElementChild.innerText = "Position für Zeile " + element.innerText;  
            let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
            label.innerText = paramName;
-           let style = (element.nextSibling.style[verticalInput.dataset.param]) ? element.nextSibling.style[verticalInput.dataset.param] :  element.nextSibling.offsetLeft + 'px';
+           console.log(verticalInput, verticalInput.dataset.param, element.nextSibling.style[verticalInput.dataset.param])
+           const fontSize = getComputedFontSize(element.nextSibling)
+           let style = (element.nextSibling.style[verticalInput.dataset.param]) ? element.nextSibling.style[verticalInput.dataset.param] :  element.nextSibling.offsetLeft/fontSize + 'em';
            setInputValue(verticalInput, style, element.nextSibling.id, false);
            input.style.visibility = 'visible';
         }
@@ -555,49 +557,60 @@ function setDisabledStatus(button, disable){
         button.classList.add('active');
     }
 }
+function getComputedFontSize(element){
+    return Number(window.getComputedStyle(element, null).getPropertyValue('font-size').replace('px', ''))     
+}
+function saveReplaceLength(length, currentFontSize){
+   return (length.endsWith('em')) ? Number(length.replace('em','')) : Number(length.replace('px',''))/currentFontSize
+}
 function repositionElement(currentElement, offsetX, offsetY, isRedoing){
     recordChange(currentElement, offsetX, offsetY, isRedoing);
+    let currentFontSize = getComputedFontSize(currentElement) 
+    let currentOffsetX = offsetX/currentFontSize
     handleButtons();
     if (currentElement.className.includes(MARGIN_LEFT)){
-        let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('px','')) : currentElement.offsetLeft;
-        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'marginLeft', unit: 'px'} );
+        let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('em','')) : 0;
+        setStyleToElement(currentElement, (oldLeft + currentOffsetX), { paramName: 'marginLeft', unit: 'em'} );
         if (offsetY != 0){
             let ancestor = getAncestorWithClassName(currentElement, ZONE_LINE);
+            let size = getComputedFontSize(ancestor)
+            let currentOffsetY = offsetY/size
             if (ancestor){
                 if (ancestor.style['bottom']){
                     let oldBottom = Number(ancestor.style['bottom'].replace('em',''));
-                    let newBottom = oldBottom + offsetY*-1/pixelLineHeight;
+                    let newBottom = oldBottom + currentOffsetY*-1;
                     setStyleToElement(ancestor, newBottom, { paramName: 'bottom', unit: 'em'} );
                     showLinePositionDialog(ancestor.firstChild, 'bottom', true);
                 } else {
                     let oldTop = ancestor.offsetTop;
-                    let newTop = (oldTop + offsetY)/pixelLineHeight;
+                    let newTop = oldTop/size  + currentOffsetY;
                     setStyleToElement(ancestor, newTop, { paramName: 'top', unit: 'em'} );
                     showLinePositionDialog(ancestor.firstChild, 'top', true);
                 }
             }
         }
     } else {
-        let oldLeft = (currentElement.style.left) ? Number(currentElement.style.left.replace('px','')) : currentElement.offsetLeft;
-        setStyleToElement(currentElement, (oldLeft + offsetX), { paramName: 'left', unit: 'px'} );
+        let oldLeft = (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize;
+        setStyleToElement(currentElement, (oldLeft + currentOffsetX), { paramName: 'left', unit: 'em'} );
+        let currentOffsetY = offsetY/currentFontSize
         if(currentElement.parentElement && currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
+            let parentFontSize = getComputedFontSize(currentElement.parentElement) 
             if (currentElement.parentElement.className.includes('below')){
-                let oldHeight =  (currentElement.parentElement.style.height) ? Number(currentElement.parentElement.style.height.replace('px','')) : currentElement.parentElement.offsetHeight;
-                let newHeight = oldHeight + offsetY;
-                setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', unit: 'px'} );
-                setStyleToElement(currentElement, (currentElement.offsetTop + offsetY), { paramName: 'top', unit: 'px'} );
+                console.log(currentElement)
+                let oldHeight =  (currentElement.parentElement.style.height) ? saveReplaceLength(currentElement.parentElement.style.height, parentFontSize) : currentElement.parentElement.offsetHeight/parentFontSize;
+                let newHeight = oldHeight + (offsetY/parentFontSize);
+                setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', unit: 'em'} );
+                setStyleToElement(currentElement, (currentElement.offsetTop + offsetY)/currentFontSize, { paramName: 'top', unit: 'em'} );
             } else {
-                let oldTop = Number(currentElement.parentElement.style.top.replace('px',''));
-                if (offsetY == 0 && !currentElement.parentElement.style.top){
-                    oldTop = -2    
-                }
-                let newTop = oldTop + offsetY;
-                setStyleToElement(currentElement.parentElement, newTop, { paramName: 'top', unit: 'px'} );
-                setStyleToElement(currentElement.parentElement, ((currentElement.parentElement.offsetHeight-2) + newTop*-1), { paramName: 'height', unit: 'px'} );
+                let oldTop = (offsetY == 0 && !currentElement.parentElement.style.top) ? -2/parentFontSize : saveReplaceLength(currentElement.parentElement.style.top, parentFontSize);
+                let newTop = oldTop + currentOffsetY;
+                setStyleToElement(currentElement.parentElement, newTop, { paramName: 'top', unit: 'em'} );
+                const oldHeight = currentElement.parentElement.offsetHeight/parentFontSize
+                setStyleToElement(currentElement.parentElement, ((currentElement.parentElement.offsetHeight-2)/parentFontSize + newTop*-1), { paramName: 'height', unit: 'em'} );
             }
         } else {
-            let oldTop = (currentElement.style.top) ? Number(currentElement.style.top.replace('px','')) : currentElement.offsetTop;
-            setStyleToElement(currentElement, (oldTop + offsetY) , { paramName: 'top', unit: 'px'} );
+            let oldTop = (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;
+            setStyleToElement(currentElement, (oldTop + currentOffsetY) , { paramName: 'top', unit: 'em'} );
         }
     }
 }
@@ -607,7 +620,12 @@ function getAncestorWithClassName(element, className){
     } 
     return null;
 }
-
+function zoom(zoomLink){
+    const zoomValue = (zoomLink.dataset.direction == 'in') ? 1 : -1;
+    pixelLineHeight = pixelLineHeight + zoomValue
+    const tf = document.getElementsByClassName(TRANSCRIPTION_FIELD)[0]
+    tf.style.fontSize = pixelLineHeight + 'px';
+}
 
 var dragStartPosX = null;
 var dragStartPosY = null;
@@ -627,8 +645,8 @@ window.addEventListener( 'dragstart', (event) => {
 
 window.addEventListener( 'dragend', (event) => {
    if (event && !runsOnBakFile){
-      let dragEndPosX = dragStartPosX - event.clientX;
-      let dragEndPosY = dragStartPosY - event.clientY;
+      let dragEndPosX = (dragStartPosX - event.clientX);
+      let dragEndPosY = (dragStartPosY - event.clientY);
       repositionElement(event.target, dragEndPosX*-1, dragEndPosY*-1, false);
       event.preventDefault();
    }
@@ -639,7 +657,7 @@ window.onbeforeunload = function(event){
     }
 };
 window.addEventListener("load", (event) => {
-    pixelLineHeight = Number(window.getComputedStyle(document.body).fontSize.replace('px',''));
+    pixelLineHeight = getComputedFontSize(document.body);
     let versions = document.getElementById(VERSIONS);
     if(versions){
         if (versions.elements.file == undefined){
