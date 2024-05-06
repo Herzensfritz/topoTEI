@@ -36,6 +36,14 @@ var fileIsOpenedInEditor = false;
 var undoStack = [];
 var redoStack = [];
 var tester = [ FILENAME, COLLECTION, DOWNLOAD_LINK];
+
+var currentItems = [];
+var currentItem = null;
+var offset =  1;
+var modOffset =  10;
+var clickOffset = 10;
+var showAbsolutePosition = true;
+
 function test (){
     tester.forEach(test =>{
         console.log(document.getElementById(test))    
@@ -334,6 +342,9 @@ function addInput(item, parent){
   item.inputMap = { top: topInput, left: leftInput};
   parent.appendChild(itemDiv);
 }
+function toggleAbsolutePositions(value) {
+    showAbsolutePosition = value;    
+}
 function addLine(line, form){
     let mainDiv = document.createElement('div');
     mainDiv.setAttribute('class', POSITION_CLASS)
@@ -356,7 +367,7 @@ function positionInfo(){
         hideOtherInputs(form.id);
         const rootForm = form.getElementsByTagName('form')[0]
         rootForm.replaceChildren()
-        const selected = Array.from(document.getElementsByClassName('selected')).map(item =>item.closest("div.line"));
+        const selected = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.line')).map(item =>item.closest("div.line"));
         const selectedLines = Array.from(new Set(selected))
         form.style.visibility = (selectedLines.length == 0) ? 'hidden' : 'visible';
         if (selectedLines.length > 0){
@@ -514,11 +525,7 @@ function mySend(data){
             }
     }
 }
-var currentItems = [];
-var currentItem = null;
-var offset =  1;
-var modOffset =  10;
-var clickOffset = 10;
+
 
 
 

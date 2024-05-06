@@ -351,6 +351,8 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
 };
 declare function app:positionInfo($node as node(), $model as map(*)) as element(div) {
      <div id="positionInfo" class="input">
+         <h2>Positionen</h2>
+         <toggle-switch label1="absolut" label2="relativ" onChange="toggleAbsolutePositions(value)"></toggle-switch>
          <form id="addPositionForm" name="adds"></form>
       </div>
 };
