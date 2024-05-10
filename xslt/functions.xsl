@@ -44,6 +44,7 @@
            </xsl:choose>
        </xsl:if>
    </xsl:function>
+   <xsl:variable name="EMPTY_LINE" select="9" as="xs:decimal"/>
    <xsl:variable name="ADD_LINE_TYPE_F" select="8" as="xs:decimal"/>
    <xsl:variable name="ADD_LINE_TYPE" select="7" as="xs:decimal"/>
    <xsl:variable name="HEAD_LINE_TYPE_F" select="6" as="xs:decimal"/>
@@ -106,6 +107,9 @@
    <xsl:function name="tei:getLineType" as="xs:decimal">
       <xsl:param name="currentNode"/>
       <xsl:choose>
+        <xsl:when test="$currentNode/not(@n)">
+           <xsl:value-of select="$EMPTY_LINE"/>
+        </xsl:when>
         <xsl:when test="$currentNode/following-sibling::tei:ab[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id and count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1"> 
             <xsl:value-of select="$AB_LINE_TYPE_F"/><!-- following sibling is tei:ab  -->
          </xsl:when>

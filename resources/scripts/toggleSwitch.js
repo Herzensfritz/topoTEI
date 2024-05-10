@@ -80,6 +80,13 @@ input:checked + .slider:before {
       this.value = !this.value;
       this.dispatchEvent(changeEvent);
   }
+  
+  get output() {
+    if (this.label2 == undefined){
+        return this.value;    
+    }
+    return (this.value) ? this.label1 : this.label2;    
+  }
 
   render() {
     return html`   <div id="toggleSwitch">

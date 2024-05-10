@@ -253,6 +253,7 @@ body {
         span.zlnr { position:relative; left: -30px;font-style: italic; color: grey;margin-right: 20px;font-size: 80%; cursor: pointer;}
         span.nolnr { margin-left: 40px;}
         div.line { line-height: 3.0em;  }
+        div.line.empty { display: inline-block;  }
         .flushRight {  display: inline-block;
                         margin: auto;
                         width: 80%;

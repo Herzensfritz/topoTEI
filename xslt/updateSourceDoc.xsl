@@ -149,43 +149,50 @@
         <xsl:attribute name="xml:id">
             <xsl:value-of select="$xmlId"/>
         </xsl:attribute>
-         <xsl:attribute name="start">
-           <xsl:value-of select="concat('#', $id)"/>
-         </xsl:attribute>
          <xsl:if test="$style or //tei:line[@xml:id = $xmlId]/@style">
             <xsl:attribute name="style">
               <xsl:value-of select="if (//tei:line[@xml:id = $xmlId]/@style) then (//tei:line[@xml:id = $xmlId]/@style) else ($style)"/>
             </xsl:attribute>
-         </xsl:if>
-         <xsl:if test="$rend != ''">
-            <xsl:attribute name="rend">
-              <xsl:value-of select="$rend"/>
+        </xsl:if>
+        <xsl:if test="not(starts-with($id, 'empty'))">
+            <xsl:attribute name="start">
+              <xsl:value-of select="concat('#', $id)"/>
             </xsl:attribute>
-         </xsl:if>
-         <xsl:if test="$hand !=''">
-            <xsl:attribute name="hand">
-              <xsl:value-of select="$hand"/>
-            </xsl:attribute>
-         </xsl:if>
-         <xsl:if test="//tei:lb[@xml:id = $id]/preceding::tei:handShift and not(//tei:lb[@xml:id = $id]/ancestor::*[@hand])">
-            <xsl:attribute name="hand">
-               <xsl:value-of select="//tei:lb[@xml:id = $id]/preceding::tei:handShift[1]/@new"/>
-            </xsl:attribute>
-         </xsl:if>
+            <xsl:if test="$rend != ''">
+               <xsl:attribute name="rend">
+                 <xsl:value-of select="$rend"/>
+               </xsl:attribute>
+            </xsl:if>
+            <xsl:if test="$hand !=''">
+               <xsl:attribute name="hand">
+                 <xsl:value-of select="$hand"/>
+               </xsl:attribute>
+            </xsl:if>
+            <xsl:if test="//tei:lb[@xml:id = $id]/preceding::tei:handShift and not(//tei:lb[@xml:id = $id]/ancestor::*[@hand])">
+               <xsl:attribute name="hand">
+                  <xsl:value-of select="//tei:lb[@xml:id = $id]/preceding::tei:handShift[1]/@new"/>
+               </xsl:attribute>
+            </xsl:if>
 
-         <xsl:call-template name="parentAdd">
-            <xsl:with-param name="anchor_id" select="$anchor_id"/>
-            <xsl:with-param name="lb_id" select="$id"/>
-         </xsl:call-template>
+            <xsl:call-template name="parentAdd">
+               <xsl:with-param name="anchor_id" select="$anchor_id"/>
+               <xsl:with-param name="lb_id" select="$id"/>
+            </xsl:call-template>
+         </xsl:if>
       </xsl:element>
    </xsl:template>
 
    <xsl:template name="lines">
       <xsl:param name="anchor_id"/>
       <xsl:param name="blockType"/>
-      <xsl:for-each select="//tei:lb[@n and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id]">
+      <xsl:for-each select="//tei:lb[(@n and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id) or (not(@n) and following-sibling::*[1]/local-name() = 'lb'  and normalize-space(following-sibling::text()[1]) ='')]">
          <xsl:variable name="lineType" select="tei:getLineType(current())"/>
          <xsl:choose>
+            <xsl:when test="$lineType eq $EMPTY_LINE">
+               <xsl:call-template name="line">
+                  <xsl:with-param name="id" select="concat('empty_', generate-id())"/>
+               </xsl:call-template>
+            </xsl:when>
             <xsl:when test="$lineType eq $DEFAULT_LINE_TYPE">
                <xsl:call-template name="line">
                   <xsl:with-param name="id" select="@xml:id"/>

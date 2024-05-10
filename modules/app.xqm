@@ -36,7 +36,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
-         <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=D20_a6r_GM0102-03.xml'">debug</button></div> 
+         <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=D20_a30r_GM0212v6.xml'">debug</button></div> 
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
@@ -352,7 +352,7 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
 declare function app:positionInfo($node as node(), $model as map(*)) as element(div) {
      <div id="positionInfo" class="input">
          <h2>Positionen</h2>
-         <toggle-switch label1="absolut" label2="relativ" onChange="toggleAbsolutePositions(value)"></toggle-switch>
+         <toggle-switch label1="absolut" label2="relativ" onChange="toggleAbsolutePositions(output)"></toggle-switch>
          <form id="addPositionForm" name="adds"></form>
       </div>
 };
@@ -360,7 +360,7 @@ declare function app:pageSetup($node as node(), $model as map(*)) as element(div
      <div id="pageSetup" class="input">
         <h2>Seiten Setup</h2>
          <form name="page">
-            min-width <input type="number" value="900" id="pageWidth" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minWidth"/> em<br/>
+            min-width <input type="number" value="56" id="pageWidth" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minWidth"/> em<br/>
              min-height <input type="number" value="30" id="pageHeight" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minHeight"/> em
       </form>
       </div>

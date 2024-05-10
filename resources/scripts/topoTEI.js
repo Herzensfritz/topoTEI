@@ -30,7 +30,7 @@ var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
 var ZONE_LINE = 'zoneLine';
-const INSERTION_MARK_REGEX = /[a-z]+insertion-(above|below)/g;
+const INSERTION_MARK_REGEX = /[A-Za-z]+insertion-(above|below)/g;
 var pixelLineHeight = 16;
 var fileIsOpenedInEditor = false;
 var undoStack = [];
@@ -43,6 +43,8 @@ var offset =  1;
 var modOffset =  10;
 var clickOffset = 10;
 var showAbsolutePosition = true;
+var modifierPressed = false;
+var shiftPressed = false;
 
 function test (){
     tester.forEach(test =>{
@@ -292,16 +294,23 @@ function deselect(item){
     console.log(item);    
 }
 function getElementTop(currentElement, currentFontSize){
-    
-    const parentFontSize = getComputedFontSize(currentElement.parentElement)
-    if (currentElement.className.includes('below') || currentElement.parentElement.className.search(INSERTION_MARK_REGEX) == -1 ) {
-        return (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;    
-    }else {
-        return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : currentElement.parentElement.offsetTop/parentFontSize;
+    if (showAbsolutePosition){
+        return currentElement.getBoundingClientRect().top;    
+    } else {
+        const parentFontSize = getComputedFontSize(currentElement.parentElement)
+        if (currentElement.className.includes('below') || currentElement.parentElement.className.search(INSERTION_MARK_REGEX) == -1 ) {
+            return (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;    
+        }else {
+            return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : currentElement.parentElement.offsetTop/parentFontSize;
+        }
     }
 }
 function getElementLeft(currentElement, currentFontSize){
-    return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize;    
+    if (showAbsolutePosition){
+        return currentElement.getBoundingClientRect().left;
+    } else {
+        return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize; 
+    }
 }
 function addInput(item, parent){
   const currentFontSize = getComputedFontSize(item);
@@ -342,16 +351,18 @@ function addInput(item, parent){
   item.inputMap = { top: topInput, left: leftInput};
   parent.appendChild(itemDiv);
 }
-function toggleAbsolutePositions(value) {
-    showAbsolutePosition = value;    
+function toggleAbsolutePositions(output) {
+    showAbsolutePosition = (output == 'absolut');   
+    positionInfo();
 }
-function addLine(line, form){
+function addLine(line, form, lnrClass){
     let mainDiv = document.createElement('div');
     mainDiv.setAttribute('class', POSITION_CLASS)
     let heading = document.createElement('h3');
-    const lnr = line.getElementsByClassName('lnr')[0];
+    const lnr = line.getElementsByClassName(lnrClass)[0];
     heading.innerText = 'Zeile ' + lnr.innerText;
     mainDiv.appendChild(heading);
+    console.log(line);
     Array.from(line.getElementsByClassName('above')).forEach(item =>{
         addInput(item, mainDiv)    
     })
@@ -369,13 +380,23 @@ function positionInfo(){
         rootForm.replaceChildren()
         const selected = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.line')).map(item =>item.closest("div.line"));
         const selectedLines = Array.from(new Set(selected))
-        form.style.visibility = (selectedLines.length == 0) ? 'hidden' : 'visible';
+        
         if (selectedLines.length > 0){
            selectedLines.forEach(line  =>{
-               addLine(line, rootForm)
+               addLine(line, rootForm, 'lnr')
             });
             
         }
+        const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.zoneLine')).map(item =>item.closest("div.zoneLine"));
+        const selectedAddLines = Array.from(new Set(selectedAdd))
+        if (selectedAddLines.length > 0){
+           selectedAddLines.forEach(line  =>{
+               addLine(line, rootForm, 'zlnr')
+            });
+            
+        }
+        form.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0) ? 'visible' : 'hidden';
+ 
     }     
 }
 function pageSetup(){
@@ -540,6 +561,7 @@ function clickItem(item, event){
                     currentItems.push(currentItem);
                     currentItem = null;
                 }
+                
             }else{
                 currentItem = item;
                 currentItem.classList.add("selected");
@@ -565,11 +587,10 @@ function clickItem(item, event){
                 currentItem.classList.add("selected");
             }
         }
-        positionInfo()
+        positionInfo();
     }
 }
-var modifierPressed = false;
-var shiftPressed = false;
+
 
 document.onkeyup = function(e) {
   if (e.key == 'Shift' || e.key == 'Control') {
@@ -716,6 +737,7 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
             let oldTop = (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;
             setStyleToElement(currentElement, (oldTop + currentOffsetY) , { paramName: 'top', unit: 'em'} );
         }
+        positionInfo();
     }
 }
 function getAncestorWithClassName(element, className){
