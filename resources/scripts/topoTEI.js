@@ -244,6 +244,10 @@ function recordNewValueChange(input, isRedoing){
     currentStack.push(change);
 }
 function setNewValue(input, isRedoing){
+    if(!isRedoing && input.dataset.function){
+        window[input.dataset.function]();  
+        input.closest('div.input').style.visibility = 'visible';
+    }
     let inputObject = getObject(input, OBJ_PARAMS);
     recordNewValueChange(input, isRedoing);
     let newValue = (input.type == 'number') ? Number(input.value) : input.value;
@@ -282,11 +286,12 @@ function setInputValue(input, styleValue, id, isClass){
 }
 function noEnter(input){
      setNewValue(input);
+    
      return !(window.event && window.event.keyCode == 13);
 }
-function hideOtherInputs(id){
-    let inputs = Array.from(document.getElementsByClassName('input')).filter(input =>input.id != id)
-    inputs.forEach(input =>{
+function hideOtherInputs(ids){
+    const idsList = Array.isArray(ids) ? ids :  [ids];
+    Array.from(document.getElementsByClassName('input')).filter(input =>!ids.includes(input.id)).forEach(input =>{
         input.style.visibility = 'hidden'
     });
 }
@@ -301,7 +306,8 @@ function getElementTop(currentElement, currentFontSize){
         if (currentElement.className.includes('below') || currentElement.parentElement.className.search(INSERTION_MARK_REGEX) == -1 ) {
             return (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;    
         }else {
-            return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : currentElement.parentElement.offsetTop/parentFontSize;
+            return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : 
+            (currentElement.parentElement.offsetTop-currentElement.parentElement.parentElement.offsetTop)/parentFontSize;
         }
     }
 }
@@ -328,7 +334,7 @@ function addInput(item, parent){
   textSpan.setAttribute('size', 10);
   textSpan.setAttribute('readonly', true);
   textSpan.value =  item.innerText;
-  textSpan.setAttribute('title', item.innerText + ' (font-size: ' + currentFontSize + 'px)');
+  textSpan.setAttribute('title', item.innerText + ' (font-size: ' + currentFontSize + 'px, global: ' + pixelLineHeight+ 'px)');
   let topInput = document.createElement('input');
   topInput.setAttribute('readonly', true);
   topInput.setAttribute('type', 'number');
@@ -362,7 +368,6 @@ function addLine(line, form, lnrClass){
     const lnr = line.getElementsByClassName(lnrClass)[0];
     heading.innerText = 'Zeile ' + lnr.innerText;
     mainDiv.appendChild(heading);
-    console.log(line);
     Array.from(line.getElementsByClassName('above')).forEach(item =>{
         addInput(item, mainDiv)    
     })
@@ -372,31 +377,55 @@ function addLine(line, form, lnrClass){
     form.appendChild(mainDiv);
     
 }
-function positionInfo(){
+function addFws(fws, form){
+    let mainDiv = document.createElement('div');
+    mainDiv.setAttribute('class', POSITION_CLASS)
+    let heading = document.createElement('h3');
+    heading.innerText = 'FW:';
+    mainDiv.appendChild(heading);
+    fws.forEach(item =>{
+        addInput(item, mainDiv)    
+    })
+    form.appendChild(mainDiv);
+    
+}
+function positionInfo(caller){
     if (!runsOnBakFile){
         let form = document.getElementById(POSITION_INFO);
-        hideOtherInputs(form.id);
         const rootForm = form.getElementsByTagName('form')[0]
         rootForm.replaceChildren()
         const selected = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.line')).map(item =>item.closest("div.line"));
         const selectedLines = Array.from(new Set(selected))
-        
+        const selectedFws = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
         if (selectedLines.length > 0){
            selectedLines.forEach(line  =>{
                addLine(line, rootForm, 'lnr')
             });
             
         }
-        const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.zoneLine')).map(item =>item.closest("div.zoneLine"));
+        const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>
+            (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below').length > 0)
+        ).map(item =>item.closest("div.zoneLine"));
         const selectedAddLines = Array.from(new Set(selectedAdd))
         if (selectedAddLines.length > 0){
            selectedAddLines.forEach(line  =>{
                addLine(line, rootForm, 'zlnr')
             });
-            
         }
-        form.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0) ? 'visible' : 'hidden';
- 
+        if (selectedFws.length > 0){
+            const fws = Array.from(document.querySelectorAll('*[draggable]')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
+            addFws(fws, rootForm)       
+        }
+        form.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0 || selectedFws.length > 0) ? 'visible' : 'hidden';
+        const idList = (selectedAddLines.length > 0) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
+        hideOtherInputs(idList);
+        if (caller && selectedAddLines.length > 0){
+            if (caller.target.closest("div.zoneLine")){
+                const targetLnr = caller.target.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
+                const paramName = (targetLnr.dataset.paramName);
+                showLinePositionDialog(targetLnr, paramName, true)
+            } 
+        }
     }     
 }
 function pageSetup(){
@@ -416,7 +445,7 @@ function pageSetup(){
 function showLinePositionDialog(element, paramName, alwaysOn){
     if (!runsOnBakFile){
         let input = document.getElementById(LINE_INPUT);
-        hideOtherInputs(input.id);
+        hideOtherInputs([LINE_INPUT, POSITION_INFO]);
         let id = element.parentElement.id;
         let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
         let verticalInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == VERTICAL_POSITION)[0];
@@ -434,11 +463,13 @@ function showLinePositionDialog(element, paramName, alwaysOn){
            input.firstElementChild.innerText = "Position für Zeile " + element.innerText;  
            let label = Array.from(input.lastElementChild.children).filter(child =>child.id == 'param')[0];
            label.innerText = paramName;
-           console.log(verticalInput, verticalInput.dataset.param, element.nextSibling.style[verticalInput.dataset.param])
            const fontSize = getComputedFontSize(element.nextSibling)
            let style = (element.nextSibling.style[verticalInput.dataset.param]) ? element.nextSibling.style[verticalInput.dataset.param] :  element.nextSibling.offsetLeft/fontSize + 'em';
            setInputValue(verticalInput, style, element.nextSibling.id, false);
            input.style.visibility = 'visible';
+           if(element.nextSibling.querySelectorAll('.above, .below').length > 0){
+                positionInfo()    
+           }
         }
     }
 }
@@ -587,7 +618,7 @@ function clickItem(item, event){
                 currentItem.classList.add("selected");
             }
         }
-        positionInfo();
+        positionInfo(event);
     }
 }
 
@@ -714,6 +745,12 @@ function repositionElement(currentElement, offsetX, offsetY, isRedoing){
                     showLinePositionDialog(ancestor.firstChild, 'top', true);
                 }
             }
+        } else {
+              
+            const targetLnr = currentElement.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
+            const paramName = (targetLnr.dataset.paramName);
+            showLinePositionDialog(targetLnr, paramName, true)
+            
         }
     } else {
         let oldLeft = (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize;
@@ -751,6 +788,7 @@ function zoom(zoomLink){
     pixelLineHeight = pixelLineHeight + zoomValue
     const tf = document.getElementsByClassName(TRANSCRIPTION_FIELD)[0]
     tf.style.fontSize = pixelLineHeight + 'px';
+    positionInfo();
 }
 
 var dragStartPosX = null;

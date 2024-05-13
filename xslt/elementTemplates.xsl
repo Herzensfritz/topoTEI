@@ -38,6 +38,11 @@
                    <xsl:attribute name="class">
                        <xsl:value-of select="$className"/>
                    </xsl:attribute>
+                   <xsl:if test="$className = 'zlnr'">
+                      <xsl:attribute name="data-param-name">
+                          <xsl:value-of select="$paramName"/>
+                      </xsl:attribute>
+                   </xsl:if>
                    <xsl:attribute name="onClick">
                        <xsl:value-of select="$function"/>
                    </xsl:attribute>

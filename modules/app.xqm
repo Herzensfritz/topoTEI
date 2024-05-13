@@ -36,7 +36,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
-         <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=D20_a30r_GM0212v6.xml'">debug</button></div> 
+         <!--<div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=D20_a30r_GM0212v6.xml'">debug</button></div> -->
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
@@ -366,11 +366,11 @@ declare function app:pageSetup($node as node(), $model as map(*)) as element(div
       </div>
 };
 declare function app:lineInput($node as node(), $model as map(*)) as element(div) {
-     <div id="lineInput" class="input">
+     <div id="lineInput" class="input toppos">
         <h2>Zeilenposition</h2>
          <form name="line">
-            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom"/> em<br/>
-            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="marginLeft"/> em
+            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom" data-function="positionInfo"/> em<br/>
+            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="marginLeft" data-function="positionInfo"/> em
       </form>
       </div>
 };

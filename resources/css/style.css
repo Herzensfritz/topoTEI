@@ -32,6 +32,9 @@
     left : 10px;
     visibility: hidden;
 }
+.input.toppos {
+    top: 54px;
+}
 .active {
     cursor: pointer;
 }

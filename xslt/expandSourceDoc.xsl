@@ -87,6 +87,9 @@
          </xsl:element>
       </xsl:element>
    </xsl:template>
+   <xsl:template match="tei:line[empty(@start)]">
+      <xsl:copy-of select="."/>
+   </xsl:template>
    <xsl:template match="tei:line">
       <xsl:element name="line" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:variable name="startId" select="substring-after(@start, '#')"/>
