@@ -29,6 +29,7 @@ var POSITION_CLASS = 'positionClass';
 var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
 var TRANSCRIPTION_FIELD = 'transkriptionField';
 var LINE = 'line';
+var ZINDEX = 'zindex'
 var ZONE_LINE = 'zoneLine';
 const INSERTION_MARK_REGEX = /[A-Za-z]+insertion-(above|below)/g;
 var pixelLineHeight = 16;
@@ -243,6 +244,11 @@ function recordNewValueChange(input, isRedoing){
     let currentStack = (isRedoing) ? redoStack : undoStack;
     currentStack.push(change);
 }
+function setZindex(input, value){
+    const id = input.dataset.id
+    const zone = document.getElementById(id)
+    zone.style.zIndex = value;
+}
 function setNewValue(input, isRedoing){
     if(!isRedoing && input.dataset.function){
         window[input.dataset.function]();  
@@ -348,9 +354,19 @@ function addInput(item, parent){
   leftInput.setAttribute('size', 8);
   leftInput.value = getElementLeft(item, currentFontSize);
   leftInput.setAttribute('title', 'left: ' + leftInput.value);
+  let zIndexInput = document.createElement('input');
+  zIndexInput.setAttribute('type', 'number');
+  zIndexInput.setAttribute('size', 2);
+  zIndexInput.setAttribute('min', 0);
+  zIndexInput.setAttribute('title','Mit dem z-index kann beinflusst werden, ob ein Element andere Elemente überlagert. Elemente mit höherem z-index überlagern Elemente mit kleinerem z-index.')
+  zIndexInput.value = window.getComputedStyle(item, null).getPropertyValue('z-index')
+  zIndexInput.onchange = function() {
+        item.style.zIndex = zIndexInput.value;  
+  }
   itemDiv.appendChild(textSpan);
   itemDiv.appendChild(topInput);
   itemDiv.appendChild(leftInput);
+  itemDiv.appendChild(zIndexInput);
   newField.onchange = function(event) {
         clickItem(item, event)    
   };
@@ -377,13 +393,13 @@ function addLine(line, form, lnrClass){
     form.appendChild(mainDiv);
     
 }
-function addFws(fws, form){
+function addExtra(extras, title, form){
     let mainDiv = document.createElement('div');
     mainDiv.setAttribute('class', POSITION_CLASS)
     let heading = document.createElement('h3');
-    heading.innerText = 'FW:';
+    heading.innerText = title;
     mainDiv.appendChild(heading);
-    fws.forEach(item =>{
+    extras.forEach(item =>{
         addInput(item, mainDiv)    
     })
     form.appendChild(mainDiv);
@@ -397,6 +413,7 @@ function positionInfo(caller){
         const selected = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.line')).map(item =>item.closest("div.line"));
         const selectedLines = Array.from(new Set(selected))
         const selectedFws = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
+        const selectedNotes = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('note')).length > 0))
         if (selectedLines.length > 0){
            selectedLines.forEach(line  =>{
                addLine(line, rootForm, 'lnr')
@@ -414,9 +431,14 @@ function positionInfo(caller){
         }
         if (selectedFws.length > 0){
             const fws = Array.from(document.querySelectorAll('*[draggable]')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
-            addFws(fws, rootForm)       
+            addExtra(fws, 'FW:', rootForm)       
         }
-        form.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0 || selectedFws.length > 0) ? 'visible' : 'hidden';
+        if (selectedNotes.length > 0){
+            const notes = Array.from(document.querySelectorAll('*[draggable]')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('note')).length > 0))
+            addExtra(notes, 'Notes:', rootForm)       
+        }
+        
+        form.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0 || selectedFws.length > 0 || selectedNotes.length > 0) ? 'visible' : 'hidden';
         const idList = (selectedAddLines.length > 0) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
         hideOtherInputs(idList);
         if (caller && selectedAddLines.length > 0){
@@ -437,7 +459,6 @@ function pageSetup(){
             Array.from(form.lastElementChild.children).filter(child =>child.id).forEach(pageInput =>{
                 let tf = Array.from(document.getElementsByClassName(TRANSCRIPTION_FIELD))[0];
                 let style = tf.style[pageInput.dataset.param];
-                setInputValue(pageInput, style, tf.id, false);
             });
         }
     }   
@@ -449,6 +470,10 @@ function showLinePositionDialog(element, paramName, alwaysOn){
         let id = element.parentElement.id;
         let lineInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == LINE_POSITION)[0];
         let verticalInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == VERTICAL_POSITION)[0];
+        const zIndexInput =  Array.from(input.lastElementChild.children).filter(child =>child.id == ZINDEX)[0];
+        const zone = element.closest('div.zoneLine')
+        zIndexInput.value = window.getComputedStyle(zone, null).getPropertyValue('z-index')
+        zIndexInput.setAttribute('data-id', zone.id)
         if (!alwaysOn && lineInput.dataset.id == id){
            lineInput.removeAttribute('data-id');
            input.style.visibility = 'hidden';
@@ -486,7 +511,6 @@ function showTextBlockDialog(textBlockId){
         hideOtherInputs(input.id);
         removeSelection();
         let inputs =  Array.from(input.lastElementChild.children).filter(child =>TEXT_BLOCK_INPUTS.includes(child.id));
-        let textBlock = document.getElementById(textBlockId);
         let firstLine = Array.from(document.getElementsByClassName(LINE))[0];
         if (inputs.filter(input =>input.dataset.isClass == 'false').map(input =>input.dataset.id).includes(textBlockId)){
            inputs.filter(input =>input.dataset.isClass == 'false').forEach(input =>{ input.removeAttribute('data-id') });

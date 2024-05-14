@@ -166,7 +166,7 @@ function myrest:fixnamespace($term, $referer) {
              let $output-collection := xmldb:login($config:data-root, 'test', 'test')
             return xmldb:store($config:data-root, $resource, $output)
             )
-     let $log := console:log($o)
+    let $log := console:log($o)
    return 
       <rest:response>
         <http:response status="302" message="Temporary Redirect">
