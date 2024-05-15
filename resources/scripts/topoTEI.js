@@ -8,8 +8,6 @@ const OBJ_PARAMS = [{targetName: 'id', dataName: 'data-id'},
 var runsOnBakFile = false;
 var NEWEST = "newest";
 var FILENAME = 'filename';
-var COLLECTION = 'collection';
-var DOWNLOAD_LINK = 'downloadLink';
 var VERSIONS = 'versions';
 var MARGIN_LEFT = 'marginLeft';
 var VALUE_CHANGED = 'valueChanged';
@@ -23,7 +21,7 @@ var PAGE_SETUP = 'pageSetup';
 var PAGE_WIDTH = 'pageWidth';
 var PADDING_TOP = 'paddingTop';
 var PADDING_BOTTOM = 'paddingBottom';
-var POSITION_INFO = 'positionInfo';
+var POSITION_INFO = 'myPositionInfo';
 var POSITION_FORM = 'addPositionForm'
 var POSITION_CLASS = 'positionClass';
 var TEXT_BLOCK_INPUTS = [ PADDING_TOP, PADDING_BOTTOM, LINE_HEIGHT_INPUT];
@@ -36,7 +34,7 @@ var pixelLineHeight = 16;
 var fileIsOpenedInEditor = false;
 var undoStack = [];
 var redoStack = [];
-var tester = [ FILENAME, COLLECTION, DOWNLOAD_LINK];
+
 
 var currentItems = [];
 var currentItem = null;
@@ -47,52 +45,9 @@ var showAbsolutePosition = true;
 var modifierPressed = false;
 var shiftPressed = false;
 
-function test (){
-    tester.forEach(test =>{
-        console.log(document.getElementById(test))    
-});
-}
 
-function updateOrderBy(checkbox){
-    location.href = (location.search) ? location.href.substring(0, location.href.indexOf('?')) + '?newest=' + String(checkbox.checked) : location.href + '?newest=' + String(checkbox.checked);
-     
-}
-function revertVersion(){
-    let form = document.getElementById(VERSIONS);
-    if (form && form.elements.file.value){
-        let currentFile = 'bak/' + form.elements.file.value;   
-        location.href = '/exist/restxq/revertVersion?file=' + currentFile;
-    }
-}
-function showVersion(){
-    let form = document.getElementById(VERSIONS);
-    if (form && form.elements.file.value){
-        let currentFile = 'bak/' + form.elements.file.value;   
-        location.href = '/exist/restxq/transform?file=' + currentFile;
-    }
-}
-function showPreview () {
-   let file = document.getElementById(FILENAME); 
-   window.open('/exist/restxq/preview?file=' + file.value, '_blank');
-}
-function deleteVersion(all){
-    if (all){
-        let file = document.getElementById(FILENAME);
-        let dialogText = 'Alle alten Versionen wirklich löschen?'
-        if (file && confirm(dialogText) == true){
-            location.href = '/exist/restxq/deleteBak?file=' + file.value;
-        }
-    } else {
-        let form = document.getElementById(VERSIONS);
-        if (form && form.elements.file.value){
-            let currentFile = 'bak/' + form.elements.file.value;   
-            location.href = '/exist/restxq/deleteBak?file=' + currentFile;
-        }
-    }
-}
-function showDefaultVersion(defaultFile){
-    location.href = '/exist/restxq/transform?file=' + defaultFile;
-}
+
+
 function enableButtons(buttonIds){
     buttonIds.forEach(buttonId =>{
         let button = document.getElementById(buttonId);
@@ -118,68 +73,7 @@ function checkVersions(button){
         versionPanel.style.visibility = (versionPanel.style.visibility == 'visible') ? 'hidden' : 'visible';
     }
 }
-function deleteFile(selectName){
-    let select = document.getElementById(selectName);
-    if (select){
-       let currentFile = select.options[select.selectedIndex].text;
-       let dialogText = 'Datei "' + currentFile + '" und alle Versionen davon wirklich löschen?'   
-       if (confirm(dialogText) == true){
-         location.href = '/exist/restxq/delete?file=' + currentFile; 
-       }
-    }
-}
-function exportManuscript(button){
-    button.setAttribute('disabled', true)
-    let promiseA = new Promise((resolve, reject) => {
-        resolve(location.href = '/exist/restxq/manuscript');
-    });
-    promiseA.then(() => button.removeAttribute('disabled'));
-}
-function exportFile(selectName){
-   
-    let select = document.getElementById(selectName);
-    let link = document.getElementById(DOWNLOAD_LINK);
-    if (select && link){
-       let currentFile = select.options[select.selectedIndex].text;
-       link.setAttribute('download', currentFile);
-       let newHref = link.href.substring(0, link.href.indexOf('?')) + "?file=" + currentFile;
-       link.setAttribute('href', newHref)
-       console.log(link);
-        link.click();    
-    }
-}
-function downloadFile(button){
-    if (!button.getAttribute('disabled')){
-       let link = document.getElementById(DOWNLOAD_LINK);
-       if (link){
-            if(runsOnBakFile){
-                let currentFile = link.href.substring(link.href.indexOf('?')).replace('?file=','');   
-                let filename = currentFile.substring(0, currentFile.indexOf('.')) + '_' + currentFile.substring(currentFile.indexOf('.')).replace('.xml_','')  + '.xml';
-                link.setAttribute('download', filename);
-                console.log(currentFile, filename)
-                let newHref = link.href.substring(0, link.href.indexOf('?')) + "?file=bak/" + currentFile;
-                link.setAttribute('href', newHref)
-            }
-            link.click();    
-        } 
-    }
-}
-function openFile(button){
-    if (!button.getAttribute('disabled')){
-        let collection = document.getElementById(COLLECTION);
-        let file = document.getElementById(FILENAME);
-        if (collection && file){
-            redoStack = [];
-            handleButtons();
-            Array.from(document.getElementsByClassName('selected')).forEach(selected =>selected.classList.remove("selected"));
-            let filepath = (runsOnBakFile) ? collection.value + '/bak/' + file.value : collection.value + '/' + file.value;
-            fileIsOpenedInEditor = true;
-            window.open('/exist/apps/eXide/index.html?open=' + filepath, '_blank');
-            
-           
-        }
-    }
-}
+
 
 function undo(){
     let button = document.getElementById("undoButton");
@@ -298,33 +192,31 @@ function noEnter(input){
 function hideOtherInputs(ids){
     const idsList = Array.isArray(ids) ? ids :  [ids];
     Array.from(document.getElementsByClassName('input')).filter(input =>!ids.includes(input.id)).forEach(input =>{
-        input.style.visibility = 'hidden'
+        input.style.visibility = 'hidden';
+        if (input.hideChildren){
+            input.hideChildren()    
+        }
     });
 }
 function deselect(item){
     console.log(item);    
 }
-function getElementTop(currentElement, currentFontSize){
-    if (showAbsolutePosition){
-        return currentElement.getBoundingClientRect().top;    
-    } else {
-        const parentFontSize = getComputedFontSize(currentElement.parentElement)
-        if (currentElement.className.includes('below') || currentElement.parentElement.className.search(INSERTION_MARK_REGEX) == -1 ) {
-            return (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;    
-        }else {
-            return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : 
+function getElementTop(currentElement){
+    const currentFontSize = getComputedFontSize(currentElement)    
+    const parentFontSize = getComputedFontSize(currentElement.parentElement)
+    if (currentElement.className.includes('below') || currentElement.parentElement.className.search(INSERTION_MARK_REGEX) == -1 ) {
+        return (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;    
+    }else {
+        return (currentElement.parentElement.style.top) ? saveReplaceLength(currentElement.parentElement.style.top, parentFontSize)  : 
             (currentElement.parentElement.offsetTop-currentElement.parentElement.parentElement.offsetTop)/parentFontSize;
-        }
     }
+    
 }
-function getElementLeft(currentElement, currentFontSize){
-    if (showAbsolutePosition){
-        return currentElement.getBoundingClientRect().left;
-    } else {
-        return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize; 
-    }
+function getElementLeft(currentElement){
+    const currentFontSize = getComputedFontSize(currentElement)    
+    return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize; 
 }
-function addInput(item, parent){
+function addInput(item, parent, copyObject){
   const currentFontSize = getComputedFontSize(item);
   let itemDiv = document.createElement('span');
   let newField = document.createElement('input');
@@ -335,25 +227,40 @@ function addInput(item, parent){
      newField.removeAttribute('checked');
   }
   itemDiv.appendChild(newField)
+  
   let textSpan = document.createElement('input');
   textSpan.setAttribute('type','text');
   textSpan.setAttribute('size', 10);
   textSpan.setAttribute('readonly', true);
   textSpan.value =  item.innerText;
-  textSpan.setAttribute('title', item.innerText + ' (font-size: ' + currentFontSize + 'px, global: ' + pixelLineHeight+ 'px)');
+  textSpan.setAttribute('title', item.innerText + ' (font-size: ' + currentFontSize + 'px, global: ' + kk+ 'px)');
   let topInput = document.createElement('input');
-  topInput.setAttribute('readonly', true);
+  
   topInput.setAttribute('type', 'number');
   topInput.setAttribute('size', 8);
+  topInput.ondblclick = function (event) {
+      if (copyObject){
+        copyObject.field.value = topInput.value; 
+        copyObject.label.innerText = 'top: '
+        copyObject.parent.style.visibility = 'visible';
+      }
+ }
   
   topInput.value = getElementTop(item, currentFontSize);
   topInput.setAttribute('title', 'top: ' + topInput.value);
    let leftInput = document.createElement('input');
-  leftInput.setAttribute('readonly', true);
+  
   leftInput.setAttribute('type', 'number');
   leftInput.setAttribute('size', 8);
   leftInput.value = getElementLeft(item, currentFontSize);
   leftInput.setAttribute('title', 'left: ' + leftInput.value);
+  leftInput.ondblclick = function (event) {
+      if (copyObject){
+        copyObject.field.value = leftInput.value; 
+        copyObject.label.innerText = 'left: '
+        copyObject.parent.style.visibility = 'visible';
+      }
+ }
   let zIndexInput = document.createElement('input');
   zIndexInput.setAttribute('type', 'number');
   zIndexInput.setAttribute('size', 2);
@@ -384,12 +291,53 @@ function addLine(line, form, lnrClass){
     const lnr = line.getElementsByClassName(lnrClass)[0];
     heading.innerText = 'Zeile ' + lnr.innerText;
     mainDiv.appendChild(heading);
+    let copySpan = document.createElement('span');
+    let copyLabel = document.createElement('label');
+    copyLabel.innerText = 'label'
+    let copyField = document.createElement('input');
+    copyField.setAttribute('size', 10)
+    copyField.setAttribute('type', 'number');
+    copyField.setAttribute('step', '0.1');
+    let copyButton = document.createElement('button');
+    copyButton.innerText = 'setzen';
+    copyButton.onclick = function(event) {
+        let isTop = copyLabel.innerText.startsWith('top')
+        
+        if (currentItem){
+            let currentFont = getComputedFontSize(currentItem)
+            let currentPos = (isTop) ? getElementTop(currentItem, currentFont) : getElementLeft(currentItem, currentFont)
+            let offset = (showAbsolutePosition) ? (copyField.value - currentPos)/currentFont : copyField.value - currentPos
+            if (isTop) {
+                repositionElement(currentItem, 0, offset, false)
+            } else {
+                repositionElement(currentItem, offset, 0, false)
+            }
+        } else {
+            currentItems.forEach(item =>{
+                let currentFont = getComputedFontSize(item)
+                let currentPos = (isTop) ? getElementTop(item, currentFont) : getElementLeft(item, currentFont)
+                let offset = (showAbsolutePosition) ? (copyField.value - currentPos)/currentFont : copyField.value - currentPos
+                if (isTop) {
+                repositionElement(item, 0, offset, false)
+            } else {
+                repositionElement(item, offset, 0, false)
+            }    
+            })    
+        }    
+        positionInfo();
+    }
+    copySpan.append(copyLabel);
+    copySpan.append(copyField);
+    copySpan.append(copyButton);
+    //copySpan.style.visibility = 'hidden'
+    let copyObject = {label: copyLabel, field: copyField, parent: copySpan}
     Array.from(line.getElementsByClassName('above')).forEach(item =>{
-        addInput(item, mainDiv)    
+        addInput(item, mainDiv, copyObject)    
     })
     Array.from(line.getElementsByClassName('below')).forEach(item =>{
-        addInput(item, mainDiv)    
+        addInput(item, mainDiv, copyObject)    
     })
+    mainDiv.append(copySpan)
     form.appendChild(mainDiv);
     
 }
@@ -407,19 +355,24 @@ function addExtra(extras, title, form){
 }
 function positionInfo(caller){
     if (!runsOnBakFile){
-        let form = document.getElementById(POSITION_INFO);
-        const rootForm = form.getElementsByTagName('form')[0]
-        rootForm.replaceChildren()
+        let positionInfoElement = document.getElementById(POSITION_INFO);
+        positionInfoElement.reset();
+        positionInfoElement.defaultFontSize = pixelLineHeight;
         const selected = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.line')).map(item =>item.closest("div.line"));
         const selectedLines = Array.from(new Set(selected))
         const selectedFws = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
         const selectedNotes = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('note')).length > 0))
         if (selectedLines.length > 0){
            selectedLines.forEach(line  =>{
-               addLine(line, rootForm, 'lnr')
+               const lnr = line.getElementsByClassName('lnr')[0];
+               const title = 'Zeile ' + lnr.innerText;
+               const items = Array.from(line.querySelectorAll('.above, .below'))
+               const itemObject = {title: title, items: items, left: getElementLeft, top: getElementTop}
+               positionInfoElement.appendItem(itemObject)
             });
             
         }
+        /*
         const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>
             (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below').length > 0)
         ).map(item =>item.closest("div.zoneLine"));
@@ -437,17 +390,24 @@ function positionInfo(caller){
             const notes = Array.from(document.querySelectorAll('*[draggable]')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('note')).length > 0))
             addExtra(notes, 'Notes:', rootForm)       
         }
-        
-        form.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0 || selectedFws.length > 0 || selectedNotes.length > 0) ? 'visible' : 'hidden';
+        positionInfoElement.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0 || selectedFws.length > 0 || selectedNotes.length > 0) ? 'visible' : 'hidden';
         const idList = (selectedAddLines.length > 0) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
-        hideOtherInputs(idList);
-        if (caller && selectedAddLines.length > 0){
+        */
+        if (selectedLines.length > 0) {
+            positionInfoElement.style.visibility = 'visible';
+        } else {
+            positionInfoElement.style.visibility = 'hidden';
+            positionInfoElement.hideChildren();
+        }
+        
+        hideOtherInputs([POSITION_INFO]);
+        /*if (caller && selectedAddLines.length > 0){
             if (caller.target.closest("div.zoneLine")){
                 const targetLnr = caller.target.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
                 const paramName = (targetLnr.dataset.paramName);
                 showLinePositionDialog(targetLnr, paramName, true)
             } 
-        }
+        }*/
     }     
 }
 function pageSetup(){
