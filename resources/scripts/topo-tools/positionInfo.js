@@ -16,6 +16,7 @@ export class PositionInfo extends LitElement {
       #copyLabel {
          padding-right: 5px;
       }
+      
    `;
 
   static properties = {
@@ -32,6 +33,11 @@ export class PositionInfo extends LitElement {
     this._defaultFontSize = 16;
     this.showAbsoluteValues = true;
     this.objects = [];
+    this._keyListenerHandler = null;
+  }
+  
+  set keyListenerHandler(handler){
+    this._keyListenerHandler = handler;    
   }
   
   hideChildren () {
@@ -60,6 +66,7 @@ export class PositionInfo extends LitElement {
       this.showAbsoluteValues = e.target.value;
       const span =  this.renderRoot?.querySelector('#copySpan')
       span.style.visibility = 'hidden';
+      this.__addKeyListener();
   }
 
   __valueChanged(e) {
@@ -125,8 +132,7 @@ export class PositionInfo extends LitElement {
         input.value = copyInput.value;
         this.__valueChanged({ target: input });
      });
-     button.setAttribute('disabled', true);
-     span.style.visibility = 'hidden';
+     this.__addKeyListener();
   }
 
   _showObject(object) {
@@ -135,16 +141,39 @@ export class PositionInfo extends LitElement {
          ${object.items.map(item=>this._showItem(item, object.top, object.left))}
       </div>`
   }
+  __addKeyListener(e){
+      if (this._keyListenerHandler){
+        this._keyListenerHandler.appendKeyListener();    
+    }
+  }
+  __removeKeyListener(e){
+    if (this._keyListenerHandler){
+        this._keyListenerHandler.removeKeyListener();    
+    }
+  }
+  handleSlotchange(e){
+     const childNodes = Array.from(e.target.assignedNodes({flatten: true})).filter(elem =>elem.tagName);
+     childNodes.forEach(elem =>{
+        switch(elem.tagName.toLowerCase()) {
+            case 'toggle-listener':
+              this.keyListenerHandler = elem;
+              break;
+            default:
+              console.log(elem.tagName);
+        }
+     })
+  }
 
   render() {
     return html`   
        <div id="positionInfo">
          <h2>Positionen</h2>
+         <slot @slotchange=${this.handleSlotchange}></slot>
          <toggle-switch label1="absolut" label2="relativ" @change=${this.__toggle}></toggle-switch>
          <form id="addPositionForm" name="adds">
          ${this.objects.map(object =>this._showObject(object))}
          </form>
-         <span id="copySpan"><label id="copyLabel">label</label><input id="copyInput" type="number"/><button id="copyButton" disabled="true" @click=${this.__updateSelected} >set</button></span>
+         <span id="copySpan"><label id="copyLabel">label</label><input id="copyInput" @focusout=${this.__addKeyListener} @click=${this.__removeKeyListener} type="number"/><button id="copyButton" disabled="true" @click=${this.__updateSelected} >set</button></span>
       </div>
     `;
   }

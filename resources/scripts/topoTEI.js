@@ -1,5 +1,5 @@
-/** 
-**/
+
+
 const OBJ_PARAMS = [{targetName: 'id', dataName: 'data-id'}, 
                     {targetName: 'isClass', dataName: 'data-is-class', type: 'boolean'}, 
                     {targetName: 'paramName', dataName: 'data-param'}, 
@@ -41,11 +41,17 @@ var currentItem = null;
 var offset =  1;
 var modOffset =  10;
 var clickOffset = 10;
+var positionInfoFeeder = null;
 var showAbsolutePosition = true;
 var modifierPressed = false;
 var shiftPressed = false;
 
-
+function initWebcomponents(){
+    const toggleListener = document.querySelector('toggle-listener')
+    const positionInfoElement = document.querySelector('position-info')
+    positionInfoFeeder = new PositionInfoFeeder(getElementLeft, getElementTop, positionInfoElement); 
+    toggleListener.keyListener = checkKey;
+}
 
 
 function enableButtons(buttonIds){
@@ -216,198 +222,54 @@ function getElementLeft(currentElement){
     const currentFontSize = getComputedFontSize(currentElement)    
     return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize; 
 }
-function addInput(item, parent, copyObject){
-  const currentFontSize = getComputedFontSize(item);
-  let itemDiv = document.createElement('span');
-  let newField = document.createElement('input');
-  newField.setAttribute('type','checkbox');
-  if (item.classList.contains('selected')) {
-    newField.setAttribute('checked', true);
-  } else {
-     newField.removeAttribute('checked');
-  }
-  itemDiv.appendChild(newField)
-  
-  let textSpan = document.createElement('input');
-  textSpan.setAttribute('type','text');
-  textSpan.setAttribute('size', 10);
-  textSpan.setAttribute('readonly', true);
-  textSpan.value =  item.innerText;
-  textSpan.setAttribute('title', item.innerText + ' (font-size: ' + currentFontSize + 'px, global: ' + kk+ 'px)');
-  let topInput = document.createElement('input');
-  
-  topInput.setAttribute('type', 'number');
-  topInput.setAttribute('size', 8);
-  topInput.ondblclick = function (event) {
-      if (copyObject){
-        copyObject.field.value = topInput.value; 
-        copyObject.label.innerText = 'top: '
-        copyObject.parent.style.visibility = 'visible';
-      }
- }
-  
-  topInput.value = getElementTop(item, currentFontSize);
-  topInput.setAttribute('title', 'top: ' + topInput.value);
-   let leftInput = document.createElement('input');
-  
-  leftInput.setAttribute('type', 'number');
-  leftInput.setAttribute('size', 8);
-  leftInput.value = getElementLeft(item, currentFontSize);
-  leftInput.setAttribute('title', 'left: ' + leftInput.value);
-  leftInput.ondblclick = function (event) {
-      if (copyObject){
-        copyObject.field.value = leftInput.value; 
-        copyObject.label.innerText = 'left: '
-        copyObject.parent.style.visibility = 'visible';
-      }
- }
-  let zIndexInput = document.createElement('input');
-  zIndexInput.setAttribute('type', 'number');
-  zIndexInput.setAttribute('size', 2);
-  zIndexInput.setAttribute('min', 0);
-  zIndexInput.setAttribute('title','Mit dem z-index kann beinflusst werden, ob ein Element andere Elemente überlagert. Elemente mit höherem z-index überlagern Elemente mit kleinerem z-index.')
-  zIndexInput.value = window.getComputedStyle(item, null).getPropertyValue('z-index')
-  zIndexInput.onchange = function() {
-        item.style.zIndex = zIndexInput.value;  
-  }
-  itemDiv.appendChild(textSpan);
-  itemDiv.appendChild(topInput);
-  itemDiv.appendChild(leftInput);
-  itemDiv.appendChild(zIndexInput);
-  newField.onchange = function(event) {
-        clickItem(item, event)    
-  };
-  item.inputMap = { top: topInput, left: leftInput};
-  parent.appendChild(itemDiv);
-}
+
 function toggleAbsolutePositions(output) {
     showAbsolutePosition = (output == 'absolut');   
     positionInfo();
 }
-function addLine(line, form, lnrClass){
-    let mainDiv = document.createElement('div');
-    mainDiv.setAttribute('class', POSITION_CLASS)
-    let heading = document.createElement('h3');
-    const lnr = line.getElementsByClassName(lnrClass)[0];
-    heading.innerText = 'Zeile ' + lnr.innerText;
-    mainDiv.appendChild(heading);
-    let copySpan = document.createElement('span');
-    let copyLabel = document.createElement('label');
-    copyLabel.innerText = 'label'
-    let copyField = document.createElement('input');
-    copyField.setAttribute('size', 10)
-    copyField.setAttribute('type', 'number');
-    copyField.setAttribute('step', '0.1');
-    let copyButton = document.createElement('button');
-    copyButton.innerText = 'setzen';
-    copyButton.onclick = function(event) {
-        let isTop = copyLabel.innerText.startsWith('top')
-        
-        if (currentItem){
-            let currentFont = getComputedFontSize(currentItem)
-            let currentPos = (isTop) ? getElementTop(currentItem, currentFont) : getElementLeft(currentItem, currentFont)
-            let offset = (showAbsolutePosition) ? (copyField.value - currentPos)/currentFont : copyField.value - currentPos
-            if (isTop) {
-                repositionElement(currentItem, 0, offset, false)
-            } else {
-                repositionElement(currentItem, offset, 0, false)
-            }
-        } else {
-            currentItems.forEach(item =>{
-                let currentFont = getComputedFontSize(item)
-                let currentPos = (isTop) ? getElementTop(item, currentFont) : getElementLeft(item, currentFont)
-                let offset = (showAbsolutePosition) ? (copyField.value - currentPos)/currentFont : copyField.value - currentPos
-                if (isTop) {
-                repositionElement(item, 0, offset, false)
-            } else {
-                repositionElement(item, offset, 0, false)
-            }    
-            })    
-        }    
-        positionInfo();
+
+
+function handleChange(event) {
+      const valueChanged = event.target.readChangedValues;
+      const item = document.getElementById(valueChanged.id);
+      switch (valueChanged.action) {
+         case 'click':
+            clickItem(item);
+            break;
+         case 'left':
+            move(item, valueChanged, true);
+            break;
+         case 'top':
+            move(item, valueChanged, false);
+            break;
+         case 'zIndex':
+            item.style.zIndex = valueChanged.value; 
+            break;
+         default:
+            console.log(valueChanged, item)
     }
-    copySpan.append(copyLabel);
-    copySpan.append(copyField);
-    copySpan.append(copyButton);
-    //copySpan.style.visibility = 'hidden'
-    let copyObject = {label: copyLabel, field: copyField, parent: copySpan}
-    Array.from(line.getElementsByClassName('above')).forEach(item =>{
-        addInput(item, mainDiv, copyObject)    
-    })
-    Array.from(line.getElementsByClassName('below')).forEach(item =>{
-        addInput(item, mainDiv, copyObject)    
-    })
-    mainDiv.append(copySpan)
-    form.appendChild(mainDiv);
-    
 }
-function addExtra(extras, title, form){
-    let mainDiv = document.createElement('div');
-    mainDiv.setAttribute('class', POSITION_CLASS)
-    let heading = document.createElement('h3');
-    heading.innerText = title;
-    mainDiv.appendChild(heading);
-    extras.forEach(item =>{
-        addInput(item, mainDiv)    
-    })
-    form.appendChild(mainDiv);
-    
+function move(item, valueChanged, onX) {
+    const currentFontSize = getComputedFontSize(item);
+    const newValue = (valueChanged.absoluteValue) ? (valueChanged.value - valueChanged.oldValue): (valueChanged.value - valueChanged.oldValue)*currentFontSize;
+    const offsetX = (onX) ? newValue : 0;
+    const offsetY = (!onX) ? newValue : 0;
+    console.log(offsetX, offsetY)
+    repositionElement(item, offsetX, offsetY, false);
 }
 function positionInfo(caller){
     if (!runsOnBakFile){
-        let positionInfoElement = document.getElementById(POSITION_INFO);
-        positionInfoElement.reset();
-        positionInfoElement.defaultFontSize = pixelLineHeight;
-        const selected = Array.from(document.getElementsByClassName('selected')).filter(item =>item.closest('div.line')).map(item =>item.closest("div.line"));
-        const selectedLines = Array.from(new Set(selected))
-        const selectedFws = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
-        const selectedNotes = Array.from(document.getElementsByClassName('selected')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('note')).length > 0))
-        if (selectedLines.length > 0){
-           selectedLines.forEach(line  =>{
-               const lnr = line.getElementsByClassName('lnr')[0];
-               const title = 'Zeile ' + lnr.innerText;
-               const items = Array.from(line.querySelectorAll('.above, .below'))
-               const itemObject = {title: title, items: items, left: getElementLeft, top: getElementTop}
-               positionInfoElement.appendItem(itemObject)
-            });
-            
-        }
-        /*
-        const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>
-            (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below').length > 0)
-        ).map(item =>item.closest("div.zoneLine"));
-        const selectedAddLines = Array.from(new Set(selectedAdd))
-        if (selectedAddLines.length > 0){
-           selectedAddLines.forEach(line  =>{
-               addLine(line, rootForm, 'zlnr')
-            });
-        }
-        if (selectedFws.length > 0){
-            const fws = Array.from(document.querySelectorAll('*[draggable]')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('fw')).length > 0))
-            addExtra(fws, 'FW:', rootForm)       
-        }
-        if (selectedNotes.length > 0){
-            const notes = Array.from(document.querySelectorAll('*[draggable]')).filter(item=>(Array.from(item.classList).filter(cls =>cls.startsWith('note')).length > 0))
-            addExtra(notes, 'Notes:', rootForm)       
-        }
-        positionInfoElement.style.visibility = (selectedLines.length > 0 || selectedAddLines.length > 0 || selectedFws.length > 0 || selectedNotes.length > 0) ? 'visible' : 'hidden';
-        const idList = (selectedAddLines.length > 0) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
-        */
-        if (selectedLines.length > 0) {
-            positionInfoElement.style.visibility = 'visible';
-        } else {
-            positionInfoElement.style.visibility = 'hidden';
-            positionInfoElement.hideChildren();
-        }
         
-        hideOtherInputs([POSITION_INFO]);
-        /*if (caller && selectedAddLines.length > 0){
-            if (caller.target.closest("div.zoneLine")){
-                const targetLnr = caller.target.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
+        positionInfoFeeder.feedData(pixelLineHeight);
+        const idList = (positionInfoFeeder.hasAddLines) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
+        hideOtherInputs(idList);
+        if (caller && positionInfoFeeder.hasAddLines){
+            if (caller.closest("div.zoneLine")){
+                const targetLnr = caller.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
                 const paramName = (targetLnr.dataset.paramName);
                 showLinePositionDialog(targetLnr, paramName, true)
             } 
-        }*/
+        }
     }     
 }
 function pageSetup(){
@@ -567,7 +429,9 @@ function mySend(data){
 
 function clickItem(item, event){
     if (!runsOnBakFile){
-        event.stopPropagation();
+        if (event) {
+            event.stopPropagation();
+        }
         if (modifierPressed){
             if (shiftPressed){
                 item.classList.add("selected")
@@ -602,7 +466,7 @@ function clickItem(item, event){
                 currentItem.classList.add("selected");
             }
         }
-        positionInfo(event);
+        positionInfo(item);
     }
 }
 
@@ -616,7 +480,7 @@ document.onkeyup = function(e) {
   }
 };
 
-document.onkeydown = checkKey;
+
 
 function checkKey(e) {
     if (!runsOnBakFile){

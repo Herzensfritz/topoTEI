@@ -36,7 +36,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
-        <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=a14r.xml'">debug</button></div> 
+        <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=a30r.xml'">debug</button></div> 
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
@@ -350,7 +350,10 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
     </div> 
 };
 declare function app:positionInfo($node as node(), $model as map(*)) as element(div) {
-    <position-info id="myPositionInfo" class="input"></position-info>
+        <position-info id="myPositionInfo" class="input" onChange="handleChange(event)">
+            <toggle-listener></toggle-listener>
+        </position-info>
+        
 };
 declare function app:pageSetup($node as node(), $model as map(*)) as element(div) {
      <div id="pageSetup" class="input">

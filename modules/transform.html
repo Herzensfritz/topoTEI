@@ -12,15 +12,17 @@
     <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/gui_style.css"/>
     <!-- <link rel="stylesheet" type="text/css" data-template="app:link" href="/resources/css/gui_style.css"/> -->
     <link data-template="app:fontLink"/>
-    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
+    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/positionInfoFeeder.js"/> 
+    <script src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
     <script type="text/javascript" src="../apps/topoTEI/resources/scripts/gui_transcription.js"/>
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.7.0/webcomponents-loader.js"/>
     <script src="https://cdn.jsdelivr.net/npm/web-animations-js/web-animations.min.js"/>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@teipublisher/pb-components@2.4.5/dist/pb-components-bundle.js"/>
-     <script type="module" src="../apps/topoTEI/resources/scripts/commands.js"/>
+     <script type="text/javascript" src="../apps/topoTEI/resources/scripts/commands.js"/>
     <script type="module" src="../apps/topoTEI/resources/scripts/topo-tools/positionInfo.js"/>
+    <script type="module" src="../apps/topoTEI/resources/scripts/topo-tools/toggleKeyListener.js"/>
 </head>
-<body id="grey-top">
+<body id="grey-top" onLoad="initWebcomponents()">
 <div class="grey-bot">
     <div class="container" id="main-container">
         <div class="row">

@@ -108,7 +108,7 @@ function myrest:myPostKnoraIRIs($json as xs:string*, $headerFile as xs:string*) 
         let $id := map:get($facsimile, 'id')
         let $iiif := map:get($facsimile, 'iiif')
         let $update := local:updateFacsimile($id, $iiif, $document)
-     (:  : let $log := console:log($update) :)
+     let $log := console:log($update) 
     return 
      <rest:response>
         <http:response status="200" message="OK">
@@ -166,7 +166,7 @@ function myrest:fixnamespace($term, $referer) {
              let $output-collection := xmldb:login($config:data-root, 'test', 'test')
             return xmldb:store($config:data-root, $resource, $output)
             )
-    let $log := console:log($o)
+   (:  : let $log := console:log($o) :)
    return 
       <rest:response>
         <http:response status="302" message="Temporary Redirect">

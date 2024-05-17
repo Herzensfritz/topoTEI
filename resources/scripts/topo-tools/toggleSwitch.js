@@ -39,8 +39,11 @@ export class ToggleSwitch extends LitElement {
   -webkit-transition: .4s;
   transition: .4s;
 }
-input:checked + .slider {
-  background-color: var(--bg-color, #2196F3);
+input:checked + .single {
+  background-color: #ccc;
+}
+input:checked + .nonsingle {
+  background-color: #var(--bg-color, #2196F3);
 }
 
 input:focus + .slider {
@@ -77,10 +80,6 @@ input:checked + .slider:before {
     super();
     this.value = true;
   }
-
-  set label(label) {
-      this.label1 = label;
-  }
  
   _toggle(e) {
       const changeEvent = new Event('change');
@@ -88,13 +87,21 @@ input:checked + .slider:before {
       this.output = (this.value) ? this.label1 : this.label2;
       this.dispatchEvent(changeEvent);
   }
+  check(uncheck) {
+      const input = this.renderRoot?.querySelector('input');
+      input.checked = !uncheck;
+      this.requestUpdate();
+  }
 
   render() {
+     const singleLabel = (this.label2 == undefined || this.label2 == null)
     return html`   <div id="toggleSwitch">
          <label for="toggleInput">${this.label1}</input>
          <label id="toggleInput" class="switch">
-           <input type="checkbox" @click=${this._toggle}>
-            <span class="slider round"></span>
+           <input type="checkbox" @click=${this._toggle}/>
+           ${ singleLabel ?  html `<span class="single slider round"></span>`
+                          : html `<span class="nonsingle slider round"></span>`
+            }
          </label>
          <label for="toggleInput">${this.label2}</input>
       </div> `;
