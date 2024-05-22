@@ -1,4 +1,19 @@
 /*Application styles could go here */
+dialog {
+    display: none;
+}
+dialog[open] {
+    display: block;
+}
+dialog nav {
+    float: right;
+}
+#editorInput {
+    z-index: 50;
+    background-color: white;
+    width: max-content;
+    padding-right: 16px;
+}
 .data {
     width: 100px;
     height: 100px;

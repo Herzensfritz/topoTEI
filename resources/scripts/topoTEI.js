@@ -34,6 +34,7 @@ var pixelLineHeight = 16;
 var fileIsOpenedInEditor = false;
 var undoStack = [];
 var redoStack = [];
+var logStack = [];
 
 
 var currentItems = [];
@@ -45,78 +46,29 @@ var positionInfoFeeder = null;
 var showAbsolutePosition = true;
 var modifierPressed = false;
 var shiftPressed = false;
+var logger = null;
+var keyInputHandler = null;
+var mouseInputHandler = null;
+var sender = null;
 
 function initWebcomponents(){
-    const toggleListener = document.querySelector('toggle-listener')
-    const positionInfoElement = document.querySelector('position-info')
-    positionInfoFeeder = new PositionInfoFeeder(getElementLeft, getElementTop, positionInfoElement); 
-    toggleListener.keyListener = checkKey;
-}
-
-
-function enableButtons(buttonIds){
-    buttonIds.forEach(buttonId =>{
-        let button = document.getElementById(buttonId);
-        if (button){
-           button.removeAttribute('disabled');    
+    if (KeyInputHandler && PositionInfoFeeder && InputLogger && KeyInputHandler && MouseInputHandler){
+        const toggleListener = document.querySelector('toggle-listener')
+        const positionInfoElement = document.querySelector('position-info')
+        positionInfoFeeder = new PositionInfoFeeder(getElementLeft, getElementTop, positionInfoElement); 
+        logger = new InputLogger();
+        keyInputHandler = new KeyInputHandler(logger);
+        mouseInputHandler = new MouseInputHandler(logger);
+        toggleListener.keyListener = function (e){
+            keyInputHandler.checkKey(e);    
         }
-    });
-}
-function enableVersionButton(file, versionButtonId){
-    let versionButton = document.getElementById(versionButtonId);
-    let fileInput = document.getElementById(file);
-    if (versionButton && fileInput){
-        if (fileInput.value == 'true'){
-            versionButton.removeAttribute('disabled');    
-        } else {
-            versionButton.setAttribute('disabled', 'true');    
-        }    
-    }
-}
-function checkVersions(button){
-    if (!button.getAttribute('disabled')){
-        let versionPanel = document.getElementById("versionPanel"); 
-        versionPanel.style.visibility = (versionPanel.style.visibility == 'visible') ? 'hidden' : 'visible';
+        const filename = document.getElementById(FILENAME);
+        sender = new Sender(filename.value);
     }
 }
 
-
-function undo(){
-    let button = document.getElementById("undoButton");
-    if(!button.getAttribute('disabled') && undoStack.length > 0){
-        Array.from(document.getElementsByClassName('selected')).forEach(selected =>selected.classList.remove("selected"));
-        let lastEvent = undoStack.pop();
-        lastEvent.undo(true);
-    }
-}
-function redo(){
-    let button = document.getElementById("redoButton");
-    if(!button.getAttribute('disabled') && redoStack.length > 0){
-        Array.from(document.getElementsByClassName('selected')).forEach(selected =>selected.classList.remove("selected"));
-        let lastEvent = redoStack.pop();
-        lastEvent.undo(false);
-    }    
-}
-
-class Change {
-    constructor(element, offsetX, offsetY){
-        this.element = element;
-        this.offsetX = offsetX;
-        this.offsetY = offsetY;
-    }    
-    undo(isRedoing) {
-        this.element.classList.add("selected");
-        repositionElement(this.element, this.offsetX*-1, this.offsetY*-1, isRedoing);
-    }
-};
-class ParamChange {
-    constructor(input, oldValue){
-        this.input = input;
-        this.oldValue = oldValue;
-    }    
-    undo(isRedoing) {
-        setNewValue(this.input, this.oldValue, isRedoing);
-    }
+document.onkeyup = function(e) {
+    keyInputHandler.keyUp(e);
 };
 
 window.onload = function() {
@@ -223,18 +175,16 @@ function getElementLeft(currentElement){
     return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize; 
 }
 
-function toggleAbsolutePositions(output) {
-    showAbsolutePosition = (output == 'absolut');   
-    positionInfo();
+function clickItem(item, event){
+    this.mouseInputHandler.clickItem(item, event);
 }
-
 
 function handleChange(event) {
       const valueChanged = event.target.readChangedValues;
       const item = document.getElementById(valueChanged.id);
       switch (valueChanged.action) {
          case 'click':
-            clickItem(item);
+            clickItem(item, new Event('position-info-click'));
             break;
          case 'left':
             move(item, valueChanged, true);
@@ -259,7 +209,6 @@ function move(item, valueChanged, onX) {
 }
 function positionInfo(caller){
     if (!runsOnBakFile){
-        
         positionInfoFeeder.feedData(pixelLineHeight);
         const idList = (positionInfoFeeder.hasAddLines) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
         hideOtherInputs(idList);
@@ -272,19 +221,7 @@ function positionInfo(caller){
         }
     }     
 }
-function pageSetup(){
-    if (!runsOnBakFile){
-        let form = document.getElementById(PAGE_SETUP);
-        hideOtherInputs(form.id);
-        form.style.visibility = (form.style.visibility == 'visible') ? 'hidden' : 'visible';
-        if (form.style.visibility == 'visible'){
-            Array.from(form.lastElementChild.children).filter(child =>child.id).forEach(pageInput =>{
-                let tf = Array.from(document.getElementsByClassName(TRANSCRIPTION_FIELD))[0];
-                let style = tf.style[pageInput.dataset.param];
-            });
-        }
-    }   
-}
+
 function showLinePositionDialog(element, paramName, alwaysOn){
     if (!runsOnBakFile){
         let input = document.getElementById(LINE_INPUT);
@@ -333,6 +270,7 @@ function showTextBlockDialog(textBlockId){
         hideOtherInputs(input.id);
         removeSelection();
         let inputs =  Array.from(input.lastElementChild.children).filter(child =>TEXT_BLOCK_INPUTS.includes(child.id));
+        let textBlock = document.getElementById(textBlockId);
         let firstLine = Array.from(document.getElementsByClassName(LINE))[0];
         if (inputs.filter(input =>input.dataset.isClass == 'false').map(input =>input.dataset.id).includes(textBlockId)){
            inputs.filter(input =>input.dataset.isClass == 'false').forEach(input =>{ input.removeAttribute('data-id') });
@@ -349,190 +287,16 @@ function showTextBlockDialog(textBlockId){
         }
     }
 }
-function showFixLineNumberButtonIfNeeded(element){
-    let lines = Array.from(document.getElementsByClassName('lnr')).filter(line =>line.innerText == element.innerText);
-    if (lines.length > 1){
-        let button = document.getElementById('lineInputButton');  
-        button.removeAttribute('hidden');
-    }
-}
-function fixLineNumbering(){
-    let lines = Array.from(document.getElementsByClassName('lnr')).map(line =>new Object({ id: line.parentElement.id, n: line.innerText.substring(0, line.innerText.indexOf(':')) }));    
-    let data = adjustLineNumbers(lines);
-    mySend(data);
-}
-function adjustLineNumbers(lines){
-    if (lines.length < 2){
-        return lines    
-    } else {
-        if (lines[0].n == lines[1].n){
-            for (var i = 1; i < lines.length; i++){
-                lines[i].n = String( Number(lines[i].n) + 2);    
-            }
-        }
-        return [lines[0]].concat(adjustLineNumbers(lines.slice(1)));
-    }   
-}
-function toggleConfig(){
-    let config = document.getElementById("editorInput"); 
-    config.style.visibility = (config.style.visibility == 'visible') ? 'hidden' : 'visible';
-}
+
+
+
 function createConfigObject(objectId, objectValue, targetAttr, targetTag ){
     return { id: objectId, value: String(objectValue), attr: targetAttr, tag: targetTag }    
 }
-function saveConfig(fontIdArray, dataNameArray) {
-    
-    let fontSelectors = Array.from(fontIdArray.map(id =>document.getElementById(id)));
-    let fonts =  fontSelectors.map(fontSelector => createConfigObject(fontSelector.id, fontSelector.options[fontSelector.selectedIndex].text, 'family', 'current'));
-   let configData = dataNameArray.map(id =>createConfigObject(id, document.getElementById(id).value, 'name', 'param'));
-    let data = { font: fonts, config: configData }
-    let jsonData = JSON.stringify(data);
-    console.log(jsonData)
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', "/exist/restxq/config", true)
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-    xhr.send('configuration=' + jsonData);
-    xhr.onload = function () {
-        if(this.status == '205'){
-            window.location.reload(true);    
-        }
-        toggleConfig();
-    }
-}
-function myPost(button) {
-   if (!button.getAttribute('disabled')){
-       let elements = Array.from(document.getElementsByClassName(VALUE_CHANGED));
-       let elementInfos = [];
-       elements.forEach(element =>{
-           getStyleFromElement(element, elementInfos)
-        });
-        mySend(elementInfos);
-   } 
-}
-function mySend(data){
-    let filename = document.getElementById(FILENAME);
-    if (filename && data.length > 0) {
-            let file = filename.value;   
-            let xhr = new XMLHttpRequest()
-            xhr.open('POST', "/exist/restxq/save", true)
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-            xhr.send("file=" + file + "&elements=" + JSON.stringify(data));
-            xhr.onload = function () {
-               undoStack = [];
-               location.href = '/exist/restxq/transform?file=' + file
-            }
-    }
-}
 
 
 
 
-function clickItem(item, event){
-    if (!runsOnBakFile){
-        if (event) {
-            event.stopPropagation();
-        }
-        if (modifierPressed){
-            if (shiftPressed){
-                item.classList.add("selected")
-                currentItems.push(item)
-                if (currentItem){
-                    currentItems.push(currentItem);
-                    currentItem = null;
-                }
-                
-            }else{
-                currentItem = item;
-                currentItem.classList.add("selected");
-                let classList = Array.from(currentItem.classList)
-                if (document.getElementById('toggleOffset') && Number(document.getElementById('toggleOffset').value)) {
-                    clickOffset = Number(document.getElementById('toggleOffset').value);
-                }
-                let currentOffset =  ((currentItem.parentElement.className.includes('below') && !classList.includes('clicked')) || classList.includes('clicked')) ? clickOffset : clickOffset*-1;
-                if (!classList.includes('clicked')){
-                    currentItem.classList.add('clicked');    
-                } else {
-                    currentItem.classList.remove('clicked');    
-                }
-                repositionElement(currentItem, 0, currentOffset, false);
-                
-            }
-        } else {
-            removeSelection();
-            if (currentItem === item){
-                currentItem = null;   
-            } else {
-                currentItem = item;
-                currentItem.classList.add("selected");
-            }
-        }
-        positionInfo(item);
-    }
-}
-
-
-document.onkeyup = function(e) {
-  if (e.key == 'Shift' || e.key == 'Control') {
-    modifierPressed = false;
-    if (e.key == 'Shift'){
-        shiftPressed = false;
-    }
-  }
-};
-
-
-
-function checkKey(e) {
-    if (!runsOnBakFile){
-        e = e || window.event;
-        if (redoStack.length > 0){
-            e.preventDefault();    
-        }
-        if(e.getModifierState(e.key)){
-            modifierPressed = true; 
-            shiftPressed = (e.key == 'Shift');
-            
-        }
-        if (modifierPressed && (e.key == 'z' || e.key == 'r')){
-            let execFunction = (e.key == 'z') ? undo : redo;
-            execFunction();
-        } else {
-            let selectedElements = Array.from(document.getElementsByClassName('selected'));
-            if (selectedElements.length > 0){
-                e.preventDefault();
-                if (document.getElementById('offset') && Number(document.getElementById('offset').value)) {
-                    offset = Number(document.getElementById('offset').value);
-                }
-                if (document.getElementById('modOffset') && Number(document.getElementById('modOffset').value)) {
-                    modOffset = Number(document.getElementById('modOffset').value);
-                }
-                selectedElements.forEach(item =>{
-                    let currentOffset = (modifierPressed) ? modOffset : offset;
-                    if (e.keyCode == '38') {
-                        repositionElement(item, 0, currentOffset*-1, false)
-                        // up arrow
-                    }
-                    else if (e.keyCode == '40') {
-                        repositionElement(item, 0, currentOffset, false)
-                        // down arrow
-                    }
-                    else if (e.keyCode == '37') {
-                       // left arrow
-                       repositionElement(item, currentOffset*-1, 0, false);
-                    }
-                    else if (e.keyCode == '39') {
-                       // right arrow
-                       repositionElement(item, currentOffset, 0, false);
-                    }
-                    else if (e.key == 'Enter'){
-                        item.classList.remove("selected");
-                        currentItem = null;
-                    }
-                });
-            }
-        }
-    }
-}
 function recordChange(currentElement, offsetX, offsetY, isRedoing){
    let change = new Change(currentElement, offsetX, offsetY);
    let currentStack = (isRedoing) ? redoStack : undoStack;
@@ -631,13 +395,7 @@ function getAncestorWithClassName(element, className){
     } 
     return null;
 }
-function zoom(zoomLink){
-    const zoomValue = (zoomLink.dataset.direction == 'in') ? 1 : -1;
-    pixelLineHeight = pixelLineHeight + zoomValue
-    const tf = document.getElementsByClassName(TRANSCRIPTION_FIELD)[0]
-    tf.style.fontSize = pixelLineHeight + 'px';
-    positionInfo();
-}
+
 
 var dragStartPosX = null;
 var dragStartPosY = null;
@@ -648,6 +406,7 @@ window.addEventListener("dragover", (event) => { event.preventDefault(); });
 
 window.addEventListener( 'dragstart', (event) => {
    if (event && !runsOnBakFile){
+      logger.addEvent(event);
       dragStartPosX = event.clientX;
       dragStartPosY = event.clientY;
       event.dataTransfer.effectAllowed = "move";
@@ -657,6 +416,7 @@ window.addEventListener( 'dragstart', (event) => {
 
 window.addEventListener( 'dragend', (event) => {
    if (event && !runsOnBakFile){
+       logger.addEvent(event);
       let dragEndPosX = (dragStartPosX - event.clientX);
       let dragEndPosY = (dragStartPosY - event.clientY);
       repositionElement(event.target, dragEndPosX*-1, dragEndPosY*-1, false);

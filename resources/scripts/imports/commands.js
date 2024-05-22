@@ -7,7 +7,12 @@ var VERSIONS = 'versions';
 function updateOrderBy(checkbox){
     location.href = (location.search) ? location.href.substring(0, location.href.indexOf('?')) + '?newest=' + String(checkbox.checked) : location.href + '?newest=' + String(checkbox.checked);
 }
-
+function toggleConfig(){
+    let config = document.getElementById("editorInput"); 
+    config.style.visibility = (config.style.visibility == 'visible') ? 'hidden' : 'visible';
+    hideOtherInputs(config.id);
+    
+}
 function revertVersion(){
     let form = document.getElementById(VERSIONS);
     if (form && form.elements.file.value){
@@ -121,7 +126,59 @@ function openFile(button){
         }
     }
 }
+function myPost(button) {
+   if (!button.getAttribute('disabled')){
+       let elements = Array.from(document.getElementsByClassName(VALUE_CHANGED));
+       let elementInfos = [];
+       elements.forEach(element =>{
+           getStyleFromElement(element, elementInfos)
+        });
+        sender.send(elementInfos);
+   } 
+}
+function saveConfig(fontIdArray, dataNameArray) {
+    let fontSelectors = Array.from(fontIdArray.map(id =>document.getElementById(id)));
+    let fonts =  fontSelectors.map(fontSelector => createConfigObject(fontSelector.id, fontSelector.options[fontSelector.selectedIndex].text, 'family', 'current'));
+   let configData = dataNameArray.map(id =>createConfigObject(id, document.getElementById(id).value, 'name', 'param'));
+    let data = { font: fonts, config: configData }
+    let jsonData = JSON.stringify(data);
+    sender.sendConfig(jsonData, toggleConfig)
+}
+function checkVersions(button){
+    if (!button.getAttribute('disabled')){
+        let versionPanel = document.getElementById("versionPanel"); 
+        hideOtherInputs(versionPanel.id);
+        versionPanel.style.visibility = (versionPanel.style.visibility == 'visible') ? 'hidden' : 'visible';
+    }
+}
 
+function enableVersionButton(file, versionButtonId){
+    let versionButton = document.getElementById(versionButtonId);
+    let fileInput = document.getElementById(file);
+    if (versionButton && fileInput){
+        if (fileInput.value == 'true'){
+            versionButton.removeAttribute('disabled');    
+        } else {
+            versionButton.setAttribute('disabled', 'true');    
+        }    
+    }
+}
+function undo(){
+    let button = document.getElementById("undoButton");
+    if(!button.getAttribute('disabled') && undoStack.length > 0){
+        Array.from(document.getElementsByClassName('selected')).forEach(selected =>selected.classList.remove("selected"));
+        let lastEvent = undoStack.pop();
+        lastEvent.undo(true);
+    }
+}
+function redo(){
+    let button = document.getElementById("redoButton");
+    if(!button.getAttribute('disabled') && redoStack.length > 0){
+        Array.from(document.getElementsByClassName('selected')).forEach(selected =>selected.classList.remove("selected"));
+        let lastEvent = redoStack.pop();
+        lastEvent.undo(false);
+    }    
+}
 function showLog(){
     let button = document.getElementById("logButton");
     if(!button.getAttribute('disabled') && logger){

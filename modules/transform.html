@@ -10,15 +10,12 @@
     <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/style.css"/>
     <style data-template="app:fontFace"/>
     <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/gui_style.css"/>
-    <!-- <link rel="stylesheet" type="text/css" data-template="app:link" href="/resources/css/gui_style.css"/> -->
     <link data-template="app:fontLink"/>
-    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/positionInfoFeeder.js"/> 
+    <script data-template="app:importScripts" src="../apps/topoTEI/resources/scripts/imports/"/>
     <script src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
-    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/gui_transcription.js"/>
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.7.0/webcomponents-loader.js"/>
     <script src="https://cdn.jsdelivr.net/npm/web-animations-js/web-animations.min.js"/>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@teipublisher/pb-components@2.4.5/dist/pb-components-bundle.js"/>
-     <script type="text/javascript" src="../apps/topoTEI/resources/scripts/commands.js"/>
     <script type="module" src="../apps/topoTEI/resources/scripts/topo-tools/positionInfo.js"/>
     <script type="module" src="../apps/topoTEI/resources/scripts/topo-tools/toggleKeyListener.js"/>
 </head>
@@ -60,10 +57,18 @@
                              <li class="nav-item">
                                 <a class="nav-link active" onClick="toggleConfig()">Konfiguration</a>
                             </li>
+                             <li class="nav-item">
+                                <a id="logButton" class="nav-link" title="Zum Debuggen Log anzeigen" onClick="showLog()" disabled="true">Log</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link active" onClick="showPreview()">Preview</a>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
+                                <a class="nav-link active" onClick="showHelp()">
+                                            <iron-icon icon="help"/>
+                                        </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link active" data-template="app:zoom" data-template-direction="in">
                                             <iron-icon icon="zoom-in"/>
                                         </a>
@@ -93,6 +98,7 @@
             <div data-template="app:versions"/>
             <div data-template="app:positionInfo"/>
             <div data-template="app:transform"/>
+            <div data-template="app:dialog"/>
         </div>
     </div>
 </div>

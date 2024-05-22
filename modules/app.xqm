@@ -304,6 +304,12 @@ declare function local:createFontFace($css, $family, $name, $resources) as xs:st
         }'    
     )  
 };
+declare function app:importScripts($node as node(), $model as map(*)) as element(script)* {
+    let $dir := concat($config:app-root, '/resources/scripts/imports')
+    for $script in xmldb:get-child-resources($dir)
+        return <script type="text/javascript" src="{concat($node/@src, $script)}"/>
+        
+};
 declare function app:fontLink($node as node(), $model as map(*)) as element(link)* {
     for $link in $config:font-config/fonts/links/url/text()
         return <link href='{$link}' rel='stylesheet' type='text/css'/>
@@ -349,7 +355,19 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
                
     </div> 
 };
-declare function app:positionInfo($node as node(), $model as map(*)) as element(div) {
+
+declare function app:dialog($node as node(), $model as map(*)) as element(dialog) {
+        <dialog>
+            <nav>
+                <button title="Download log" id="downloadLog"><iron-icon icon='cloud-download'></iron-icon></button>
+                <button title="close" id="dialogClose"><iron-icon icon='close'></iron-icon></button>
+             </nav>
+            <p><textarea cols="70" rows="10" id="logTextField"></textarea></p>
+           
+        </dialog>
+        
+};
+declare function app:positionInfo($node as node(), $model as map(*)) as element(position-info) {
         <position-info id="myPositionInfo" class="input" onChange="handleChange(event)">
             <toggle-listener></toggle-listener>
         </position-info>
