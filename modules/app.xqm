@@ -30,7 +30,6 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 
 
-
 declare
      %templates:wrap
 function app:uploadDialog($node as node(), $model as map(*)) {
@@ -282,8 +281,7 @@ declare function local:createWebFonts($currentFont) as element(option)* {
    
 };
 declare function local:createFontFace($css, $family, $name, $resources) as xs:string {
-    let $log := console:log($name)
-    return if (contains($name, '.')) then (
+    if (contains($name, '.')) then (
         if (starts-with($name, 'http')) then (
             '@font-face {
                 font-family: "' || $family || '";
@@ -305,9 +303,9 @@ declare function local:createFontFace($css, $family, $name, $resources) as xs:st
     )  
 };
 declare function app:importScripts($node as node(), $model as map(*)) as element(script)* {
-    let $dir := concat($config:app-root, '/resources/scripts/imports')
+    let $dir := concat($config:app-root, substring-after($node/@src, '../apps/topoTEI'))
     for $script in xmldb:get-child-resources($dir)
-        return <script type="text/javascript" src="{concat($node/@src, $script)}"/>
+        return <script type="{$node/@type}" src="{concat($node/@src, $script)}"/>
         
 };
 declare function app:fontLink($node as node(), $model as map(*)) as element(link)* {
@@ -412,7 +410,6 @@ declare
 function app:navigation($node as node(), $model as map(*), $direction as xs:string?) as element(a) {
     let $file := $model('file')
     let $node-tree := doc($file)
-    let $log := console:log('test' || $direction)
     let $contentList := doc(concat($config:app-root, '/TEI/TEI-Header_D20.xml'))//tei:msContents//tei:locus/text()
     let $index := local:getPageIndex($node-tree, $contentList)
     let $newIndex := if ($direction = 'next') then ($index + 1) else ($index - 1)

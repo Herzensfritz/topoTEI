@@ -108,7 +108,7 @@ function myrest:myPostKnoraIRIs($json as xs:string*, $headerFile as xs:string*) 
         let $id := map:get($facsimile, 'id')
         let $iiif := map:get($facsimile, 'iiif')
         let $update := local:updateFacsimile($id, $iiif, $document)
-   (:  :  let $log := console:log($update) :)
+   let $log := console:log($update) 
     return 
      <rest:response>
         <http:response status="200" message="OK">
