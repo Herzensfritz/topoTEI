@@ -43,3 +43,22 @@ function exportManuscript(button){
 function updateOrderBy(checkbox){
     location.href = (location.search) ? location.href.substring(0, location.href.indexOf('?')) + '?newest=' + String(checkbox.checked) : location.href + '?newest=' + String(checkbox.checked);
 }
+
+window.onload = function() {
+    if(window.location.hash == '#reload') {
+        console.log('reloading .........')
+        history.replaceState(null, null, ' ');
+        window.location.reload(true);
+    }
+    let newest = document.getElementById(NEWEST);
+    if (newest){
+        let checkNewest = (location.search && location.search.includes('newest=')) ? location.search.includes('newest=true') : false;  
+        //newest.style.setProperty('checked', String(checkNewest));
+        if (checkNewest) {
+            newest.setAttribute('checked', 'true');
+        } else {
+            newest.removeAttribute('checked');    
+        }
+        console.log('checked', String(checkNewest));
+      }
+} 

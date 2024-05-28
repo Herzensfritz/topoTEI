@@ -8,7 +8,6 @@ class InputLogger {
     }
     addEvent(event, item){
         const entry = {date: new Date(), timestamp: Math.floor(Date.now() / 1000), event: this._eventToString(event, item)}
-        
         if (this.eventStack.length > 0){
             this.eventStack = this.eventStack.filter(item =>(entry.timestamp - item.timestamp) < this.MAX_TIME);
         }
@@ -67,5 +66,8 @@ class InputLogger {
     enableButton(){
         this.button.removeAttribute('disabled');
         this.button.classList.add('active');
+        this.button.addEventListener("click", () => {
+            this.show();
+        });
     }
 }

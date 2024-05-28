@@ -11,12 +11,13 @@
     <style data-template="app:fontFace"/>
     <link rel="stylesheet" type="text/css" href="../apps/topoTEI/resources/css/gui_style.css"/>
     <link data-template="app:fontLink"/>
-    <script src="../apps/topoTEI/resources/scripts/constants.js"/>
-    <script data-template="app:importScripts" src="../apps/topoTEI/resources/scripts/imports/"/>
-    <script src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
+    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/constants.js"/>
+    <script type="text/javascript" data-template="app:importScripts" src="../apps/topoTEI/resources/scripts/imports/"/>
+    <script type="text/javascript" src="../apps/topoTEI/resources/scripts/topoTEI.js"/>
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.7.0/webcomponents-loader.js"/>
     <script src="https://cdn.jsdelivr.net/npm/web-animations-js/web-animations.min.js"/>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@teipublisher/pb-components@2.4.5/dist/pb-components-bundle.js"/>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@teipublisher/pb-components@2.4.5/dist/pb-components-bundle.js"/> 
+    <script type="text/javascript" data-template="app:createTopoTEIObject"/>
     <script type="module" src="../apps/topoTEI/resources/scripts/topo-tools/topoTools.js"/>
 </head>
 <body id="grey-top" onLoad="initWebcomponents()">
@@ -36,16 +37,16 @@
                                 <a id="homeButton" class="nav-link active" aria-current="page" href="../apps/topoTEI/index.html#reload">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a id="undoButton" class="nav-link" onClick="undo()" disabled="true">Undo</a>
+                                <a id="undoButton" class="nav-link" disabled="true">Undo</a>
                             </li>
                             <li class="nav-item">
-                                <a id="redoButton" class="nav-link" onClick="redo()" disabled="true">Redo</a>
+                                <a id="redoButton" class="nav-link" disabled="true">Redo</a>
                             </li>
                             <li class="nav-item">
-                                <a id="saveButton" class="nav-link" onClick="myPost(this)" disabled="true">Speichern</a>
+                                <a id="saveButton" class="nav-link" disabled="true">Speichern</a>
                             </li>
                             <li class="nav-item">
-                                <a id="pageButton" class="nav-link active" title="Seite einrichten" onClick="pageSetup()">Seite</a>
+                                <a id="pageButton" class="nav-link active" title="Seite einrichten">Seite</a>
                             </li>
                             <!--<li class="nav-item"> <a id="editButton" class="nav-link active" title="Quelldatei in eXide öffnen" onClick="openFile(this)">Edit</a> </li> -->
                              <li class="nav-item">
@@ -55,10 +56,10 @@
                                 <a id="versionButton" class="nav-link active" title="Versionen verwalten" onClick="checkVersions(this)">Versionen</a>
                             </li>
                              <li class="nav-item">
-                                <a class="nav-link active" onClick="toggleConfig()">Konfiguration</a>
+                                <a id="configToggleButton" class="nav-link active">Konfiguration</a>
                             </li>
                              <li class="nav-item">
-                                <a id="logButton" class="nav-link" title="Zum Debuggen Log anzeigen" onClick="showLog()" disabled="true">Log</a>
+                                <a id="logButton" class="nav-link" title="Zum Debuggen Log anzeigen" disabled="true">Log</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" onClick="showPreview()">Preview</a>
@@ -69,14 +70,10 @@
                                         </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" data-template="app:zoom" data-template-direction="in">
-                                            <iron-icon icon="zoom-in"/>
-                                        </a>
+                                <a class="nav-link active" data-template="app:zoom" data-template-direction="in"/>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" data-template="app:zoom" data-template-direction="out">
-                                            <iron-icon icon="zoom-out"/>
-                                        </a>
+                                <a class="nav-link active" data-template="app:zoom" data-template-direction="out"/>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" data-template="app:navigation" data-template-direction="prev">Previous</a>

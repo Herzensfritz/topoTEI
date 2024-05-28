@@ -35,7 +35,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
-        <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=a30r.xml'">debug</button></div> 
+       <!-- <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=a30r.xml'">debug</button></div> -->
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
@@ -246,7 +246,16 @@ declare function local:createHiddenInput($map as map(*)) as element(input){
     let $value := $map('value')
     return <input type="hidden" id="{$id}" name="{$id}" value="{$value}"/>    
 };
-
+declare function app:createTopoTEIObject($node as node(), $model as map(*)) as element(script) {
+    let $collection := $config:data-root
+    let $filename := $model('filename')
+    let $maps := [ map { 'id': 'collection', 'name':'collection','value': $collection}, map {'id': 'filename','name':'file', 'value': $filename}]
+    return <script type="{$node/@type}"> 
+        var topoTEIObject = new Object();
+        topoTEIObject.collection = "{ $collection }";
+        topoTEIObject.filename = "{$filename}";
+    </script> 
+};
 declare function app:hiddenData($node as node(), $model as map(*)) as element(div) {
     let $collection := $config:data-root
     let $filename := $model('filename')
@@ -325,7 +334,7 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
  
     <div id="editorInput" class="input">
         <h2>Konfiguration</h2>
-        <form name="config">
+        <form id="editorInputForm" name="config" data-fonts="{string-join($config:font-config/fonts/currentFonts/current/@family,',')}" data-param-names="{string-join($config:gui-config/config/param/@name, ',')}">
            { for $p in $config:gui-config/config/param
                    let $label := $p/@label
                    return <div><label class="config" for="{$p/@name}">{string($p/@label)}:</label><input type="number" id="{$p/@name}" value="{$p/text()}" step="any"/></div>
@@ -345,11 +354,7 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
             </div>
         
         </form>
-        <button onClick="saveConfig([{string-join( for $item in $config:font-config/fonts/currentFonts/current/@family
-            return concat("'", $item, "'"),',')}], [{string-join(
-               for $item in $config:gui-config/config/param/@name
-                    return concat("'", $item, "'"),
-               ',')}])">Speichern</button>
+        <button id="editorInputButton">Speichern</button>
                
     </div> 
 };
@@ -375,8 +380,8 @@ declare function app:pageSetup($node as node(), $model as map(*)) as element(div
      <div id="pageSetup" class="input">
         <h2>Seiten Setup</h2>
          <form name="page">
-            min-width <input type="number" value="56" id="pageWidth" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minWidth"/> em<br/>
-             min-height <input type="number" value="30" id="pageHeight" step="1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="minHeight"/> em
+            min-width <input type="number" value="56" id="pageWidth" step="1" data-handler="valueHandler" data-unit="em" data-param="minWidth"/> em<br/>
+             min-height <input type="number" value="30" id="pageHeight" step="1" data-handler="valueHandler" data-unit="em" data-param="minHeight"/> em
              
       </form>
       </div>
@@ -387,9 +392,10 @@ declare function app:lineInput($node as node(), $model as map(*)) as element(div
       
         <h2>Zeilenposition</h2>
          <form name="line">
-            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="bottom" data-function="positionInfo"/> em<br/>
-            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="marginLeft" data-function="positionInfo"/> em  <br/>
-            z-index <input type="number" min="0" value="0" id="zindex" step="1" onChange="setZindex(this, value)"/> <iron-icon icon="help" onClick="alert('Elemente mit höherem z-index überlagern Elemente mit kleinerem z-index.')"></iron-icon>
+            <span id="param">bottom</span> <input type="number" value="3" id="linePosition" step="0.1" data-handler="valueHandler" data-unit="em" data-param="bottom" data-function="positionInfo"/> em<br/>
+            <span id="param">margin-left</span> <input type="number" value="3" id="verticalPosition" step="0.1" data-handler="valueHandler" data-unit="em" data-param="marginLeft" data-function="positionInfo"/> em  <br/>
+            z-index <input type="number" min="0" value="0" id="zindex" step="1" data-handler="valueHandler" data-unit="" data-param="zIndex"/> 
+            <iron-icon icon="help" onClick="alert('Elemente mit höherem z-index überlagern Elemente mit kleinerem z-index.')"></iron-icon>
       </form>
      
 
@@ -399,9 +405,9 @@ declare function app:textBlockInput($node as node(), $model as map(*)) as elemen
     <div id="textBlockInput" class="input">
         <h2>Settings für Textblock</h2>
          <form name="line">
-            Zeilenhöhe: <input type="number" value="3" id="lineHeightInput" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="lineHeight"/> em<br/>
-            padding-top: <input type="number" value="0" id="paddingTop" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="paddingTop"/> em<br/>
-            padding-bottom: <input type="number" value="0" id="paddingBottom" step="0.1" onkeypress="return noEnter(this)" onChange="setNewValue(this)" data-unit="em" data-param="paddingBottom"/> em
+            Zeilenhöhe: <input type="number" value="3" id="lineHeightInput" step="0.1" data-handler="valueHandler" data-unit="em" data-param="lineHeight"/> em<br/>
+            padding-top: <input type="number" value="0" id="paddingTop" step="0.1" data-handler="valueHandler" data-unit="em" data-param="paddingTop"/> em<br/>
+            padding-bottom: <input type="number" value="0" id="paddingBottom" step="0.1" data-handler="valueHandler" data-unit="em" data-param="paddingBottom"/> em
       </form>
     </div>
 };

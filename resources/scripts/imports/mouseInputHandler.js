@@ -1,48 +1,55 @@
 class MouseInputHandler {
-    constructor(inputLogger){
+    constructor(inputLogger, keyStorage, positioner){
         this.inputLogger = inputLogger;
+        this.keyStorage = keyStorage;
+        this.positioner = positioner;
+        this.dragStartPosX = null;
+        this.dragStartPosY = null;
+        this.clickOffset = 10;
+    }
+    _offset(item) {
+        if (document.getElementById('toggleOffset') && Number(document.getElementById('toggleOffset').value)) {
+            this.clickOffset = Number(document.getElementById('toggleOffset').value);
+        }  
+        let currentOffset = (item.classList.contains('clicked')) ? this.clickOffset : this.clickOffset*-1;
+        return (item.parentElement.className.includes('below')) ? currentOffset*-1 : currentOffset;
     }
     clickItem(item, event){
         this.inputLogger.addEvent(event, item);
-        if (!runsOnBakFile){
-            if (event) {
-                event.stopPropagation();
+        if (event) {
+             event.stopPropagation();
+         }
+         if (this.keyStorage.modifierPressed){
+             if (this.keyStorage.shiftPressed){
+                 item.classList.add("selected")
+             }else{
+                 item.classList.add("selected");
+                 let currentOffset =  this._offset(item);
+                 item.classList.toggle('clicked');
+                 this.positioner.repositionElement(item, 0, currentOffset, false);
+             }
+         } else {
+            const selected = Array.from(document.getElementsByClassName('selected'))
+            const selectItem = (!selected.includes(item))
+            selected.forEach(s=>{s.classList.remove('selected')})
+            if (selectItem) {
+                item.classList.add("selected");
             }
-            if (modifierPressed){
-                if (shiftPressed){
-                    item.classList.add("selected")
-                    currentItems.push(item)
-                    if (currentItem){
-                        currentItems.push(currentItem);
-                        currentItem = null;
-                    }
-                    
-                }else{
-                    currentItem = item;
-                    currentItem.classList.add("selected");
-                    let classList = Array.from(currentItem.classList)
-                    if (document.getElementById('toggleOffset') && Number(document.getElementById('toggleOffset').value)) {
-                        clickOffset = Number(document.getElementById('toggleOffset').value);
-                    }
-                    let currentOffset =  ((currentItem.parentElement.className.includes('below') && !classList.includes('clicked')) || classList.includes('clicked')) ? clickOffset : clickOffset*-1;
-                    if (!classList.includes('clicked')){
-                        currentItem.classList.add('clicked');    
-                    } else {
-                        currentItem.classList.remove('clicked');    
-                    }
-                    repositionElement(currentItem, 0, currentOffset, false);
-                    
-                }
-            } else {
-                removeSelection();
-                if (currentItem === item){
-                    currentItem = null;   
-                } else {
-                    currentItem = item;
-                    currentItem.classList.add("selected");
-                }
-            }
-            positionInfo(item);
-        }
+         }
+         positionInfo(item);
     } 
+    dragStart(event){
+      this.inputLogger.addEvent(event);
+      this.dragStartPosX = event.clientX;
+      this.dragStartPosY = event.clientY;
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", event.target.id);
+    }
+    dragEnd(event){
+      this.inputLogger.addEvent(event);
+      let dragEndPosX = (this.dragStartPosX - event.clientX);
+      let dragEndPosY = (this.dragStartPosY - event.clientY);
+      this.positioner.repositionElement(event.target, dragEndPosX*-1, dragEndPosY*-1, false);
+      event.preventDefault();
+    }
 }
