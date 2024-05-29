@@ -127,21 +127,15 @@ function myrest:debug() {
     let $output-collection := xmldb:login($config:data-root, 'test', 'test')
     let $doc := collection($config:data-root)
     return 
-     <data desc="show all entries that have style with 'px' in their sourceDoc">
-        {   for $source in $doc//tei:sourceDoc/tei:surface
-                where $source//*[contains(@style, 'px')]
-                let $file := util:document-name($source)
-                return <entry file="{$file}" xml:id="{substring-after($source/@start, '#')}">
-                { (:  : if (not(empty($file))) then (
-                    if (contains($file, '.xml_')) then (
-                            myrest:deleteBakFile($file)
-                        ) else (myrest:deleteFile($file, "none"))
-                    ) else (<empty file="{$file}"/>)  :)
-                    
-                }
-                </entry>
-            }
-        
+     <data desc="show all text that have place below">
+        {   for $text in $doc//tei:text
+                where $text//tei:add[@place="below"]
+                let $file := util:document-name($text)
+                return if (not(contains($file, '.xml_'))) then (
+                    <text file="{$file}" lb="{$text//tei:add[@place="below"][1]/preceding::tei:lb[1]/@n}" url="{concat('http://localhost:8080/exist/restxq/transform?file=', $file)}"/>
+                ) else ()
+               
+        } 
     </data>
 };
 

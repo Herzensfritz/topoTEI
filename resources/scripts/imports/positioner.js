@@ -52,7 +52,7 @@ class Positioner {
                     this.valueHandler.setStyleToElement(currentElement.parentElement, newHeight, { paramName: 'height', unit: 'em'} );
                     this.valueHandler.setStyleToElement(currentElement, (currentElement.offsetTop + offsetY)/currentFontSize, { paramName: 'top', unit: 'em'} );
                 } else {
-                    let oldTop = (offsetY == 0 && !currentElement.parentElement.style.top) ? -2/parentFontSize : saveReplaceLength(currentElement.parentElement.style.top, parentFontSize);
+                    let oldTop = (!currentElement.parentElement.style.top) ? -2/parentFontSize : saveReplaceLength(currentElement.parentElement.style.top, parentFontSize);
                     let newTop = oldTop + currentOffsetY;
                     this.valueHandler.setStyleToElement(currentElement.parentElement, newTop, { paramName: 'top', unit: 'em'} );
                     const oldHeight = currentElement.parentElement.offsetHeight/parentFontSize
