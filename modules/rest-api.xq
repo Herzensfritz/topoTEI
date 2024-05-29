@@ -118,6 +118,34 @@ function myrest:myPostKnoraIRIs($json as xs:string*, $headerFile as xs:string*) 
 };
 
 declare
+  %rest:path("/debug")
+  %rest:GET
+   %rest:produces("text/xml")
+    %output:media-type("text/xml")
+    %output:method("xml")
+function myrest:debug() {
+    let $output-collection := xmldb:login($config:data-root, 'test', 'test')
+    let $doc := collection($config:data-root)
+    return 
+     <data desc="show all entries that have style with 'px' in their sourceDoc">
+        {   for $source in $doc//tei:sourceDoc/tei:surface
+                where $source//*[contains(@style, 'px')]
+                let $file := util:document-name($source)
+                return <entry file="{$file}" xml:id="{substring-after($source/@start, '#')}">
+                { (:  : if (not(empty($file))) then (
+                    if (contains($file, '.xml_')) then (
+                            myrest:deleteBakFile($file)
+                        ) else (myrest:deleteFile($file, "none"))
+                    ) else (<empty file="{$file}"/>)  :)
+                    
+                }
+                </entry>
+            }
+        
+    </data>
+};
+
+declare
   %rest:path("/facsimiles")
   %rest:GET
     %rest:query-param("headerFile", "{$headerFile}", "TEI-Header_D20.xml")

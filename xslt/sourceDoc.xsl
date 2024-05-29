@@ -172,6 +172,15 @@
                         </xsl:otherwise>
                      </xsl:choose>
                </xsl:when>
+               <xsl:when test="//tei:lb[@xml:id = $startId and not(ancestor::tei:div2)]">
+                  <xsl:variable name="lbParent" select="//*[tei:lb[@xml:id = $startId]]"/>
+                  <!--<DATA><xsl:copy-of select="//(*|text())[ancestor::* = $lbParent and preceding::tei:lb[@xml:id = $startId] and not(parent::*/preceding::tei:lb[@xml:id = $startId])]"/></DATA>-->
+                  <xsl:apply-templates select="//(*|text())[ancestor::* = $lbParent and preceding::tei:lb[@xml:id = $startId] and not(parent::*/preceding::tei:lb[@xml:id = $startId])]">
+                     <xsl:with-param name="id" select="$startId"/>
+                     <xsl:with-param name="startId" select="$startId"/>
+                     <xsl:with-param name="type" select="$NO_ENDID"/>
+                  </xsl:apply-templates>
+               </xsl:when>
                <!-- Nodes/text after last lb in div2 -->
                <xsl:otherwise>
                   <!--<DATA><xsl:copy-of select="//(*|text())[ancestor::tei:div2 and preceding::tei:lb[@xml:id = $startId] and not(parent::*/preceding::tei:lb[@xml:id = $startId])]"/></DATA>-->

@@ -151,13 +151,16 @@
          <xsl:apply-templates select="tei:sic"/>
       </span>
    </xsl:template>
-   <xsl:template match="text()[parent::tei:sic]|tei:sic">
+   <xsl:template match="tei:sic">
+      <xsl:apply-templates/>
+   </xsl:template>
+   <xsl:template match="text()[parent::tei:sic/tei:lb]">
       <span class="editorCorrection" title="{normalize-space(string-join(parent::tei:sic/text(), ''))} &gt;{ancestor::tei:choice/tei:corr/text()}">
          <xsl:value-of select="normalize-space(.)"/>
       </span>
    </xsl:template>
    <!-- Process overwritten text in case of normal substitution, also for forme work -->
-   <xsl:template name="superimposed" match="tei:subst[tei:add/@place = 'superimposed' and tei:del and not(preceding-sibling::tei:addSpan[1]/following-sibling::tei:lb[1]/@n = following-sibling::tei:lb[1]/@n)]">
+   <xsl:template name="superimposed">
       <xsl:variable name="hand" select="replace(tei:add[@place = 'superimposed']/@hand,'#','')"/>
       <xsl:variable name="dict">
          <tei:entry key="erased" value="radiert:"/>
@@ -181,6 +184,32 @@
             </xsl:otherwise>
          </xsl:choose>
          <xsl:apply-templates select="current()/tei:add[empty(@place) or not(@place = 'superimposed')]"/>
+      </span>
+   </xsl:template>
+   <xsl:template match="tei:add[@place='superimposed' and parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']]">
+      <xsl:variable name="hand" select="replace(@hand,'#','')"/>
+      <xsl:variable name="delRend" select="parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']/@rend"/>
+      <xsl:variable name="dict">
+         <tei:entry key="erased" value="radiert:"/>
+         <tei:entry key="overwritten" value="überschrieben:"/>
+      </xsl:variable>
+      <span class="{if (ancestor::tei:fw) then (concat($hand, ' ', 'fw-box')) else (concat('box ', $hand))}">
+          <xsl:choose>
+            <xsl:when test="($fullpage = 'true' or $editorModus = 'false') and parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']/node()">
+               <xsl:apply-templates/>
+               <span class="tooltip" data-debug="{$delRend}">
+                  <xsl:value-of select="$dict/tei:entry[@key = $delRend]/@value"/>
+                  <span class="transkriptionField small">
+                            <xsl:apply-templates select="parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']/(*|text())"/>
+                        </span>
+               </span>
+            </xsl:when>
+            <xsl:otherwise>
+               <span class="{if (ancestor::tei:fw) then ('fw-box') else ('box')}" title="{$dict/tei:entry[@key = $delRend]/@value} {parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']/text()} ">
+                  <xsl:apply-templates/>
+               </span>
+            </xsl:otherwise>
+         </xsl:choose>
       </span>
    </xsl:template>
    <!-- Process deletions -->
@@ -432,5 +461,5 @@
    <xsl:template match="tei:certainty"/>
    <xsl:template match="tei:noteGrp|tei:note[empty(@type) or not(@type = 'authorial')]"/>
    <xsl:template match="tei:pb"/>
-   <xsl:template match="tei:del[@rend='overwritten']|tei:add[@place='superimposed']"/>
+   <xsl:template match="tei:del[@rend='overwritten']"/>
 </xsl:stylesheet>
