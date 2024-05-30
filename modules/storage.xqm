@@ -6,7 +6,7 @@ import module namespace console="http://exist-db.org/xquery/console";
 
 declare function storage:storeFile($parsedData, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {
     if (map:contains($parsedData, $targetType)) then (
-        let $filename := $parsedData('filename')
+        let $filename := replace($parsedData('filename'), $config:tp-extension, '.xml')
         let $content := $parsedData($targetType)
         return if (contains($targetType, 'xml')) then (
             let $parsedXML := parse-xml($content)

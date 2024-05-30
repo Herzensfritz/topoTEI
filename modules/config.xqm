@@ -40,6 +40,8 @@ declare variable $config:gui-config := doc(concat($config:app-root, "/config/gui
 
 declare variable $config:font-config := doc(concat($config:app-root, "/config/fonts.xml"));
 
+declare variable $config:tp-extension := '_tp.xml';
+
 declare variable $config:data-root := $config:app-root || "/data";
 
 declare variable $config:dirMap := map{ "data": $config:data-root,

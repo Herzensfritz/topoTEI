@@ -33,6 +33,18 @@ function exportFile(selectName){
         link.click();    
     }
 }
+function exportFileTP(selectName, button){
+    let select = document.getElementById(selectName);
+    if (select){
+        let currentFile = select.options[select.selectedIndex].text;
+        let newLocation = '/exist/restxq/export4TP?file=' + currentFile
+        button.setAttribute('disabled', true)
+        let promiseA = new Promise((resolve, reject) => {
+            resolve(location.href = newLocation);
+        });
+        promiseA.then(() => button.removeAttribute('disabled'));
+    }
+}
 function exportManuscript(button){
     button.setAttribute('disabled', true)
     let promiseA = new Promise((resolve, reject) => {

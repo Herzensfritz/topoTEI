@@ -53,8 +53,9 @@ function app:uploadDialog($node as node(), $model as map(*)) {
                 <button title="Ausgewählte Datei runterladen" class="fbutton" onclick="exportFile('fileSelection')">Download ...</button>
                     
                 <button title="Ausgewählte Datei löschen" class="fbutton"onClick="deleteFile('fileSelection')">Datei löschen</button>
-                <button title="Alle Dateien exportieren" class="fbutton" onClick="location.href = '/exist/restxq/export'">Exportieren</button>
+                <button title="Ausgewählte Datei für TeiPublisher exportieren" class="fbutton" onClick="exportFileTP('fileSelection', this)">Datei Exportieren</button>
                  <button title="Manuskript als eine Datei exportieren" class="fbutton" onClick="exportManuscript(this)">Manuskript exportieren ...</button>
+                  <button title="Alle Dateien als ZIP exportieren" class="fbutton" onClick="location.href = '/exist/restxq/export'">Alle Dateien Exportieren</button>
              </span>
              </div>) else ()
            }

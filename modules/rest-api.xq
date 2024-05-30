@@ -342,7 +342,6 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    let $log := console:log($filepath) 
     return local:showTransformation($filepath)
    
 };
@@ -519,7 +518,6 @@ function myrest:uploadTransform($data, $type, $referer) {
 };
 declare function local:showTransformation($file as xs:string){
    let $content := doc('transform.html')
-   let $log := console:log($file)
     let $config := map {
         (: The following function will be called to look up template parameters :)
         $templates:CONFIG_APP_ROOT: $config:app-root,
@@ -613,8 +611,12 @@ declare function local:getContentFiles($pb) {
     )
 };
 declare function local:getFileContents($parentDoc) {
-    for $locus in $parentDoc//tei:sourceDesc/tei:msDesc/tei:msContents//tei:locus/text()
-        return local:getContentFiles(xmldb:xcollection($config:data-root)/tei:TEI[descendant::tei:title/text() = $locus]//tei:text//tei:pb)
+    if (not($parentDoc//tei:msDesc) and $parentDoc//tei:pb) then (
+        local:getContentFiles($parentDoc//tei:pb)
+    ) else (
+        for $locus in $parentDoc//tei:sourceDesc/tei:msDesc/tei:msContents//tei:locus/text()
+            return local:getContentFiles(xmldb:xcollection($config:data-root)/tei:TEI[descendant::tei:title/text() = $locus]//tei:text//tei:pb)
+    )
 };
 declare function local:getNewestFile() {
     let $filelist := for $resource in xmldb:get-child-resources($config:data-root)
@@ -682,22 +684,31 @@ declare function local:createManuscript($data, $newFilename) {
     ) else (
         let $newFile := storage:store($data, 'output', $newFilename)
         let $newData := doc($newFile)
-        let $emptyText := for $textContent in $newData//tei:text/tei:body/*
-                            return update delete $textContent
+        let $emptyText := if (empty($newData//tei:msDesc)) then () else (
+                                for $textContent in $newData//tei:text/tei:body/*
+                                    return update delete $textContent
+                            )
         let $contents := local:getFileContents($newData)
         
-        let $newText := for $content in $contents
+        let $newText := if (empty($newData//tei:msDesc)) then () else (for $content in $contents
                             return local:updateTextContent($content, $newData)
+                        )
         
       (:  :   let $transform := local:getFileContents($newData)
         let $newText := for $text in $transform//tei:text/tei:body/*
                 return update insert $text into $newData//tei:text/tei:body :)
         
-        let $createSourceDoc := if ($newData/tei:sourceDoc) then () else (
+        let $createSourceDoc := if ($newData//tei:sourceDoc) then () else (
             update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
         )    
+        
         let $newSurface := for $surface in $contents//tei:sourceDoc/*
             return update insert $surface into $newData//tei:sourceDoc
+        let $firstSurface := $newData//tei:sourceDoc/tei:surface/@xml:id
+        let $deleteFirstSourceDoc := if (count($newData//tei:surface[@xml:id = $firstSurface]) gt 1) then (
+                                        for $surface in $newData//tei:surface[@xml:id = $firstSurface][1]
+                                            return update delete $surface
+                                    ) else ()
         return $newData
     )
 };
@@ -720,6 +731,37 @@ function myrest:donwloadManuscript($headerFile as xs:string*) {
         <http:response>
             <http:header name="Content-Type" value="{$mimetype}"/>
             <http:header name="Content-Disposition" value='Attachment; filename="{$newFilename}"'/>
+        </http:response>
+        <output:serialization-parameters>
+            <output:method value="{$method}"/>
+            <output:media-type value="{$mimetype}"/>
+        
+        </output:serialization-parameters>
+    </rest:response>, $newData
+    )
+};
+declare
+    %rest:path("/export4TP")
+    %rest:GET
+    %rest:query-param("file", "{$file}", "D20_a1r_GMTitelseite.xml")
+    %rest:produces("application/xml")
+function myrest:donwloadFile4TP($file as xs:string*) {
+    let $doc-uri := concat($config:data-root, '/', $file)
+    let $mimetype   := 'application/xml'
+    let $method     := 'xml'
+    let $data := document{
+        processing-instruction teipublisher {
+            'template="surface.html" odd="surface.odd" view="surface" media="pdf epub print"'
+        },
+        doc($doc-uri)
+    }
+    let $newData := local:createManuscript($data, $file)
+    let $filename := replace($file, '.xml', $config:tp-extension)
+    return (
+    <rest:response>
+        <http:response>
+            <http:header name="Content-Type" value="{$mimetype}"/>
+            <http:header name="Content-Disposition" value='Attachment; filename="{$filename}"'/>
         </http:response>
         <output:serialization-parameters>
             <output:method value="{$method}"/>
@@ -779,9 +821,9 @@ declare function local:parseHeader($data, $boundary){
     )
     return $header
 };
-
+(: NOT sure about this function!? :)
 declare
-%rest:path("/upload")
+%rest:path("/uploadDONOTUSE")
  %rest:POST("{$data}")
  %rest:header-param("Content-Type", "{$type}")
  %rest:header-param("Referer", "{$referer}", "none")
