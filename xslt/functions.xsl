@@ -122,7 +122,7 @@
          <xsl:when test="$currentNode/ancestor::tei:add"> <!-- parent is tei:add -->
             <xsl:value-of select="$ADD_LINE_TYPE"/>
          </xsl:when>
-         <xsl:when test="$currentNode/following-sibling::tei:head[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id           and (count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1          or count($currentNode/following-sibling::tei:*[local-name() != 'p' and following-sibling::tei:p[1]/tei:lb[1]]) eq 1)"> 
+         <xsl:when test="($currentNode/following-sibling::tei:head[1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id or $currentNode/following-sibling::tei:seg[@type='head'][1]/preceding-sibling::tei:lb[1]/@xml:id = $currentNode/@xml:id) and (count($currentNode/following-sibling::tei:*[local-name() != 'lb' and preceding-sibling::tei:lb[1][@xml:id = $currentNode/@xml:id]]) eq 1 or count($currentNode/following-sibling::tei:*[local-name() != 'p' and following-sibling::tei:p[1]/tei:lb[1]]) eq 1)"> 
             <xsl:value-of select="$HEAD_LINE_TYPE_F"/><!-- following sibling is tei:head -->
          </xsl:when>
          <xsl:when test="$currentNode/ancestor::tei:head"> <!-- parent is tei:head -->

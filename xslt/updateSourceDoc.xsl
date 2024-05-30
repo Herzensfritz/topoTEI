@@ -204,7 +204,7 @@
             <xsl:when test="$lineType eq $HEAD_LINE_TYPE or $lineType eq $HEAD_LINE_TYPE_F">
                <xsl:call-template name="head-line">
                   <xsl:with-param name="id" select="@xml:id"/>
-                  <xsl:with-param name="head" select="if ($lineType eq $HEAD_LINE_TYPE) then (ancestor::tei:head[1]) else (following-sibling::tei:head[1])"/>
+                  <xsl:with-param name="head" select="if ($lineType eq $HEAD_LINE_TYPE) then (ancestor::tei:head[1]) else (following-sibling::tei:head[1]|following-sibling::tei:seg[@type='head'])"/>
                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>

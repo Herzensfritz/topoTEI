@@ -9,35 +9,37 @@ class Positioner {
         const newValue = (valueChanged.absoluteValue) ? (valueChanged.value - valueChanged.oldValue): (valueChanged.value - valueChanged.oldValue)*currentFontSize;
         const offsetX = (onX) ? newValue : 0;
         const offsetY = (!onX) ? newValue : 0;
-        console.log(offsetX, offsetY)
         this.repositionElement(item, offsetX, offsetY, false);
     }
     _repositionMarginLefts(currentElement, currentOffsetX, offsetY){
         let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('em','')) : 0;
         this.valueHandler.setStyleToElement(currentElement, (oldLeft + currentOffsetX), { paramName: 'marginLeft', unit: 'em'} );
-        if (offsetY != 0){
-                let ancestor = getAncestorWithClassName(currentElement, ZONE_LINE);
-                let size = getComputedFontSize(ancestor)
-                let currentOffsetY = offsetY/size
-                if (ancestor){
-                    if (ancestor.style['bottom']){
-                        let oldBottom = Number(ancestor.style['bottom'].replace('em',''));
-                        let newBottom = oldBottom + currentOffsetY*-1;
-                        this.valueHandler.setStyleToElement(ancestor, newBottom, { paramName: 'bottom', unit: 'em'} );
-                        showLinePositionDialog(ancestor.firstChild, 'bottom', true);
-                    } else {
-                        let oldTop = ancestor.offsetTop;
-                        let newTop = oldTop/size  + currentOffsetY;
-                        this.valueHandler.setStyleToElement(ancestor, newTop, { paramName: 'top', unit: 'em'} );
-                        showLinePositionDialog(ancestor.firstChild, 'top', true);
+        if(currentElement.closest("div.zoneLine")) {
+            if (offsetY != 0){
+                    let ancestor = getAncestorWithClassName(currentElement, ZONE_LINE);
+                    let size = getComputedFontSize(ancestor)
+                    let currentOffsetY = offsetY/size
+                    if (ancestor){
+                        if (ancestor.style['bottom']){
+                            let oldBottom = Number(ancestor.style['bottom'].replace('em',''));
+                            let newBottom = oldBottom + currentOffsetY*-1;
+                            this.valueHandler.setStyleToElement(ancestor, newBottom, { paramName: 'bottom', unit: 'em'} );
+                            showLinePositionDialog(ancestor.firstChild, 'bottom', true);
+                        } else {
+                            let oldTop = ancestor.offsetTop;
+                            let newTop = oldTop/size  + currentOffsetY;
+                            this.valueHandler.setStyleToElement(ancestor, newTop, { paramName: 'top', unit: 'em'} );
+                            showLinePositionDialog(ancestor.firstChild, 'top', true);
+                        }
                     }
-                }
+            } else {
+                    const targetLnr = currentElement.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
+                    const paramName = (targetLnr.dataset.paramName);
+                    showLinePositionDialog(targetLnr, paramName, true)
+                    
+            }
         } else {
-                  
-                const targetLnr = currentElement.closest("div.zoneLine").getElementsByClassName("zlnr")[0] 
-                const paramName = (targetLnr.dataset.paramName);
-                showLinePositionDialog(targetLnr, paramName, true)
-                
+            positionInfo();
         }
     }
     _repositionLeft(currentElement, currentOffsetX, offsetY, currentFontSize){
