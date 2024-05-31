@@ -18,7 +18,8 @@ class PositionInfoFeeder {
            selectedLines.forEach(line  =>{
                const lnr = line.getElementsByClassName('lnr')[0];
                const title = 'Zeile ' + lnr.innerText;
-               const items = Array.from(line.querySelectorAll('.above, .below, .head'))
+               const items = Array.from(line.querySelectorAll('.above, .below, .head, .flushRight'))
+               
                const itemObject = {title: title, items: items, left: this.getElementLeft, top: this.getElementTop}
                this.positionInfoElement.appendItem(itemObject)
             });

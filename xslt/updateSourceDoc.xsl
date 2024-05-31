@@ -158,7 +158,7 @@
             <xsl:attribute name="start">
               <xsl:value-of select="concat('#', $id)"/>
             </xsl:attribute>
-            <xsl:if test="$rend != ''">
+            <xsl:if test="$rend != '' and $rend != 'flushRight'">
                <xsl:attribute name="rend">
                  <xsl:value-of select="$rend"/>
                </xsl:attribute>
@@ -173,11 +173,34 @@
                   <xsl:value-of select="//tei:lb[@xml:id = $id]/preceding::tei:handShift[1]/@new"/>
                </xsl:attribute>
             </xsl:if>
-
-            <xsl:call-template name="parentAdd">
-               <xsl:with-param name="anchor_id" select="$anchor_id"/>
-               <xsl:with-param name="lb_id" select="$id"/>
-            </xsl:call-template>
+            <xsl:choose>
+               <xsl:when test="$rend = 'flushRight'">
+                  <xsl:variable name="zoneId" select="concat($xmlId, '_', $rend, '_zone')"/>
+                  <xsl:element name="zone">
+                     <xsl:attribute name="xml:id">
+                         <xsl:value-of select="$zoneId"/>
+                     </xsl:attribute>
+                     <xsl:attribute name="type">
+                       <xsl:value-of select="$rend"/>
+                     </xsl:attribute>
+                     <xsl:if test="//tei:zone[@xml:id = $zoneId]/@style">
+                        <xsl:attribute name="style">
+                          <xsl:value-of select="//tei:zone[@xml:id = $zoneId]/@style"/>
+                        </xsl:attribute>
+                     </xsl:if>
+                     <xsl:call-template name="parentAdd">
+                        <xsl:with-param name="anchor_id" select="$anchor_id"/>
+                        <xsl:with-param name="lb_id" select="$id"/>
+                     </xsl:call-template>
+                  </xsl:element>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:call-template name="parentAdd">
+                     <xsl:with-param name="anchor_id" select="$anchor_id"/>
+                     <xsl:with-param name="lb_id" select="$id"/>
+                  </xsl:call-template>
+               </xsl:otherwise>
+            </xsl:choose>
          </xsl:if>
       </xsl:element>
    </xsl:template>

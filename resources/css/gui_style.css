@@ -258,6 +258,8 @@ body {
         div.line { line-height: 3.0em;  }
         div.line.empty { display: inline-block;  }
         .flushRight {  float: right;
+                        position: relative;
+                        left: -1em;
         }
          .flushMiniRight { margin-left: 10%; }
         span.line:after { content: '\00B6' }

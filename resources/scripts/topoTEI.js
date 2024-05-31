@@ -71,9 +71,13 @@ function getElementTop(currentElement){
     }
     
 }
+function getComputedStyleAsEm(currentElement, currentFontSize, style){
+    return Number(window.getComputedStyle(currentElement, null).getPropertyValue(style).replace('px',''))/currentFontSize    
+}
 function getElementLeft(currentElement){
     const currentFontSize = getComputedFontSize(currentElement); 
-    return (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize; 
+    const style = (currentElement.className.includes(MARGIN_LEFT)) ? 'margin-left' : 'left';
+    return (currentElement.style[style]) ? saveReplaceLength(currentElement.style[style], currentFontSize) :  getComputedStyleAsEm(currentElement, currentFontSize, style);
 }
 
 function clickItem(item, event){
@@ -101,13 +105,6 @@ function handleChange(event) {
          default:
             console.log(valueChanged, item);
     }
-}
-function move(item, valueChanged, onX) {
-    const currentFontSize = getComputedFontSize(item);
-    const newValue = (valueChanged.absoluteValue) ? (valueChanged.value - valueChanged.oldValue): (valueChanged.value - valueChanged.oldValue)*currentFontSize;
-    const offsetX = (onX) ? newValue : 0;
-    const offsetY = (!onX) ? newValue : 0;
-    Positioner.repositionElement(item, offsetX, offsetY, false);
 }
 function positionInfo(caller){
     if (!topoTEIObject.runsOnBakFile){

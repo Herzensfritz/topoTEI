@@ -118,7 +118,7 @@
       <xsl:variable name="lineClass" select="if (empty(parent::tei:zone/@type) or ends-with(parent::tei:zone/@type, 'Block')) then ('line') else ('zoneLine')"/>
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
       <xsl:variable name="endId" select="if (following::tei:line[@start]) then (substring-after(following::tei:line[@start][1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[@start][1]/@start, '#'))        else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[@start][1]/@start,'#')))"/>
-      <xsl:variable name="isZone" select="if (contains(parent::tei:zone/@type, 'zone') or tei:zone/@type = 'head') then ('true') else ('false')"/>
+      <xsl:variable name="isZone" select="if (contains(parent::tei:zone/@type, 'zone') or tei:zone/@type = 'head' or tei:zone/@type = 'flushRight') then ('true') else ('false')"/>
       <xsl:variable name="spanType" select="replace(concat(@hand, ' ', @rend,' ',tei:zone/@type), '#', '')"/>
       <xsl:variable name="spanStyle" select="if ($isZone = 'true') then (         if (tei:zone/@xml:id) then (tei:zone/@style) else (parent::tei:zone/@style)) else ()"/>
       <div id="{@xml:id}" class="{$lineClass}" style="{@style}">
@@ -131,7 +131,7 @@
             <xsl:call-template name="writeContentSpanAttributes">
               <xsl:with-param name="parentZoneId" select="if (tei:zone/@xml:id) then (tei:zone/@xml:id) else (parent::tei:zone/@xml:id)"/>
                <xsl:with-param name="isZone" select="$isZone"/>
-               <xsl:with-param name="spanClass" select="$spanType"/>
+               <xsl:with-param name="spanClass" select="normalize-space($spanType)"/>
                <xsl:with-param name="spanStyle" select="$spanStyle"/>
             </xsl:call-template>
             <xsl:choose>

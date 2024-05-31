@@ -289,7 +289,7 @@
       <xsl:param name="isZone"/>
       <xsl:param name="spanClass"/>
       <xsl:param name="spanStyle"/>
-      <xsl:variable name="class" select="if ($isZone = 'true') then (concat('marginLeft', ' ', $spanClass)) else ($spanClass)"/>
+      <xsl:variable name="class" select="if ($isZone = 'true' and $spanClass != 'flushRight') then (concat('marginLeft', ' ', $spanClass)) else ($spanClass)"/>
       <xsl:attribute name="id">
             <xsl:value-of select="$parentZoneId"/>
       </xsl:attribute>

@@ -1,4 +1,6 @@
 class Positioner {
+    static FLUSH_RIGHT = 'flushRight';
+    
     constructor(valueHandler, history){
         this.valueHandler = valueHandler;    
         this.history = history;
@@ -11,8 +13,8 @@ class Positioner {
         const offsetY = (!onX) ? newValue : 0;
         this.repositionElement(item, offsetX, offsetY, false);
     }
-    _repositionMarginLefts(currentElement, currentOffsetX, offsetY){
-        let oldLeft = (currentElement.style.marginLeft) ? Number(currentElement.style.marginLeft.replace('em','')) : 0;
+    _repositionMarginLefts(currentElement, currentOffsetX, offsetY, currentFontSize){
+        let oldLeft = getElementLeft(currentElement);
         this.valueHandler.setStyleToElement(currentElement, (oldLeft + currentOffsetX), { paramName: 'marginLeft', unit: 'em'} );
         if(currentElement.closest("div.zoneLine")) {
             if (offsetY != 0){
@@ -43,8 +45,9 @@ class Positioner {
         }
     }
     _repositionLeft(currentElement, currentOffsetX, offsetY, currentFontSize){
-         let oldLeft = (currentElement.style.left) ? saveReplaceLength(currentElement.style.left, currentFontSize) : currentElement.offsetLeft/currentFontSize;
-            this.valueHandler.setStyleToElement(currentElement, (oldLeft + currentOffsetX), { paramName: 'left', unit: 'em'} );
+        let oldLeft = getElementLeft(currentElement);
+        this.valueHandler.setStyleToElement(currentElement, (oldLeft + currentOffsetX), { paramName: 'left', unit: 'em'} );
+        if (!currentElement.className.includes(Positioner.FLUSH_RIGHT)){
             let currentOffsetY = offsetY/currentFontSize
             if(currentElement.parentElement && currentElement.parentElement.className.search(INSERTION_MARK_REGEX) > -1) {
                 let parentFontSize = getComputedFontSize(currentElement.parentElement) 
@@ -64,7 +67,9 @@ class Positioner {
                 let oldTop = (currentElement.style.top) ? saveReplaceLength(currentElement.style.top, currentFontSize) : currentElement.offsetTop/currentFontSize;
                 this.valueHandler.setStyleToElement(currentElement, (oldTop + currentOffsetY) , { paramName: 'top', unit: 'em'} );
             }
-            positionInfo();
+       
+        }
+        positionInfo();
     }
     repositionElement(currentElement, offsetX, offsetY, isRedoing){
         this.history.recordChange(currentElement, offsetX, offsetY, isRedoing);
@@ -72,7 +77,7 @@ class Positioner {
         let currentOffsetX = offsetX/currentFontSize
         handleButtons();
         if (currentElement.className.includes(MARGIN_LEFT)){
-            this._repositionMarginLefts(currentElement, currentOffsetX, offsetY);    
+            this._repositionMarginLefts(currentElement, currentOffsetX, offsetY, currentFontSize);    
         } else {
             this._repositionLeft(currentElement, currentOffsetX, offsetY, currentFontSize);  
         }
