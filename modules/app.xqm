@@ -27,6 +27,7 @@ import module namespace transform="http://exist-db.org/xquery/transform";
 import module namespace functx="http://www.functx.com";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
+declare namespace out-html="http://www.w3.org/1999/xhtml";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 
 
@@ -53,9 +54,9 @@ function app:uploadDialog($node as node(), $model as map(*)) {
                 <button title="Ausgewählte Datei runterladen" class="fbutton" onclick="exportFile('fileSelection')">Download ...</button>
                     
                 <button title="Ausgewählte Datei löschen" class="fbutton"onClick="deleteFile('fileSelection')">Datei löschen</button>
-                <button title="Ausgewählte Datei für TeiPublisher exportieren" class="fbutton" onClick="exportFileTP('fileSelection', this)">Datei Exportieren</button>
+                <button title="Ausgewählte Datei für TeiPublisher exportieren" class="fbutton" onClick="exportFileTP('fileSelection', this)">Datei exportieren</button>
                  <button title="Manuskript als eine Datei exportieren" class="fbutton" onClick="exportManuscript(this)">Manuskript exportieren ...</button>
-                  <button title="Alle Dateien als ZIP exportieren" class="fbutton" onClick="location.href = '/exist/restxq/export'">Alle Dateien Exportieren</button>
+                  <button title="Alle Dateien als ZIP exportieren" class="fbutton" onClick="location.href = '/exist/restxq/export'">Alle Dateien exportieren</button>
              </span>
              </div>) else ()
            }
@@ -446,6 +447,51 @@ declare function app:transform($node as node(), $model as map(*)) {
                 </parameters>
     return transform:transform($node-tree, $stylesheet, $param, (), "method=html5 media-type=text/html") 
 
+};
+
+declare function app:createTOC($node as node(), $model as map(*), $name as xs:string? ) {
+    let $root := $node/ancestor::*[@id =$name]
+    return element { node-name($node) } {
+                        $node/@*,
+                        attribute style { 'visibility: visible;'},
+                       <div>
+                           <h2>Inhalt</h2>
+                           <ul>
+                            {   for $entry in $root/out-html:h2 
+                                    let $anchor := local:getAnchor($entry)
+                                    return (<li><a href="#{$anchor}">{$entry/text()}</a><span class="empty"/> <a onClick="toggleShow(this, '{concat($anchor, '_toc')}')">+</a>
+                                       { local:getSubEntries($entry, concat($anchor, '_toc')) }
+                                    </li>)
+                            }
+                            </ul>
+                        </div>
+        
+        
+    }
+};
+declare function local:getSubEntries($node, $toggleId){
+    <ul id="{$toggleId}" class="collapse"> {
+        for $entry in $node/following-sibling::out-html:p[1]/*[@data-template="app:tocEntry"]
+            let $anchor := local:getAnchor($entry)
+            return <li><a href="#{$anchor}">{$entry/text()}</a><span class="empty"/>
+              { if ($entry/following-sibling::out-html:p[1]/*[@data-template="app:tocEntry"]) then (
+                  <a onClick="toggleShow(this, '{concat($anchor, '_toc')}')">+</a>,
+                  local:getSubEntries($entry, concat($anchor, '_toc')) 
+                ) else ()
+                  }
+        </li>
+    }
+    </ul>
+};
+declare function app:tocEntry($node as node(), $model as map(*)) as element() {
+     element { node-name($node) } {
+                        $node/@*,
+                        attribute id { local:getAnchor($node) },
+                        $node/node()
+            }
+};
+declare function local:getAnchor($node){
+    replace($node/text(), ' ', '_')    
 };
 (:~
  : This is a sample templating function. It will be called by the templating module if

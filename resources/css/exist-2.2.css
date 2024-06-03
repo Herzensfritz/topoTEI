@@ -359,7 +359,7 @@ h1 {
 }
 /*stylelint-disable-next-line no-descending-specificity */
 h2 {
-  font-size: 1.2em;
+  font-size: 1.5em;
   padding: 10px 0;
   font-weight: bold;
   font-family: QuicksandBook, Arial, Helvetica, sans-serif;

@@ -40,9 +40,8 @@ class Positioner {
                     showLinePositionDialog(targetLnr, paramName, true)
                     
             }
-        } else {
-            positionInfo();
         }
+        positionInfo();
     }
     _repositionLeft(currentElement, currentOffsetX, offsetY, currentFontSize){
         let oldLeft = getElementLeft(currentElement);

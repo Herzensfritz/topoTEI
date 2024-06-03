@@ -1,4 +1,9 @@
-
+function toggleShow(button, targetId){
+    const target = document.getElementById(targetId);
+    target.classList.toggle('off')
+    button.innerText = (target.classList.contains('off')) ? '-' : '+';
+    
+}
 
 function deleteFile(selectName){
     let select = document.getElementById(selectName);

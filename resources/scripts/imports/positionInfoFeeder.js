@@ -26,14 +26,14 @@ class PositionInfoFeeder {
             
         }
         const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>
-            (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below').length > 0)
+            (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below, .marginLeft').length > 0)
         ).map(item =>item.closest("div.zoneLine"));
         const selectedAddLines = Array.from(new Set(selectedAdd))
         if (selectedAddLines.length > 0){
            selectedAddLines.forEach(line  =>{
                const lnr = line.getElementsByClassName('zlnr')[0];
                const title = 'Zeile ' + lnr.innerText;
-               const items = Array.from(line.querySelectorAll('.above, .below'))
+               const items = Array.from(line.querySelectorAll('.above, .below, .marginLeft'))
                const itemObject = {title: title, items: items, left: this.getElementLeft, top: this.getElementTop}
                this.positionInfoElement.appendItem(itemObject)
             });

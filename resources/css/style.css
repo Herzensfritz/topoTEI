@@ -8,11 +8,24 @@ dialog[open] {
 dialog nav {
     float: right;
 }
+.empty {
+    margin-left: .2em;
+    maring-right: .2em;
+}
+a {
+   cursor: pointer; 
+}
+.collapse.off {
+    display: block;
+}
 #editorInput {
     z-index: 50;
     background-color: white;
     width: max-content;
     padding-right: 16px;
+}
+.text {
+    text-align: justify;
 }
 .data {
     width: 100px;
@@ -41,6 +54,14 @@ dialog nav {
 }
 .selected {
     background-color: yellow;
+}
+.toc {
+    position: fixed;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+    overflow-y: scroll;
 }
 .input {
     position: fixed;

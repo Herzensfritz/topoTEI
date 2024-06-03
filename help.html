@@ -1,0 +1,157 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+   <div class="col-lg-9">
+        <div class="page-header">
+            <h1>Hilfe</h1>
+        </div>
+        <div id="root">
+            <div class="toc" data-template="app:createTOC" data-template-name="root"/>
+            <h2 data-template="app:tocEntry">Datei auswählen</h2>
+            <p>
+                <h3 data-template="app:tocEntry">Datei-Auswahl</h3>
+                <p class="text">Datei auswählen: Im Dialog erscheinen die Dateien per Default nach ihrer Reihenfolge im Inhaltsverzeichnis der TEI-Hauptdatei. Über die Box "Neueste zuerst" werden die Dateien nach ihrer Abspeicherung
+                    sortiert, so dass die zuletzt hochgeladene bzw. bearbeitete Datei zuoberst erscheint.
+                </p>
+                <h3 data-template="app:tocEntry">Download</h3>
+                <p class="text">Ausgewählte Datei runterladen: Die im Dialog ausgewählte <b>Einzeldatei</b> wird zur Weiterbearbeitung in <b>Oxygen</b> heruntergeladen. Enthält keinen Text im &lt;sourceDoc&gt;.
+                </p>
+                <h3 data-template="app:tocEntry">Datei löschen</h3>
+                  <p class="text">Ausgewählte Datei löschen: Die im Dialog ausgewählte Datei und alle früheren auf existDB gespeicherten Versionen davon werden gelöscht.
+                </p>
+                 <h3 data-template="app:tocEntry">Datei exportieren</h3>
+                  <p class="text">Ausgewählte Datei exportieren: Die im Dialog ausgewählte <b>Einzeldatei</b> wird zur Voransicht in unserer TeiPublisher-App <b>Nietzsche Druckmanuskripte</b> heruntergeladen. 
+                  Damit können auch die verschiedenen nicht-topologischen Aspekte der Daten in unserer TeiPublisher-App angezeigt werden.<br/>
+                  Zur Kennzeichnung endet der Dateiname mit "_tp.xml", also z.B. "D20_a1r_GMTitelseite.xml" wird beim Download zu "D20_a14_GMTitelseite_tp.xml".
+                  Diese Datei enthält im &lt;sourceDoc&gt; auch Text. Die Datei kann aber wieder in <b>topoTEI</b> importiert werden. Dabei wird der Text im &lt;sourceDoc&gt; entfernt und die Kennzeichnung
+                  "_tp.xml" wird aus dem Dateinamen ausgeschnitten.
+                </p>
+                <h3 data-template="app:tocEntry">Manuskript exportieren ...</h3>
+                 <p class="text">Manuskript exportieren: Eine Gesamtdatei wird erstellt und heruntergeladen. Dieser Vorgang kann einen Moment dauern. Dabei werden alle Texte der Einzeldateien vereinigt
+                 und im &lt;sourceDoc&gt; in die entsprechenden &lt;surface&gt; kopiert. Diese Datei kann dann in unsere TeiPublisher-App <b>Nietzsche Druckmanuskripte</b> importiert werden.
+                </p>
+                <h3 data-template="app:tocEntry">Alle Dateien exportieren</h3>
+                <p class="text">Alle Einzeldateien als ZIP exportieren: Alle Einzeldateien werden ohne Text im &lt;sourceDoc&gt; als ZIP-Datei heruntergeladen. Dies kann zur Sicherung der Dateien verwendet werden.
+                </p>
+            </p>
+            <h2 data-template="app:tocEntry">Editor</h2>
+            <p>
+                <h3 data-template="app:tocEntry">Menu</h3>
+                <p>
+                    <h4 data-template="app:tocEntry">Home</h4>
+                    <p class="text">Führt zu <a href="#Datei_auswählen">Datei auswählen</a> zurück</p>
+                    <h4 data-template="app:tocEntry">Undo</h4>
+                    <p class="text">Letzte Änderung rückgängig machen (Tastenkombination &lt;Ctrl&gt;+z). Dieser Button wird nach der ersten Änderung aktiv. </p> 
+                    <h4 data-template="app:tocEntry">Redo</h4>
+                    <p class="text">Letztes Rückgängigmachen rückgangig machen (Tastenkombination &lt;Ctrl&gt;+r). Dieser Button wird nach dem ersten Undo aktiv. </p>
+                    <h4 data-template="app:tocEntry">Speichern</h4>
+                    <p class="text">Änderungen auf existDB speichern. Dieser Button wird nach der ersten Änderung aktiv.</p>
+                     <h4 data-template="app:tocEntry">Seite</h4>
+                    <p class="text">Minimale Grössenverhätlnisse der Seite (Breite und Höhe) einrichten. Wird nur verwendet, wenn der real vom Text benutzte Platz in der jeweiligen Dimension kleiner ist
+                    als die entsprechende Vorgabe.</p>
+                    <h4 data-template="app:tocEntry">Download</h4>
+                    <p class="text">Datei zur Bearbeitung in <b>Oxygen</b> herunterladen. Enthält keinen Text im &lt;sourceDoc&gt;. Dieser Button ist nur aktiv, wenn keine ungespeicherten Änderungen vorliegen.</p>
+                    <h4 data-template="app:tocEntry">Versionen</h4>
+                    <p class="text">Versionen-Dialog anzeigehn: Frühere Versionen der aktuellen Datei können angezeigt werden (Button: Anzeigen). Über den Wiederherstellungsknopf (ganz links) kann die ausgewählte Version
+                    als aktuelle wiederhergestellt werden. (Die bisher aktuelle Version wird dann zu einer früheren Version). Über den Knopf "Abbrechen" kann die Anzeige einer früheren Version zurückgesetzt werden. Es erscheint
+                    dann wieder die aktuelle Version. Über den Abfall-Knopf können alle früheren Versionen der Datei gelöscht werden.<br/>
+                    Der Versionen-Button ist nur aktiv, wenn keine ungespeicherten Änderungen vorliegen.</p>
+                     <h4 data-template="app:tocEntry">Konfiguration</h4>
+                    <p class="text">
+                        <ul>
+                            <li>Offset: Verschiebewert beim Verschieben mit Pfeiltasten (Einheit in px)</li>
+                            <li>Ctrl/Shift Offset: Verschiebewert beim Verschieben mit Pfeiltasten in Kombination mit gedrückter Ctrl bzw. Shift-Taste (Einheit in px)</li>
+                            <li>Up/Down Offset: Verschiebewert beim Anklicken in Kombination mit gedrückter Ctrl-Taste (Einheit in px)</li>
+                            <li>Schrift MyFont: Schriftart für (non-latin) Text</li>
+                            <li>Schrift MyLatin: Schriftart für latin Text</li>
+                        </ul>
+                    </p>
+                     <h4 data-template="app:tocEntry">Log</h4>
+                    <p class="text">Log der Eingabebefehle anzeigen. Mittels Wölkchen-Button kann das Log als Datei gespeichert und fürs Debuggen verschickt werden. </p>
+                    <h4 data-template="app:tocEntry">Preview</h4>
+                    <p class="text">Teilweise Vorschau: In dieser Ansicht kann der Inhalt in den Tooltips über den Boxen auch gestylt dargestellt werden. Diese Preview wird aber nicht
+                    mehr erweitert. In Zukunft funktioniert die finale Darstellung durch Export der Datei und Import in unsere TeiPublisher-App <b>Nietzsche Druckmanuskripte</b>. </p>
+                    <h4 data-template="app:tocEntry">Hilfe</h4>
+                    <p class="text">Diese Anleitung wird angezeigt. </p>
+                     <h4 data-template="app:tocEntry">Zoom-Tasten</h4>
+                    <p class="text">Die Schrift wird vergrössert bzw. verkleinert. </p>
+                    <h4 data-template="app:tocEntry">Previous</h4>
+                    <p class="text">Navigation zur unmittelbar vorausgehenden Seite. Wird je nach Vorhandensein einer entsprechenden Seite angezeigt. </p>
+                    <h4 data-template="app:tocEntry">Next</h4>
+                    <p class="text">Navigation zur unmittelbar nächsten Seite. Wird je nach Vorhandensein einer entsprechenden Seite angezeigt.</p>
+                </p>
+                <h3 data-template="app:tocEntry">Textblock</h3>
+                <p class="text">
+                    Aus den &lt;div2&gt; von &lt;text&gt; werden im &lt;surface&gt; des &lt;sourceDoc&gt; Textblöcke generiert. Bei diesen Textblöcken könne oben und unten jeweils Abstände eingefügt werden.
+                    Der Textblock am Anfang der Seite hat per Default 5em padding-top. Dies entspricht N's Leerzeilen am Anfang jeder Seite. Der Textblock unten hat ebenfalls 5em padding-bottom.<br/>
+                    Der Textblock-Dialog (<b>Settings für Textblock</b>) wird per Klick auf die Zeilennummer einer regulären Zeile (blaue Zeilennummer) aufgerufen. 
+                    Neben padding-top und padding-bottom des aktuellen Textblocks kann auch die Zeilenhöhe
+                    aller regulärer Zeilen eingestellt werden.
+                </p>
+                 <h3 data-template="app:tocEntry">Positionierbare Elemente</h3>
+                <p>
+                     <h4 data-template="app:tocEntry">Positionierbare Zeilen</h4>
+                    <p class="text">Positionierbare Zeilen erscheinen mit grauer Zeilennummer. Per Klick auf die Zeilennummer bzw. beim Verschieben der entsprechenden Zeilenelemente 
+                    erscheint der Dialog <b>Position für Zeile {@n}</b>:
+                    <ul>
+                        <li>top: legt die relative Top-Position gegenüber des dazugehörenden Textblocks fest (in <it>em</it>) </li>
+                        <li>margin-left: Abstand nach links in <it>em</it></li>
+                        <li>z-index: Der z-index bestimmt, ob ein Element über oder unter einem anderen Element liegt, wenn sie sich aufgrund ihrer Koordinaten überlagern. Elemente mit grösserem z-index sind über Elementen 
+                        mit tieferem z-index. Dieser Wert kann verändert werden (auf 1 setzen), um allenfalls Elemente auszuwählen, die aufgrund ihrer Position nicht ausgewählt werden können.</li>
+                    </ul>
+                    Ausserdem erscheint wie für alle positionierbaren Elemente der Dialog <a href="#Positionen">Positionen</a>    
+                    </p>
+                    <h4 data-template="app:tocEntry">Add</h4>
+                    <p class="text">Add mit dem Attribute "above" oder "below" sind positionierbar. Diese Elemente werden relativ zu ihrem Einfügungsort positioniert.
+                    Sie können entweder per Mouse (drag+drop) oder nach ihrer Auswahl per Mouseclick über die Pfeiltasten bewegt werden. Bei der Tastaturbewegung kann die Distanz über
+                    die Modifikationstasten beeinflusst werden (z.B. Ctrl+Up). Wird Ctrl bereits während des Auswahlclick gedrückt, dann wird das Element um ein bestimmte Distanz
+                    verschoben. Bei erneutem Ctr+Mouseclick springt das Element auf den Ausgangspunkt zurück.
+                    Mehrfachauswahl erfolgt mittels Shift+Mouseclick.<br/>
+                    Die Positionen aller Adds auf der Zeile eines ausgewählten Add werden im Dialog <a href="#Positionen">Positionen</a> angezeigt.
+                        
+                    </p>
+                    <h4 data-template="app:tocEntry">FW</h4>
+                    <p class="text">FW werden wie Positionierbare Zeilen relative zum Textblock positioniert. Ihre Positionen werden im Dialog <a href="#Positionen">Positionen</a> angezeigt.
+                        
+                    </p>
+                    <h4 data-template="app:tocEntry">Head</h4>
+                    <p class="text">Head sowie &lt;seg[@type='head'/&gt; lassen sich horizontal positionieren. Ihre Positionen werden im Dialog <a href="#Positionen">Positionen</a> angezeigt.</p>
+                    <h4 data-template="app:tocEntry">flushRight</h4>
+                    <p class="text">Der Inhalt von Zeilen mit dem Attribut @rend="flushRight" lassen sich horizontal positionieren. Ihre Positionen werden im Dialog <a href="#Positionen">Positionen</a> angezeigt.</p>
+                </p>
+                 <h3 data-template="app:tocEntry">Positionen</h3>
+                <p class="text">Der Positionen Dialog erscheint, wenn ein positionierbares Element ausgewählt ist.
+                    <ul>
+                        <li>keyListener: Der keyListener kann ein oder ausgeschaltet werden. Der keyListener hört auf alle Tastatureingaben. Will man eine Zelle der Tabelle manuell bearbeiten, muss 
+                            der keyListener ausgeschaltet werden, damit er die Angabe nicht abfängt. Sollte der Editor nicht mehr per Tastatur funktionieren, so kann es sein, dass der keyListener 
+                            verloren ging. Er kann dann über diesen Dialog wieder eingeschaltet werden.
+                        </li>
+                        <li>absolute/relative Positionsdaten: Absolute Positionsdaten zeigen, die Position der Elemente auf dem Bildschirm. Relative dagegen die relativen Werte 
+                        (siehe unter <a href="#Positionierbare_Elemente">Positionierbare Elemente</a> was jeweils die Referenz für die relative Position darstellt). Alle absoluten Werte
+                        werden bei der Positionierung in relative Werte umgewandelt. Deshalb kann es vorkommen, dass die manuelle Eingabe nicht korrekt übernommen wird. Hier hilft jeweils eine wiederholte Eingabe
+                        bis der gewünschte Wert erreicht ist.
+                        </li>
+                        <li>Angleichung der Werte: Soll ein Wert für mehrere Element gesetzt werden, dann kann der Wert per Doppelclick auf die entsprechende Zeile ausgewählt werden.
+                        Unter der Tabelle erscheint nun dieser Wert in einem eigenen Eingabefeld, davor das ensprechende Label. Der Wert kann hier angeglichen werden (der Click ins Feld setzt
+                            automatisch den keyListener aus). Mittels des Buttons wird der Wert bei allen ausgewählten Elementen gesetzt (dabei wird der keyListener wird aktiviert). 
+                            Aufgrund der Umwandlung von absoluten Werten zu relativen, muss der Button jeweils mehrfach betätigt werden, bis das gewünschte Resultat erreicht ist.
+                        </li>
+                        <li>z-index: für jedes Element kann ein z-index in der letzten Spalte der Tabelle gesetzt werden. Der z-index bestimmt, ob ein Element über oder unter einem anderen Element liegt, wenn sie sich aufgrund ihrer Koordinaten überlagern. Elemente mit grösserem z-index sind über Elementen 
+                        mit tieferem z-index. Dieser Wert kann verändert werden (auf 1 setzen), um allenfalls Elemente auszuwählen, die aufgrund ihrer Position nicht ausgewählt werden können.</li>
+                    </ul>
+                </p>
+                 <h3 data-template="app:tocEntry">Layout</h3>
+                <p>Das Layout der Seite kann durch mehrere Faktoren beeinflusst werden:
+                    <ul>
+                        <li>Minimale Seitendimensionen: siehe <a href="#Seite">Seite</a>.</li>
+                        <li>Zeilenabstände oben, unten sowie zwischen Abschnitten über das padding-top und padding-bottom der <a href="#Textblock">Textblöcke</a>.</li>
+                        <li>Leerzeilen: In der TEI/XML-Datei können Leerzeilen eingefügt werden. Ein Leerzeile ist ein &lt;lb/&gt; unmittelbar vor einem anderen &lt;lb/&gt;.
+                            Diese werden ins &lt;sourceDoc&gt; kopiert und haben die gleiche Zeilenhöhe wie alle regulären Zeilen.<br/>
+                            <b>Wichtig:</b> Das &lt;lb/&gt; soll keine Zeilennummer haben und muss direkt vor einem darauffolgenden &lt;lb/&gt; stehen. Es darf weder in
+                            einem vorangehenden übergeordneten Element wie &lt;div2/&gt; oder &lt;p/&gt; stehen, das das darauffolgende &lt;lb/&gt; <b>nicht</b> enthält, 
+                            noch darf das darauffolgende &lt;lb/&gt; in einem  übergeordneten Element stehen, das das erste nicht enthält.
+                        </li>
+                    </ul>
+                </p>
+            </p>
+        </div>
+    </div>
+</div>
