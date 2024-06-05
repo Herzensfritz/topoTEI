@@ -125,15 +125,15 @@ declare
     %output:method("xml")
 function myrest:debug() {
     let $output-collection := xmldb:login($config:data-root, 'test', 'test')
-    let $doc := collection($config:data-root)
+    let $doc := xmldb:xcollection($config:data-root)
     return 
-     <data desc="show all text that have place below">
+     <data desc="show all files with tei:text">
         {   for $text in $doc//tei:text
-                where $text//tei:add[@place="below"]
                 let $file := util:document-name($text)
-                return if (not(contains($file, '.xml_'))) then (
-                    <text file="{$file}" lb="{$text//tei:add[@place="below"][1]/preceding::tei:lb[1]/@n}" url="{concat('http://localhost:8080/exist/restxq/transform?file=', $file)}"/>
-                ) else ()
+                return <file url="{$file}">
+                    {}
+                    </file>
+                
                
         } 
     </data>

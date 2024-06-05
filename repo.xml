@@ -11,9 +11,26 @@
   <prepare>pre-install.xql</prepare>
   <changelog>
       <change version="1.1.1">
-         <ul xmlns="http://www.w3.org/1999/xhtml">
-                <li>Positional information is stored in sourceDoc</li>
+         <ul>
+                <li>Positional information is stored in %sourceDoc</li>
                 <li>Head, notes and added lines can be positioned relative to text blocks</li>
+            </ul>
+      </change>
+      <change version="2.0">
+         <ul>
+                <li>Help: user guide</li>
+                <li>flushRight and %seg[@type="head"] as positional elements</li>
+                <li>single file export for TeiPublisher import</li>
+                <li>position info as webcomponent: shows the absolute/relative position of positional elements</li>
+                <li>z-index for positional elements</li>
+                <li>empty lines added to %sourceDoc</li>
+                <li>all positioning is done with "em" instead of "px"</li>
+                <li>zoom function: in- or decreasing font size</li>
+                <li>JS code refactoring for editor GUI</li>
+                <li>Bugfixes concerning the positioning of items</li>
+                <li>Bugfix for last %lb in %note outside of %div2</li>
+                <li>Add handShift to %zone in %sourceDoc</li>
+                <li>No font-size change for &lt;add instant="true"&gt;</li>
             </ul>
       </change>
     </changelog>

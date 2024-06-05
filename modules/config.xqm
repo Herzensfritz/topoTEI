@@ -13,6 +13,7 @@ import module namespace lib="http://exist-db.org/xquery/html-templating/lib";
 declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace expath="http://expath.org/ns/pkg";
 import module namespace console="http://exist-db.org/xquery/console";
+import module namespace functx="http://www.functx.com";
 declare namespace upgrade="http://exist-db.org/apps/topoTEI/upgrade";
 (:
     Determine the application root collection from the current module load path.
@@ -152,9 +153,24 @@ declare function config:app-changelog($node as node(), $model as map(*)) {
    {for $change in $config:repo-descriptor//repo:change
                     return <div>
                         <h2>Version {$change/@version/string()} :</h2>
-                        {$change}
+                      <ul>
+                            {for $text in $change/repo:ul/repo:li/text()
+                                return <li>{local:addTags($text)}</li>
+                            }  
+                        
+                        </ul>
                         <span>(deployed: { $config:repo-descriptor//repo:deployed/text()})</span>
                     </div>}
     </div>
         
+};
+
+declare function local:addTags($text) as xs:string* {
+    if (contains($text, '%')) then (
+        let $before := substring-before($text, '%')
+        let $after := substring-after($text, '%')
+        let $word := if (substring-before($after, ' ')) then (substring-before($after, ' ')) else ($after)
+        let $rest := substring-after($after, ' ')
+        return $before || '&lt;' || $word || '&gt; ' || local:addTags($rest) 
+    ) else ($text)
 };
