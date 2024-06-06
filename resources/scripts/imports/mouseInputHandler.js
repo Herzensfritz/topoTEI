@@ -6,6 +6,7 @@ class MouseInputHandler {
         this.dragStartPosX = null;
         this.dragStartPosY = null;
         this.clickOffset = 10;
+        this._keyListenerHandler = document.querySelector('toggle-listener')
     }
     _offset(item) {
         if (document.getElementById('toggleOffset') && Number(document.getElementById('toggleOffset').value)) {
@@ -34,6 +35,9 @@ class MouseInputHandler {
             selected.forEach(s=>{s.classList.remove('selected')})
             if (selectItem) {
                 item.classList.add("selected");
+            }
+            if (document.getElementsByClassName('selected').length > 0 && !this._keyListenerHandler.isKeyListenerOn){
+                this._keyListenerHandler.appendKeyListener();
             }
          }
          positionInfo(item);

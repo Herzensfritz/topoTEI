@@ -87,10 +87,10 @@ function app:checkUpgrade ($node as node(), $model as map(*)) as node() {
        return if (xs:dateTime($local/upgrade:upgrade/upgrade:deployed/text()) lt xs:dateTime($remote/upgrade:upgrade/upgrade:deployed/text())) then (
             <a href="/exist/restxq/upgrade?file={concat($config:app-root, '/config/', $filename)}">upgrade {$remote/upgrade:upgrade/upgrade:deployed/text()}</a>
         ) else (
-           <a/>
+           <a data-msg="No upgrade available!"/>
         )
     } catch * {
-        <a class="error" data-msg="{$err:code}" />
+        <a class="error" data-url="{$href}" data-msg="{$err:code}" />
     }
     
 };
