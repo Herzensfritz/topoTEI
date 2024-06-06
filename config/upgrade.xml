@@ -1,8 +1,13 @@
 <upgrade:upgrade xmlns="http://exist-db.org/apps/topoTEI/upgrade" xmlns:upgrade="http://exist-db.org/apps/topoTEI/upgrade" href="https://drive.switch.ch/index.php/s/8pTIMjAd5O8Tz4W/download">
-    <upgrade:deployed>2023-12-02T14:30:50.662+02:00</upgrade:deployed>
+    <upgrade:deployed>2024-06-06T11:00:50.662+01:00</upgrade:deployed>
+    <upgrade:url target="scripts.zip" href="https://drive.switch.ch/index.php/s/5pwWSdtcn0AeIq5/download">
+        <ul>
+                <li>Bugfix for topoTEI.js: fix for missing keyListener after input loses focus without noticing it.</li>
+            </ul>
+    </upgrade:url>
     <upgrade:url target="modules.zip" href="https://drive.switch.ch/index.php/s/UardyE3DU7TqIJS/download">
-        <ul xmlns="http://www.w3.org/1999/xhtml">
-                <li>Bugfix for app.xqm: prevent error if there is no @xml:id in pb.</li>
+        <ul>
+                <li>Bugfix in rest-api.xq: manuscript export with all data in %sourceDoc</li>
             </ul>
     </upgrade:url>
 </upgrade:upgrade>

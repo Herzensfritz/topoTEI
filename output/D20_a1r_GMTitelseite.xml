@@ -4,13 +4,7 @@
          <titleStmt>
           <title>a1r</title>
          </titleStmt>
-         <publicationStmt>
-                <p/>
-            </publicationStmt>
-            <sourceDesc>
-                <p/>
-            </sourceDesc>
-        </fileDesc>
+         <publicationStmt><p/></publicationStmt><sourceDesc><p/></sourceDesc></fileDesc>
    </teiHeader>
    <text>
       <body>
@@ -62,16 +56,14 @@
                   <lb n="24" xml:id="a1r_lb24"/><ref target="#Cb12">177. <del hand="#Koeselitz_blue" resp="#Koeselitz" rend="strikethrough"><certainty match="@resp" locus="value" cert="medium"/>4. Z. v. u. <hi rend="latin">einer <hi rend="underline">unheilbaren</hi> Krankheit</hi></del></ref><note type="editorial" xml:id="a1r_note_d2e230">24: Korrektur zu nicht erhalten gebliebenem Korrekturbogen Cb 12, der Text lautete gemäß Satzvorlage <ref target="#b65r_lb@">„eine <hi rend="underline">unheilbare</hi> Krankheit“ (Ms-Nachtrag b65r,@)</ref>; die von Köselitz notierte Korrektur des Kasus wurde schließlich nicht übernommen, stattdessen formulierte N die Stelle um, vgl. <ref target="#b64r_lb@-@">Korrekturblatt b64r,@-@</ref></note>
                   <lb n="25" xml:id="a1r_lb25"/><ref target="#Cb12">178 <del hand="#Koeselitz_blue" resp="#Koeselitz" rend="strikethrough"><certainty match="@resp" locus="value" cert="medium"/>Mitte <hi rend="latin">Zaunspfahl</hi></del></ref><note type="editorial" xml:id="a1r_note_d2e250">25: vgl. <ref target="#b66r_lb@">b66r,@</ref> und <ref target="#Ed #GM0326">Ed, 178,15 (GM III 26)</ref></note></note>
             </noteGrp></noteGrp> 
-         </div1>
-        </body>
+         </div1></body>
    </text>
-<sourceDoc><surface xml:id="srcD_surface_a1r" type="relative" start="#a1r" style="min-width:57em;" facs="#D-20a_I"><zone xml:id="srcD_zone_a1r_div2_GMTitelseite" start="#a1r_div2_GMTitelseite" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a1r_fw_d2e26" type="fw-top-right" start="#a1r_fw_d2e26" style="left:48.5625em;top:1.75em;"><fw type="pageNumber" hand="#N_red" place="top-right" corresp="#a1r_fw_d2e26"><del rend="overwritten" cause="#a1r_add_d2e30">1.</del><add place="superimposed" corresp="#a1r_add_d2e30">I.</add></fw></zone><line xml:id="srcD_line_a1r_lb1" start="#a1r_lb1" rend="centered" hand="#N_brown1" n="1"><hi rend="underline"><hi rend="latin">Zur</hi></hi> 
+<sourceDoc><surface xml:id="srcD_surface_a1r" type="relative" start="#a1r" style="min-width:53em;" facs="#D-20a_I"><zone xml:id="srcD_zone_a1r_div2_GMTitelseite" start="#a1r_div2_GMTitelseite" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a1r_fw_d2e26" type="fw-top-right" start="#a1r_fw_d2e26"><fw type="pageNumber" hand="#N_red" place="top-right" corresp="#a1r_fw_d2e26"><del rend="overwritten" cause="#a1r_add_d2e30">1.</del><add place="superimposed" corresp="#a1r_add_d2e30">I.</add></fw></zone><line xml:id="srcD_line_a1r_lb1" start="#a1r_lb1" rend="centered" hand="#N_brown1" n="1"><hi rend="underline"><hi rend="latin">Zur</hi></hi> 
                   </line><line xml:id="srcD_line_a1r_lb2" start="#a1r_lb2" rend="centered" hand="#N_brown1" n="2"><hi rend="latin"><hi rend="doubleUnderline">Genealogie</hi> <hi rend="doubleUnderline">der</hi> <hi rend="doubleUnderline">Moral</hi>.
                   </hi></line><line xml:id="srcD_line_a1r_lb3" start="#a1r_lb3" rend="centered" hand="#N_brown1" n="3"><hi rend="latin">Eine Streitschrift.
                   </hi></line><line xml:id="srcD_line_a1r_lb4" start="#a1r_lb4" rend="centered" hand="#N_brown1" n="4"><hi rend="latin">Von 
                   </hi></line><line xml:id="srcD_line_a1r_lb5" start="#a1r_lb5" rend="centered" hand="#N_brown1" n="5"><hi rend="latin">Friedrich Nietzsche.
-                  </hi></line><line xml:id="srcD_line_a1r_lb6" start="#a1r_lb6" rend="flushRight" hand="#N_brown1" n="6"><hi rend="latin">Tout comprendre c’est tout <add place="inline" corresp="#a1r_add_d2e70">–</add> <hi rend="underline">mépriser</hi>?…
-                  </hi></line><line xml:id="srcD_line_a1r_lb7" start="#a1r_lb7" rend="centered" hand="#N_brown1" n="7"><hi rend="latin">Leipzig
+                  </hi></line><line xml:id="srcD_line_a1r_lb6" start="#a1r_lb6" hand="#N_brown1" n="6"><zone xml:id="srcD_line_a1r_lb6_flushRight_zone" type="flushRight"><hi rend="latin">Tout comprendre c’est tout <add place="inline" corresp="#a1r_add_d2e70">–</add> <hi rend="underline">mépriser</hi>?…
+                  </hi></zone></line><line xml:id="srcD_line_a1r_lb7" start="#a1r_lb7" rend="centered" hand="#N_brown1" n="7"><hi rend="latin">Leipzig
                   </hi></line><line xml:id="srcD_line_a1r_lb8" start="#a1r_lb8" rend="centered" hand="#N_brown1" n="8"><hi rend="latin">Verlag von C. G. Naumann
-                  </hi></line><line xml:id="srcD_line_a1r_lb9" start="#a1r_lb9" rend="centered" hand="#N_brown1" n="9"><hi rend="latin">1887.</hi></line><zone xml:id="srcD_zone_a1r_fw_d2e33" type="fw-bottom-left" start="#a1r_fw_d2e33"><fw type="folNumber" hand="#GSA_pencil" place="bottom-left" corresp="#a1r_fw_d2e33">1</fw></zone></zone></surface></sourceDoc>
-</TEI>
+                  </hi></line><line xml:id="srcD_line_a1r_lb9" start="#a1r_lb9" rend="centered" hand="#N_brown1" n="9"><hi rend="latin">1887.</hi></line><zone xml:id="srcD_zone_a1r_fw_d2e33" type="fw-bottom-left" start="#a1r_fw_d2e33"><fw type="folNumber" hand="#GSA_pencil" place="bottom-left" corresp="#a1r_fw_d2e33">1</fw></zone></zone></surface></sourceDoc></TEI>

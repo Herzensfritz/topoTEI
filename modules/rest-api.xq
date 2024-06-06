@@ -705,10 +705,10 @@ declare function local:createManuscript($data, $newFilename) {
         let $newSurface := for $surface in $contents//tei:sourceDoc/*
             return update insert $surface into $newData//tei:sourceDoc
         let $firstSurface := $newData//tei:sourceDoc/tei:surface/@xml:id
-        let $deleteFirstSourceDoc := if (count($newData//tei:surface[@xml:id = $firstSurface]) gt 1) then (
+        let $deleteFirstSourceDoc := if (empty($newData//tei:msDesc) and count($newData//tei:surface[@xml:id = $firstSurface]) gt 1) then (
                                         for $surface in $newData//tei:surface[@xml:id = $firstSurface][1]
                                             return update delete $surface
-                                    ) else ()
+                                    ) else () 
         return $newData
     )
 };

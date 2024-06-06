@@ -144,7 +144,11 @@ declare function config:app-changelog($node as node(), $model as map(*)) {
         <div><h2>Upgrade (deployed: {$upgrade/upgrade:upgrade/upgrade:deployed/text()})</h2>
         { for $url in $upgrade/upgrade:upgrade/upgrade:url
             return <div><h3>{$url/@target/string()}</h3>
-                    {$url}
+                        <ul>
+                            {for $text in $url/upgrade:ul/upgrade:li/text()
+                                return <li>{local:addTags($text)}</li>
+                            }
+                    </ul>
                     </div>
         }
         </div>
