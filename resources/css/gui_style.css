@@ -48,7 +48,7 @@ body {
      text-decoration: none;
     }
    .EOL { color: red;}
-   .typesetter_black {
+   .typesetter_black, .strikethrough-typesetter_black1 {
        color: var(--typesetter_black);
        font-weight: 600;
    }
@@ -184,8 +184,7 @@ body {
     .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
   
-        .strikethrough, .strikethrough1 { text-decoration: line-through; }
-        .strikethrough2 { text-decoration: line-through; }
+        .strikethrough, .strikethrough1,.strikethrough2 , .strikethrough-typesetter_black1 { text-decoration: line-through; }
         .overwritten-punctuation { position: relative; color: red; }
         .overwritten-punctuation:before {
            position: absolute;

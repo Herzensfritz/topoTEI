@@ -164,8 +164,9 @@
                         </xsl:when>
                         <!-- Hierarchical case 2b: several lbs inside a tag, current lb is last lb inside tag -->
                         <xsl:otherwise>
-                           <xsl:apply-templates select="//(*|text())[preceding::tei:lb[@xml:id = $startId] and following::tei:lb[@xml:id = $endId]                            and not(parent::*/preceding::tei:lb[@xml:id = $startId] and parent::*/following::tei:lb[@xml:id = $endId])]">
+                           <xsl:apply-templates select="//(*|text())[preceding::tei:lb[@xml:id = $startId] and following::tei:lb[@xml:id = $endId] and not(parent::*/preceding::tei:lb[@xml:id = $startId] and parent::*/following::tei:lb[@xml:id = $endId])]">
                            <!--TODO<xsl:apply-templates select="//(*|text())[preceding-sibling::tei:lb[@xml:id = $startId] or (preceding-sibling::*/tei:lb[@xml:id = $startId] and (following-sibling::*/tei:lb[@xml:id = $endId] or following-sibling::tei:lb[@xml:id = $endId]) or (ancestor::*/preceding-sibling::*/tei:lb[@xml:id = $startId] and following-sibling::tei:lb[@xml:id = $endId]))]">-->
+                              <xsl:with-param name="id" select="$startId"/>
                               <xsl:with-param name="startId" select="$startId"/>
                               <xsl:with-param name="type" select="$CURRENT_LB_IS_LAST_INSIDE_TAG"/>
                            </xsl:apply-templates>

@@ -320,11 +320,14 @@
       <xsl:param name="parentClass"/>
       <xsl:param name="childStyle"/>
       <xsl:param name="parentStyle"/>
+      <xsl:param name="type">-1</xsl:param>
       <xsl:choose>
          <xsl:when test="$fullpage = 'true' and $editorModus != 'false'">
             <span id="{$parentId}" class="{$parentClass}" style="{$parentStyle}">
                <span id="{$childId}" class="{$childClass}" style="{$childStyle}">
-                 <xsl:apply-templates/>
+                 <xsl:apply-templates>
+                     <xsl:with-param name="type" select="$type"/>
+                 </xsl:apply-templates>
               </span>
            </span>
          </xsl:when>
@@ -356,6 +359,7 @@
    <!-- Process additions -->
    <xsl:template name="add" match="tei:add">
       <xsl:param name="id"/>
+      <xsl:param name="type">-1</xsl:param>
       <xsl:param name="startId"/>
       <xsl:variable name="hand" select="if (@hand) then (replace(@hand,'#','')) else (replace(ancestor::*[@hand and preceding::tei:lb[@xml:id = $startId]]/@hand, '#',''))"/>
       <xsl:choose>
@@ -374,12 +378,15 @@
                 <xsl:with-param name="parentClass" select="if ($rend) then (concat($rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
                 <xsl:with-param name="childStyle" select="$childStyle"/>
                 <xsl:with-param name="parentStyle" select="$parentStyle"/>
+                <xsl:with-param name="type" select="$type"/>
             </xsl:call-template>
          </xsl:when>
          <xsl:otherwise>
-            <xsl:variable name="inline" select="if (//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@type = 'add-zone') then () else ('inline')"/>
-            <span id="{//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@type}" class="{$inline} {$hand}">
-               <xsl:apply-templates/>
+            <xsl:variable name="inline" select="if (//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@type = 'add-zone') then () else (@place)"/>
+            <span id="{//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@xml:id}" class="{$inline} {$hand}">
+               <xsl:apply-templates>
+                   <xsl:with-param name="type" select="$type"/>
+                </xsl:apply-templates>
             </span>
          </xsl:otherwise>
       </xsl:choose>
