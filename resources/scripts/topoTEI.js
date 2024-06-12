@@ -111,6 +111,17 @@ function positionInfo(caller){
         topoTEIObject.positionInfoFeeder.feedData(topoTEIObject.pixelLineHeight);
         const idList = (topoTEIObject.positionInfoFeeder.hasAddLines) ? [POSITION_INFO, LINE_INPUT] : [POSITION_INFO];
         hideOtherInputs(idList);
+        const positionInfo = document.getElementById(POSITION_INFO)
+        if ((!positionInfo.style || !positionInfo.style.left || !positionInfo.style.top) && localStorage.getItem(POSITION_INFO)) {
+            const style = JSON.parse(localStorage.getItem(POSITION_INFO))
+            positionInfo.style.left = style.left;
+            positionInfo.style.top = style.top;
+        }
+        if (positionInfo.classList.contains(VALUE_CHANGED)){
+            positionInfo.classList.remove(VALUE_CHANGED);
+            const style = { left: positionInfo.style.left, top: positionInfo.style.top}
+            localStorage.setItem(POSITION_INFO, JSON.stringify(style));
+        }
         if (caller && topoTEIObject.positionInfoFeeder.hasAddLines){
             if (caller.closest("div.zoneLine")){
                 const targetLnr = caller.closest("div.zoneLine").getElementsByClassName("zlnr")[0];

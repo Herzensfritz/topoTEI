@@ -10,13 +10,13 @@
   <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="test" user="test" group="dba" mode="rw-rw-r--"/>
   <prepare>pre-install.xql</prepare>
   <changelog>
-      <change version="1.1.1">
+      <change version="1.1.1" deployed="2023-10-10T11:00:50.662+01:00">
          <ul>
                 <li>Positional information is stored in %sourceDoc</li>
                 <li>Head, notes and added lines can be positioned relative to text blocks</li>
             </ul>
       </change>
-      <change version="2.0">
+      <change version="2.0" deployed="2024-06-05T14:00:50.662+02:00">
          <ul>
                 <li>Help: user guide</li>
                 <li>flushRight and %seg[@type="head"] as positional elements</li>
@@ -33,6 +33,15 @@
                 <li>No font-size change for &lt;add instant="true"&gt;</li>
             </ul>
       </change>
+        <change version="2.1">
+         <ul>
+             <li>Bugfix for topoTEI.js: fix for missing keyListener after input loses focus without noticing it.</li>
+             <li>Bugfix in rest-api.xq: manuscript export with all data in %sourceDoc</li>
+             <li>Bugfix in elementTemplates.xsl: fix for last addLine in %div2</li>
+             <li>strikethrough-typesetter_black1 added</li>
+             <li>Position info can be moved around per drag and drop</li>
+         </ul>
+         </change>
     </changelog>
     
 </meta>

@@ -71,10 +71,12 @@ class Positioner {
         positionInfo();
     }
     repositionElement(currentElement, offsetX, offsetY, isRedoing){
-        this.history.recordChange(currentElement, offsetX, offsetY, isRedoing);
+        if (!currentElement.classList.contains('input')){
+            this.history.recordChange(currentElement, offsetX, offsetY, isRedoing);
+            handleButtons();
+        }
         let currentFontSize = getComputedFontSize(currentElement) 
         let currentOffsetX = offsetX/currentFontSize
-        handleButtons();
         if (currentElement.className.includes(MARGIN_LEFT)){
             this._repositionMarginLefts(currentElement, currentOffsetX, offsetY, currentFontSize);    
         } else {

@@ -57,6 +57,7 @@ declare variable $config:dirMap := map{ "data": $config:data-root,
                         "xslt" : concat($config:app-root, '/xslt')
 };
 
+
 (:~
  : Resolve the given path using the current application context.
  : If the app resides in the file system,
@@ -163,7 +164,7 @@ declare function config:app-changelog($node as node(), $model as map(*)) {
                             }  
                         
                         </ul>
-                        <span>(deployed: { $config:repo-descriptor//repo:deployed/text()})</span>
+                        <span>({ if($change/@version eq $config:expath-descriptor/@version) then (concat('deployed: ', $config:repo-descriptor//repo:deployed/text())) else ($change/string(@deployed)) })</span>
                     </div>}
     </div>
         

@@ -36,7 +36,7 @@ declare
 function app:uploadDialog($node as node(), $model as map(*)) {
     let $files :=  local:getTeiFiles($model('newest-first'))
     return <p>
-       <!-- <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=a14r.xml'">debug</button></div> -->
+      <div><button title="debug" onclick="location.href = '/exist/restxq/transform?file=D20_a30r_GM0212v7.xml'">debug</button></div>
           {
               if(count($files) > 0) 
                     then (<div class="col-md-6">
@@ -121,7 +121,7 @@ declare function app:importData($node as node(), $model as map(*)) as node()* {
 declare %private function local:moveResource($childDir, $targetDir, $resource){
     
     if (not(ends-with($resource, '.xml'))) then (
-        xmldb:move($childDir, $targetDir, $resource)    
+       xmldb:move($childDir, $targetDir, $resource)
     ) else (
         let $document := doc(concat($childDir, '/', $resource))
         return if (local:isTeiFile($document)) then (
@@ -373,7 +373,7 @@ declare function app:dialog($node as node(), $model as map(*)) as element(dialog
         
 };
 declare function app:positionInfo($node as node(), $model as map(*)) as element(position-info) {
-        <position-info id="myPositionInfo" class="input" onChange="handleChange(event)">
+        <position-info id="myPositionInfo" class="input" onChange="handleChange(event)" draggable="true">
             <toggle-listener></toggle-listener>
         </position-info>
         

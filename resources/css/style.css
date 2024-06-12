@@ -18,6 +18,10 @@ a {
 .collapse.off {
     display: block;
 }
+#myPositionInfo {
+    border: 1px solid;
+    padding: 1rem;
+}
 #editorInput {
     z-index: 50;
     background-color: white;
@@ -67,9 +71,12 @@ a {
     position: fixed;
     left : 10px;
     visibility: hidden;
+    z-index: 10;
+    background-color: var(--light);
+    opacity: 0.8;
 }
 .input.toppos {
-    top: 54px;
+    top: 34px;
 }
 .active {
     cursor: pointer;

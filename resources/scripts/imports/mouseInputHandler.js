@@ -22,19 +22,25 @@ class MouseInputHandler {
          }
          if (this.keyStorage.modifierPressed){
              if (this.keyStorage.shiftPressed){
-                 item.classList.add("selected")
+                 item.classList.toggle("selected")
              }else{
-                 item.classList.add("selected");
-                 let currentOffset =  this._offset(item);
-                 item.classList.toggle('clicked');
-                 this.positioner.repositionElement(item, 0, currentOffset, false);
+                 if (item.classList.contains('selected')){
+                     item.classList.remove("selected");
+                 } else {
+                     item.classList.add("selected");
+                     let currentOffset =  this._offset(item);
+                     item.classList.toggle('clicked');
+                     this.positioner.repositionElement(item, 0, currentOffset, false);
+                 }
              }
          } else {
             const selected = Array.from(document.getElementsByClassName('selected'))
             const selectItem = (!selected.includes(item))
-            selected.forEach(s=>{s.classList.remove('selected')})
             if (selectItem) {
+                selected.forEach(s=>{s.classList.remove('selected')})
                 item.classList.add("selected");
+            } else {
+                item.classList.remove("selected");    
             }
             if (document.getElementsByClassName('selected').length > 0 && !this._keyListenerHandler.isKeyListenerOn){
                 this._keyListenerHandler.appendKeyListener();
