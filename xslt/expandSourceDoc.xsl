@@ -106,7 +106,7 @@
          <xsl:call-template name="selectLbContent">
             <xsl:with-param name="startId" select="$startId"/>
             <xsl:with-param name="endId" select="$endId"/>
-            <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/ancestor::*[local-name() = 'del' or local-name() = 'hi']"/>
+            <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/ancestor::*[local-name() = 'del' or local-name() = 'hi' or local-name() = 'add']"/>
          </xsl:call-template>
          </xsl:element>
    </xsl:template>
@@ -417,7 +417,7 @@
                <xsl:choose>
                   <xsl:when test="($endId and //tei:lb[@xml:id = $endId and ancestor::* = $parentSequence[1]]) or ($parentNode and $parentNode/ancestor::* = $parentSequence[1])">
                      <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:for-each select="$parentSequence[1]/@*">
+                        <xsl:for-each select="$parentSequence[1]/@*[name() != 'xml:id']">
                              <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
                              <xsl:attribute name="{$attName}">
                                <xsl:value-of select="."/>
@@ -433,7 +433,7 @@
                   <xsl:when test="($endId and //tei:lb[@xml:id = $endId and preceding::* = $parentSequence[1]]) or ($parentNode and $parentNode/preceding::* = $parentSequence[1])">
                      <xsl:variable name="newParentNode" select="$parentSequence[1]"/>
                      <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:for-each select="$parentSequence[1]/@*">
+                        <xsl:for-each select="$parentSequence[1]/@*[name() != 'xml:id']">
                              <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
                              <xsl:attribute name="{$attName}">
                                <xsl:value-of select="."/>
@@ -455,7 +455,7 @@
                   <xsl:otherwise>
                      <xsl:variable name="newParentNode" select="$parentSequence[1]"/>
                      <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:for-each select="$parentSequence[1]/@*">
+                        <xsl:for-each select="$parentSequence[1]/@*[name() != 'xml:id']">
                              <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
                              <xsl:attribute name="{$attName}">
                                <xsl:value-of select="."/>

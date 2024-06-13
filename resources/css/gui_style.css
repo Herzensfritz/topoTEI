@@ -6,7 +6,10 @@ body {
          --nbrown: #5C4033;
          --nblack2: #46494c;
          --typesetter_black: #373a3d;
-         
+         --red:#dc3545;
+}
+.typesetter_red {
+    color: var(--red);
 }
    #input { position: fixed; left: 70%;}
    form { margin-top: 2px;}
@@ -56,7 +59,7 @@ body {
        color: var(--nblack2);
    }
    .XXX_red, .N_red { color: #dc4731;}
-   .N-Archiv_red { color: #b8390e;font-face: bold;}
+   .N-Archiv_red { color: #b8390e;font-weight: bold;}
    .N_pencil { color: gray; font-weight: bold;}
    .N_brown1, .N_brown { color: var(--nbrown);}
    .red-marking:before { 
