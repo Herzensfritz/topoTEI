@@ -184,6 +184,9 @@ body {
    .addSpan { font-size:80%;}
    .erased { color: grey;}
     .inline { font-size:80%;}
+     .inline.instantaneous {
+       font-size: 100%; 
+    }
     .overwritten { text-decoration: line-through; color: red;}
         .superimposed { color: green;}
   

@@ -383,7 +383,8 @@
          </xsl:when>
          <xsl:otherwise>
             <xsl:variable name="inline" select="if (//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@type = 'add-zone') then () else (@place)"/>
-            <span id="{//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@xml:id}" class="{$inline} {$hand}">
+            <xsl:variable name="instant" select="if (@instant = 'true' or parent::tei:subst/@instant = 'true') then ('instantaneous') else ()"/>
+            <span id="{//tei:sourceDoc//tei:zone[@start = concat('#',$id)]/@xml:id}" class="{$inline} {$instant} {$hand}">
                <xsl:apply-templates>
                    <xsl:with-param name="type" select="$type"/>
                 </xsl:apply-templates>
