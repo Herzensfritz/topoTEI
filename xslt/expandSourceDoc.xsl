@@ -207,7 +207,8 @@
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
-   <xsl:template match="tei:corr"/>
+   <xsl:template match="tei:corr[parent::tei:choice[descendant::tei:lb]]"/>
+   <!--
    <xsl:template match="tei:sic">
       <xsl:param name="startId"/>
       <xsl:param name="endId"/>
@@ -217,8 +218,9 @@
          <xsl:with-param name="endId" select="$endId"/>
          <xsl:with-param name="startId" select="$startId"/>
       </xsl:apply-templates>
-   </xsl:template>
-   <xsl:template name="choice" match="tei:choice">
+   </xsl:template>-->
+      <!--<xsl:template name="choice" match="tei:choice">-->
+   <xsl:template name="choice">
       <xsl:param name="startId"/>
       <xsl:param name="endId"/>
       <xsl:param name="parents"/>
