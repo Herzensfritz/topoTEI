@@ -219,8 +219,7 @@
          <xsl:with-param name="startId" select="$startId"/>
       </xsl:apply-templates>
    </xsl:template>-->
-      <!--<xsl:template name="choice" match="tei:choice">-->
-   <xsl:template name="choice">
+   <!--<xsl:template name="choice">
       <xsl:param name="startId"/>
       <xsl:param name="endId"/>
       <xsl:param name="parents"/>
@@ -229,6 +228,7 @@
       <xsl:variable name="id" select="if ($choice) then ($choice/@xml:id) else (@xml:id)"/>
       <xsl:variable name="indexId" select="concat($id, '_index')"/>
       <xsl:variable name="anchorId" select="concat($id, '_anchor')"/>
+      <xsl:variable name="tagName" select="if ($choice) then ($choice/local-name()) else (local-name())"/>
       <xsl:if test="$isOpening or not($choice)">
          <xsl:element name="index" namespace="http://www.tei-c.org/ns/1.0">
             <xsl:attribute name="indexName">
@@ -256,6 +256,30 @@
             </xsl:attribute>
          </xsl:element>
       </xsl:if>
+   </xsl:template>
+
+      -->
+   <xsl:template name="choice">
+      <xsl:param name="startId"/>
+      <xsl:param name="endId"/>
+      <xsl:param name="parents"/>
+      <xsl:param name="choice"/>
+      <xsl:param name="isOpening" as="xs:boolean">false</xsl:param>
+      <xsl:variable name="lbId" select="$choice/descendant::tei:lb/@xml:id"/>
+      <xsl:variable name="id" select="$choice/@xml:id"/>
+      <xsl:element name="choice" namespace="http://www.tei-c.org/ns/1.0">
+            <xsl:attribute name="corresp">
+               <xsl:value-of select="concat('#', $id)"/>
+            </xsl:attribute>
+            <xsl:element name="orig" namespace="http://www.tei-c.org/ns/1.0">
+                  <xsl:apply-templates select="if ($isOpening) then ($choice/tei:sic/(*|text())[following::tei:lb[@xml:id = $lbId]]) else ($choice/tei:sic/(*|text())[preceding::tei:lb[@xml:id = $lbId]])">
+                  <xsl:with-param name="parents" select="if($parents) then ($parents|current()) else (current())"/>
+                  <xsl:with-param name="endId" select="$endId"/>
+                  <xsl:with-param name="startId" select="$startId"/>
+               </xsl:apply-templates>
+            </xsl:element>
+            <xsl:copy-of select="$choice/(tei:sic|tei:corr)"/>
+         </xsl:element>
    </xsl:template>
    <xsl:template match="*">
       <xsl:param name="startId"/>
@@ -333,13 +357,18 @@
       <xsl:variable name="openingTags" select="if ($startId and $endId) then (tei:filterOpeningTags(ancestor::*[preceding::tei:lb[@xml:id = $startId] and not(following::tei:lb[@xml:id = $endId])])) else ()"/>
       <xsl:variable name="openingChoice" select="if ($startId and $endId) then (ancestor::tei:choice[preceding::tei:lb[@xml:id = $startId] and not(following::tei:lb[@xml:id = $endId])]) else ()"/>
       <xsl:variable name="endingChoice" select="if ($startId and $endId) then (ancestor::tei:choice[descendant::tei:lb[@xml:id = $startId] and not(descendant::tei:lb[@xml:id = $endId])]) else ()"/>
-      <xsl:if test="count($openingChoice) gt 0">
-         <xsl:call-template name="choice">
-            <xsl:with-param name="choice" select="$openingChoice[1]"/>
-            <xsl:with-param name="isOpening" select="true()"/>
-         </xsl:call-template>
-      </xsl:if>
       <xsl:choose>
+         <xsl:when test="count($openingChoice) gt 0">
+            <xsl:call-template name="choice">
+               <xsl:with-param name="choice" select="$openingChoice[1]"/>
+               <xsl:with-param name="isOpening" select="true()"/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:when test="count($endingChoice) gt 0">
+               <xsl:call-template name="choice">
+                  <xsl:with-param name="choice" select="$endingChoice[1]"/>
+               </xsl:call-template>
+            </xsl:when>
          <xsl:when test="count($openingTags) gt 0 and not(matches(., '^\s+$'))">
             <xsl:call-template name="printTextParents">
                <xsl:with-param name="openingTags" select="$openingTags"/>
@@ -350,11 +379,6 @@
             <xsl:value-of select="."/>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:if test="count($endingChoice) gt 0">
-         <xsl:call-template name="choice">
-            <xsl:with-param name="choice" select="$endingChoice[1]"/>
-         </xsl:call-template>
-      </xsl:if>
    </xsl:template>
    <xsl:template name="selectLbContent">
       <xsl:param name="startId"/>
