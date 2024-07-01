@@ -1,4 +1,4 @@
-<?teipublisher template="surface.html" odd="surface.odd" view="surface" media="pdf epub print"?><TEI xmlns="http://www.tei-c.org/ns/1.0" version="4.1.0">
+<?teipublisher template="surface.html" odd="surface.odd" view="surface"?><TEI xmlns="http://www.tei-c.org/ns/1.0" version="4.1.0">
    <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -58,7 +58,7 @@
             </noteGrp></noteGrp> 
          </div1></body>
    </text>
-<sourceDoc><surface xml:id="srcD_surface_a1r" type="relative" start="#a1r" style="min-width:53em;" facs="#D-20a_I"><zone xml:id="srcD_zone_a1r_div2_GMTitelseite" start="#a1r_div2_GMTitelseite" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a1r_fw_d2e26" type="fw-top-right" start="#a1r_fw_d2e26"><fw type="pageNumber" hand="#N_red" place="top-right" corresp="#a1r_fw_d2e26"><del rend="overwritten" cause="#a1r_add_d2e30">1.</del><add place="superimposed" corresp="#a1r_add_d2e30">I.</add></fw></zone><line xml:id="srcD_line_a1r_lb1" start="#a1r_lb1" rend="centered" hand="#N_brown1" n="1"><hi rend="underline"><hi rend="latin">Zur</hi></hi> 
+<sourceDoc><surface xml:id="srcD_surface_a1r" type="relative" start="#a1r" style="min-width:53em;" facs="#D-20a_I"><zone xml:id="srcD_zone_a1r_div2_GMTitelseite" start="#a1r_div2_GMTitelseite" type="singleBlock" style="padding-top:5em;padding-bottom:5em;"><zone xml:id="srcD_zone_a1r_fw_d2e26" type="fw-top-right" start="#a1r_fw_d2e26"><fw type="pageNumber" hand="#N_red" place="top-right" corresp="#a1r_fw_d2e26"><del rend="overwritten" cause="#a1r_add_d2e30">1.</del><add place="superimposed" corresp="#a1r_add_d2e30" instant="true">I.</add></fw></zone><line xml:id="srcD_line_a1r_lb1" start="#a1r_lb1" rend="centered" hand="#N_brown1" n="1"><hi rend="underline"><hi rend="latin">Zur</hi></hi> 
                   </line><line xml:id="srcD_line_a1r_lb2" start="#a1r_lb2" rend="centered" hand="#N_brown1" n="2"><hi rend="latin"><hi rend="doubleUnderline">Genealogie</hi> <hi rend="doubleUnderline">der</hi> <hi rend="doubleUnderline">Moral</hi>.
                   </hi></line><line xml:id="srcD_line_a1r_lb3" start="#a1r_lb3" rend="centered" hand="#N_brown1" n="3"><hi rend="latin">Eine Streitschrift.
                   </hi></line><line xml:id="srcD_line_a1r_lb4" start="#a1r_lb4" rend="centered" hand="#N_brown1" n="4"><hi rend="latin">Von 

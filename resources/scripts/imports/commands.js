@@ -80,7 +80,7 @@ function showHelp() {
 }
 function showPreview () {
    let file = document.getElementById(FILENAME); 
-   window.open('/exist/restxq/preview?file=' + file.value, '_blank');
+   window.open('/exist/restxq/export2TP?file=' + file.value, '_blank');
 }
 function showVersion(){
     let form = document.getElementById(VERSIONS);

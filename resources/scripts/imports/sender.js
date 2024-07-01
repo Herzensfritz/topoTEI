@@ -49,6 +49,7 @@ class Sender {
         }
         targetArray.push({id: element.id, style: style});
     }
+ 
     send(data){
         if (this.file && data.length > 0) {
             let xhr = new XMLHttpRequest()

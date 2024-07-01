@@ -87,11 +87,48 @@ declare function local:http-download($file-url as xs:string, $collection as xs:s
             </error>
 };
 
+declare %private function local:postFile($file) {
+    let $path := concat($config:app-root, '/output/', $file)
+    let $uri := "http://localhost:8080/exist/apps/nietzsche-dm/api/upload"
+    let $data := doc($path)
+
+    let $request := <http:request href="{$uri}" method="POST" username="nietzsche" password="test" auth-method="basic" send-authorization="true"  status-only="false">
+         <http:header name="Accept" value="application/json"/>
+         <http:multipart media-type="multipart/form-data" boundary="ed087f82e0482be5">
+         <http:header name='Content-Disposition'  value='form-data; name="files[]"; filename="{$file}"; type=text/xml'/>
+        <http:body media-type='application/xml'>{$data}</http:body>
+         
+        </http:multipart>
+     </http:request>
+    return hc:send-request($request)[1]
+};
+
+declare
+  %rest:path("/export2TP")
+  %rest:GET
+  %rest:form-param("file", "{$file}", "D20_a1r_GMTitelseite.xml")
+function myrest:exportToTP($file as xs:string*) {
+   let $newfile := local:createTPFile($file) 
+   let $response := local:postFile($file)
+   return 
+    <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="http://localhost:8080/exist/apps/nietzsche-dm/{$file}"/>
+      
+        </http:response>
+    </rest:response> 
+};
+
 declare %private function local:updateFacsimile($id, $iiif, $document){
     let $oldurl := $document//tei:surface[@xml:id = $id]/tei:graphic/@url
     let $old := update insert attribute corresp { $oldurl } into $document//tei:surface[@xml:id = $id]/tei:graphic 
     return update insert attribute url { $iiif } into $document//tei:surface[@xml:id = $id]/tei:graphic
 };
+
 
 declare
   %rest:path("/updateIIIF")
@@ -117,15 +154,16 @@ function myrest:myPostKnoraIRIs($json as xs:string*, $headerFile as xs:string*) 
     </rest:response>
 };
 
+
+
 declare
   %rest:path("/debug")
   %rest:GET
-   %rest:produces("text/xml")
-    %output:media-type("text/xml")
-    %output:method("xml")
+  %rest:produces("application/json")
 function myrest:debug() {
-    let $output-collection := xmldb:login($config:data-root, 'test', 'test')
-    let $doc := xmldb:xcollection($config:data-root)
+    local:postFile('a14r.xml')
+    (: let $output-collection := xmldb:login($config:data-root, 'test', 'test')
+     :let $doc := xmldb:xcollection($config:data-root)
     return 
      <data desc="show all files with tei:text">
         {   for $text in $doc//tei:text
@@ -136,7 +174,7 @@ function myrest:debug() {
                 
                
         } 
-    </data>
+    </data> :)
 };
 
 declare
@@ -495,6 +533,7 @@ declare
  %output:method("html5")
   %rest:header-param("Referer", "{$referer}", "none")
 function myrest:uploadTransform($data, $type, $referer) {
+    let $log := console:log($data)
     let $targetType := 'text/xml'
     let $collection := concat($config:data-root, "/")
     let $response := local:storeFile($data, $type, $targetType, $collection)
@@ -740,23 +779,28 @@ function myrest:donwloadManuscript($headerFile as xs:string*) {
     </rest:response>, $newData
     )
 };
+declare function local:createTPFile($file as xs:string*)  {
+    let $doc-uri := concat($config:data-root, '/', $file)
+
+    let $data := document{
+        processing-instruction teipublisher {
+            'template="surface.html" odd="surface.odd" view="surface"'
+        },
+        doc($doc-uri)
+    }
+    return local:createManuscript($data, $file)
+};
+
 declare
     %rest:path("/export4TP")
     %rest:GET
     %rest:query-param("file", "{$file}", "D20_a1r_GMTitelseite.xml")
     %rest:produces("application/xml")
 function myrest:donwloadFile4TP($file as xs:string*) {
-    let $doc-uri := concat($config:data-root, '/', $file)
+    let $newData := local:createTPFile($file)
+    let $filename := replace($file, '.xml', $config:tp-extension)
     let $mimetype   := 'application/xml'
     let $method     := 'xml'
-    let $data := document{
-        processing-instruction teipublisher {
-            'template="surface.html" odd="surface.odd" view="surface" media="pdf epub print"'
-        },
-        doc($doc-uri)
-    }
-    let $newData := local:createManuscript($data, $file)
-    let $filename := replace($file, '.xml', $config:tp-extension)
     return (
     <rest:response>
         <http:response>

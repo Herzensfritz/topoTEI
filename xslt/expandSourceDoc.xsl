@@ -519,5 +519,5 @@
         </xsl:choose>
       </xsl:for-each>
    </xsl:template>
-   <xsl:template match="tei:note"/>
+   <xsl:template match="tei:note[not(@type='authorial')]"/>
 </xsl:stylesheet>

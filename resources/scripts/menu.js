@@ -38,6 +38,14 @@ function exportFile(selectName){
         link.click();    
     }
 }
+function sendToTP(selectName){
+    let select = document.getElementById(selectName);
+    let link = document.getElementById(DOWNLOAD_LINK);
+    if (select){
+       let currentFile = select.options[select.selectedIndex].text;
+        location.href = '/exist/restxq/export2TP?file=' + currentFile; 
+    }
+}
 function exportFileTP(selectName, button){
     let select = document.getElementById(selectName);
     if (select){
