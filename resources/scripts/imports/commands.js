@@ -80,7 +80,7 @@ function showHelp() {
 }
 function showPreview () {
    let file = document.getElementById(FILENAME); 
-   window.open('/exist/restxq/export2TP?file=' + file.value, '_blank');
+   window.open('/exist/restxq/export2TP?file=' + file.value, 'teipublisher');
 }
 function showVersion(){
     let form = document.getElementById(VERSIONS);
@@ -92,10 +92,15 @@ function showVersion(){
 function zoom(zoomLink){
     const zoomValue = (zoomLink.dataset.direction == 'in') ? 1 : -1;
     topoTEIObject.pixelLineHeight += zoomValue;
+    localStorage.setItem('topoTEI.zoom', String(topoTEIObject.pixelLineHeight));
+    updateZoom();
+}
+function updateZoom() {
     const tf = document.getElementsByClassName(TRANSCRIPTION_FIELD)[0]
     tf.style.fontSize = topoTEIObject.pixelLineHeight + 'px';
-    positionInfo();
+    positionInfo(); 
 }
+
 
 
 

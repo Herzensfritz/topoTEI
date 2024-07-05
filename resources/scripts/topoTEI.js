@@ -32,7 +32,10 @@ function initWebcomponents(){
       checkVersions(button);
       setDisabledStatus(button, true);
     }
-  
+    if (localStorage.getItem('topoTEI.zoom')){
+        topoTEIObject.pixelLineHeight = Number(localStorage.getItem('topoTEI.zoom')); 
+        updateZoom();
+    }
 }
 
 document.onkeyup = function(e) {

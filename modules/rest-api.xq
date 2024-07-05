@@ -784,7 +784,7 @@ declare function local:createTPFile($file as xs:string*)  {
 
     let $data := document{
         processing-instruction teipublisher {
-            'template="surface.html" odd="surface.odd" view="surface"'
+            'template="surface.html" odd="surface.odd" view="surface" media="print"'
         },
         doc($doc-uri)
     }

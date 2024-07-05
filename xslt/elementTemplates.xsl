@@ -142,7 +142,8 @@
    <!-- Process overwritten text in case of substitution with @spanTo -->
    <xsl:template match="tei:subst[@spanTo and (following-sibling::tei:del[1]/@rend = 'overwritten' or following-sibling::tei:add[1]/@place = 'superimposed')]">
       <xsl:variable name="hand" select="replace(following-sibling::tei:add/@hand,'#','')"/>
-      <span class="box {$hand}" title="{following-sibling::tei:del[@rend='overwritten'][1]/text()} (überschrieben)">
+      <xsl:variable name="inline" select="if(@instant = 'true' or following-sibling::tei:add/@instant = 'true') then ('inline instantaneous') else ('inline')"/>
+      <span class="box {$hand} {$inline}" title="{following-sibling::tei:del[@rend='overwritten'][1]/text()} (überschrieben)">
          <xsl:value-of select="following-sibling::tei:add[@place='superimposed'][1]/text()"/>
       </span>
    </xsl:template>
@@ -161,6 +162,7 @@
    </xsl:template>
    <!-- Process overwritten text in case of normal substitution, also for forme work -->
    <xsl:template name="superimposed">
+      <xsl:variable name="inline" select="if(@instant = 'true' or tei:add/@instant = 'true') then ('inline instantaneous') else ('inline')"/>
       <xsl:variable name="hand" select="replace(tei:add[@place = 'superimposed']/@hand,'#','')"/>
       <xsl:variable name="dict">
          <tei:entry key="erased" value="radiert:"/>
@@ -178,7 +180,7 @@
                </span>
             </xsl:when>
             <xsl:otherwise>
-               <span class="{if (parent::tei:fw) then ('fw-box') else ('box')}" title="{$dict/tei:entry[@key = current()/tei:del/@rend]/@value} {current()/tei:del/text()} ">
+               <span class="{if (parent::tei:fw) then ('fw-box') else ('box')} {$inline}" title="{$dict/tei:entry[@key = current()/tei:del/@rend]/@value} {current()/tei:del/text()} ">
                   <xsl:apply-templates select="current()/tei:add[@place = 'superimposed']/(*|text())"/>
                </span>
             </xsl:otherwise>
@@ -187,13 +189,14 @@
       </span>
    </xsl:template>
    <xsl:template match="tei:add[@place='superimposed' and parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']]">
+      <xsl:variable name="inline" select="if(@instant = 'true' or parent::tei:subst/@instant = 'true') then ('inline instantaneous') else ('inline')"/>
       <xsl:variable name="hand" select="replace(@hand,'#','')"/>
       <xsl:variable name="delRend" select="parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']/@rend"/>
       <xsl:variable name="dict">
          <tei:entry key="erased" value="radiert:"/>
          <tei:entry key="overwritten" value="überschrieben:"/>
       </xsl:variable>
-      <span class="{if (ancestor::tei:fw) then (concat($hand, ' ', 'fw-box')) else (concat('box ', $hand))}">
+      <span class="{if (ancestor::tei:fw) then (concat($hand, ' ', 'fw-box')) else (concat('box ', $hand))} {$inline}">
           <xsl:choose>
             <xsl:when test="($fullpage = 'true' or $editorModus = 'false') and parent::tei:subst/tei:del[@rend='overwritten' or @rend='erased']/node()">
                <xsl:apply-templates/>
