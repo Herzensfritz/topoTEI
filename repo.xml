@@ -33,13 +33,20 @@
                 <li>No font-size change for &lt;add instant="true"&gt;</li>
             </ul>
       </change>
-        <change version="2.1">
+        <change version="2.1" deployed="2024-06-12T14:30:50.662+02:00">
          <ul>
              <li>Bugfix for topoTEI.js: fix for missing keyListener after input loses focus without noticing it.</li>
              <li>Bugfix in rest-api.xq: manuscript export with all data in %sourceDoc</li>
              <li>Bugfix in elementTemplates.xsl: fix for last addLine in %div2</li>
              <li>strikethrough-typesetter_black1 added</li>
              <li>Position info can be moved around per drag and drop</li>
+         </ul>
+         </change>
+         <change version="2.2">
+         <ul>
+            <li>Font-size petit in boxes</li>
+            <li>Font-size normal in boxes for instant=true</li>
+            <li>Direct export to teipublisher "nietzsche-dm" instance per button or preview</li>
          </ul>
          </change>
     </changelog>
