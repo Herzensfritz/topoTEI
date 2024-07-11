@@ -380,7 +380,21 @@ declare
     %output:method("html5")
 function myrest:transform($file as xs:string*) {
     let $filepath := concat($config:data-root,'/', $file)
-    return local:showTransformation($filepath)
+    let $output-collection := xmldb:login($config:data-root, 'test', 'test') 
+    let $doc := doc($filepath)
+    return if (exists($doc)) then (
+        local:showTransformation($filepath)
+    ) else (
+        <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="/exist/apps/topoTEI/index.html?msg=404&amp;file={$file}"/>
+        </http:response>
+    </rest:response>
+    )
    
 };
 declare function local:storeFile($data, $type as xs:string, $targetType as xs:string, $collection as xs:string) as map(*) {

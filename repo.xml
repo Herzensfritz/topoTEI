@@ -42,11 +42,17 @@
              <li>Position info can be moved around per drag and drop</li>
          </ul>
          </change>
-         <change version="2.2">
+         <change version="2.2" deployed="2024-07-05T15:51:50.662+02:00">
          <ul>
             <li>Font-size petit in boxes</li>
             <li>Font-size normal in boxes for instant=true</li>
             <li>Direct export to teipublisher "nietzsche-dm" instance per button or preview</li>
+         </ul>
+           </change>
+         <change version="2.3">
+         <ul>
+            <li>Erorr Message if file does not exist</li>
+            <li>Fix for @rend="red-marking" in  %add[@place="above"]</li>
          </ul>
          </change>
     </changelog>

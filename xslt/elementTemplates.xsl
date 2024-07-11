@@ -372,7 +372,7 @@
             <xsl:variable name="childStyle" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@style"/>
             <xsl:variable name="parentId" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@xml:id"/>
             <xsl:variable name="parentStyle" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@style"/>
-            <xsl:variable name="rend" select="if (//tei:sourceDoc//tei:metamark[@target=$addId]/@rend) then (//tei:sourceDoc//tei:metamark[@target=$addId][1]/@rend) else (@rend)"/>
+            <xsl:variable name="rend" select="if (//tei:sourceDoc//tei:metamark[@target=$addId]/@rend) then (//tei:sourceDoc//tei:metamark[@target=$addId][1]/@rend) else (             if(@rend = 'insM' or @rend = 'Ez') then (@rend) else ())"/>
             <xsl:call-template name="writeAdd">
                 <xsl:with-param name="childId" select="$childId"/>
                 <xsl:with-param name="parentId" select="$parentId"/>

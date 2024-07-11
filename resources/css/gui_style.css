@@ -125,6 +125,7 @@ body {
     .inSpatiuminsertion-above:before { left: -3.5px; }
     .afterWordinsertion-above:before { left: 1px;   }
     .inWordinsertion-above:before { left: -0.5px; }
+
     .beforePunctuationinsertion-above:before {  left: 2px;  }
      .below { 
         position: absolute;

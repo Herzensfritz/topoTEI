@@ -136,11 +136,12 @@ declare %private function local:moveResource($childDir, $targetDir, $resource){
 
 declare 
      %templates:wrap
-function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?, $newest as xs:string?) as map(*) {
+function app:checkStatus ($node as node(), $model as map(*), $msg as xs:string?, $file as xs:string?, $newest as xs:string?) as map(*) {
     let $default := map { "newest-first": ($newest = 'true' )}
     return if ($msg) then (
         switch($msg)
-            case ("422") return map { "error": "Falscher Dateityp" }
+            case ("404") return  map:merge(($default, map { "error": concat("Datei ", $file, " nicht gefunden") }))
+            case ("422") return  map:merge(($default,map { "error": "Falscher Dateityp" }))
             default return map:merge(($default, map { 'status' : $msg }))
     ) else (
         $default
