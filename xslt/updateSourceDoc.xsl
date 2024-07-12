@@ -352,21 +352,32 @@
                        <xsl:value-of select="'beforePunctuation'"/>
                      </xsl:attribute>
                   </xsl:when>
-                  <xsl:when test="matches(//tei:add[@xml:id = $id]/following::text()[1], '^\s.*') and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '^.*\s$')">
+                  <xsl:when test="not(//tei:add[@xml:id = $id]/following::*[1]/local-name() = 'lb')                    and matches(//tei:add[@xml:id = $id]/following::text()[1], '^\s.*') and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '^.*\s$')">
                      <xsl:attribute name="rend">
                        <xsl:value-of select="'inSpatium'"/>
                      </xsl:attribute>
                   </xsl:when>
-                  <xsl:when test="matches(//tei:add[@xml:id = $id]/preceding::text()[1], '.*[^\s]$') and matches(//tei:add[@xml:id = $id]/following::text()[1], '^[^\s].*')">
+                  <xsl:when test="not(//tei:add[@xml:id = $id]/following-sibling::*[1]/local-name() = 'lb')                       and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '.*[^\s]$') and matches(//tei:add[@xml:id = $id]/following::text()[1], '^[^\s].*')">
                      <xsl:attribute name="rend">
                        <xsl:value-of select="'inWord'"/>
                      </xsl:attribute>
                   </xsl:when>
-                  <xsl:when test="not(preceding-sibling::*[1][local-name() = 'lb']) and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '.*[^\s]$')">
+                  <xsl:when test="not(//tei:add[@xml:id = $id]/preceding-sibling::*[1][local-name() = 'lb']) and matches(//tei:add[@xml:id = $id]/preceding::text()[1], '.*[^\s]$')">
                      <xsl:attribute name="rend">
                        <xsl:value-of select="'afterWord'"/>
                      </xsl:attribute>
                   </xsl:when>
+                  <xsl:when test="//tei:add[@xml:id = $id and following::*[1][local-name() = 'lb'] and (empty(following-sibling::text()) or matches(following-sibling::text()[1], '^\s+$'))]">
+                     <xsl:attribute name="rend">
+                       <xsl:value-of select="'endOfLine'"/>
+                     </xsl:attribute>
+                  </xsl:when>
+
+                  <!--<xsl:otherwise>
+                     <xsl:attribute name="test">
+                       <xsl:value-of select="//tei:add[@xml:id = $id]/following::text()[1]"/>
+                     </xsl:attribute>
+                  </xsl:otherwise>-->
                </xsl:choose>
                <xsl:attribute name="target">
                  <xsl:value-of select="concat('#', $id)"/>
