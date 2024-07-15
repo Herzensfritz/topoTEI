@@ -7,6 +7,9 @@
            <editor xml:id="editors">
                     <name>Beat Röllin</name>, <name>Christian Steiner</name>, <name>René Stockmar</name>
                 </editor>
+                <respStmt>
+             <resp>Unter Mitarbeit von </resp><name>Thomas Riebe</name>
+           </respStmt>
            <respStmt>
              <resp>Projektleiter: </resp>
                     <name>Hubert Thüring</name>
@@ -17,7 +20,7 @@
                 <date>tba</date>
          </publicationStmt>
         <seriesStmt>
-          <title>Der späte Nietzsche. Digitale Erschließung der Druckdokumente</title>
+          <title>Der späte Nietzsche. Digitale Edition der Druckdokumente</title>
         </seriesStmt>
          <sourceDesc>
            <msDesc>
@@ -35,366 +38,126 @@
                <p>Druckmanuskript zu Zur Genealogie der Moral. Eine Streitschrift. C. G. Naumann, Leipzig 1887.</p>
                <ab type="descHead">
                  1.1 Inhaltsverzeichnis</ab>
-               <p>
-                            <locus>a1r</locus>: <desc xml:id="contents_a1r">Druckvorlage GM Titelseite</desc>
-                        </p><!-- alles noch zu überprüfen! -->
-               <p>
-                            <locus>a1v</locus>: <desc xml:id="contents_a1v">Druckvorlage GM Titelrückseite</desc>
-                        </p>
-               <p>
-                            <locus>a2r</locus>: <desc xml:id="contents_a2r">Druckvorlage GM Vorrede 1-3</desc>
-                        </p>
-               <p>
-                            <locus>a2v</locus>: <desc xml:id="contents_a2v">Druckvorlage GM Vorrede 3-4</desc>
-                        </p>
-               <p>
-                            <locus>a3r</locus>: <desc xml:id="contents_a3r">Druckvorlage GM Vorrede 4-6</desc>
-                        </p>
-               <p>
-                            <locus>a3v</locus>: <desc xml:id="contents_a3v">Druckvorlage GM Vorrede 6-7</desc>
-                        </p>
-               <p>
-                            <locus>a4r</locus>: <desc xml:id="contents_a4r">Druckvorlage GM Vorrede 8</desc>
-                        </p>
-               <p>
-                            <locus>a5r</locus>: <desc xml:id="contents_a5r">Druckvorlage GM I 1</desc>
-                        </p>
-               <p>
-                            <locus>a6r</locus>: <desc xml:id="contents_a6r">Druckvorlage GM I 2-3</desc>
-                        </p>
-               <p>
-                            <locus>a7r</locus>: <desc xml:id="contents_a7r">Druckvorlage GM I 3-5</desc>
-                        </p>
-               <p>
-                            <locus>a8r</locus>: <desc xml:id="contents_a8r">Druckvorlage GM I 5-6</desc>
-                        </p>
-               <p>
-                            <locus>a9r</locus>: <desc xml:id="contents_a9r">Druckvorlage GM I 6-7</desc>
-                        </p>
-               <p>
-                            <locus>a10r</locus>: <desc xml:id="contents_a10r">Druckvorlage GM I 7-9</desc>
-                        </p>
-               <p>
-                            <locus>a11r</locus>: <desc xml:id="contents_a11r">Druckvorlage GM I 9-10</desc>
-                        </p>
-               <p>
-                            <locus>a12r</locus>: <desc xml:id="contents_a12r">Druckvorlage GM I 10-11</desc>
-                        </p>
-               <p>
-                            <locus>a13r</locus>: <desc xml:id="contents_a13r">Druckvorlage GM I 11</desc>
-                        </p>
-               <p>
-                            <locus>a14r</locus>: <desc xml:id="contents_a14r">Druckvorlage GM I 11-13</desc>
-                        </p>
-               <p>
-                            <locus>a15r</locus>: <desc xml:id="contents_a15r">Druckvorlage GM I 13-14</desc>
-                        </p>
-               <p>
-                            <locus>a16r</locus>: <desc xml:id="contents_a16r">Druckvorlage GM I 14-15</desc>
-                        </p>
-               <p>
-                            <locus>a17r</locus>: <desc xml:id="contents_a17r">Druckvorlage GM I 15</desc>
-                        </p>
-               <p>
-                            <locus>a18r</locus>: <desc xml:id="contents_a18r">Druckvorlage GM I 15</desc>
-                        </p>
-               <p>
-                            <locus>a18v</locus>: <desc xml:id="contents_a18v">Druckvorlage GM I 15</desc>
-                        </p>
-               <p>
-                            <locus>a19r</locus>: <desc xml:id="contents_a19r">Druckvorlage GM I 16</desc>
-                        </p>
-               <p>
-                            <locus>a20r</locus>: <desc xml:id="contents_a20r">Druckvorlage GM I 16-17</desc>
-                        </p>
-               <p>
-                            <locus>a20v</locus>: <desc xml:id="contents_a20v">Notiz Ns</desc>
-                        </p>
-               <p>
-                            <locus>a21r</locus>: <desc xml:id="contents_a21r">Druckvorlage GM II 1-2</desc>
-                        </p>
-               <p>
-                            <locus>a21v</locus>: <desc xml:id="contents_a21v">Notiz Ns</desc>
-                        </p>
-               <p>
-                            <locus>a22r</locus>: <desc xml:id="contents_a22r">Druckvorlage GM II 3</desc>
-                        </p>
-               <p>
-                            <locus>a23r</locus>: <desc xml:id="contents_a23r">Druckvorlage GM II 3-5</desc>
-                        </p>
-               <p>
-                            <locus>a24r</locus>: <desc xml:id="contents_a24r">Druckvorlage GM II 5-6</desc>
-                        </p>
-               <p>
-                            <locus>a25r</locus>: <desc xml:id="contents_a25r">Druckvorlage GM II 6-7</desc>
-                        </p>
-               <p>
-                            <locus>a26r</locus>: <desc xml:id="contents_a26r">Druckvorlage GM II 7</desc>
-                        </p>
-               <p>
-                            <locus>a27r</locus>: <desc xml:id="contents_a27r">Druckvorlage GM II 8</desc>
-                        </p>
-               <p>
-                            <locus>a28r</locus>: <desc xml:id="contents_a28r">Druckvorlage GM II 9-10</desc>
-                        </p>
-               <p>
-                            <locus>a29r</locus>: <desc xml:id="contents_a29r">Druckvorlage GM II 11</desc>
-                        </p>
-               <p>
-                            <locus>a29v</locus>: <desc xml:id="contents_a29v">Vorstufen zu GM II 1 und 2</desc>
-                        </p>
-               <p>
-                            <locus>a30r</locus>: <desc xml:id="contents_a30r">Druckvorlage GM II 12</desc>
-                        </p>
-               <p>
-                            <locus>a31r</locus>: <desc xml:id="contents_a31r">Druckvorlage GM II 13-14</desc>
-                        </p>
-               <p>
-                            <locus>a32r</locus>: <desc xml:id="contents_a32r">Druckvorlage GM II 14-15</desc>
-                        </p>
-               <p>
-                            <locus>a33r</locus>: <desc xml:id="contents_a33r">Druckvorlage GM II 15-16</desc>
-                        </p>
-               <p>
-                            <locus>a34r</locus>: <desc xml:id="contents_a34r">Druckvorlage GM II 16-17</desc>
-                        </p>
-               <p>
-                            <locus>a35r</locus>: <desc xml:id="contents_a35r">Druckvorlage GM II 18-19</desc>
-                        </p>
-               <p>
-                            <locus>a36r</locus>: <desc xml:id="contents_a36r">Druckvorlage GM II 19-20</desc>
-                        </p>
-               <p>
-                            <locus>a37r</locus>: <desc xml:id="contents_a37r">Druckvorlage GM II 21-22</desc>
-                        </p>
-               <p>
-                            <locus>a38r</locus>: <desc xml:id="contents_a38r">Druckvorlage GM II 22-24</desc>
-                        </p>
-               <p>
-                            <locus>a39r</locus>: <desc xml:id="contents_a39r">Druckvorlage GM II 24</desc>
-                        </p>
-               <p>
-                            <locus>a40r</locus>: <desc xml:id="contents_a40r">Zusatz zu GM II 11</desc>
-                        </p>
-               <p>
-                            <locus>a40v</locus>: <desc xml:id="contents_a40v">Zusatz zu GM II 24</desc>
-                        </p>
-               <p>
-                            <locus>a41r</locus>: <desc xml:id="contents_a41r">Druckvorlage GM II 25</desc>
-                        </p>
-               <p>
-                            <locus>b1r</locus>: <desc xml:id="contents_b1r">Druckvorlage GM III 1</desc>
-                        </p>
-               <p>
-                            <locus>b2r</locus>: <desc xml:id="contents_b2r">Druckvorlage GM III 2</desc>
-                        </p>
-               <p>
-                            <locus>b3r</locus>: <desc xml:id="contents_b3r">Druckvorlage GM III 2-3</desc>
-                        </p>
-               <p>
-                            <locus>b4r</locus>: <desc xml:id="contents_b4r">Druckvorlage GM III 3</desc>
-                        </p>
-               <p>
-                            <locus>b5r</locus>: <desc xml:id="contents_b5r">Druckvorlage GM III 3-4</desc>
-                        </p>
-               <p>
-                            <locus>b6r</locus>: <desc xml:id="contents_b6r">Druckvorlage GM III 4-5</desc>
-                        </p>
-               <p>
-                            <locus>b7r</locus>: <desc xml:id="contents_b7r">Druckvorlage GM III 5</desc>
-                        </p>
-               <p>
-                            <locus>b8r</locus>: <desc xml:id="contents_b8r">Druckvorlage GM III 5-6</desc>
-                        </p>
-               <p>
-                            <locus>b9r</locus>: <desc xml:id="contents_b9r">Druckvorlage GM III 6</desc>
-                        </p>
-               <p>
-                            <locus>b10r</locus>: <desc xml:id="contents_b10r">Druckvorlage GM III 6</desc>
-                        </p>
-               <p>
-                            <locus>b11r</locus>: <desc xml:id="contents_b11r">Druckvorlage GM III 7</desc>
-                        </p>
-               <p>
-                            <locus>b12r</locus>: <desc xml:id="contents_b12r">Druckvorlage GM III 7</desc>
-                        </p>
-               <p>
-                            <locus>b13r</locus>: <desc xml:id="contents_b13r">Druckvorlage GM III 7-8</desc>
-                        </p>
-               <p>
-                            <locus>b14r</locus>: <desc xml:id="contents_b14r">Druckvorlage GM III 8</desc>
-                        </p>
-               <p>
-                            <locus>b15r</locus>: <desc xml:id="contents_b15r">Druckvorlage GM III 8</desc>
-                        </p>
-               <p>
-                            <locus>b16r</locus>: <desc xml:id="contents_b16r">Druckvorlage GM III 8</desc>
-                        </p>
-               <p>
-                            <locus>b17r</locus>: <desc xml:id="contents_b17r">Druckvorlage GM III 8-9</desc>
-                        </p>
-               <p>
-                            <locus>b18r</locus>: <desc xml:id="contents_b18r">Druckvorlage GM III 9</desc>
-                        </p>
-               <p>
-                            <locus>b19r</locus>: <desc xml:id="contents_b19r">Bogenkorrektur zu GM III 9</desc>
-                        </p>
-               <p>
-                            <locus>b20r</locus>: <desc xml:id="contents_b20r">Druckvorlage GM III 9</desc>
-                        </p>
-               <p>
-                            <locus>b21r</locus>: <desc xml:id="contents_b21r">Druckvorlage GM III 9-10</desc>
-                        </p>
-               <p>
-                            <locus>b22r</locus>: <desc xml:id="contents_b22r">Druckvorlage GM III 10</desc>
-                        </p>
-               <p>
-                            <locus>b23r</locus>: <desc xml:id="contents_b23r">Druckvorlage GM III 10-11</desc>
-                        </p>
-               <p>
-                            <locus>b24r</locus>: <desc xml:id="contents_b24r">Druckvorlage GM III 11</desc>
-                        </p>
-               <p>
-                            <locus>b25r</locus>: <desc xml:id="contents_b25r">Druckvorlage GM III 11-12</desc>
-                        </p>
-               <p>
-                            <locus>b26r</locus>: <desc xml:id="contents_b26r">Druckvorlage GM III 12</desc>
-                        </p>
-               <p>
-                            <locus>b27r</locus>: <desc xml:id="contents_b27r">Druckvorlage GM III 12-13</desc>
-                        </p>
-               <p>
-                            <locus>b28r</locus>: <desc xml:id="contents_b28r">Druckvorlage GM III 13</desc>
-                        </p>
-               <p>
-                            <locus>b29r</locus>: <desc xml:id="contents_b29r">Druckvorlage GM III 14</desc>
-                        </p>
-               <p>
-                            <locus>b30r</locus>: <desc xml:id="contents_b30r">Druckvorlage GM III 14</desc>
-                        </p>
-               <p>
-                            <locus>b31r</locus>: <desc xml:id="contents_b31r">Druckvorlage GM III 14</desc>
-                        </p>
-               <p>
-                            <locus>b32r</locus>: <desc xml:id="contents_b32r">Druckvorlage GM III 14</desc>
-                        </p>
-               <p>
-                            <locus>b33r</locus>: <desc xml:id="contents_b33r">Druckvorlage GM III 15</desc>
-                        </p>
-               <p>
-                            <locus>b34r</locus>: <desc xml:id="contents_b34r">Druckvorlage GM III 15</desc>
-                        </p>
-               <p>
-                            <locus>b35r</locus>: <desc xml:id="contents_b35r">Druckvorlage GM III 15-16</desc>
-                        </p>
-               <p>
-                            <locus>b36r</locus>: <desc xml:id="contents_b36r">Druckvorlage GM III 16</desc>
-                        </p>
-               <p>
-                            <locus>b37r</locus>: <desc xml:id="contents_b37r">Druckvorlage GM III 16-17</desc>
-                        </p>
-               <p>
-                            <locus>b38r</locus>: <desc xml:id="contents_b38r">Druckvorlage GM III 17</desc>
-                        </p>
-               <p>
-                            <locus>b39r</locus>: <desc xml:id="contents_b39r">Druckvorlage GM III 17</desc>
-                        </p>
-               <p>
-                            <locus>b40r</locus>: <desc xml:id="contents_b40r">Druckvorlage GM III 17-18</desc>
-                        </p>
-               <p>
-                            <locus>b41r</locus>: <desc xml:id="contents_b41r">Druckvorlage GM III 18</desc>
-                        </p>
-               <p>
-                            <locus>b42r</locus>: <desc xml:id="contents_b42r">Druckvorlage GM III 18</desc>
-                        </p>
-               <p>
-                            <locus>b43r</locus>: <desc xml:id="contents_b43r">Druckvorlage GM III 18-19</desc>
-                        </p>
-               <p>
-                            <locus>b44r</locus>: <desc xml:id="contents_b44r">Druckvorlage GM III 19</desc>
-                        </p>
-               <p>
-                            <locus>b45r</locus>: <desc xml:id="contents_b45r">Druckvorlage GM III 19-20</desc>
-                        </p>
-               <p>
-                            <locus>b46r</locus>: <desc xml:id="contents_b46r">Druckvorlage GM III 20</desc>
-                        </p>
-               <p>
-                            <locus>b47r</locus>: <desc xml:id="contents_b47r">Druckvorlage GM III 20</desc>
-                        </p>
-               <p>
-                            <locus>b48r</locus>: <desc xml:id="contents_b48r">Druckvorlage GM III 20-21</desc>
-                        </p>
-               <p>
-                            <locus>b49r</locus>: <desc xml:id="contents_b49r">Druckvorlage GM III 21-22</desc>
-                        </p>
-               <p>
-                            <locus>b50r</locus>: <desc xml:id="contents_b50r">Druckvorlage GM III 22</desc>
-                        </p>
-               <p>
-                            <locus>b51r</locus>: <desc xml:id="contents_b51r">Druckvorlage GM III 22</desc>
-                        </p>
-               <p>
-                            <locus>b52r</locus>: <desc xml:id="contents_b52r">Druckvorlage GM III 22-23</desc>
-                        </p>
-               <p>
-                            <locus>b53r</locus>: <desc xml:id="contents_b53r">Druckvorlage GM III 23</desc>
-                        </p>
-               <p>
-                            <locus>b54r</locus>: <desc xml:id="contents_b54r">Druckvorlage GM III 23-24</desc>
-                        </p>
-               <p>
-                            <locus>b55r</locus>: <desc xml:id="contents_b55r">Druckvorlage GM III 24</desc>
-                        </p>
-               <p>
-                            <locus>b56r</locus>: <desc xml:id="contents_b56r">Druckvorlage GM III 24</desc>
-                        </p>
-               <p>
-                            <locus>b57r</locus>: <desc xml:id="contents_b57r">Druckvorlage GM III 24-25</desc>
-                        </p>
-               <p>
-                            <locus>b58r</locus>: <desc xml:id="contents_b58r">Druckvorlage GM III 25</desc>
-                        </p>
-               <p>
-                            <locus>b59r</locus>: <desc xml:id="contents_b59r">Druckvorlage GM III 25</desc>
-                        </p>
-               <p>
-                            <locus>b59v</locus>: <desc xml:id="contents_b59v">Notiz fHd (Köselitz)</desc>
-                        </p>
-               <p>
-                            <locus>b60r</locus>: <desc xml:id="contents_b60r">Druckvorlage GM III 25</desc>
-                        </p>
-               <p>
-                            <locus>b61r</locus>: <desc xml:id="contents_b61r">Druckvorlage GM III 26</desc>
-                        </p>
-               <p>
-                            <locus>b62r</locus>: <desc xml:id="contents_b62r">Druckvorlage GM III 26</desc>
-                        </p>
-               <p>
-                            <locus>b63r</locus>: <desc xml:id="contents_b63r">Varianten zu GM III 26</desc>
-                        </p>
-               <p>
-                            <locus>b64r</locus>: <desc xml:id="contents_b64r">Bogenkorrekturen zu GM III 26 und 27</desc>
-                        </p>
-               <p>
-                            <locus>b65r</locus>: <desc xml:id="contents_b65r">Zusatz zu GM III 26</desc>
-                        </p>
-               <p>
-                            <locus>b66r</locus>: <desc xml:id="contents_b66r">Druckvorlage GM III 26-27</desc>
-                        </p>
-               <p>
-                            <locus>b67r</locus>: <desc xml:id="contents_b67r">Druckvorlage GM III 27</desc>
-                        </p>
-               <p>
-                            <locus>b68r</locus>: <desc xml:id="contents_b68r">Druckvorlage GM III 27-28</desc>
-                        </p>
-               <p>
-                            <locus>b69r</locus>: <desc xml:id="contents_b69r">Druckvorlage GM III 28</desc>
-                        </p>
-               <p>
-                            <locus>b70r</locus>: <desc xml:id="contents_b70r">Druckvorlage GM Inhaltsverzeichis</desc>
-                        </p>
+               <p><locus>a1r</locus>: <desc xml:id="contents_a1r">Druckvorlage GM Titelseite; Notizen von Köselitz die Korrektur von Bogen 12 und Titelbogen betreffend</desc></p><!-- zu Notizen von Kö vgl. b59v --><!-- alles noch zu überprüfen! -->
+               <p><locus>a1v</locus>: <desc xml:id="contents_a1v">Druckvorlage GM Titelrückseite</desc></p>
+               <p><locus>a2r</locus>: <desc xml:id="contents_a2r">Druckvorlage GM Vorrede 1-3</desc></p>
+               <p><locus>a2v</locus>: <desc xml:id="contents_a2v">Druckvorlage GM Vorrede 3-4</desc></p>
+               <p><locus>a3r</locus>: <desc xml:id="contents_a3r">Druckvorlage GM Vorrede 4-6</desc></p>
+               <p><locus>a3v</locus>: <desc xml:id="contents_a3v">Druckvorlage GM Vorrede 6-7</desc></p>
+               <p><locus>a4r</locus>: <desc xml:id="contents_a4r">Druckvorlage GM Vorrede 8</desc></p>
+               <p><locus>a5r</locus>: <desc xml:id="contents_a5r">Druckvorlage GM I 1</desc></p>
+               <p><locus>a6r</locus>: <desc xml:id="contents_a6r">Druckvorlage GM I 2-3</desc></p>
+               <p><locus>a7r</locus>: <desc xml:id="contents_a7r">Druckvorlage GM I 3-5</desc></p>
+               <p><locus>a8r</locus>: <desc xml:id="contents_a8r">Druckvorlage GM I 5-6</desc></p>
+               <p><locus>a9r</locus>: <desc xml:id="contents_a9r">Druckvorlage GM I 6-7</desc></p>
+               <p><locus>a10r</locus>: <desc xml:id="contents_a10r">Druckvorlage GM I 7-9</desc></p>
+               <p><locus>a11r</locus>: <desc xml:id="contents_a11r">Druckvorlage GM I 9-10</desc></p>
+               <p><locus>a12r</locus>: <desc xml:id="contents_a12r">Druckvorlage GM I 10-11</desc></p>
+               <p><locus>a13r</locus>: <desc xml:id="contents_a13r">Druckvorlage GM I 11</desc></p>
+               <p><locus>a14r</locus>: <desc xml:id="contents_a14r">Druckvorlage GM I 11-13</desc></p>
+               <p><locus>a15r</locus>: <desc xml:id="contents_a15r">Druckvorlage GM I 13-14</desc></p>
+               <p><locus>a16r</locus>: <desc xml:id="contents_a16r">Druckvorlage GM I 14-15</desc></p>
+               <p><locus>a17r</locus>: <desc xml:id="contents_a17r">Druckvorlage GM I 15</desc></p>
+               <p><locus>a18r</locus>: <desc xml:id="contents_a18r">Druckvorlage GM I 15</desc></p>
+               <p><locus>a18v</locus>: <desc xml:id="contents_a18v">Druckvorlage GM I 15</desc></p>
+               <p><locus>a19r</locus>: <desc xml:id="contents_a19r">Druckvorlage GM I 16</desc></p>
+               <p><locus>a20r</locus>: <desc xml:id="contents_a20r">Druckvorlage GM I 16-17</desc></p>
+               <p><locus>a20v</locus>: <desc xml:id="contents_a20v">Notiz Ns</desc></p>
+               <p><locus>a21r</locus>: <desc xml:id="contents_a21r">Druckvorlage GM II 1-2</desc></p>
+               <p><locus>a21v</locus>: <desc xml:id="contents_a21v">Notiz Ns</desc></p>
+               <p><locus>a22r</locus>: <desc xml:id="contents_a22r">Druckvorlage GM II 3</desc></p>
+               <p><locus>a23r</locus>: <desc xml:id="contents_a23r">Druckvorlage GM II 3-5</desc></p>
+               <p><locus>a24r</locus>: <desc xml:id="contents_a24r">Druckvorlage GM II 5-6</desc></p>
+               <p><locus>a25r</locus>: <desc xml:id="contents_a25r">Druckvorlage GM II 6-7</desc></p>
+               <p><locus>a26r</locus>: <desc xml:id="contents_a26r">Druckvorlage GM II 7</desc></p>
+               <p><locus>a27r</locus>: <desc xml:id="contents_a27r">Druckvorlage GM II 8</desc></p>
+               <p><locus>a28r</locus>: <desc xml:id="contents_a28r">Druckvorlage GM II 9-10</desc></p>
+               <p><locus>a29r</locus>: <desc xml:id="contents_a29r">Druckvorlage GM II 11</desc></p>
+               <p><locus>a29v</locus>: <desc xml:id="contents_a29v">Vorstufen zu GM II 1 und 2</desc></p>
+               <p><locus>a30r</locus>: <desc xml:id="contents_a30r">Druckvorlage GM II 12</desc></p>
+               <p><locus>a31r</locus>: <desc xml:id="contents_a31r">Druckvorlage GM II 13-14</desc></p>
+               <p><locus>a32r</locus>: <desc xml:id="contents_a32r">Druckvorlage GM II 14-15</desc></p>
+               <p><locus>a33r</locus>: <desc xml:id="contents_a33r">Druckvorlage GM II 15-16</desc></p>
+               <p><locus>a34r</locus>: <desc xml:id="contents_a34r">Druckvorlage GM II 16-17</desc></p>
+               <p><locus>a35r</locus>: <desc xml:id="contents_a35r">Druckvorlage GM II 18-19</desc></p>
+               <p><locus>a36r</locus>: <desc xml:id="contents_a36r">Druckvorlage GM II 19-20</desc></p>
+               <p><locus>a37r</locus>: <desc xml:id="contents_a37r">Druckvorlage GM II 21-22</desc></p>
+               <p><locus>a38r</locus>: <desc xml:id="contents_a38r">Druckvorlage GM II 22-24</desc></p>
+               <p><locus>a39r</locus>: <desc xml:id="contents_a39r">Druckvorlage GM II 24</desc></p>
+               <p><locus>a40r</locus>: <desc xml:id="contents_a40r">Druckvorlage GM II 11 (Ms-Nachtrag)</desc></p>
+               <p><locus>a40v</locus>: <desc xml:id="contents_a40v">Druckvorlage GM II 24 (Ms-Nachtrag)</desc></p>
+               <p><locus>a41r</locus>: <desc xml:id="contents_a41r">Druckvorlage GM II 25 (Ms-Nachtrag)</desc></p>
+               <p><locus>b1r</locus>: <desc xml:id="contents_b1r">Druckvorlage GM III 1</desc></p>
+               <p><locus>b2r</locus>: <desc xml:id="contents_b2r">Druckvorlage GM III 2</desc></p>
+               <p><locus>b3r</locus>: <desc xml:id="contents_b3r">Druckvorlage GM III 2-3</desc></p>
+               <p><locus>b4r</locus>: <desc xml:id="contents_b4r">Druckvorlage GM III 3</desc></p>
+               <p><locus>b5r</locus>: <desc xml:id="contents_b5r">Druckvorlage GM III 3-4</desc></p>
+               <p><locus>b6r</locus>: <desc xml:id="contents_b6r">Druckvorlage GM III 4-5</desc></p>
+               <p><locus>b7r</locus>: <desc xml:id="contents_b7r">Druckvorlage GM III 5</desc></p>
+               <p><locus>b8r</locus>: <desc xml:id="contents_b8r">Druckvorlage GM III 5-6</desc></p>
+               <p><locus>b9r</locus>: <desc xml:id="contents_b9r">Druckvorlage GM III 6</desc></p>
+               <p><locus>b10r</locus>: <desc xml:id="contents_b10r">Druckvorlage GM III 6</desc></p>
+               <p><locus>b11r</locus>: <desc xml:id="contents_b11r">Druckvorlage GM III 7</desc></p>
+               <p><locus>b12r</locus>: <desc xml:id="contents_b12r">Druckvorlage GM III 7</desc></p>
+               <p><locus>b13r</locus>: <desc xml:id="contents_b13r">Druckvorlage GM III 7-8</desc></p>
+               <p><locus>b14r</locus>: <desc xml:id="contents_b14r">Druckvorlage GM III 8</desc></p>
+               <p><locus>b15r</locus>: <desc xml:id="contents_b15r">Druckvorlage GM III 8</desc></p>
+               <p><locus>b16r</locus>: <desc xml:id="contents_b16r">Druckvorlage GM III 8</desc></p>
+               <p><locus>b17r</locus>: <desc xml:id="contents_b17r">Druckvorlage GM III 8-9</desc></p>
+               <p><locus>b18r</locus>: <desc xml:id="contents_b18r">Druckvorlage GM III 9</desc></p>
+               <p><locus>b19r</locus>: <desc xml:id="contents_b19r">Druckvorlage GM III 9 (Korrektur Bogen 8 betreffend)</desc></p>
+               <p><locus>b20r</locus>: <desc xml:id="contents_b20r">Druckvorlage GM III 9</desc></p>
+               <p><locus>b21r</locus>: <desc xml:id="contents_b21r">Druckvorlage GM III 9-10</desc></p>
+               <p><locus>b22r</locus>: <desc xml:id="contents_b22r">Druckvorlage GM III 10</desc></p>
+               <p><locus>b23r</locus>: <desc xml:id="contents_b23r">Druckvorlage GM III 10-11</desc></p>
+               <p><locus>b24r</locus>: <desc xml:id="contents_b24r">Druckvorlage GM III 11</desc></p>
+               <p><locus>b25r</locus>: <desc xml:id="contents_b25r">Druckvorlage GM III 11-12</desc></p>
+               <p><locus>b26r</locus>: <desc xml:id="contents_b26r">Druckvorlage GM III 12</desc></p>
+               <p><locus>b27r</locus>: <desc xml:id="contents_b27r">Druckvorlage GM III 12-13</desc></p>
+               <p><locus>b28r</locus>: <desc xml:id="contents_b28r">Druckvorlage GM III 13</desc></p>
+               <p><locus>b29r</locus>: <desc xml:id="contents_b29r">Druckvorlage GM III 14</desc></p>
+               <p><locus>b30r</locus>: <desc xml:id="contents_b30r">Druckvorlage GM III 14</desc></p>
+               <p><locus>b31r</locus>: <desc xml:id="contents_b31r">Druckvorlage GM III 14</desc></p>
+               <p><locus>b32r</locus>: <desc xml:id="contents_b32r">Druckvorlage GM III 14</desc></p>
+               <p><locus>b33r</locus>: <desc xml:id="contents_b33r">Druckvorlage GM III 15</desc></p>
+               <p><locus>b34r</locus>: <desc xml:id="contents_b34r">Druckvorlage GM III 15</desc></p>
+               <p><locus>b35r</locus>: <desc xml:id="contents_b35r">Druckvorlage GM III 15-16</desc></p>
+               <p><locus>b36r</locus>: <desc xml:id="contents_b36r">Druckvorlage GM III 16</desc></p>
+               <p><locus>b37r</locus>: <desc xml:id="contents_b37r">Druckvorlage GM III 16-17</desc></p>
+               <p><locus>b38r</locus>: <desc xml:id="contents_b38r">Druckvorlage GM III 17</desc></p>
+               <p><locus>b39r</locus>: <desc xml:id="contents_b39r">Druckvorlage GM III 17</desc></p>
+               <p><locus>b40r</locus>: <desc xml:id="contents_b40r">Druckvorlage GM III 17-18</desc></p>
+               <p><locus>b41r</locus>: <desc xml:id="contents_b41r">Druckvorlage GM III 18</desc></p>
+               <p><locus>b42r</locus>: <desc xml:id="contents_b42r">Druckvorlage GM III 18</desc></p>
+               <p><locus>b43r</locus>: <desc xml:id="contents_b43r">Druckvorlage GM III 18-19</desc></p>
+               <p><locus>b44r</locus>: <desc xml:id="contents_b44r">Druckvorlage GM III 19</desc></p>
+               <p><locus>b45r</locus>: <desc xml:id="contents_b45r">Druckvorlage GM III 19-20</desc></p>
+               <p><locus>b46r</locus>: <desc xml:id="contents_b46r">Druckvorlage GM III 20</desc></p>
+               <p><locus>b47r</locus>: <desc xml:id="contents_b47r">Druckvorlage GM III 20</desc></p>
+               <p><locus>b48r</locus>: <desc xml:id="contents_b48r">Druckvorlage GM III 20-21</desc></p>
+               <p><locus>b49r</locus>: <desc xml:id="contents_b49r">Druckvorlage GM III 21-22</desc></p>
+               <p><locus>b50r</locus>: <desc xml:id="contents_b50r">Druckvorlage GM III 22</desc></p>
+               <p><locus>b51r</locus>: <desc xml:id="contents_b51r">Druckvorlage GM III 22</desc></p>
+               <p><locus>b52r</locus>: <desc xml:id="contents_b52r">Druckvorlage GM III 22-23</desc></p>
+               <p><locus>b53r</locus>: <desc xml:id="contents_b53r">Druckvorlage GM III 23</desc></p>
+               <p><locus>b54r</locus>: <desc xml:id="contents_b54r">Druckvorlage GM III 23-24</desc></p>
+               <p><locus>b55r</locus>: <desc xml:id="contents_b55r">Druckvorlage GM III 24</desc></p>
+               <p><locus>b56r</locus>: <desc xml:id="contents_b56r">Druckvorlage GM III 24</desc></p>
+               <p><locus>b57r</locus>: <desc xml:id="contents_b57r">Druckvorlage GM III 24-25</desc></p>
+<p><locus>b58r</locus>: <desc xml:id="contents_b58r">Druckvorlage GM III 25</desc></p>
+               <p><locus>b59r</locus>: <desc xml:id="contents_b59r">Druckvorlage GM III 25</desc></p>
+               <p><locus>b59v</locus>: <desc xml:id="contents_b59v">Notiz von Köselitz Bogen 11 betreffend</desc></p>
+               <p><locus>b60r</locus>: <desc xml:id="contents_b60r">Druckvorlage GM III 25</desc></p>
+               <p><locus>b61r</locus>: <desc xml:id="contents_b61r">Druckvorlage GM III 26</desc></p>
+               <p><locus>b62r</locus>: <desc xml:id="contents_b62r">Druckvorlage GM III 26</desc></p>
+               <p><locus>b63r</locus>: <desc xml:id="contents_b63r">Druckvorlage GM III 26 (Ms-Nachtrag)</desc></p>
+               <p><locus>b64r</locus>: <desc xml:id="contents_b64r">Druckvorlage GM III 26 und 27 (Korrekturen Bogen 12 betreffend)</desc></p>
+               <p><locus>b65r</locus>: <desc xml:id="contents_b65r">Druckvorlage GM III 26 (Ms-Nachtrag)</desc></p>
+               <p><locus>b66r</locus>: <desc xml:id="contents_b66r">Druckvorlage GM III 26-27</desc></p>
+               <p><locus>b67r</locus>: <desc xml:id="contents_b67r">Druckvorlage GM III 27</desc></p>
+               <p><locus>b68r</locus>: <desc xml:id="contents_b68r">Druckvorlage GM III 27-28</desc></p>
+               <p><locus>b69r</locus>: <desc xml:id="contents_b69r">Druckvorlage GM III 28</desc></p>
+               <p><locus>b70r</locus>: <desc xml:id="contents_b70r">Druckvorlage GM Inhaltsverzeichis</desc></p>
              </msContents>
              <physDesc>
                <ab type="descHead">
