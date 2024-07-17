@@ -730,6 +730,16 @@ declare %private function local:updateTextContent($content, $newData)  {
         )
     
 };
+declare function local:updateHeader($data){
+    let $removeP := for $p in $data//tei:sourceDesc/tei:p
+                        return update delete $p
+    let $header-uri := concat($config:app-root, '/TEI/TEI-Header_D20.xml')
+    let $header-doc := doc($header-uri)
+    let $header-profileDesc := $header-doc//tei:profileDesc
+    let $profileDesc := update insert $header-profileDesc into $data//tei:teiHeader
+    let $header-msDesc := $header-doc//tei:sourceDesc/tei:msDesc
+    return update insert $header-msDesc into $data//tei:sourceDesc
+};
 declare function local:createManuscript($data, $newFilename) {
    if (empty($data) and doc-available(concat($config:app-root, '/output/',$newFilename)) 
                 and (xmldb:last-modified(concat($config:app-root, '/output'), $newFilename) gt local:getNewestFile())
@@ -746,8 +756,11 @@ declare function local:createManuscript($data, $newFilename) {
                             )
         let $contents := local:getFileContents($newData)
         
-        let $newText := if (empty($newData//tei:msDesc)) then () else (for $content in $contents
-                            return local:updateTextContent($content, $newData)
+        let $newText := if (empty($newData//tei:msDesc)) then (
+                            local:updateHeader($newData)    
+                        ) else (
+                            for $content in $contents
+                                return local:updateTextContent($content, $newData)
                         )
         
       (:  :   let $transform := local:getFileContents($newData)

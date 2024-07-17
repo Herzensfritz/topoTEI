@@ -8,7 +8,7 @@
       <xsl:param name="pbCorresp"/>
       <xsl:variable name="keys" select="tokenize($pbCorresp)"/>
       <xsl:variable name="correspLength" select="count($keys)"/>
-      <xsl:if test="$correspLength gt 0 and doc($headerFile)//tei:handNotes/tei:handNote[@xml:id = substring-after($keys[$correspLength], '#')]">
+      <xsl:if test="$correspLength gt 0 and doc-available($headerFile) and doc($headerFile)//tei:handNotes/tei:handNote[@xml:id = substring-after($keys[$correspLength], '#')]">
          <xsl:value-of select="$keys[$correspLength]"/>
       </xsl:if> 
    </xsl:function>
