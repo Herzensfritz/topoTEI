@@ -645,23 +645,20 @@ function myrest:export() {
 declare function local:getContentFiles($pb) {
     let $createIds := config:resolve('xslt/createIDs4sourceDoc.xsl')
     let $stylesheet := config:resolve('xslt/expandSourceDoc.xsl')
-    let $param := <parameters>
-                    <param name="headerFile" value="../TEI/TEI-Header_D20.xml"/>
-                </parameters>
     return if (count($pb) gt 1) then (
         let $file := (for $pbItem in $pb
                         order by xmldb:last-modified($config:data-root, util:document-name($pbItem)) descending
                         return util:document-name($pbItem))[1]
         let $data := doc(concat($config:data-root, '/',$file))
         let $dataWithId := transform:transform($data, $createIds, (), (), "method=xml media-type=text/xml")
-        let $transform := transform:transform($dataWithId, $stylesheet, $param, (), "method=xml media-type=text/xml")
+        let $transform := transform:transform($dataWithId, $stylesheet, (), (), "method=xml media-type=text/xml")
         return $transform
     ) else (
         if (count($pb) gt 0) then (
             let $file := util:document-name($pb)
             let $data := doc(concat($config:data-root, '/',$file))
             let $dataWithId := transform:transform($data, $createIds, (), (), "method=xml media-type=text/xml")
-            let $transform := transform:transform($dataWithId, $stylesheet, $param, (), "method=xml media-type=text/xml")
+            let $transform := transform:transform($dataWithId, $stylesheet, (), (), "method=xml media-type=text/xml")
             return $transform
         ) else ()    
     )
@@ -730,9 +727,11 @@ declare %private function local:updateTextContent($content, $newData)  {
         )
     
 };
-declare function local:updateHeader($data){
+declare function local:updateSingleFile($data){
     let $removeP := for $p in $data//tei:sourceDesc/tei:p
                         return update delete $p
+    let $removeSourceDoc := for $sourceDoc in $data//tei:sourceDoc
+                                return update delete $sourceDoc
     let $header-uri := concat($config:app-root, '/TEI/TEI-Header_D20.xml')
     let $header-doc := doc($header-uri)
     let $header-profileDesc := $header-doc//tei:profileDesc
@@ -755,29 +754,20 @@ declare function local:createManuscript($data, $newFilename) {
                                     return update delete $textContent
                             )
         let $contents := local:getFileContents($newData)
-        
+        let $log := console:log(count($contents//tei:sourceDoc/tei:surface))
         let $newText := if (empty($newData//tei:msDesc)) then (
-                            local:updateHeader($newData)    
+                            local:updateSingleFile($newData)
                         ) else (
                             for $content in $contents
                                 return local:updateTextContent($content, $newData)
                         )
         
-      (:  :   let $transform := local:getFileContents($newData)
-        let $newText := for $text in $transform//tei:text/tei:body/*
-                return update insert $text into $newData//tei:text/tei:body :)
-        
         let $createSourceDoc := if ($newData//tei:sourceDoc) then () else (
             update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
         )    
         
-        let $newSurface := for $surface in $contents//tei:sourceDoc/*
-            return update insert $surface into $newData//tei:sourceDoc
-        let $firstSurface := $newData//tei:sourceDoc/tei:surface/@xml:id
-        let $deleteFirstSourceDoc := if (empty($newData//tei:msDesc) and count($newData//tei:surface[@xml:id = $firstSurface]) gt 1) then (
-                                        for $surface in $newData//tei:surface[@xml:id = $firstSurface][1]
-                                            return update delete $surface
-                                    ) else () 
+        let $newSurface := for $surface in $contents//tei:sourceDoc/tei:surface
+                                    return update insert $surface into $newData//tei:sourceDoc
         return $newData
     )
 };

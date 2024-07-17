@@ -1,17 +1,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="2.0">
    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
-   <xsl:param name="headerFile" select="'../D20_HEADER.xml'"/>
    <xsl:variable name="METAMARK_EXCLUDE_STRING" select="'target'"/>
    <xsl:variable name="ADD_EXCLUDE_STRING" select="'xml:id'"/>
    <xsl:variable name="DEFAULT_EXCLUDE_STRING" select="'xml:id seq'"/>
-   <xsl:function name="tei:getHand">
-      <xsl:param name="pbCorresp"/>
-      <xsl:variable name="keys" select="tokenize($pbCorresp)"/>
-      <xsl:variable name="correspLength" select="count($keys)"/>
-      <xsl:if test="$correspLength gt 0 and doc-available($headerFile) and doc($headerFile)//tei:handNotes/tei:handNote[@xml:id = substring-after($keys[$correspLength], '#')]">
-         <xsl:value-of select="$keys[$correspLength]"/>
-      </xsl:if> 
-   </xsl:function>
    <xsl:function name="tei:filterOpeningTags">
       <xsl:param name="openingTags"/>
       <xsl:if test="count($openingTags) gt 0">
@@ -56,32 +47,18 @@
          <xsl:attribute name="facs">
             <xsl:value-of select="//tei:pb[@xml:id = substring-after(current()/@start, '#')]/@facs"/>
          </xsl:attribute>
-         <xsl:apply-templates>
-            <xsl:with-param name="pbHand" select="tei:getHand(//tei:pb[@xml:id = substring-after(current()/@start, '#')]/@corresp)"/>
-         </xsl:apply-templates>
+         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
    <xsl:template match="tei:zone[tei:line]">
-      <xsl:param name="pbHand"/>
       <xsl:element name="zone" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyAttributes"/>
-         <xsl:if test="$pbHand">
-            <xsl:attribute name="hand">
-               <xsl:value-of select="$pbHand"/>
-            </xsl:attribute>
-         </xsl:if>
          <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
    <xsl:template match="tei:zone">
-      <xsl:param name="pbHand"/>
       <xsl:element name="zone" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyAttributes"/>
-         <xsl:if test="$pbHand">
-            <xsl:attribute name="hand">
-               <xsl:value-of select="$pbHand"/>
-            </xsl:attribute>
-         </xsl:if>
          <xsl:apply-templates select="//*[@xml:id = substring-after(current()/@start, '#')]"/>
       </xsl:element>
    </xsl:template>
