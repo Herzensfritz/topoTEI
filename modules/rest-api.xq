@@ -134,17 +134,14 @@ declare
   %rest:path("/updateIIIF")
   %rest:POST
   %rest:form-param("json", "{$json}", "[]")
-   %rest:query-param("headerFile", "{$headerFile}", "TEI-Header_D20.xml")
-function myrest:myPostKnoraIRIs($json as xs:string*, $headerFile as xs:string*) {
+function myrest:myPostKnoraIRIs($json as xs:string*) {
     let $array := parse-json($json)
     let $output-collection := xmldb:login(concat($config:app-root, '/TEI/'), 'test', 'test')
-    let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
-    let $document := doc($doc-uri)
     for $index in 1 to array:size($array)
         let $facsimile := array:get($array, $index)
         let $id := map:get($facsimile, 'id')
         let $iiif := map:get($facsimile, 'iiif')
-        let $update := local:updateFacsimile($id, $iiif, $document)
+        let $update := local:updateFacsimile($id, $iiif, $config:facs_header_doc)
        (:  :  let $log := console:log($update) :)
     return 
      <rest:response>
@@ -727,16 +724,16 @@ declare %private function local:updateTextContent($content, $newData)  {
         )
     
 };
-declare function local:updateSingleFile($data){
+declare function local:updateSingleFile($data, $facsimile){
     let $removeP := for $p in $data//tei:sourceDesc/tei:p
                         return update delete $p
     let $removeSourceDoc := for $sourceDoc in $data//tei:sourceDoc
                                 return update delete $sourceDoc
-    let $header-uri := concat($config:app-root, '/TEI/TEI-Header_D20.xml')
-    let $header-doc := doc($header-uri)
-    let $header-profileDesc := $header-doc//tei:profileDesc
+    
+    let $insFacs := update insert $facsimile into $data/tei:TEI
+    let $header-profileDesc := $config:tei_header_doc//tei:profileDesc
     let $profileDesc := update insert $header-profileDesc into $data//tei:teiHeader
-    let $header-msDesc := $header-doc//tei:sourceDesc/tei:msDesc
+    let $header-msDesc := $config:tei_header_doc//tei:sourceDesc/tei:msDesc
     return update insert $header-msDesc into $data//tei:sourceDesc
 };
 declare function local:createManuscript($data, $newFilename) {
@@ -749,14 +746,19 @@ declare function local:createManuscript($data, $newFilename) {
     ) else (
         let $newFile := storage:store($data, 'output', $newFilename)
         let $newData := doc($newFile)
+        let $facsimile := $config:facs_header_doc//tei:facsimile 
         let $emptyText := if (empty($newData//tei:msDesc)) then () else (
                                 for $textContent in $newData//tei:text/tei:body/*
-                                    return update delete $textContent
+                                    return update delete $textContent,
+                                for $dsurface in $newData//tei:facsimile/tei:surface
+                                    return update delete $dsurface,
+                                for $surface in $facsimile/tei:surface
+                                    return update insert $surface into $newData//tei:facsimile
                             )
         let $contents := local:getFileContents($newData)
         let $log := console:log(count($contents//tei:sourceDoc/tei:surface))
         let $newText := if (empty($newData//tei:msDesc)) then (
-                            local:updateSingleFile($newData)
+                            local:updateSingleFile($newData, $facsimile)
                         ) else (
                             for $content in $contents
                                 return local:updateTextContent($content, $newData)
@@ -775,15 +777,18 @@ declare function local:createManuscript($data, $newFilename) {
 declare
     %rest:path("/manuscript")
     %rest:GET
-    %rest:query-param("headerFile", "{$headerFile}", "TEI-Header_D20.xml")
     %rest:produces("application/xml")
-function myrest:donwloadManuscript($headerFile as xs:string*) {
-    let $doc-uri := concat($config:app-root, '/TEI/', $headerFile)
+function myrest:donwloadManuscript() {
     let $mimetype   := 'application/xml'
     let $method     := 'xml'
-   
-    let $data := doc($doc-uri)
-    let $newFilename := concat(substring-before(replace($data//tei:titleStmt//tei:title//text(), ' ', '_'), '_('), '.xml')
+    let $date := format-dateTime(current-dateTime(), "[Y0001][M01][D01]")
+    let $newFilename := concat($config:manuscript_name, '_', $date, '.xml')
+    let $data := document{
+        processing-instruction teipublisher {
+            'template="surface.html" odd="surface.odd" view="surface" media="print"'
+        },
+        $config:tei_header_doc
+    }
     let $newData := local:createManuscript($data, $newFilename)
     return (
     <rest:response>

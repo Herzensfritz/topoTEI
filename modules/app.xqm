@@ -161,7 +161,8 @@ declare function app:title($node as node(), $model as map(*)) as element(h1) {
     )
 };
 declare function local:getTeiFiles($newest as xs:boolean) as xs:string* {
-    let $contentList := doc(concat($config:app-root, '/TEI/TEI-Header_D20.xml'))//tei:msContents//tei:locus/text()
+    (:   let $contentList := doc(concat($config:app-root, '/TEI/TEI-Header_D20.xml'))//tei:msContents//tei:locus/text() :)
+    let $contentList := $config:tei_header_doc//tei:msContents//tei:locus/text()
     return if ($newest) then (
         for $resource in xmldb:get-child-resources($config:data-root)
                         where local:isTeiFile(doc(concat($config:data-root, '/', $resource)))

@@ -1,0 +1,677 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" version="4.1.0">
+   <teiHeader>
+      <fileDesc>
+         <titleStmt>
+          <title>a1r</title>
+         </titleStmt>
+         <publicationStmt><p/></publicationStmt><sourceDesc><p/></sourceDesc></fileDesc>
+   </teiHeader>
+   <facsimile>
+      <surface lrx="907.0" lry="1401.8" n="9v" ulx="37.1" uly="39.7" xml:id="D-20a_5v">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,5v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_18/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="922.2" lry="1404.2" n="10v" ulx="52.5" uly="41.0" xml:id="D-20a_6v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,6v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_20/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="705.9" lry="872.5" n="57r" ulx="43.7" uly="45.6" xml:id="D-20b_56">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,56" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_113/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="716.3" lry="872.3" n="59r" ulx="49.9" uly="43.5" xml:id="D-20b_58">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,58" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_117/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="922.7" lry="955.5" n="19r" ulx="42.6" uly="30.2" xml:id="D-20a_13c">
+         <graphic height="981.92pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/9DZY5mT9WYU-CBJC3jjgESU.jp2/full/7678,6137/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_37/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.1" lry="870.9" n="36r" ulx="44.0" uly="45.8" xml:id="D-20b_35">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,35" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_71/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="553.3" lry="826.9" n="64v" ulx="37.8" uly="25.1" xml:id="D-20b_61bv">
+         <graphic height="856.96pt" width="863.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61bv" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_128/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="722.4" lry="871.2" n="49v" ulx="56.8" uly="36.5" xml:id="D-20b_48v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,48v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_98/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="716.5" lry="869.0" n="48v" ulx="56.0" uly="42.7" xml:id="D-20b_47v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,47v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_96/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="706.2" lry="871.8" n="40v" ulx="43.4" uly="41.1" xml:id="D-20b_39v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,39v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_80/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="924.3" lry="1406.1" n="28v" ulx="46.2" uly="39.5" xml:id="D-20a_22v">
+         <graphic height="1442.88pt" width="1231.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,22v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_56/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="712.3" lry="877.6" n="24r" ulx="47.5" uly="49.8" xml:id="D-20b_23">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,23" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_47/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.8" lry="865.8" n="4v" ulx="42.4" uly="33.8" xml:id="D-20b_4v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,4v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_8/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="706.2" lry="871.5" n="39v" ulx="41.8" uly="40.0" xml:id="D-20b_38v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,38v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_78/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.9" lry="873.0" n="13r" ulx="44.2" uly="47.5" xml:id="D-20b_13">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,13" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_25/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.6" lry="877.3" n="47r" ulx="47.2" uly="45.8" xml:id="D-20b_46">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,46" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_93/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="917.0" lry="1396.6" n="20r" ulx="36.0" uly="37.0" xml:id="D-20a_14">
+         <graphic height="1441.28pt" width="1235.68pt" corresp="http://0.0.0.0:1024/0837/GAZWdIfJZYl-DvWOdRo7XdY.jp2/full/7723,9008/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_39/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.984" lry="873.492" n="43r" ulx="44.408" uly="43.054" xml:id="D-20b_42">
+         <graphic height="915.68pt" width="1020.32pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,42" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_85/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="720.2" lry="872.8" n="25r" ulx="55.4" uly="46.2" xml:id="D-20b_24">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,24" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_49/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="708.6" lry="869.0" n="33r" ulx="43.0" uly="40.3" xml:id="D-20b_32">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,32" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_65/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="700.5" lry="875.4" n="18r" ulx="39.7" uly="48.5" xml:id="D-20b_18">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,18" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_35/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="700.0" lry="866.4" n="37r" ulx="42.4" uly="43.5" xml:id="D-20b_36">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,36" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_73/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="921.582" lry="785.472" n="17v" ulx="48.282" uly="314.825" xml:id="D-20a_13v">
+         <graphic height="839.68pt" width="1227.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_34/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.8" lry="873.4" n="23r" ulx="47.4" uly="47.0" xml:id="D-20b_22">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,22" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_45/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="703.7" lry="873.6" n="56r" ulx="39.8" uly="47.8" xml:id="D-20b_55">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,55" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_111/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="717.4" lry="869.6" n="49r" ulx="55.0" uly="41.3" xml:id="D-20b_48">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,48" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_97/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="700.5" lry="873.4" n="14r" ulx="41.3" uly="45.9" xml:id="D-20b_14">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,14" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_27/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="727.5" lry="868.2" n="67r" ulx="56.5" uly="40.5" xml:id="D-20b_63">
+         <graphic height="908.32pt" width="1045.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,63" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_133/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="703.8" lry="871.5" n="40r" ulx="39.0" uly="43.0" xml:id="D-20b_39">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,39" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_79/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.0" lry="870.1" n="35r" ulx="38.7" uly="45.6" xml:id="D-20b_34">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,34" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_69/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.4" lry="864.6" n="35v" ulx="39.8" uly="38.1" xml:id="D-20b_34v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,34v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_70/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="921.4" lry="1405.0" n="16v" ulx="47.5" uly="40.8" xml:id="D-20a_12v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,12v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_32/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="707.4" lry="871.7" n="55r" ulx="42.6" uly="42.7" xml:id="D-20b_54">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,54" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_109/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="723.8" lry="874.6" n="66r" ulx="58.6" uly="48.2" xml:id="D-20b_62">
+         <graphic height="908.32pt" width="1046.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,62" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_131/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="903.8" lry="852.8" n="5r" ulx="42.1" uly="33.4" xml:id="D-20a_1">
+         <graphic height="896.8pt" width="1225.6pt" corresp="http://0.0.0.0:1024/0837/J2qdN6KgYbc-DAG48JOoGVI.jp2/full/7660,5605/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_9/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="696.5" lry="864.8" n="6v" ulx="36.0" uly="35.4" xml:id="D-20b_6v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,6v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_12/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="718.9" lry="882.2" n="70v" ulx="52.6" uly="53.0" xml:id="D-20b_66v">
+         <graphic height="920.0pt" width="1028.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,66v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_140/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.4" lry="871.4" n="53v" ulx="41.9" uly="38.2" xml:id="D-20b_52v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,52v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_106/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="705.4" lry="873.6" n="11v" ulx="39.0" uly="37.9" xml:id="D-20b_11v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,11v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_22/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="901.9" lry="1199.7" n="22v" ulx="35.2" uly="35.8" xml:id="D-20a_16v">
+         <graphic height="1246.08pt" width="1218.24pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,16v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_44/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="926.9" lry="1394.4" n="2v" ulx="49.4" uly="37.9" xml:id="D-20a_IV">
+         <graphic height="1446.08pt" width="1235.84pt" corresp="http://0.0.0.0:1024/0837/4Bx0ZYS1g66-BgBkXxWCZuq.jp2/full/7724,9038/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_4/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="915.747" lry="1405.546" n="30v" ulx="50.276" uly="26.538" xml:id="D-20a_24v">
+         <graphic height="1480.96pt" width="1221.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,24v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_60/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="703.0" lry="867.7" n="3r" ulx="43.4" uly="42.2" xml:id="D-20b_3">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,3" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_5/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.2" lry="870.6" n="7r" ulx="39.2" uly="44.8" xml:id="D-20b_7">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,7" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_13/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="923.5" lry="1410.7" n="32v" ulx="41.9" uly="41.9" xml:id="D-20a_26v">
+         <graphic height="1456.16pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,26v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_64/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="935.7" lry="1410.9" n="25v" ulx="53.6" uly="44.3" xml:id="D-20a_19v">
+         <graphic height="1450.08pt" width="1237.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,19v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_50/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.0" lry="876.0" n="44r" ulx="37.8" uly="48.8" xml:id="D-20b_43">
+         <graphic height="915.68pt" width="1020.32pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,43" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_87/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="932.5" lry="1410.7" n="26v" ulx="49.1" uly="43.7" xml:id="D-20a_20v">
+         <graphic height="1450.08pt" width="1237.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,20v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_52/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.8" lry="870.4" n="32r" ulx="40.8" uly="44.6" xml:id="D-20b_31">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,31" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_63/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="934.1" lry="1407.7" n="39r" ulx="46.4" uly="42.1" xml:id="D-20a_33">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,33" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_77/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="697.8" lry="874.1" n="13v" ulx="40.5" uly="47.7" xml:id="D-20b_13v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,13v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_26/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="929.6" lry="1413.1" n="34v" ulx="46.1" uly="47.4" xml:id="D-20a_28v">
+         <graphic height="1463.36pt" width="1231.36pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,28v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_68/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="707.7" lry="869.1" n="7v" ulx="48.3" uly="40.2" xml:id="D-20b_7v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,7v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_14/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="705.9" lry="874.2" n="20v" ulx="29.9" uly="46.4" xml:id="D-20b_19av">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19av" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_40/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="545.4" lry="824.8" n="64r" ulx="29.9" uly="25.6" xml:id="D-20b_61b">
+         <graphic height="856.96pt" width="863.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61b" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_127/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="714.4" lry="870.9" n="51r" ulx="49.3" uly="42.1" xml:id="D-20b_50">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,50" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_101/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="713.9" lry="873.0" n="55v" ulx="51.2" uly="47.4" xml:id="D-20b_54v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,54v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_110/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="707.5" lry="883.2" n="29v" ulx="45.3" uly="54.6" xml:id="D-20b_28v">
+         <graphic height="915.68pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,28v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_58/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="913.1" lry="1409.3" n="7v" ulx="36.2" uly="37.0" xml:id="D-20a_3v">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,3v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_14/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.0" lry="871.4" n="42v" ulx="36.0" uly="41.0" xml:id="D-20b_41v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,41v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_84/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="532.0" lry="824.5" n="65r" ulx="45.1" uly="53.9" xml:id="D-20b_61c">
+         <graphic height="856.96pt" width="863.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61c" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_129/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="903.2" lry="1406.1" n="7r" ulx="36.5" uly="42.1" xml:id="D-20a_3">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://0.0.0.0:1024/0837/C6QudauxmCZ-F0Up8grycVi.jp2/full/7595,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_13/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="693.4" lry="871.8" n="11r" ulx="33.9" uly="45.9" xml:id="D-20b_11">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,11" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_21/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.6" lry="872.5" n="16r" ulx="43.2" uly="47.0" xml:id="D-20b_16">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,16" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_31/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="714.6" lry="872.6" n="50v" ulx="53.3" uly="45.3" xml:id="D-20b_49v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,49v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_100/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="918.9" lry="1386.7" n="3v" ulx="48.0" uly="30.1" xml:id="D-20a_VI">
+         <graphic height="1446.08pt" width="1235.84pt" corresp="http://0.0.0.0:1024/0837/1FMehA77RqE-DEfkotqGHhX.jp2/full/7724,9038/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_6/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="703.7" lry="861.9" n="4v" ulx="39.8" uly="37.4" xml:id="D-20a_VIIa">
+         <graphic height="905.6pt" width="1014.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,VIIa" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_8/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="916.5" lry="1409.8" n="13r" ulx="45.3" uly="45.3" xml:id="D-20a_9">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/C5NF1ZuBfYa-G7tfdz94YjG.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_25/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="690.4" lry="868.2" n="15r" ulx="35.5" uly="43.5" xml:id="D-20b_15">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,15" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_29/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="917.1" lry="1407.2" n="11r" ulx="48.8" uly="43.5" xml:id="D-20a_7">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/FAXAO5UPcNb-B5ozP3vrOUR.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_21/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="934.7" lry="1403.7" n="30r" ulx="50.1" uly="39.0" xml:id="D-20a_24">
+         <graphic height="1448.64pt" width="1248.96pt" corresp="http://0.0.0.0:1024/0837/Ajhk4BnbePw-Eh2MbgMH1z8.jp2/full/7806,9054/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_59/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="902.4" lry="1407.7" n="8r" ulx="35.4" uly="43.5" xml:id="D-20a_4">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://0.0.0.0:1024/0837/8fro4yIx5Pp-FteshFuqZAq.jp2/full/7595,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_15/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="917.6" lry="1421.3" n="35r" ulx="39.0" uly="58.2" xml:id="D-20a_29">
+         <graphic height="1463.36pt" width="1231.36pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,29" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_69/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="719.465" lry="884.305" n="69r" ulx="45.733" uly="57.757" xml:id="D-20b_65">
+         <graphic height="920.0pt" width="1028.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,65" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_137/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="710.2" lry="872.5" n="26r" ulx="48.0" uly="42.9" xml:id="D-20b_25">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,25" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_51/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="706.2" lry="868.8" n="23v" ulx="45.9" uly="42.1" xml:id="D-20b_22v">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,22v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_46/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.1" lry="869.8" n="17v" ulx="40.3" uly="41.1" xml:id="D-20b_17v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,17v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_34/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.1" lry="869.3" n="32v" ulx="39.7" uly="43.2" xml:id="D-20b_31v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,31v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_64/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.6" lry="871.4" n="31v" ulx="39.4" uly="42.7" xml:id="D-20b_30v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,30v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_62/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="711.8" lry="882.1" n="68v" ulx="39.7" uly="50.6" xml:id="D-20b_64v">
+         <graphic height="920.0pt" width="1028.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,64v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_136/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="707.0" lry="874.9" n="27v" ulx="49.4" uly="47.0" xml:id="D-20b_26v">
+         <graphic height="915.68pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,26v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_54/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="719.4" lry="866.6" n="59v" ulx="43.5" uly="33.3" xml:id="D-20b_58v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,58v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_118/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.2" lry="872.6" n="14v" ulx="45.4" uly="48.5" xml:id="D-20b_14v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,14v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_28/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="911.5" lry="1395.8" n="24r" ulx="43.0" uly="32.0" xml:id="D-20a_18">
+         <graphic height="1441.28pt" width="1222.56pt" corresp="http://0.0.0.0:1024/0837/WwLJdPykUv-Eg0IYXrfufy.jp2/full/7641,9008/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_47/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.1" lry="870.2" n="2r" ulx="38.9" uly="41.4" xml:id="D-20b_2">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,2" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_3/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="719.418" lry="872.382" n="20r" ulx="45.519" uly="37.504" xml:id="D-20b_19a">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19a" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_39/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="920.0" lry="808.3" n="18v" ulx="40.3" uly="212.2" xml:id="D-20a_13b">
+         <graphic height="839.68pt" width="1227.04pt" corresp="http://0.0.0.0:1024/0837/5lsjZSyPuSb-GQI2Byi1pUW.jp2/full/7669,5248/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_36/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.0" lry="873.8" n="30r" ulx="29.0" uly="46.1" xml:id="D-20b_29">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,29" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_59/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="939.5" lry="1412.0" n="37v" ulx="59.0" uly="44.6" xml:id="D-20a_31v">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,31v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_74/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.1" lry="866.4" n="16v" ulx="45.4" uly="41.8" xml:id="D-20b_16v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,16v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_32/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="919.8" lry="1412.3" n="31r" ulx="39.7" uly="49.4" xml:id="D-20a_25">
+         <graphic height="1456.16pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,25" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_61/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="720.8" lry="878.2" n="61v" ulx="54.7" uly="49.9" xml:id="D-20b_60v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,60v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_122/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="936.0" lry="1413.6" n="36v" ulx="55.4" uly="48.3" xml:id="D-20a_30v">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,30v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_72/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="530.432" lry="806.452" n="40v" ulx="48.832" uly="417.345" xml:id="D-20a_35">
+         <graphic height="851.36pt" width="827.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,35" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_80/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="693.9" lry="865.8" n="5v" ulx="34.2" uly="37.0" xml:id="D-20b_5v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,5v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_10/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="937.9" lry="2090.7" n="21v" ulx="41.6" uly="32.6" xml:id="D-20a_15v">
+         <graphic height="2401.12pt" width="973.28pt" corresp="http://0.0.0.0:1024/0837/D8acgtMQaG3-C77VJK9RmlO.jp2/full/6083,15007/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_42/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="717.1" lry="868.3" n="61r" ulx="55.7" uly="43.8" xml:id="D-20b_60">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,60" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_121/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="923.5" lry="1412.3" n="32r" ulx="43.7" uly="45.9" xml:id="D-20a_26">
+         <graphic height="1456.16pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,26" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_63/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.1" lry="871.2" n="9r" ulx="42.4" uly="45.9" xml:id="D-20b_9">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,9" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_17/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="716.5" lry="872.0" n="21v" ulx="35.8" uly="40.8" xml:id="D-20b_20v">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,20v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_42/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="706.9" lry="871.2" n="41v" ulx="43.4" uly="41.3" xml:id="D-20b_40v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,40v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_82/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="713.1" lry="876.5" n="22r" ulx="50.7" uly="50.9" xml:id="D-20b_21">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,21" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_43/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="679.8" lry="368.2" n="19r" ulx="26.9" uly="26.4" xml:id="D-20b_19">
+         <graphic height="842.24pt" width="997.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_37/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="698.9" lry="874.6" n="10r" ulx="39.8" uly="49.4" xml:id="D-20b_10">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,10" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_19/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="919.4" lry="1410.2" n="25r" ulx="40.5" uly="44.0" xml:id="D-20a_19">
+         <graphic height="1450.08pt" width="1237.12pt" corresp="http://0.0.0.0:1024/0837/JuaUoSF7nFf-GNjgkonod2W.jp2/full/7732,9063/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_49/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="696.2" lry="868.2" n="6r" ulx="38.9" uly="44.5" xml:id="D-20b_6">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,6" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_11/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="913.6" lry="861.0" n="5v" ulx="52.5" uly="35.0" xml:id="D-20a_1v">
+         <graphic height="909.92pt" width="1225.6pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,1v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_10/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="731.256" lry="869.775" n="67v" ulx="60.571" uly="41.606" xml:id="D-20b_63v">
+         <graphic height="908.32pt" width="1045.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,63v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_134/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="718.9" lry="868.8" n="52r" ulx="54.2" uly="41.4" xml:id="D-20b_51">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,51" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_103/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.2" lry="869.4" n="42r" ulx="41.4" uly="43.7" xml:id="D-20b_41">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,41" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_83/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="716.2" lry="870.6" n="51v" ulx="51.7" uly="38.9" xml:id="D-20b_50v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,50v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_102/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="705.1" lry="869.3" n="33v" ulx="42.1" uly="40.5" xml:id="D-20b_32v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,32v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_66/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="714.6" lry="877.3" n="62v" ulx="47.0" uly="47.8" xml:id="D-20b_61v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_124/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="523.8" lry="796.095" n="41r" ulx="42.9" uly="386.343" xml:id="D-20a_36">
+         <graphic height="851.36pt" width="827.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,36" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_81/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="932.0" lry="1412.6" n="38v" ulx="58.9" uly="49.8" xml:id="D-20a_32v">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,32v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_76/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="710.2" lry="875.5" n="1r" ulx="50.7" uly="47.2" xml:id="D-20b_1">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,1" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_1/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="919.7" lry="1390.9" n="3r" ulx="49.4" uly="35.5" xml:id="D-20a_V">
+         <graphic height="1446.08pt" width="1235.84pt" corresp="http://0.0.0.0:1024/0837/LinvRUNVx4e-Bj9hjWJ5t8p.jp2/full/7724,9038/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_5/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="929.8" lry="1403.4" n="28r" ulx="51.7" uly="38.6" xml:id="D-20a_22">
+         <graphic height="1442.88pt" width="1243.2pt" corresp="http://0.0.0.0:1024/0837/U1J09d59Ze-BH7453dNv8V.jp2/full/7770,9018/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_55/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="909.4" lry="1405.3" n="8v" ulx="38.1" uly="39.5" xml:id="D-20a_4v">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,4v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_16/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="710.9" lry="868.3" n="53r" ulx="47.2" uly="41.6" xml:id="D-20b_52">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,52" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_105/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.8" lry="873.3" n="41r" ulx="37.0" uly="47.4" xml:id="D-20b_40">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,40" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_81/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.4" lry="871.7" n="38r" ulx="49.3" uly="44.6" xml:id="D-20b_37">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,37" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_75/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.4" lry="864.0" n="24v" ulx="50.4" uly="38.9" xml:id="D-20b_23v">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,23v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_48/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.3" lry="869.6" n="38v" ulx="42.2" uly="40.5" xml:id="D-20b_37v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,37v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_76/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="720.579" lry="883.188" n="68r" ulx="39.046" uly="45.489" xml:id="D-20b_64">
+         <graphic height="920.0pt" width="1028.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,64" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_135/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="907.0" lry="1397.4" n="1v" ulx="35.0" uly="37.1" xml:id="D-20a_II">
+         <graphic height="1446.08pt" width="1221.28pt" corresp="http://0.0.0.0:1024/0837/5b6Obn6FxEB-EK9fSrEUxnb.jp2/full/7633,9038/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_2/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.357" lry="320.455" n="19v" ulx="213.441" uly="15.54" xml:id="D-20b_19v">
+         <graphic height="867.2pt" width="997.12pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,19v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_38/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="713.6" lry="871.7" n="54v" ulx="50.9" uly="43.4" xml:id="D-20b_53v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,53v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_108/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.7" lry="878.6" n="28v" ulx="44.5" uly="48.5" xml:id="D-20b_27v">
+         <graphic height="915.68pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,27v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_56/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="705.0" lry="885.1" n="29r" ulx="38.2" uly="55.0" xml:id="D-20b_28">
+         <graphic height="915.68pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,28" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_57/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="712.3" lry="866.7" n="26v" ulx="50.6" uly="38.4" xml:id="D-20b_25v">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,25v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_52/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.2" lry="873.0" n="34r" ulx="37.6" uly="43.5" xml:id="D-20b_33">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,33" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_67/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.0" lry="863.8" n="2v" ulx="41.4" uly="35.8" xml:id="D-20b_2v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,2v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_4/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="918.2" lry="1408.5" n="14r" ulx="47.8" uly="44.8" xml:id="D-20a_10">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/AyuufPgbwU3-CPDkspHiCqZ.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_27/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="922.9" lry="1406.1" n="11v" ulx="43.5" uly="31.5" xml:id="D-20a_7v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,7v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_22/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="699.2" lry="869.6" n="10v" ulx="33.3" uly="37.9" xml:id="D-20b_10v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,10v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_20/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="720.5" lry="872.8" n="21r" ulx="43.0" uly="41.1" xml:id="D-20b_20">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,20" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_41/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="703.2" lry="874.6" n="8r" ulx="45.0" uly="49.6" xml:id="D-20b_8">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,8" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_15/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="915.8" lry="1401.1" n="23r" ulx="47.0" uly="31.7" xml:id="D-20a_17">
+         <graphic height="1441.28pt" width="1222.56pt" corresp="http://0.0.0.0:1024/0837/97KRjtfT0zi-GGn5F0vnZMa.jp2/full/7641,9008/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_45/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="928.5" lry="1404.3" n="13v" ulx="53.3" uly="40.0" xml:id="D-20a_9v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,9v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_26/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="917.6" lry="1398.4" n="23v" ulx="47.4" uly="27.0" xml:id="D-20a_17v">
+         <graphic height="1441.28pt" width="1222.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,17v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_46/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="902.6" lry="1391.8" n="6v" ulx="39.8" uly="35.4" xml:id="D-20a_2v">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,2v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_12/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="719.4" lry="875.2" n="62r" ulx="55.4" uly="49.0" xml:id="D-20b_61">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_123/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="697.1" lry="865.6" n="3v" ulx="35.8" uly="35.5" xml:id="D-20b_3v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,3v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_6/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="913.3" lry="1396.6" n="24v" ulx="40.2" uly="28.6" xml:id="D-20a_18v">
+         <graphic height="1441.28pt" width="1222.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,18v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_48/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="546.4" lry="827.2" n="63r" ulx="57.0" uly="50.9" xml:id="D-20b_61a">
+         <graphic height="856.96pt" width="863.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61a" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_125/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="899.7" lry="1390.7" n="6r" ulx="35.5" uly="32.8" xml:id="D-20a_2">
+         <graphic height="1432.48pt" width="1208.0pt" corresp="http://0.0.0.0:1024/0837/DfwhysDbyH6-FxBNJnteIp8.jp2/full/7550,8953/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_11/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="708.5" lry="882.6" n="69v" ulx="45.1" uly="56.5" xml:id="D-20b_65v">
+         <graphic height="920.0pt" width="1028.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,65v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_138/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="898.6" lry="1403.4" n="9r" ulx="31.7" uly="43.7" xml:id="D-20a_5">
+         <graphic height="1439.84pt" width="1215.2pt" corresp="http://0.0.0.0:1024/0837/KbNmn5DtS0w-Eyn8W0caZ2u.jp2/full/7595,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_17/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.1" lry="875.0" n="12v" ulx="41.3" uly="49.3" xml:id="D-20b_12v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,12v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_24/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="719.2" lry="878.4" n="46r" ulx="56.5" uly="49.9" xml:id="D-20b_45">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,45" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_91/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="921.1" lry="1413.8" n="15r" ulx="45.4" uly="45.9" xml:id="D-20a_11">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/ByyzS9XGiV5-Fuox3oIkdqy.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_29/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="926.9" lry="1409.9" n="36r" ulx="47.8" uly="44.6" xml:id="D-20a_30">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,30" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_71/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="935.7" lry="1407.2" n="39v" ulx="46.9" uly="43.4" xml:id="D-20a_33v">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,33v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_78/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="716.0" lry="874.6" n="47v" ulx="55.0" uly="45.9" xml:id="D-20b_46v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,46v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_94/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="514.803" lry="806.585" n="40r" ulx="32.103" uly="422.439" xml:id="D-20a_34">
+         <graphic height="851.36pt" width="827.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,34" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_79/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.1" lry="868.6" n="31r" ulx="39.8" uly="40.5" xml:id="D-20b_30">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,30" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_61/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="715.7" lry="868.6" n="48r" ulx="54.6" uly="40.3" xml:id="D-20b_47">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,47" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_95/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="710.2" lry="867.2" n="56v" ulx="44.5" uly="37.4" xml:id="D-20b_55v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,55v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_112/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="910.2" lry="1401.3" n="10r" ulx="43.0" uly="42.2" xml:id="D-20a_6">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/I32I1VkPTmo-F2D9RYscpJr.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_19/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="914.1" lry="1396.0" n="2r" ulx="42.6" uly="40.8" xml:id="D-20a_III">
+         <graphic height="1446.08pt" width="1235.84pt" corresp="http://0.0.0.0:1024/0837/LRhLeOaooXi-BE2lcKZuyBF.jp2/full/7724,9038/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_3/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="718.4" lry="870.7" n="60v" ulx="56.8" uly="48.8" xml:id="D-20b_59v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,59v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_120/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="924.0" lry="1410.7" n="31v" ulx="41.0" uly="44.2" xml:id="D-20a_25v">
+         <graphic height="1456.16pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,25v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_62/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="696.3" lry="866.7" n="1v" ulx="35.2" uly="41.0" xml:id="D-20b_1v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,1v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_2/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.4" lry="883.5" n="28r" ulx="49.4" uly="56.3" xml:id="D-20b_27">
+         <graphic height="915.68pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,27" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_55/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="702.6" lry="870.2" n="5r" ulx="45.6" uly="43.7" xml:id="D-20b_5">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,5" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_9/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.2" lry="874.7" n="17r" ulx="43.2" uly="48.6" xml:id="D-20b_17">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,17" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_33/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="931.0" lry="2011.0" n="29v" ulx="38.7" uly="40.8" xml:id="D-20a_23v">
+         <graphic height="2314.56pt" width="977.6pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,23v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_58/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="924.2" lry="1403.5" n="34r" ulx="41.9" uly="40.3" xml:id="D-20a_28">
+         <graphic height="1448.64pt" width="1237.44pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,28" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_67/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="924.5" lry="1409.3" n="26r" ulx="42.1" uly="47.4" xml:id="D-20a_20">
+         <graphic height="1450.08pt" width="1237.12pt" corresp="http://0.0.0.0:1024/0837/6yCsrfzZVzZ-DStBm0n6Hxf.jp2/full/7732,9063/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_51/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="712.0" lry="869.0" n="60r" ulx="53.4" uly="43.7" xml:id="D-20b_59">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,59" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_119/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="710.7" lry="873.4" n="27r" ulx="52.5" uly="48.0" xml:id="D-20b_26">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,26" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_53/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="712.6" lry="864.2" n="57v" ulx="47.7" uly="33.6" xml:id="D-20b_56v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,56v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_114/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.0" lry="873.3" n="39r" ulx="40.6" uly="45.3" xml:id="D-20b_38">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,38" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_77/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="736.762" lry="870.877" n="66v" ulx="58.368" uly="39.404" xml:id="D-20b_62v">
+         <graphic height="908.32pt" width="1045.28pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,62v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_132/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="933.9" lry="1411.7" n="38r" ulx="58.2" uly="45.9" xml:id="D-20a_32">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,32" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_75/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="911.0" lry="1408.5" n="12r" ulx="41.1" uly="45.4" xml:id="D-20a_8">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/F17ZG2dLSxB-D0qtUr8iMAt.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_23/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="698.7" lry="872.6" n="15v" ulx="42.2" uly="44.0" xml:id="D-20b_15v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,15v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_30/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="925.8" lry="1405.4" n="16r" ulx="51.4" uly="42.6" xml:id="D-20a_12">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://0.0.0.0:1024/0837/JzqhxFRMg0o-DjQC8wjiiEP.jp2/full/7678,8999/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_31/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="708.0" lry="871.0" n="22v" ulx="46.2" uly="45.1" xml:id="D-20b_21v">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,21v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_44/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="697.6" lry="859.2" n="4r" ulx="36.8" uly="39.4" xml:id="D-20a_VII">
+         <graphic height="905.6pt" width="1014.4pt" corresp="http://0.0.0.0:1024/0837/F7kqkiR5UvO-BHIUirXXS2f.jp2/full/6340,5660/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_7/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="717.0" lry="871.0" n="58v" ulx="53.4" uly="41.8" xml:id="D-20b_57v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,57v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_116/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="711.4" lry="868.2" n="46v" ulx="49.8" uly="39.8" xml:id="D-20b_45v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,45v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_92/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.4" lry="869.4" n="12r" ulx="42.9" uly="43.4" xml:id="D-20b_12">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,12" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_23/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="922.1" lry="1405.0" n="15v" ulx="46.6" uly="37.1" xml:id="D-20a_11v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,11v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_30/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="697.6" lry="861.3" n="18v" ulx="34.4" uly="35.0" xml:id="D-20b_18v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,18v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_36/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="697.213" lry="875.712" n="44v" ulx="31.086" uly="47.494" xml:id="D-20b_43v">
+         <graphic height="915.68pt" width="1020.32pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,43v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_88/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="931.0" lry="2108.0" n="21r" ulx="41.9" uly="45.9" xml:id="D-20a_15">
+         <graphic height="2401.12pt" width="973.28pt" corresp="http://0.0.0.0:1024/0837/ICmvqX9vga-G3yNa5f0yNB.jp2/full/6083,15007/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_41/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="929.6" lry="1406.4" n="37r" ulx="55.0" uly="41.0" xml:id="D-20a_31">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,31" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_73/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="697.6" lry="867.0" n="8v" ulx="40.5" uly="40.2" xml:id="D-20b_8v">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,8v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_16/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="912.8" lry="1408.0" n="1r" ulx="37.4" uly="45.9" xml:id="D-20a_I">
+         <graphic height="1446.08pt" width="1221.28pt" corresp="http://0.0.0.0:1024/0837/Fyv0zs0vKad-AzP0F4Uxxxc.jp2/full/7633,9038/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_1/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="701.4" lry="866.1" n="37v" ulx="44.0" uly="39.0" xml:id="D-20b_36v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,36v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_74/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="704.6" lry="860.0" n="45r" ulx="40.2" uly="33.8" xml:id="D-20b_44">
+         <graphic height="898.24pt" width="1025.76pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,44" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_89/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="931.4" lry="1413.3" n="35v" ulx="53.9" uly="48.6" xml:id="D-20a_29v">
+         <graphic height="1455.68pt" width="1243.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,29v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_70/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="522.1" lry="805.353" n="41v" ulx="39.5" uly="389.708" xml:id="D-20a_36v">
+         <graphic height="851.36pt" width="827.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,36v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_82/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="700.2" lry="871.4" n="4r" ulx="38.6" uly="42.6" xml:id="D-20b_4">
+         <graphic height="915.84pt" width="1010.4pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,4" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_7/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="544.0" lry="822.6" n="63v" ulx="61.4" uly="54.2" xml:id="D-20b_61av">
+         <graphic height="856.96pt" width="863.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61av" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_126/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="692.2" lry="869.9" n="9v" ulx="34.1" uly="44.5" xml:id="D-20b_9v">
+         <graphic height="916.0pt" width="1010.56pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,9v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_18/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="705.0" lry="875.8" n="70r" ulx="41.6" uly="51.0" xml:id="D-20b_66">
+         <graphic height="920.0pt" width="1028.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,66" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_139/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="922.4" lry="1409.0" n="33v" ulx="40.5" uly="43.2" xml:id="D-20a_27v">
+         <graphic height="1456.16pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,27v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_66/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="926.1" lry="1403.2" n="14v" ulx="46.9" uly="35.0" xml:id="D-20a_10v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,10v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_28/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="913.582" lry="797.188" n="17r" ulx="40.282" uly="321.351" xml:id="D-20a_13">
+         <graphic height="839.68pt" width="1227.04pt" corresp="http://0.0.0.0:1024/0837/IM6DrpRa5yD-EI83HB6h47S.jp2/full/7669,5248/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_33/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="713.9" lry="874.4" n="52v" ulx="47.4" uly="45.9" xml:id="D-20b_51v">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,51v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_104/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="708.5" lry="868.2" n="54r" ulx="42.2" uly="41.4" xml:id="D-20b_53">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,53" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_107/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="555.874" lry="826.829" n="65v" ulx="59.224" uly="56.917" xml:id="D-20b_61cv">
+         <graphic height="856.96pt" width="863.04pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,61cv" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_130/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="928.0" lry="1404.2" n="20v" ulx="39.2" uly="37.1" xml:id="D-20a_14v">
+         <graphic height="1441.28pt" width="1235.68pt" corresp="http://0.0.0.0:1024/0837/Li5EvXqubk4-C7JRQ9ZC5Sk.jp2/full/7723,9008/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_40/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="920.2" lry="790.6" n="18r" ulx="43.8" uly="203.2" xml:id="D-20a_13a">
+         <graphic height="839.68pt" width="1227.04pt" corresp="http://0.0.0.0:1024/0837/3sSYSyulzBf-D0M9Y7CP3yN.jp2/full/7669,5248/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_35/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="709.3" lry="869.4" n="36v" ulx="47.8" uly="38.7" xml:id="D-20b_35v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,35v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_72/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="711.0" lry="873.8" n="58r" ulx="47.7" uly="47.2" xml:id="D-20b_57">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,57" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_115/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="916.0" lry="948.3" n="19v" ulx="40.8" uly="28.6" xml:id="D-20a_13cv">
+         <graphic height="981.92pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,13cv" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_38/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="711.2" lry="872.6" n="30v" ulx="47.0" uly="42.4" xml:id="D-20b_29v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,29v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_60/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="708.3" lry="869.1" n="34v" ulx="47.2" uly="40.0" xml:id="D-20b_33v">
+         <graphic height="915.84pt" width="1020.64pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,33v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_68/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="917.0" lry="1398.4" n="12v" ulx="48.0" uly="37.9" xml:id="D-20a_8v">
+         <graphic height="1439.84pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,8v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_24/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="929.3" lry="787.4" n="27r" ulx="41.4" uly="104.3" xml:id="D-20a_21">
+         <graphic height="840.96pt" width="1235.68pt" corresp="http://0.0.0.0:1024/0837/3xHrheX5HW2-FOrymFmcMRS.jp2/full/7723,5256/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_53/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="720.2" lry="889.4" n="45v" ulx="52.8" uly="55.5" xml:id="D-20b_44v">
+         <graphic height="926.08pt" width="1027.2pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,44v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_90/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="933.8" lry="2019.2" n="29r" ulx="43.0" uly="48.2" xml:id="D-20a_23">
+         <graphic height="2324.8pt" width="977.6pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,23" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_57/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="929.1" lry="1410.9" n="33r" ulx="43.0" uly="44.2" xml:id="D-20a_27">
+         <graphic height="1456.16pt" width="1228.48pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,27" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_65/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="706.7" lry="868.3" n="43v" ulx="43.5" uly="39.2" xml:id="D-20b_42v">
+         <graphic height="915.68pt" width="1020.32pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,42v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_86/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="718.7" lry="868.0" n="50r" ulx="56.8" uly="41.9" xml:id="D-20b_49">
+         <graphic height="909.76pt" width="1030.08pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,49" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_99/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="917.058" lry="1211.332" n="22r" ulx="45.324" uly="32.905" xml:id="D-20a_16">
+         <graphic height="1246.08pt" width="1218.24pt" corresp="http://0.0.0.0:1024/0837/9QQ8dWNa5xa-GIMrL19n1ND.jp2/full/7614,7788/0/default.jpg" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_43/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="933.6" lry="800.0" n="27v" ulx="49.4" uly="114.1" xml:id="D-20a_21v">
+         <graphic height="840.96pt" width="1235.68pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20a,21v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75094!75094_54/full/full/0/default.jpg"/>
+      </surface>
+      <surface lrx="711.5" lry="874.6" n="25v" ulx="48.5" uly="47.0" xml:id="D-20b_24v">
+         <graphic height="915.68pt" width="1023.52pt" corresp="http://www.nietzschesource.org/DFGAapi/api/page/download/D-20b,24v" url="https://ores.klassik-stiftung.de/digilib/Scaler/IIIF/gsa!Arbeitskopie!71!75097!75097_50/full/full/0/default.jpg"/>
+      </surface>
+     </facsimile>
+</TEI>

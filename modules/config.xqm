@@ -43,7 +43,17 @@ declare variable $config:font-config := doc(concat($config:app-root, "/config/fo
 
 declare variable $config:tp-extension := '_tp.xml';
 
+declare variable $config:manuscript_name := 'Druckmanuskript_D20';
+
+declare variable $config:facs_header_file := 'D20_facs.xml';
+
+declare variable $config:tei_header_file := 'D20_HEADER.xml';
+
 declare variable $config:data-root := $config:app-root || "/data";
+
+declare variable $config:facs_header_doc := doc(concat($config:app-root, "/TEI/", $config:facs_header_file));
+
+declare variable $config:tei_header_doc := doc(concat($config:app-root, "/TEI/", $config:tei_header_file));
 
 declare variable $config:dirMap := map{ "data": $config:data-root,
                         "config" : concat($config:app-root, '/config'),
