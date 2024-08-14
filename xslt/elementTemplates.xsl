@@ -377,7 +377,7 @@
                 <xsl:with-param name="childId" select="$childId"/>
                 <xsl:with-param name="parentId" select="$parentId"/>
                <!-- <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/> -->
-               <xsl:with-param name="childClass" select="if (@instant = 'true') then (concat(@place, ' instantaneous')) else (@place)"/>
+               <xsl:with-param name="childClass" select="if (@instant = 'true' or parent::tei:subst/@instant = 'true') then (concat(@place, ' instantaneous')) else (@place)"/>
                 <xsl:with-param name="parentClass" select="if ($rend) then (concat($rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
                 <xsl:with-param name="childStyle" select="$childStyle"/>
                 <xsl:with-param name="parentStyle" select="$parentStyle"/>
