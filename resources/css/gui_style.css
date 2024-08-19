@@ -145,6 +145,9 @@ body {
          width: max-content;
          line-height: 1em;
      }
+     .inline  .above, .inline .below {
+      font-size: 60%;
+      }
      .above.instantaneous {
        font-size: 100%; 
     }
@@ -184,7 +187,8 @@ body {
    .beforePunctuationinsertion-below:before { margin-left: 4px;}
    .addSpan { font-size:80%;}
    .erased { color: grey;}
-    .inline { font-size:80%;}
+   .inline { font-size:80%;}
+   
      .inline.instantaneous {
        font-size: 100%; 
     }

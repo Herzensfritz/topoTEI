@@ -119,7 +119,11 @@
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
       <xsl:variable name="endId" select="if (following::tei:line[@start]) then (substring-after(following::tei:line[@start][1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[@start][1]/@start, '#'))        else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[@start][1]/@start,'#')))"/>
       <xsl:variable name="isZone" select="if (contains(parent::tei:zone/@type, 'zone') or tei:zone/@type = 'head' or tei:zone/@type = 'flushRight') then ('true') else ('false')"/>
-      <xsl:variable name="spanType" select="replace(concat(@hand, ' ', @rend,' ',tei:zone/@type), '#', '')"/>
+      <!--<xsl:variable name="isInline" select="if (($isZone = 'true' and not(tei:zone/@type = 'head' or tei:zone/@type = 'flushRight')) 
+      and (($endId and count(//tei:add[preceding::tei:lb[1]/@xml:id = $startId and following::tei:lb[1]/@xml:id = $endId and (empty(@place) or @place='inline')]) gt 0) 
+      or (count(//tei:add[preceding::tei:lb[1]/@xml:id = $startId and (empty(@place) or @place='inline')]) gt 0))) then ('true') else ('false')"/> -->
+      <xsl:variable name="isInline" select="if (($isZone = 'true' and not(tei:zone/@type = 'head' or tei:zone/@type = 'flushRight'))        and  (//tei:add[empty(@place) and child::tei:lb[@xml:id = $startId]])) then ('true') else ('false')"/>
+      <xsl:variable name="spanType" select="replace(concat(@hand, ' ', @rend,' ',tei:zone/@type, ' ', if ($isInline = 'true') then ('inline') else ()), '#', '')"/>
       <xsl:variable name="spanStyle" select="if ($isZone = 'true') then (         if (tei:zone/@xml:id) then (tei:zone/@style) else (parent::tei:zone/@style)) else ()"/>
       <div id="{@xml:id}" class="{$lineClass}" style="{@style}">
          <xsl:call-template name="writeLineNumber">

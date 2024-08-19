@@ -148,12 +148,22 @@
       </span>
    </xsl:template>
    <xsl:template match="tei:choice[not(tei:sic/tei:lb)]">
-      <span class="editorCorrection" title="{tei:sic/text()} &gt;{tei:corr/text()}">
-         <xsl:apply-templates select="tei:sic"/>
+      <xsl:param name="type">-1</xsl:param>
+      <xsl:param name="startId"/>
+      <span class="editorCorrection" title="{tei:sic/text()} &gt;{tei:corr/text()}" data-debug="{$type}" data-start-id="{$startId}">
+         <xsl:apply-templates select="tei:sic">
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="startId" select="$startId"/>
+         </xsl:apply-templates>
       </span>
    </xsl:template>
    <xsl:template match="tei:sic">
-      <xsl:apply-templates/>
+      <xsl:param name="type">-1</xsl:param>
+      <xsl:param name="startId"/>
+      <xsl:apply-templates>
+            <xsl:with-param name="type" select="$type"/>
+            <xsl:with-param name="startId" select="$startId"/>
+      </xsl:apply-templates>
    </xsl:template>
    <xsl:template match="text()[parent::tei:sic/tei:lb]">
       <span class="editorCorrection" title="{normalize-space(string-join(parent::tei:sic/text(), ''))} &gt;{ancestor::tei:choice/tei:corr/text()}">
@@ -217,16 +227,23 @@
    </xsl:template>
    <!-- Process deletions -->
    <xsl:template name="del" match="tei:del">
+      <xsl:param name="type">-1</xsl:param>
+      <xsl:param name="startId"/>
       <xsl:variable name="deleted" select="concat('deleted',replace(replace(@hand, '@', '0'),'#','-'))"/>
       <xsl:choose>
          <xsl:when test="@rend != ''">
             <span class="{concat(@rend, replace(@hand,'#','-'))}" title="{text()}">
-               <xsl:apply-templates/>
+               <xsl:apply-templates>
+                  <xsl:with-param name="type" select="$type"/>
+                  <xsl:with-param name="startId" select="$startId"/>
+               </xsl:apply-templates>
             </span>
          </xsl:when>
          <xsl:otherwise>
             <span class="{$deleted}" title="{text()}">
                <xsl:apply-templates>
+                  <xsl:with-param name="type" select="$type"/>
+                  <xsl:with-param name="startId" select="$startId"/>
                </xsl:apply-templates>
             </span>
          </xsl:otherwise>
@@ -267,20 +284,29 @@
       <xsl:param name="startId"/>
       <xsl:param name="debug"/>
       <xsl:choose>
-         <xsl:when test="parent::tei:restore/@type = 'strike'">
+         <xsl:when test="parent::tei:restore/starts-with(@type, 'strike')">
             <span class="deleted-{@rend}">
+               <xsl:apply-templates>
+                  <xsl:with-param name="type" select="$type"/>
+                  <xsl:with-param name="startId" select="$startId"/>
+               </xsl:apply-templates>
+            </span>
+         </xsl:when>
+         <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS) and (ancestor::tei:add[(empty(@place) or contains(@place, 'inline')) and not(@instant='true') ]//tei:lb[@xml:id = $startId])">
+            <span class="{ancestor::tei:add[empty(@place) or contains(@place, 'inline')]/substring-after(@hand, '#')}              {ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId])]/@rend} {@rend}" data-debug="{$type}" data-msg="first-hi-when">
                <xsl:apply-templates/>
             </span>
          </xsl:when>
          <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS) and (ancestor::*[@rend]/tei:lb[@xml:id = $startId])">
-            <span class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId])]/@rend} {@rend}">
+            <span class="{ancestor::*[@rend and (tei:lb[@xml:id = $startId] or child::*/tei:lb[@xml:id = $startId])]/@rend} {@rend}" data-debug="{$type}" data-msg="second-hi-when">
                <xsl:apply-templates/>
             </span>
          </xsl:when>
          <xsl:otherwise>
-            <span data-debug="{$type}" data-msg="{$debug}" class="{@rend}">
+            <span data-debug="{$type}" data-msg="hi-otherwise" class="{@rend}">
                <xsl:apply-templates>
-               <xsl:with-param name="type" select="-1"/>
+               <xsl:with-param name="type" select="$type"/>
+               <xsl:with-param name="startId" select="$startId"/>
                </xsl:apply-templates>
          </span>
          </xsl:otherwise>
@@ -292,7 +318,7 @@
       <xsl:param name="isZone"/>
       <xsl:param name="spanClass"/>
       <xsl:param name="spanStyle"/>
-      <xsl:variable name="class" select="if ($isZone = 'true' and $spanClass != 'flushRight') then (concat('marginLeft', ' ', $spanClass)) else ($spanClass)"/>
+      <xsl:variable name="class" select="if ($isZone = 'true' and not(contains($spanClass,'flushRight'))) then (concat('marginLeft', ' ', $spanClass)) else ($spanClass)"/>
       <xsl:attribute name="id">
             <xsl:value-of select="$parentZoneId"/>
       </xsl:attribute>
@@ -407,16 +433,24 @@
    <!-- Process metamarks -->
    <xsl:template match="tei:metamark">
       <xsl:param name="id"/>
+      <xsl:param name="type">-1</xsl:param>
+      <xsl:param name="startId"/>
       <xsl:choose>
          <xsl:when test="@target">
             <xsl:variable name="target" select="if (contains(@target, ' ')) then (substring-before(substring-after(@target, '#'), ' ')) else (substring-after(@target, '#'))"/>
             <span id="{@xml:id}" class="metamark {replace(replace(@rend, '#', ''), '\*','')}" onmouseover="toggleHighlight('{$target}', true)" onmouseout="toggleHighlight('{$target}', false)">
-               <xsl:apply-templates/>
+               <xsl:apply-templates>
+                  <xsl:with-param name="type" select="$type"/>
+                  <xsl:with-param name="startId" select="$startId"/>
+               </xsl:apply-templates>
             </span>
          </xsl:when>
          <xsl:otherwise>
             <span id="{@xml:id}" class="{if (contains(@rend, '#') or contains(@rend, '*')) then (replace(replace(@rend, '#', ''), '*','')) else (@rend)}">
-               <xsl:apply-templates/>
+               <xsl:apply-templates>
+                  <xsl:with-param name="type" select="$type"/>
+                  <xsl:with-param name="startId" select="$startId"/>
+               </xsl:apply-templates>
             </span>
          </xsl:otherwise>
       </xsl:choose>
@@ -441,7 +475,7 @@
             </span>
          </xsl:when>
          <xsl:when test="($type eq $SIMPLE_BETWEEN_TWO_LBS or $type eq $NO_ENDID or $type eq $CURRENT_LB_IS_LAST_INSIDE_TAG) and (ancestor::tei:add[empty(@place) or contains(@place, 'inline')]//tei:lb[@xml:id = $startId])">
-            <span data-debug="{$type}" data-msg="second-when" class="inline {ancestor::tei:add[empty(@place) or contains(@place, 'inline') and tei:lb[@xml:id = $startId]]/replace(@hand, '#', '')}">
+            <span data-debug="{$type}" data-msg="second-when" class="{ancestor::tei:add[empty(@place) or contains(@place, 'inline') and tei:lb[@xml:id = $startId]]/replace(@hand, '#', '')}">
                <xsl:value-of select="."/>
             </span>
          </xsl:when>
