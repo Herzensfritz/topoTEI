@@ -54,6 +54,8 @@
             <li>Erorr Message if file does not exist</li>
             <li>Fix for @rend="red-marking" in  %add[@place="above"]</li>
              <li>Fix for  %add[@place="above"] in %subst[@instant="true"] </li>
+             <li>Fix for  %add in %ab </li>
+             <li>Fix for data export for TeiPublisher </li>
          </ul>
          </change>
     </changelog>

@@ -156,22 +156,19 @@ function myrest:myPostKnoraIRIs($json as xs:string*) {
 declare
   %rest:path("/debug")
   %rest:GET
-  %rest:produces("application/json")
+  %rest:produces("application/xml")
 function myrest:debug() {
-    local:postFile('a14r.xml')
-    (: let $output-collection := xmldb:login($config:data-root, 'test', 'test')
-     :let $doc := xmldb:xcollection($config:data-root)
+     let $output-collection := xmldb:login($config:data-root, 'test', 'test')
     return 
      <data desc="show all files with tei:text">
-        {   for $text in $doc//tei:text
-                let $file := util:document-name($text)
-                return <file url="{$file}">
-                    {}
+        {   for $resource in xmldb:get-child-resources($config:data-root)
+                return <file url="{$resource}">
+                    { (:  :myrest:deleteFile($resource, ()) :) }
                     </file>
                 
                
         } 
-    </data> :)
+    </data> 
 };
 
 declare
@@ -692,9 +689,9 @@ declare %private function local:updateTextContent($content, $newData)  {
     for $div1 in $content//tei:div1
         let $pb := $div1/tei:pb
         let $substJoins := $div1//tei:substJoin
-        
-        return if (empty($div1/@xml:id) or $newData//tei:div1[@xml:id = $div1/@xml:id]) then (
-            let $lastDiv1 := $newData//tei:div1[last()]
+        let $lastDiv1 := $newData//tei:div1[last()]
+        return if ($lastDiv1 and (empty($div1/@xml:id) or $newData//tei:div1[@xml:id = $div1/@xml:id])) then (
+            
             let $substJInsert := for $sub in $substJoins 
                                 return update insert $sub into $lastDiv1
             return for $div2 in $div1/tei:div2
@@ -722,7 +719,6 @@ declare %private function local:updateTextContent($content, $newData)  {
         ) else ( 
             update insert $div1 into $newData//tei:text/tei:body
         )
-    
 };
 declare function local:updateSingleFile($data, $facsimile){
     let $removeP := for $p in $data//tei:sourceDesc/tei:p
@@ -763,7 +759,6 @@ declare function local:createManuscript($data, $newFilename) {
                             for $content in $contents
                                 return local:updateTextContent($content, $newData)
                         )
-        
         let $createSourceDoc := if ($newData//tei:sourceDoc) then () else (
             update insert <sourceDoc xmlns="http://www.tei-c.org/ns/1.0"/> into $newData/tei:TEI    
         )    
