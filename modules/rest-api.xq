@@ -100,7 +100,7 @@ declare %private function local:postFile($file) {
          
         </http:multipart>
      </http:request>
-    return hc:send-request($request)[1]
+    return hc:send-request($request)
 };
 
 declare
@@ -113,7 +113,7 @@ function myrest:exportToTP($file as xs:string*) {
    return 
     <rest:response>
         <http:response status="302" message="Temporary Redirect">
-            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Cache-Control" value="no-cache, no-store, must-kkkkjjjjkrevalidate"/>
             <http:header name="Pragma" value="no-cache"/>
             <http:header name="Expires" value="0"/>
             <http:header name="X-XQuery-Cached" value="false"/>
@@ -767,6 +767,37 @@ declare function local:createManuscript($data, $newFilename) {
                                     return update insert $surface into $newData//tei:sourceDoc
         return $newData
     )
+};
+declare
+    %rest:path("/manuscriptTP")
+    %rest:GET
+    %rest:produces("application/xml")
+function myrest:exportManuscript() {
+    let $mimetype   := 'application/xml'
+    let $method     := 'xml'
+    let $date := format-dateTime(current-dateTime(), "[Y0001][M01][D01]")
+    let $newFilename := concat($config:manuscript_name, '_', $date, '.xml')
+    let $data := document{
+        processing-instruction teipublisher {
+            'template="surface.html" odd="surface.odd" view="surface" media="print"'
+        },
+        $config:tei_header_doc
+    }
+    let $newData := local:createManuscript($data, $newFilename)
+    let $response := local:postFile($newFilename)
+    (:  :let $log := console:log($response[1]) :)
+   return
+    <rest:response>
+        <http:response status="302" message="Temporary Redirect">
+            <http:header name="Cache-Control" value="no-cache, no-store, must-revalidate"/>
+            <http:header name="Pragma" value="no-cache"/>
+            <http:header name="Expires" value="0"/>
+            <http:header name="X-XQuery-Cached" value="false"/>
+             <http:header name="location" value="http://localhost:8080/exist/apps/nietzsche-dm/{$newFilename}"/>
+
+        </http:response>
+    </rest:response>
+
 };
 
 declare

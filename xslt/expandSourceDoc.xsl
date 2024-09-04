@@ -119,6 +119,7 @@
       </xsl:element>
    </xsl:template>
    <xsl:template match="tei:subst|tei:head|tei:reg|tei:supplied">
+      <!-- <xsl:variable name="test" select="if (preceding-sibling::text()[1] != '') then (concat('ok: ', preceding-sibling::text()[1])) else (preceding-sibling::*[1]/text())"/> -->
       <xsl:apply-templates>
          <xsl:with-param name="instant" select="@instant"/>
       </xsl:apply-templates>
@@ -138,6 +139,8 @@
       </xsl:element>
    </xsl:template> 
    <xsl:template match="tei:del[(following-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id] or preceding-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id]) and (@rend='overwritten' or (@rend='erased' and ancestor::tei:subst and not(ancestor::tei:del[@rend='overwritten']))) and not(@cause)]">
+      <xsl:variable name="preWord" select="if (preceding::*[1]/local-name() = 'lb' or parent::tei:add[@place='superimposed']) then () else (preceding::node()[1])"/>
+      <xsl:variable name="postWord" select="if (following-sibling::tei:add[@place='superimposed'][1]/following::*[1]/local-name() = 'lb' or parent::tei:add[@place='superimposed']) then ()                                               else (following-sibling::tei:add[@place='superimposed'][1]/following::node()[1])"/>
       <xsl:variable name="causeId" select="if (following-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id]) then (following-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id][1]/@xml:id) else (preceding-sibling::tei:add[@place='superimposed' and ancestor::tei:subst/@xml:id = current()/ancestor::tei:subst/@xml:id][1]/@xml:id)"/>
       <xsl:element name="{local-name()}" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyNodeAttributes">
@@ -147,6 +150,31 @@
          <xsl:attribute name="cause">
              <xsl:value-of select="concat('#', $causeId)"/>
         </xsl:attribute>
+        <xsl:choose>
+         <xsl:when test="$preWord != '' and not(ends-with($preWord, ' ')) and $postWord != '' and not(starts-with($postWord, ' '))"> <!-- middle of word -->
+               <xsl:attribute name="type">
+                   <xsl:value-of select="'MOW'"/>
+              </xsl:attribute>
+           </xsl:when>
+           <xsl:when test="$preWord != '' and not(ends-with($preWord, ' '))"> <!-- end of  word -->
+               <xsl:attribute name="type">
+                   <xsl:value-of select="'EOW'"/>
+              </xsl:attribute>
+           </xsl:when>
+           <xsl:when test="$postWord != '' and not(starts-with($postWord, ' '))"> <!-- start of word -->
+               <xsl:attribute name="type">
+                   <xsl:value-of select="'SOW'"/>
+              </xsl:attribute>
+           </xsl:when>
+           <!--DEBUG: <xsl:otherwise>
+               <xsl:attribute name="pre">
+                   <xsl:value-of select="$preWord"/>
+              </xsl:attribute>
+               <xsl:attribute name="post">
+                   <xsl:value-of select="$postWord"/>
+              </xsl:attribute>
+           </xsl:otherwise> -->
+        </xsl:choose>
         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template> 
