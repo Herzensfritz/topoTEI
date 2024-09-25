@@ -689,18 +689,26 @@ declare %private function local:updateTextContent($content, $newData)  {
     for $div1 in $content//tei:div1
         let $pb := $div1/tei:pb
         let $substJoins := $div1//tei:substJoin
+        let $apps := $div1//tei:app
         let $lastDiv1 := $newData//tei:div1[last()]
         return if ($lastDiv1 and (empty($div1/@xml:id) or $newData//tei:div1[@xml:id = $div1/@xml:id])) then (
             
-            let $substJInsert := for $sub in $substJoins 
-                                return update insert $sub into $lastDiv1
-            return for $div2 in $div1/tei:div2
+          (:  :  let $substJInsert := for $sub in $substJoins 
+                                return update insert $sub into $lastDiv1 
+            return                    
+                        :)
+            for $div2 in $div1/tei:div2
                 return if (empty($div2/@xml:id) or $lastDiv1/tei:div2[@xml:id = $div2/@xml:id]) then (
                     let $lastDiv2 := $lastDiv1/tei:div2[last()]
                     
                     return for $p in $div2/tei:p
                          return if (not($p/preceding-sibling::tei:p)) then (
                                 let $pbInsert := update insert $pb into $lastDiv2/tei:p[last()]
+                                let $substJInsert := for $sub in $substJoins 
+                                        return update insert $sub into $lastDiv2/tei:p[last()]
+                                
+                                let $appInsert := for $app in $apps
+                                                    return update insert $app into $lastDiv2/tei:p[last()]
                                 (:  let $substJInsert := for $sub in $substJoins 
                                                         let $sub1Log := console:log($sub)
                                                         return update insert $sub into $lastDiv2/tei:p[last()] :)
@@ -711,7 +719,11 @@ declare %private function local:updateTextContent($content, $newData)  {
                              )
                 ) else (
                     let $pbInsert := if ($div2/preceding-sibling::tei:div2[not(@xml:id) or @xml:id = $lastDiv1/tei:div2/@xml:id]) then () else (
-                        update insert $pb into $lastDiv1
+                        let $pbInster := update insert $pb into $lastDiv1
+                        let $substJInsert := for $sub in $substJoins 
+                                        return update insert $sub into $lastDiv1
+                        for $app in $apps
+                            return update insert $app into $lastDiv1
                     )
                     
                     return update insert $div2 into $lastDiv1
@@ -742,6 +754,7 @@ declare function local:createManuscript($data, $newFilename) {
     ) else (
         let $newFile := storage:store($data, 'output', $newFilename)
         let $newData := doc($newFile)
+        
         let $facsimile := $config:facs_header_doc//tei:facsimile 
         let $emptyText := if (empty($newData//tei:msDesc)) then () else (
                                 for $textContent in $newData//tei:text/tei:body/*
@@ -752,7 +765,6 @@ declare function local:createManuscript($data, $newFilename) {
                                     return update insert $surface into $newData//tei:facsimile
                             )
         let $contents := local:getFileContents($newData)
-        let $log := console:log(count($contents//tei:sourceDoc/tei:surface))
         let $newText := if (empty($newData//tei:msDesc)) then (
                             local:updateSingleFile($newData, $facsimile)
                         ) else (
@@ -765,6 +777,7 @@ declare function local:createManuscript($data, $newFilename) {
         
         let $newSurface := for $surface in $contents//tei:sourceDoc/tei:surface
                                     return update insert $surface into $newData//tei:sourceDoc
+        let $log := console:log($newData)
         return $newData
     )
 };
@@ -776,7 +789,7 @@ function myrest:exportManuscript() {
     let $mimetype   := 'application/xml'
     let $method     := 'xml'
     let $date := format-dateTime(current-dateTime(), "[Y0001][M01][D01]")
-    let $newFilename := concat($config:manuscript_name, '_', $date, '.xml')
+    let $newFilename := 'D20.xml' (:  concat($config:manuscript_name, '_', $date, '.xml') :)
     let $data := document{
         processing-instruction teipublisher {
             'template="surface.html" odd="surface.odd" view="surface" media="print"'

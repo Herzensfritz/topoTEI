@@ -208,7 +208,7 @@
    <xsl:template name="lines">
       <xsl:param name="anchor_id"/>
       <xsl:param name="blockType"/>
-      <xsl:for-each select="//tei:lb[(@n and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and @xml:id) or (not(@n) and following-sibling::*[1]/local-name() = 'lb'  and normalize-space(following-sibling::text()[1]) ='')]">
+      <xsl:for-each select="//tei:lb[ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and ((@n and @xml:id) or (not(@n) and following-sibling::*[1]/local-name() = 'lb'  and normalize-space(following-sibling::text()[1]) =''))]">
          <xsl:variable name="lineType" select="tei:getLineType(current())"/>
          <xsl:choose>
             <xsl:when test="$lineType eq $EMPTY_LINE">

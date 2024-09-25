@@ -71,7 +71,11 @@ body {
       top: 3px;
       border-left: 2.5px solid;
    }
-   .indent { margin-left: 1em;}
+   .indent, .ident1 { margin-left: 1em;}
+   .indent2 { margin-left: 2em;}
+   .indent3 { margin-left: 3em;}
+   .indent4 { margin-left: 4em;}
+   .indent5 { margin-left: 5em;}
    *[draggable] { cursor: grab; }
     .deleted, .deleted-000, .hatching { cursor: context-menu; background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAHklEQVQIW2NkQAX/GZH4/4FsRpgAmAOSBBFwDkgAAIKuBATRTAAZAAAAAElFTkSuQmCC ) repeat; }
     .red-deleted { cursor: context-menu; background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><path stroke-width='2000' stroke='red' stroke-dasharray='1.2 1.8 1.2' d='M1,1 1500,1500'/></svg>") repeat; }
@@ -265,8 +269,8 @@ body {
         span.lnr { position:relative; left: -2.3em;font-style: italic; color: blue;margin-right: 20px;font-size: 80%; cursor: pointer;}
         span.zlnr { position:relative; left: -2.3em;font-style: italic; color: grey;margin-right: 20px;font-size: 80%; cursor: pointer;}
         span.nolnr { margin-left: 3.125em;}
-        div.line { line-height: 3.0em;  }
-        div.line.empty { display: inline-block;  }
+        div.line { line-height: 3.0em; }
+        div.line.empty { display: inline-block; }
         .flushRight {  float: right;
                         position: relative;
                         left: -1em;

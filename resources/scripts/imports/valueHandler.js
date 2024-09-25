@@ -81,7 +81,7 @@ class ValueHandler {
     handleButtons();
     if (inputObject.isClass){
          Array.from(document.getElementsByClassName(inputObject.id)).forEach(element =>{
-            this.setStyleToElement(element, newValue, inputObject)
+             this.setStyleToElement(element, newValue, inputObject)
          });
     } else {
         let element = document.getElementById(inputObject.id);
@@ -89,7 +89,7 @@ class ValueHandler {
     } 
 }
 setStyleToElement(element, newValue, paramObject){
-    element.style[paramObject.paramName] = newValue + paramObject.unit;
+    element.style[paramObject.paramName] = (paramObject.unit) ? newValue + paramObject.unit : newValue;
     element.classList.add(VALUE_CHANGED);
     if (element.inputMap && Object.hasOwn(element.inputMap,paramObject.paramName)) {
         element.inputMap[paramObject.paramName].value = newValue; 

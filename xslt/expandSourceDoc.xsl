@@ -3,6 +3,7 @@
    <xsl:variable name="METAMARK_EXCLUDE_STRING" select="'target'"/>
    <xsl:variable name="ADD_EXCLUDE_STRING" select="'xml:id'"/>
    <xsl:variable name="DEFAULT_EXCLUDE_STRING" select="'xml:id seq'"/>
+   <xsl:variable name="PARENT_SEQ_LIST" select="'|del|hi|add|seg|'"/>
    <xsl:function name="tei:filterOpeningTags">
       <xsl:param name="openingTags"/>
       <xsl:if test="count($openingTags) gt 0">
@@ -64,7 +65,7 @@
    </xsl:template>
    <xsl:template match="tei:line[tei:zone]">
       <xsl:variable name="startId" select="substring-after(@start, '#')"/>
-      <xsl:variable name="endId" select="if (following::tei:line) then (substring-after(following::tei:line[1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#')) else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[1]/@start,'#')))"/>
+         <xsl:variable name="endId" select="if (following::tei:line[@start]) then (substring-after(following::tei:line[@start][1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1][@start]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[@start][1]/@start, '#')) else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[@start][1]/@start,'#')))"/>
       <xsl:element name="line" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyAttributes"/>
          <xsl:attribute name="n">
@@ -82,7 +83,7 @@
             <xsl:call-template name="selectLbContent">
                <xsl:with-param name="startId" select="$startId"/>
                <xsl:with-param name="endId" select="$endId"/>
-               <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/parent::*[local-name() = 'del' or local-name() = 'hi']"/>
+               <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/ancestor::*[contains($PARENT_SEQ_LIST, concat('|',local-name(),'|')) ]"/>
             </xsl:call-template>
          </xsl:element>
       </xsl:element>
@@ -93,7 +94,7 @@
    <xsl:template match="tei:line">
       <xsl:element name="line" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:variable name="startId" select="substring-after(@start, '#')"/>
-         <xsl:variable name="endId" select="if (following::tei:line) then (substring-after(following::tei:line[1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[1]/@start, '#')) else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[1]/@start,'#')))"/>
+         <xsl:variable name="endId" select="if (following::tei:line[@start]) then (substring-after(following::tei:line[@start][1]/@start, '#')) else (if (parent::tei:zone/following-sibling::tei:*[1][@start]/local-name() = 'line') then (substring-after(parent::tei:zone/following-sibling::tei:line[@start][1]/@start, '#')) else (substring-after(parent::tei:zone/following-sibling::tei:zone[1]/tei:line[@start][1]/@start,'#')))"/>
          <xsl:call-template name="copyAttributes"/>
          <xsl:attribute name="n">
             <xsl:value-of select="//tei:lb[@xml:id = $startId]/@n"/>
@@ -106,7 +107,8 @@
          <xsl:call-template name="selectLbContent">
             <xsl:with-param name="startId" select="$startId"/>
             <xsl:with-param name="endId" select="$endId"/>
-            <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/ancestor::*[local-name() = 'del' or local-name() = 'hi' or local-name() = 'add']"/>
+            <!--            <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/ancestor::*[local-name() = 'del' or local-name() = 'hi' or local-name() = 'add']"/> -->
+            <xsl:with-param name="parentSequence" select="//tei:lb[@xml:id = $startId]/ancestor::*[contains($PARENT_SEQ_LIST, concat('|',local-name(),'|')) ]"/>
          </xsl:call-template>
          </xsl:element>
    </xsl:template>
@@ -338,6 +340,7 @@
          <xsl:call-template name="copyNodeAttributes">
             <xsl:with-param name="node" select="$openingTags[1]"/>
             <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+            <xsl:with-param name="id2corresp" select="if($openingTags[1]/local-name() = 'seg') then ('true') else ()"/>
          </xsl:call-template>
          <xsl:choose>
             <xsl:when test="count($openingTags) gt 1">
@@ -352,6 +355,7 @@
                   <xsl:call-template name="copyNodeAttributes">
                      <xsl:with-param name="node" select="$parentTag"/>
                      <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                     <xsl:with-param name="id2corresp" select="if($parentTag/local-name() = 'seg') then ('true') else ()"/>
                   </xsl:call-template>
                   <xsl:value-of select="$text"/>
                </xsl:element>
@@ -414,17 +418,17 @@
       <xsl:param name="endId"/>
       <xsl:param name="parentNode"/>
       <xsl:param name="parentSequence"/>
+      <xsl:param name="debug"/>
       <xsl:choose>
             <xsl:when test="count($parentSequence) gt 0">
                <xsl:choose>
                   <xsl:when test="($endId and //tei:lb[@xml:id = $endId and ancestor::* = $parentSequence[1]]) or ($parentNode and $parentNode/ancestor::* = $parentSequence[1])">
                      <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:for-each select="$parentSequence[1]/@*[name() != 'xml:id']">
-                             <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
-                             <xsl:attribute name="{$attName}">
-                               <xsl:value-of select="."/>
-                             </xsl:attribute>
-                        </xsl:for-each>
+                        <xsl:call-template name="copyNodeAttributes">
+                           <xsl:with-param name="node" select="$parentSequence[1]"/>
+                           <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                           <xsl:with-param name="id2corresp" select="if($parentSequence[1]/local-name() = 'seg') then ('true') else ()"/>
+                        </xsl:call-template>
                         <xsl:call-template name="selectLbContent">
                            <xsl:with-param name="startId" select="$startId"/>
                            <xsl:with-param name="endId" select="$endId"/>
@@ -432,19 +436,37 @@
                         </xsl:call-template>
                      </xsl:element>
                   </xsl:when>
+                  <xsl:when test="$startNode and ($endId and //tei:lb[@xml:id = $endId and preceding::* = $parentSequence[1]]) or ($parentNode and $parentNode/preceding::* = $parentSequence[1])">
+                     <xsl:if test="$parentSequence[1]/preceding::* = $startNode">
+                        <xsl:variable name="newParentNode" select="$parentSequence[1]"/>
+                        <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
+                           <xsl:call-template name="copyNodeAttributes">
+                              <xsl:with-param name="node" select="$parentSequence[1]"/>
+                              <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                              <xsl:with-param name="id2corresp" select="if($parentSequence[1]/local-name() = 'seg') then ('true') else ()"/>
+                           </xsl:call-template>
+                           <xsl:call-template name="selectLbContent">
+                              <xsl:with-param name="startNode" select="$startNode"/>
+                              <xsl:with-param name="parentNode" select="$newParentNode"/>
+                              <xsl:with-param name="parentSequence" select="subsequence($parentSequence, 2)"/>
+                              <xsl:with-param name="debug" select="$parentSequence[1]/local-name()"/>
+                           </xsl:call-template>
+                        </xsl:element>
+                     </xsl:if>
+                  </xsl:when>
                   <xsl:when test="($endId and //tei:lb[@xml:id = $endId and preceding::* = $parentSequence[1]]) or ($parentNode and $parentNode/preceding::* = $parentSequence[1])">
                      <xsl:variable name="newParentNode" select="$parentSequence[1]"/>
                      <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:for-each select="$parentSequence[1]/@*[name() != 'xml:id']">
-                             <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
-                             <xsl:attribute name="{$attName}">
-                               <xsl:value-of select="."/>
-                             </xsl:attribute>
-                        </xsl:for-each>
+                        <xsl:call-template name="copyNodeAttributes">
+                           <xsl:with-param name="node" select="$parentSequence[1]"/>
+                           <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                           <xsl:with-param name="id2corresp" select="if($parentSequence[1]/local-name() = 'seg') then ('true') else ()"/>
+                        </xsl:call-template>
                         <xsl:call-template name="selectLbContent">
                            <xsl:with-param name="startId" select="$startId"/>
                            <xsl:with-param name="parentNode" select="$newParentNode"/>
                            <xsl:with-param name="parentSequence" select="subsequence($parentSequence, 2)"/>
+                           <xsl:with-param name="debug" select="$parentSequence[1]/local-name()"/>
                         </xsl:call-template>
                      </xsl:element>
                      <xsl:call-template name="selectLbContent">
@@ -457,12 +479,11 @@
                   <xsl:otherwise>
                      <xsl:variable name="newParentNode" select="$parentSequence[1]"/>
                      <xsl:element name="{$parentSequence[1]/local-name()}" namespace="http://www.tei-c.org/ns/1.0">
-                        <xsl:for-each select="$parentSequence[1]/@*[name() != 'xml:id']">
-                             <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
-                             <xsl:attribute name="{$attName}">
-                               <xsl:value-of select="."/>
-                             </xsl:attribute>
-                        </xsl:for-each>
+                        <xsl:call-template name="copyNodeAttributes">
+                           <xsl:with-param name="node" select="$parentSequence[1]"/>
+                           <xsl:with-param name="excludeString" select="$DEFAULT_EXCLUDE_STRING"/>
+                           <xsl:with-param name="id2corresp" select="if($parentSequence[1]/local-name() = 'seg') then ('true') else ()"/>
+                        </xsl:call-template>
                         <xsl:call-template name="selectLbContent">
                            <xsl:with-param name="startId" select="$startId"/>
                            <xsl:with-param name="parentNode" select="$newParentNode"/>
@@ -519,13 +540,28 @@
    <xsl:template name="copyNodeAttributes">
       <xsl:param name="node"/>
       <xsl:param name="excludeString"/>
+      <xsl:param name="id2corresp"/>
+      <xsl:param name="debug"/>
+      <xsl:if test="$debug">
+         <xsl:attribute name="debug">
+             <xsl:value-of select="$debug"/>
+         </xsl:attribute>
+      </xsl:if>
       <xsl:for-each select="$node/@*">
            <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
-           <xsl:if test="not(contains($excludeString, $attName))">
-              <xsl:attribute name="{$attName}">
-                <xsl:value-of select="."/>
-              </xsl:attribute>
-           </xsl:if>
+           <xsl:choose>
+              <xsl:when test="$attName = 'xml:id' and $id2corresp = 'true'">
+                 <xsl:attribute name="corresp">
+                   <xsl:value-of select="."/>
+                 </xsl:attribute>
+              </xsl:when>
+              <xsl:when test="contains($excludeString, $attName)"/>
+              <xsl:otherwise>
+                 <xsl:attribute name="{$attName}">
+                   <xsl:value-of select="."/>
+                 </xsl:attribute>
+              </xsl:otherwise>
+           </xsl:choose>
       </xsl:for-each>
    </xsl:template>
    <xsl:template name="copyAttributes">
@@ -548,4 +584,5 @@
       </xsl:for-each>
    </xsl:template>
    <xsl:template match="tei:note[not(@type='authorial')]"/>
+   <xsl:template match="tei:lb"/>
 </xsl:stylesheet>

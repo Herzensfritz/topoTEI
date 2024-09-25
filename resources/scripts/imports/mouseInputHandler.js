@@ -21,7 +21,8 @@ class MouseInputHandler {
              event.stopPropagation();
          }
          if (this.keyStorage.modifierPressed){
-             if (this.keyStorage.shiftPressed){
+             item.classList.toggle("selected");
+            /* if (this.keyStorage.shiftPressed){
                  item.classList.toggle("selected")
              }else{
                  if (item.classList.contains('selected')){
@@ -32,7 +33,7 @@ class MouseInputHandler {
                      item.classList.toggle('clicked');
                      this.positioner.repositionElement(item, 0, currentOffset, false);
                  }
-             }
+             } */
          } else {
             const selected = Array.from(document.getElementsByClassName('selected'))
             const selectItem = (!selected.includes(item))
