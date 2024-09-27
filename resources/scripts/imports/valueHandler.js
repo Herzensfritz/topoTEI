@@ -9,6 +9,7 @@ class ValueHandler {
     
     constructor(history) {
         this.history = history;
+        this.spaceDialog = document.querySelector('#spaceDialog');
         this._keyListenerHandler = document.querySelector('toggle-listener')
         const selector = '*[data-handler=\"' + ValueHandler.ID + '\"]';
         const inputs = Array.from(document.querySelectorAll(selector))
@@ -28,7 +29,29 @@ class ValueHandler {
         pageButton.addEventListener("click", () => {
             this.pageSetup();    
         });
-        
+        if (this.spaceDialog){
+            
+            let input = this.spaceDialog.querySelector('#space');
+            input.addEventListener("change", (event) =>{
+                if (input.dataset.target){
+                    let target = document.querySelector('#' + input.dataset.target);
+                    target.style.marginRight = input.value + 'em';
+                    target.firstChild.style.width = input.value + 'em';
+                }
+            });
+            Array.from(document.querySelectorAll('.teiSpaceContainer')).forEach(space =>{
+                space.addEventListener("click", (event) =>{
+                    this.spaceDialog.showModal();
+                    input.value = (space.style.marginRight) ? space.style.marginRight.replace('em', '') : 0;
+                    input.dataset.target = space.id;
+                });
+            });
+            let closeButton = document.querySelector('#spaceDialogClose');
+            closeButton.addEventListener("click", (event) =>{
+                    this.spaceDialog.close();
+                     delete input.dataset.target;
+            });
+        }
     }
     pageSetup(){
         if (!topoTEIObject.runsOnBakFile){
@@ -43,6 +66,7 @@ class ValueHandler {
                 });
             }
         }   
+        
     }
     setInputValue(input, styleValue, id, isClass){
         if (styleValue) {

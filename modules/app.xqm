@@ -365,14 +365,27 @@ declare function app:createConfig($node as node(), $model as map(*)) as element(
     </div> 
 };
 
-declare function app:dialog($node as node(), $model as map(*)) as element(dialog) {
-        <dialog>
+declare function app:logDialog($node as node(), $model as map(*)) as element(dialog) {
+        <dialog id="logDialog">
             <nav>
                 <button title="Download log" id="downloadLog"><iron-icon icon='cloud-download'></iron-icon></button>
                 <button title="close" id="dialogClose"><iron-icon icon='close'></iron-icon></button>
              </nav>
             <p><textarea cols="70" rows="10" id="logTextField"></textarea></p>
            
+        </dialog>
+        
+};
+declare function app:spaceDialog($node as node(), $model as map(*)) as element(dialog) {
+        <dialog id="spaceDialog">
+            <nav>
+                <button title="close" id="spaceDialogClose"><iron-icon icon='close'></iron-icon></button>
+             </nav>
+            <form>
+                <label for="space">space (in 'em'):</label>
+                <input type="number" id="space" name="space"/>
+            </form>
+            <p>ACHTUNG: Dieser Wert wird nicht gespeichert und muss selbst von Hand in TEI/XML-Datei eingetragen werden!!!</p>
         </dialog>
         
 };

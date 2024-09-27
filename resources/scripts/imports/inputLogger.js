@@ -4,7 +4,7 @@ class InputLogger {
         this.button = document.getElementById('logButton');
         this.eventStack = [];
         this.MAX_TIME = (maxTime) ? maxTime : 5 * 60;
-        this.dialog = document.querySelector('dialog');
+        this.dialog = document.querySelector('#logDialog');
     }
     addEvent(event, item){
         const entry = {date: new Date(), timestamp: Math.floor(Date.now() / 1000), event: this._eventToString(event, item)}

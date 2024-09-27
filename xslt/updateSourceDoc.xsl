@@ -41,10 +41,95 @@
          </xsl:element>
    </xsl:template>
    <xsl:template match="tei:surface|tei:zone|tei:line"/>
+   <xsl:template name="createZone">
+      <xsl:param name="anchor_id"/>
+      <xsl:param name="node"/>
+      <xsl:variable name="blockType" select="tei:getBlockType($node)"/> 
+      <xsl:variable name="xmlId" select="concat('srcD_zone_', $node/tei:anchor[1]/@xml:id)"/>
+      <xsl:element name="zone">
+        <xsl:attribute name="xml:id">
+             <xsl:value-of select="$xmlId"/>
+         </xsl:attribute>
+         <xsl:attribute name="start">
+            <xsl:value-of select="concat('#', $node/tei:anchor[1]/@xml:id)"/>
+         </xsl:attribute>
+         <xsl:choose>
+            <xsl:when test="$blockType eq $FIRST_BLOCK_TYPE or $blockType eq $SINGLE_BLOCK_TYPE">
+               <xsl:attribute name="type">
+                  <xsl:value-of select="if ($blockType eq $SINGLE_BLOCK_TYPE) then ('singleBlock') else ('firstBlock')"/>
+               </xsl:attribute>
+               <xsl:attribute name="style">
+                  <xsl:value-of select="if (//tei:zone[@xml:id = $xmlId]/@style) then (//tei:zone[@xml:id = $xmlId]/@style) else (if ($blockType eq $SINGLE_BLOCK_TYPE) then ('padding-top:5em;padding-bottom:5em;') else ('padding-top:5em;'))"/>
+               </xsl:attribute>
+               <xsl:call-template name="fw-zone">
+                  <xsl:with-param name="start_id" select="$anchor_id"/>
+                  <xsl:with-param name="end_id" select="if ($anchor_id ne $node/tei:anchor[1]/@xml:id) then ($node/tei:anchor[1]/@xml:id) else ()"/>
+                  <xsl:with-param name="place" select="'top'"/>
+               </xsl:call-template>
+               <xsl:for-each select="if ($node/local-name() = 'div2') then ($node/preceding-sibling::tei:note) else ($node/tei:note[empty(descendant::tei:lb) and following-sibling::tei:p])">
+                  <xsl:call-template name="note-zone">
+                     <xsl:with-param name="noteId" select="@xml:id"/>
+                     <xsl:with-param name="place" select="@place"/>
+                  </xsl:call-template>
+               </xsl:for-each>
+               <xsl:if test="$node/preceding-sibling::tei:head or ($node/local-name() = 'div1' and $node/tei:head)">
+                  <xsl:call-template name="head-zone">
+                     <xsl:with-param name="head" select="if ($node/local-name() = 'div2') then ($node/preceding-sibling::tei:head) else ($node/tei:head[following-sibling::tei:p])"/>
+                  </xsl:call-template>
+               </xsl:if>
+            </xsl:when>
+            <xsl:when test="$blockType eq $LAST_BLOCK_TYPE">
+               <xsl:attribute name="type">
+                  <xsl:value-of select="'lastBlock'"/>
+               </xsl:attribute>
+               <xsl:attribute name="style">
+                  <xsl:value-of select="if (//tei:zone[@xml:id = $xmlId]/@style) then (//tei:zone[@xml:id = $xmlId]/@style) else ('padding-bottom:5em;')"/>
+               </xsl:attribute>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:attribute name="type">
+                  <xsl:value-of select="'textBlock'"/>
+               </xsl:attribute>
+            </xsl:otherwise>
+         </xsl:choose>
+         <xsl:call-template name="lines">
+            <xsl:with-param name="anchor_id" select="$node/tei:anchor[1]/@xml:id"/>
+            <xsl:with-param name="blockType" select="$blockType"/>
+         </xsl:call-template>
+         <xsl:if test="count($node/following-sibling::tei:div2) gt 0 and $node/descendant::tei:note">
+            <xsl:for-each select="$node/descendant::tei:note">
+               <xsl:if test="tei:getLineType($node/preceding-sibling::tei:lb[1]) ne $NOTE_LINE_TYPE_F and not($node/descendant::tei:lb)">
+                  <xsl:call-template name="note-zone">
+                     <xsl:with-param name="noteId" select="@xml:id"/>
+                     <xsl:with-param name="place" select="'bottom'"/>
+                  </xsl:call-template>
+               </xsl:if>
+            </xsl:for-each>
+         </xsl:if>
+         <xsl:if test="count($node/following-sibling::tei:div2) lt 1">
+            <xsl:for-each select="$node/following-sibling::tei:note"> <!-- changed from "following-sibling::tei:note|tei:note" because of a18r -->
+                  <xsl:call-template name="note-zone">
+                     <xsl:with-param name="noteId" select="@xml:id"/>
+                     <xsl:with-param name="place" select="@place"/>
+                  </xsl:call-template>
+            </xsl:for-each>
+            <xsl:call-template name="fw-zone">
+               <xsl:with-param name="start_id" select="$anchor_id"/>
+               <xsl:with-param name="end_id" select="if ($node/tei:anchor[1]/@xml:id ne $anchor_id) then ($node/tei:anchor[1]/@xml:id) else ()"/>
+               <xsl:with-param name="place" select="'bottom'"/>
+            </xsl:call-template>
+         </xsl:if>
+      </xsl:element>
+
+   </xsl:template>
    <xsl:template name="zones">
       <xsl:param name="anchor_id"/>
       <xsl:for-each select="tei:div2[ancestor::div1/tei:anchor[1]/@xml:id = $anchor_id]">
-         <xsl:variable name="blockType" select="tei:getBlockType(current())"/> 
+         <xsl:call-template name="createZone">
+            <xsl:with-param name="anchor_id" select="$anchor_id"/>
+            <xsl:with-param name="node" select="current()"/>
+         </xsl:call-template>
+         <!-- <xsl:variable name="blockType" select="tei:getBlockType(current())"/> 
          <xsl:variable name="xmlId" select="concat('srcD_zone_', tei:anchor[1]/@xml:id)"/>
          <xsl:element name="zone">
            <xsl:attribute name="xml:id">
@@ -107,7 +192,7 @@
                </xsl:for-each>
             </xsl:if>
             <xsl:if test="count(following-sibling::tei:div2) lt 1">
-               <xsl:for-each select="following-sibling::tei:note"> <!-- changed from "following-sibling::tei:note|tei:note" because of a18r -->
+               <xsl:for-each select="following-sibling::tei:note"> 
                      <xsl:call-template name="note-zone">
                         <xsl:with-param name="noteId" select="@xml:id"/>
                         <xsl:with-param name="place" select="@place"/>
@@ -120,7 +205,14 @@
                </xsl:call-template>
             </xsl:if>
          </xsl:element>
+         -->
      </xsl:for-each>
+     <xsl:if test="empty(tei:div2[ancestor::div1/tei:anchor[1]/@xml:id = $anchor_id])">
+         <xsl:call-template name="createZone">
+            <xsl:with-param name="anchor_id" select="$anchor_id"/>
+            <xsl:with-param name="node" select="current()"/>
+         </xsl:call-template>
+     </xsl:if>
    </xsl:template>
    <xsl:template name="addLineZone">
       <xsl:param name="lineId"/>
@@ -208,7 +300,7 @@
    <xsl:template name="lines">
       <xsl:param name="anchor_id"/>
       <xsl:param name="blockType"/>
-      <xsl:for-each select="//tei:lb[ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and ((@n and @xml:id) or (not(@n) and following-sibling::*[1]/local-name() = 'lb'  and normalize-space(following-sibling::text()[1]) =''))]">
+      <xsl:for-each select="//tei:lb[ancestor::tei:*/tei:anchor[@xml:id = $anchor_id] and ((@n and @xml:id) or (not(@n) and following-sibling::*[1]/local-name() = 'lb'  and normalize-space(following-sibling::text()[1]) =''))]">
          <xsl:variable name="lineType" select="tei:getLineType(current())"/>
          <xsl:choose>
             <xsl:when test="$lineType eq $EMPTY_LINE">
@@ -566,7 +658,9 @@
       <xsl:param name="start_id"/>
       <xsl:param name="end_id"/>
       <xsl:param name="place"/>
-      <xsl:for-each select="//tei:fw[ancestor::div1/tei:anchor[1]/@xml:id = $start_id and following-sibling::tei:div2/tei:anchor[1]/@xml:id = $end_id and starts-with(@place, $place)]">
+      <xsl:variable name="fws" select="if ($end_id)        then (//tei:fw[ancestor::div1/tei:anchor[1]/@xml:id = $start_id and following-sibling::tei:div2/tei:anchor[1]/@xml:id = $end_id and starts-with(@place, $place)])       else (//tei:fw[ancestor::div1/tei:anchor[1]/@xml:id = $start_id and starts-with(@place, $place)])"/>
+      <!-- <xsl:for-each select="//tei:fw[ancestor::div1/tei:anchor[1]/@xml:id = $start_id and following-sibling::tei:div2/tei:anchor[1]/@xml:id = $end_id and starts-with(@place, $place)]"> -->
+      <xsl:for-each select="$fws">
          <xsl:variable name="place" select="if (@place) then (@place) else ($place)"/>
          <xsl:variable name="xmlId" select="concat('srcD_zone_', current()/@xml:id)"/>
          <xsl:element name="zone">

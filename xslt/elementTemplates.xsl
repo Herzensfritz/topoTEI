@@ -251,9 +251,12 @@
    </xsl:template>
    <!-- Process space -->
    <xsl:template match="tei:space[@unit='char']">
-         <xsl:call-template name="insertSpace">
+      <xsl:variable name="width" select="concat(@quantity, 'em')"/>
+      <xsl:variable name="id" select="generate-id()"/>
+      <span id="{$id}" class="teiSpaceContainer" style="margin-right: {$width};"><span title="space: {$width}" class="teiSpace" style="width: {$width};"/></span>
+      <!--<xsl:call-template name="insertSpace">
             <xsl:with-param name="counter" select="@quantity"/>
-         </xsl:call-template>
+      </xsl:call-template>-->
    </xsl:template>
    <!-- Create empty space output -->
    <xsl:template name="insertSpace">

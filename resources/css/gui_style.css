@@ -11,6 +11,16 @@ body {
 .typesetter_red {
     color: var(--red);
 }
+    .teiSpaceContainer {
+        position: relative;
+    }
+    .teiSpaceContainer .teiSpace {
+        position: absolute;
+        height: 1em;
+        top: 0.25em;
+        background-color: orange;
+        
+    }
    #input { position: fixed; left: 70%;}
    form { margin-top: 2px;}
    #message { color: red;}

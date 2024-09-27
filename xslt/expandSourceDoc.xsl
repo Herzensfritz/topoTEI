@@ -51,7 +51,8 @@
          <xsl:apply-templates/>
       </xsl:element>
    </xsl:template>
-   <xsl:template match="tei:zone[tei:line]">
+   <xsl:template match="tei:zone[tei:line or parent::tei:surface]">
+      <xsl:variable name="debug" select="tei:line/@xml:id"/>
       <xsl:element name="zone" namespace="http://www.tei-c.org/ns/1.0">
          <xsl:call-template name="copyAttributes"/>
          <xsl:apply-templates/>
