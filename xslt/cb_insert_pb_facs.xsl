@@ -22,8 +22,8 @@
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>-->
-  <xsl:template match="tei:pb[empty(@edRef)]">
-    <xsl:variable name="id" select="concat('Ed_', replace(@n, '[\[\]\s]',''), '_id')"/>
+  <xsl:template match="tei:pb[@xml:id and empty(@facs)]">
+    <xsl:variable name="facs" select="concat('#K11_', @xml:id)"/>
     <xsl:element name="{local-name()}">
       <xsl:for-each select="@*">
            <xsl:variable name="attName" select="if (starts-with(name(),'xml:')) then (name()) else (local-name())"/>
@@ -31,8 +31,8 @@
              <xsl:value-of select="."/>
            </xsl:attribute>
       </xsl:for-each>
-      <xsl:attribute name="xml:id">
-          <xsl:value-of select="$id"/>
+      <xsl:attribute name="facs">
+          <xsl:value-of select="$facs"/>
       </xsl:attribute>
       <xsl:apply-templates/>
     </xsl:element>

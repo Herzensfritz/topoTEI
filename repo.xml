@@ -58,6 +58,12 @@
              <li>Fix for data export for TeiPublisher </li>
          </ul>
          </change>
+          <change version="3.0">
+         <ul>
+            <li>Last Version!</li>
+            
+         </ul>
+         </change>
     </changelog>
     
 </meta>

@@ -160,10 +160,10 @@ declare
 function myrest:debug() {
      let $output-collection := xmldb:login($config:data-root, 'test', 'test')
     return 
-     <data desc="show all files with tei:text">
+     <data desc="delete all files">
         {   for $resource in xmldb:get-child-resources($config:data-root)
                 return <file url="{$resource}">
-                    { (:  :myrest:deleteFile($resource, ()) :) }
+                     { (: myrest:deleteFile($resource, ()) :) } 
                     </file>
                 
                

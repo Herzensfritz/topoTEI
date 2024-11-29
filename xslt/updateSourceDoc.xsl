@@ -329,6 +329,9 @@
                <xsl:variable name="bottomValue" select="if ($blockType eq $MIDDLE_BLOCK_TYPE) then (0) else (count(//tei:lb/@n) - index-of(//tei:lb/@n, @n)[1] + 1)"/>
                <xsl:variable name="style" select="if (index-of(//tei:lb/@n, @n)[1] lt (count(//tei:lb) div 2)) then (concat('top:',$topValue,'em;')) else (concat('bottom:',$bottomValue,'em;'))"/>
                <xsl:element name="zone">   
+                  <xsl:attribute name="line-type">
+                     <xsl:value-of select="$lineType"/>
+                  </xsl:attribute>
                   <xsl:choose>
                      <xsl:when test="$lineType eq $NOTE_LINE_TYPE or $lineType eq $NOTE_LINE_TYPE_F">
                         <xsl:variable name="place" select="if (ancestor::tei:note/@place) then (ancestor::tei:note/@place) else (following-sibling::tei:note[1]/@place)"/>

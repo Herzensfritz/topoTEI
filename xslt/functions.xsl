@@ -116,7 +116,7 @@
          <xsl:when test="$currentNode/ancestor::tei:ab"> <!-- parent is tei:ab -->
             <xsl:value-of select="$AB_LINE_TYPE"/>
          </xsl:when>
-         <xsl:when test="count($currentNode/following-sibling::text()[1][normalize-space()]) eq 0 and $currentNode/following-sibling::tei:*[1]/local-name() = 'add' and ($currentNode/following-sibling::tei:add[1]/@place = 'inline' or $currentNode/following-sibling::tei:add[1]/empty(@place)) and ($currentNode/following-sibling::tei:add[1]/descendant::tei:lb[1] or count($currentNode/following-sibling::tei:add[1]/following-sibling::text()[1][normalize-space()]) eq 0)">
+         <xsl:when test="$currentNode/@type='addLine'">
             <xsl:value-of select="$ADD_LINE_TYPE_F"/><!-- following sibling is tei:add -->
          </xsl:when>
          <xsl:when test="$currentNode/ancestor::tei:add"> <!-- parent is tei:add -->

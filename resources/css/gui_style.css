@@ -157,7 +157,7 @@ body {
          position: absolute;
          top: -1.5em;
          width: max-content;
-         line-height: 1em;
+         line-height: 1.5em;
      }
     /* .inline  .above, .inline .below {
       font-size: 60%;
@@ -276,8 +276,11 @@ body {
         .above-linearisiert:after { content: '\2309'; }
          .below-linearisiert:before { content: '\230A'; }
          .below-linearisiert:after { content: '\230B'; }
-        span.lnr { position:relative; left: -2.3em;font-style: italic; color: blue;margin-right: 20px;font-size: 80%; cursor: pointer;}
-        span.zlnr { position:relative; left: -2.3em;font-style: italic; color: grey;margin-right: 20px;font-size: 80%; cursor: pointer;}
+        span.lnr, span.zlnr {
+            position:relative; left: -2.3em; font-style: italic; font-size: 80%; cursor: pointer; width: 3.5em;display: inline-block; margin-right: 1.5em;
+        }
+        span.lnr {  color: blue;}
+        span.zlnr { color: grey;}
         span.nolnr { margin-left: 3.125em;}
         div.line { line-height: 3.0em; }
         div.line.empty { display: inline-block; }
