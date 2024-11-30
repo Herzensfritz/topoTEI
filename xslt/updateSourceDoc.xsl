@@ -404,7 +404,7 @@
       <xsl:param name="anchor_id"/>
       <xsl:param name="lb_id"/>
       <xsl:param name="updateId"/>
-      <xsl:for-each select="//tei:add[@xml:id and (contains(@place, 'above') or contains(@place, 'below')) and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and preceding::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[contains(@place, 'above') or contains(@place, 'below')])]">
+      <xsl:for-each select="//tei:add[@xml:id and (contains(@place, 'above') or contains(@place, 'below') or contains(@place, 'before') or contains(@place, 'after')) and ancestor::tei:div2/tei:anchor[1]/@xml:id = $anchor_id and preceding::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[contains(@place, 'above') or contains(@place, 'below') or contains(@place, 'before') or contains(@place, 'after')])]">
          <xsl:choose>
             <xsl:when test="$updateId and //tei:line[@xml:id = $updateId]//tei:*[@* = concat('#', current()/@xml:id)]">
                <xsl:copy-of select="if (//tei:line[@xml:id = $updateId]//tei:metamark[@target=concat('#', current()/@xml:id)]) then (//tei:line[@xml:id = $updateId]//tei:metamark[@target=concat('#', current()/@xml:id)]) else (//tei:line[@xml:id = $updateId]//tei:add[@corresp = concat('#', current()/@xml:id)])"/>
@@ -421,7 +421,7 @@
    <xsl:template name="parentHeadAdd">
       <xsl:param name="head"/>
       <xsl:param name="lb_id"/>
-      <xsl:for-each select="$head/tei:add[          @xml:id and (@place = 'above' or @place = 'below')           and (preceding-sibling::tei:lb[1][@xml:id = $lb_id] or                 (ancestor::tei:subst/preceding-sibling::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below']))              )       ]">
+      <xsl:for-each select="$head/tei:add[@xml:id and (@place = 'above' or @place = 'below' or contains(@place, 'before') or contains(@place, 'after')) and (preceding-sibling::tei:lb[1][@xml:id = $lb_id] or                 (ancestor::tei:subst/preceding-sibling::tei:lb[1][@xml:id = $lb_id] and not(ancestor::tei:add[@place = 'above' or @place = 'below' or contains(@place, 'before') or contains(@place, 'after')])))]">
          <xsl:call-template name="add">
             <xsl:with-param name="id" select="@xml:id"/>
          </xsl:call-template>
@@ -495,7 +495,7 @@
                         <xsl:value-of select="//tei:add[@xml:id = $addXmlId]/@style"/>
                      </xsl:attribute>
                   </xsl:if>
-                  <xsl:for-each select="descendant::tei:add[(contains(@place, 'above') or contains(@place, 'below')) and empty(index-of(ancestor::tei:add/ancestor::tei:add/@xml:id, current()/@xml:id))]">
+                  <xsl:for-each select="descendant::tei:add[(contains(@place, 'above') or contains(@place, 'below') or contains(@place, 'before') or contains(@place, 'after')) and empty(index-of(ancestor::tei:add/ancestor::tei:add/@xml:id, current()/@xml:id))]">
                      <xsl:call-template name="add">
                         <xsl:with-param name="id" select="@xml:id"/>
                         <xsl:with-param name="rend" select="@rend"/>
@@ -518,7 +518,7 @@
                         <xsl:value-of select="//tei:add[@xml:id = $addXmlId]/@style"/>
                      </xsl:attribute>
                   </xsl:if>
-                  <xsl:for-each select="descendant::tei:add[(contains(@place, 'above') or contains(@place, 'below')) and empty(index-of(ancestor::tei:add/ancestor::tei:add/@xml:id, current()/@xml:id))]">
+                  <xsl:for-each select="descendant::tei:add[(contains(@place, 'above') or contains(@place, 'below') or contains(@place, 'before') or contains(@place, 'after')) and empty(index-of(ancestor::tei:add/ancestor::tei:add/@xml:id, current()/@xml:id))]">
                   <xsl:call-template name="add">
                      <xsl:with-param name="id" select="@xml:id"/>
                      <xsl:with-param name="rend" select="@rend"/>

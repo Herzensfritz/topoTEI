@@ -1,6 +1,6 @@
 var DOWNLOAD_LINK = 'downloadLink';
 var FILENAME = 'filename';
-var INSERTION_MARK_REGEX = /[A-Za-z]+insertion-(above|below)/g;
+var INSERTION_MARK_REGEX = /[A-Za-z]+insertion-(above|below|before|after)/g;
 var LINE = 'line';
 var LINE_HEIGHT_INPUT = 'lineHeightInput';
 var LINE_INPUT = 'lineInput';

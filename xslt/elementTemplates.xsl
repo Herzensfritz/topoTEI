@@ -395,7 +395,7 @@
       <xsl:param name="startId"/>
       <xsl:variable name="hand" select="if (@hand) then (replace(@hand,'#','')) else (replace(ancestor::*[@hand and preceding::tei:lb[@xml:id = $startId]]/@hand, '#',''))"/>
       <xsl:choose>
-         <xsl:when test="@place and (contains(@place,'above') or contains(@place,'below'))">
+         <xsl:when test="@place and (contains(@place,'above') or contains(@place,'below') or contains(@place, 'before') or contains(@place, 'after'))">
             <xsl:variable name="addId" select="concat('#', @xml:id)"/>
             <xsl:variable name="childId" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@xml:id"/>
             <xsl:variable name="childStyle" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@style"/>

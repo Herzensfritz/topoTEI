@@ -153,6 +153,16 @@ body {
     .below {
        font-size:80%; 
     }
+    .before, .after {
+        position: absolute;
+        width: max-content;
+    }
+    .after {
+        left: 1em;
+    }
+    .before {
+        left: -1em;
+    }
      .above  {
          position: absolute;
          top: -1.5em;
@@ -178,6 +188,9 @@ body {
          transform: translateX(-30%);
      }
      .insert-mark-above, .insert-mark-below { position: relative;padding-left: 2px; padding-right: 2px; height: 100%; }
+     .insertion-before, .insertion-after {
+         position: relative; left: 0em;
+     }
      .afterWordinsertion-below, .beforePunctuationinsertion-below, .inWordinsertion-below, .inSpatiuminsertion-below,.insMinsertion-below, .Ezinsertion-below, .insertion-below  { 
          position:relative; top: 10px;height: 100%; width: 100%; 
       }

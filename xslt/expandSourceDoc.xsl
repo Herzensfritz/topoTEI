@@ -181,7 +181,7 @@
         <xsl:apply-templates/>
       </xsl:element>
    </xsl:template> 
-   <xsl:template match="tei:add[@place='above' or @place='below']">
+   <xsl:template match="tei:add[@place='above' or @place='below' or @place='before' or @place='after']">
       <xsl:param name="instant"/>
       <xsl:choose>
          <xsl:when test="//tei:metamark[@target= concat('#', current()/@xml:id)]">

@@ -2,7 +2,7 @@ import {html, css, LitElement} from 'https://esm.run/lit';
 import './toggleSwitch.js';
 
 export class PositionInfo extends LitElement {
-  static INSERTION_MARK_REGEX = /[A-Za-z]+insertion-(above|below)/g;
+  static INSERTION_MARK_REGEX = /[A-Za-z]+insertion-(above|below|before|after)/g;
   static styles = css`
       div.position {
          display: grid;

@@ -18,7 +18,7 @@ class PositionInfoFeeder {
            selectedLines.forEach(line  =>{
                const lnr = line.getElementsByClassName('lnr')[0];
                const title = 'Zeile ' + lnr.innerText;
-               const items = Array.from(line.querySelectorAll('.above, .below, .head, .flushRight'))
+               const items = Array.from(line.querySelectorAll('.above, .below, .before, .after, .head, .flushRight'))
                
                const itemObject = {title: title, items: items, left: this.getElementLeft, top: this.getElementTop}
                this.positionInfoElement.appendItem(itemObject)
@@ -26,14 +26,14 @@ class PositionInfoFeeder {
             
         }
         const selectedAdd = Array.from(document.getElementsByClassName('selected')).filter(item =>
-            (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below, .marginLeft').length > 0)
+            (item.closest('div.zoneLine') && item.closest('div.zoneLine').querySelectorAll('.above, .below, .before, .after, .marginLeft').length > 0)
         ).map(item =>item.closest("div.zoneLine"));
         const selectedAddLines = Array.from(new Set(selectedAdd))
         if (selectedAddLines.length > 0){
            selectedAddLines.forEach(line  =>{
                const lnr = line.getElementsByClassName('zlnr')[0];
                const title = 'Zeile ' + lnr.innerText;
-               const items = Array.from(line.querySelectorAll('.above, .below, .marginLeft'))
+               const items = Array.from(line.querySelectorAll('.above, .below, .before, .after, .marginLeft'))
                const itemObject = {title: title, items: items, left: this.getElementLeft, top: this.getElementTop}
                this.positionInfoElement.appendItem(itemObject)
             });

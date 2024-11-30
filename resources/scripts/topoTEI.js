@@ -163,7 +163,7 @@ function showLinePositionDialog(element, paramName, alwaysOn){
            let style = (element.nextSibling.style[verticalInput.dataset.param]) ? element.nextSibling.style[verticalInput.dataset.param] :  element.nextSibling.offsetLeft/fontSize + 'em';
            setInputValue(verticalInput, style, element.nextSibling.id, false);
            input.style.visibility = 'visible';
-           if(element.nextSibling.querySelectorAll('.above, .below').length > 0){
+           if(element.nextSibling.querySelectorAll('.above, .below, .before, .after').length > 0){
                 positionInfo();   
            }
         }
