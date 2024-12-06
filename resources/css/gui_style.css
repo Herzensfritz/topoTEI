@@ -99,7 +99,7 @@ body {
      .textBlock { position: relative;}
      .add-zone { font-size: 80%; }
      .ab-zone { }
-     .zoneLine { position: absolute; z-index: 10;}
+     .zoneLine { position: absolute; z-index: 10;width:120%;}
      .note-zone-bottom-right { position: absolute; bottom: 1em;  font-style: italic;}
      .fw-top { position: absolute; top: -0.1em;}
      .fw-top-right { position: absolute; top: -0.1em; right: 50px;}
@@ -120,27 +120,42 @@ body {
      .top-left { text-align: left }
      .bottom-left { text-align: left }
      .top-right { margin-left: 60%; }
-     .afterWordinsertion-above, .beforePunctuationinsertion-above, .endOfLineinsertion-above,.inWordinsertion-above, .inSpatiuminsertion-above, .insMinsertion-above, .Ezinsertion-above, .insertion-above { 
+      .insertion-above { 
          position:relative; top: -2px;height: 100%; width: 100%; }
-     .inSpatiuminsertion-above { padding-left: -0.1em;}
-     .beforePunctuationinsertion-above { padding-left: 3px;}
-     .afterWordinsertion-above:before, .beforePunctuationinsertion-above:before, .endOfLineinsertion-above:before,.inWordinsertion-above:before, .inSpatiuminsertion-above:before, .insMinsertion-above:before, .Ezinsertion-above:before { 
+     .inSpatium { padding-left: -0.1em;}
+     .beforePunctuation { padding-left: -0.01em;}
+       .insertionMark.insertion-below:before { 
         position: absolute;
         content: "";
-        left: -2px;
+        width: 0.2em;
+        height: inherit;
+        top: 2px;
+        border-bottom: 1px solid;
+        border-color: inherit;
+    }
+     .insertionMark.insertion-above:before, .insertionMark.left.insertion-below:before { 
+        position: absolute;
+        content: "";
         height: inherit;
         width: var(--length);
         top: -3px;
         border-top: 1px solid;
-        border-left: 1px solid;
-        border-top-left-radius: var(--radius);
         border-color: inherit;/* inherit color from text */
      }
-    .inSpatiuminsertion-above:before { left: -0.1em; }
-    .afterWordinsertion-above:before, .endOfLineinsertion-above:before { left: 0.05em;   }
-    .inWordinsertion-above:before { left: -0.5px; }
-
-    .beforePunctuationinsertion-above:before {  left: 2px;  }
+     .insertionMark.right.insertion-above:before, .insertionMark.right.insertion-below:before { 
+        left: -2px;
+        border-left: 1px solid;
+        border-top-left-radius: var(--radius);
+     }
+     .insertionMark.left.insertion-above:before { 
+        left: -2px;
+        border-right: 1px solid;
+        border-top-right-radius: var(--radius);
+     }
+    .inSpatium.insertion-above:before { left: -0.1em; }
+    .afterWord.insertion-above:before, .endOfLine.insertion-above:before { left: 0.05em;   }
+    .inWord.insertion-above:before { left: -0.5px; }
+    .beforePunctuation.insertion-above:before {  left: 2px;  }
      .below { 
         position: absolute;
         top: 1.8em;
@@ -191,27 +206,14 @@ body {
      .insertion-before, .insertion-after {
          position: relative; left: 0em;
      }
-     .afterWordinsertion-below, .beforePunctuationinsertion-below, .inWordinsertion-below, .inSpatiuminsertion-below,.insMinsertion-below, .Ezinsertion-below, .insertion-below  { 
-         position:relative; top: 10px;height: 100%; width: 100%; 
-      }
-     .inSpatiuminsertion-below { padding-left: -3.5px;}
-     .beforePunctuationinsertion-below { padding-left: 3px;}
-     .afterWordinsertion-below:before, .beforePunctuationinsertion-below:before, .inWordinsertion-below:before, .inSpatiuminsertion-below:before, .insMinsertion-below:before, .Ezinsertion-below:before { 
-        position: absolute;
-        content: "";
-        left: -2px;
-        width: var(--length);
-        height: inherit;
-        top: 2px;
-        border-bottom: 1px solid;
-        border-left: 1px solid;
-        border-bottom-left-radius:  var(--radius);
-        border-color: inherit;
-     }
-    .inSpatiuminsertion-below:before { left: -3.5px; }
-    .afterWordinsertion-below:before { left: 1px;   }
-    .inWordinsertion-below:before { left: -0.5px; }
-   .beforePunctuationinsertion-below:before { margin-left: 4px;}
+    
+     .inSpatium.insertion-below { padding-left: -3.5px;}
+     .beforePunctuation.insertion-below { padding-left: 3px;}
+     
+    .inSpatium.insertion-below:before { left: -3.5px; }
+    .afterWord.insertion-below:before { left: 1px;   }
+    .inWord.insertion-below:before { left: -0.5px; }
+   .beforePunctuation.insertion-below:before { margin-left: 4px;}
    .addSpan { font-size:80%;}
    .erased { color: grey;}
    .inline { font-size:80%;}
@@ -290,13 +292,13 @@ body {
          .below-linearisiert:before { content: '\230A'; }
          .below-linearisiert:after { content: '\230B'; }
         span.lnr, span.zlnr {
-            position:relative; left: -2.3em; font-style: italic; font-size: 80%; cursor: pointer; width: 3.5em;display: inline-block; margin-right: 1.5em;
+            position:relative; left: -5em; font-style: italic; font-size: 80%; cursor: pointer; width: 3.5em;display: inline-block; margin-right: 1.5em; text-align: right;
         }
         span.lnr {  color: blue;}
         span.zlnr { color: grey;}
         span.nolnr { margin-left: 3.125em;}
         div.line { line-height: 3.0em; }
-        div.line.empty { display: inline-block; }
+        div.line.empty { display: block; height: 3em; width: 100%; }
         .flushRight {  float: right;
                         position: relative;
                         left: -1em;

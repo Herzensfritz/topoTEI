@@ -27,7 +27,7 @@
          <xsl:choose>
             <xsl:when test="$fullpage = 'true' or $editorModus = 'false'">
                <span class="lnr">
-                  <xsl:value-of select="if (number(replace($n, '[a-z]','')) lt 10) then (concat(' ', $n)) else ($n)"/>:
+                  <xsl:value-of select="if (number(replace($n, '[a-z]','')) lt 10) then (concat(' ', $n)) else ($n)"/>
                </span>
             </xsl:when>
             <xsl:otherwise>
@@ -46,7 +46,7 @@
                    <xsl:attribute name="onClick">
                        <xsl:value-of select="$function"/>
                    </xsl:attribute>
-                   <xsl:value-of select="if (number(replace($n, '[a-z]','')) lt 10) then (concat(' ', $n)) else ($n)"/>:
+                   <xsl:value-of select="if (number(replace($n, '[a-z]','')) lt 10) then (concat(' ', $n)) else ($n)"/>
                </xsl:element>
             </xsl:otherwise>
          </xsl:choose>
@@ -401,13 +401,14 @@
             <xsl:variable name="childStyle" select="//tei:sourceDoc//tei:add[@corresp=$addId]/@style"/>
             <xsl:variable name="parentId" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@xml:id"/>
             <xsl:variable name="parentStyle" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@style"/>
-            <xsl:variable name="rend" select="if (//tei:sourceDoc//tei:metamark[@target=$addId]/@rend) then (//tei:sourceDoc//tei:metamark[@target=$addId][1]/@rend) else (             if(@rend = 'insM' or @rend = 'Ez') then (@rend) else ())"/>
+            <xsl:variable name="rend" select="if (//tei:sourceDoc//tei:metamark[@target=$addId]/@rend) then (//tei:sourceDoc//tei:metamark[@target=$addId][1]/@rend) else (if(@rend = 'insM' or @rend = 'Ez') then (@rend) else ())"/>
+            <xsl:variable name="insMdirection" select="//tei:sourceDoc//tei:metamark[@target=$addId]/@place"/>
             <xsl:call-template name="writeAdd">
                 <xsl:with-param name="childId" select="$childId"/>
                 <xsl:with-param name="parentId" select="$parentId"/>
                <!-- <xsl:with-param name="childClass" select="concat(@place, ' ', $hand, ' centerLeft')"/> -->
                <xsl:with-param name="childClass" select="if (@instant = 'true' or parent::tei:subst/@instant = 'true') then (concat(@place, ' instantaneous')) else (@place)"/>
-                <xsl:with-param name="parentClass" select="if ($rend) then (concat($rend, 'insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
+                <xsl:with-param name="parentClass" select="if ($rend) then (concat('insertionMark ',$insMdirection, ' ',$rend, ' insertion-', @place, ' ', $hand)) else (concat('insertion-', @place, ' ', $hand))"/>
                 <xsl:with-param name="childStyle" select="$childStyle"/>
                 <xsl:with-param name="parentStyle" select="$parentStyle"/>
                 <xsl:with-param name="type" select="$type"/>
@@ -499,9 +500,9 @@
 
       </xsl:choose>
    </xsl:template>
-   <xsl:template match="tei:lb[not(@n)]">
+   <!-- <xsl:template match="tei:lb[not(@n)]">
        <br/>
-   </xsl:template>
+   </xsl:template> -->
    <!-- unprocessed tags ...-->
    <xsl:template match="tei:note[@type = 'private']"/>
    <xsl:template match="tei:choice[tei:sic/tei:lb]"/>
