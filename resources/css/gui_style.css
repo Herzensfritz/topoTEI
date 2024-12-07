@@ -122,6 +122,9 @@ body {
      .top-right { margin-left: 60%; }
       .insertion-above { 
          position:relative; top: -2px;height: 100%; width: 100%; }
+         .insertion-below  { 
+         position:relative; top: 10px;height: 100%; width: 100%; 
+      }
      .inSpatium { padding-left: -0.1em;}
      .beforePunctuation { padding-left: -0.01em;}
        .insertionMark.insertion-below:before { 
@@ -160,7 +163,7 @@ body {
         position: absolute;
         top: 1.8em;
         width: max-content;
-        line-height: 1em;
+        line-height: 1.5em;
      }
      .below.instantaneous {
        font-size: 100%; 
