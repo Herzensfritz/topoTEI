@@ -126,7 +126,21 @@
       <!-- old with 'inline' <xsl:variable name="spanType" select="replace(concat(@hand, ' ', @rend,' ',tei:zone/@type, ' ', if ($isInline = 'true') then ('inline') else ()), '#', '')"/> -->
       <xsl:variable name="spanType" select="replace(concat(@hand, ' ', @rend,' ',tei:zone/@type), '#', '')"/>
       <xsl:variable name="spanStyle" select="if ($isZone = 'true') then (         if (tei:zone/@xml:id) then (tei:zone/@style) else (parent::tei:zone/@style)) else ()"/>
-      <div id="{@xml:id}" class="{$lineClass}" style="{@style}">
+      <xsl:element name="div">
+         <xsl:attribute name="id">
+            <xsl:value-of select="@xml:id"/>
+         </xsl:attribute>
+         <xsl:attribute name="class">
+            <xsl:value-of select="$lineClass"/>
+         </xsl:attribute>
+         <xsl:attribute name="style">
+            <xsl:value-of select="@style"/>
+         </xsl:attribute>
+         <xsl:if test="@type='zz-right'">
+            <xsl:attribute name="data-right-line-number">
+               <xsl:value-of select="//tei:lb[@xml:id = $startId]/@n"/>
+            </xsl:attribute>
+         </xsl:if>
          <xsl:call-template name="writeLineNumber">
             <xsl:with-param name="lineType" select="$lineClass"/>
             <xsl:with-param name="n" select="//tei:lb[@xml:id = $startId]/@n"/>
@@ -205,6 +219,6 @@
                </xsl:choose>
             </xsl:element>
          </xsl:element>
-      </div>
+      </xsl:element>
    </xsl:template>
 </xsl:stylesheet>

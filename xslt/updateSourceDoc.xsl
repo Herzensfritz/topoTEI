@@ -246,6 +246,11 @@
               <xsl:value-of select="if (//tei:line[@xml:id = $xmlId]/@style) then (//tei:line[@xml:id = $xmlId]/@style) else ($style)"/>
             </xsl:attribute>
         </xsl:if>
+        <xsl:if test="//tei:lb[@xml:id = $id and @type='zz-right']|//tei:lb[@xml:id = $id]/ancestor::tei:ab[@type='zz-right']">
+            <xsl:attribute name="type">
+               <xsl:value-of select="'zz-right'"/>
+            </xsl:attribute>
+        </xsl:if>
         <xsl:if test="not(starts-with($id, 'empty'))">
             <xsl:attribute name="start">
               <xsl:value-of select="concat('#', $id)"/>
