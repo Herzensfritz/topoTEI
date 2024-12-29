@@ -434,7 +434,7 @@
       <xsl:param name="id"/>
       <xsl:param name="rend"/>
       <xsl:choose>
-         <xsl:when test="starts-with($rend, 'insM') or starts-with($rend, 'Ez')">
+         <xsl:when test="(starts-with($rend, 'insM') and not(ends-with($rend, 'Ext'))) or starts-with($rend, 'Ez')">
             <xsl:variable name="metamarkXmlId" select="concat('srcD_metamark_', $id)"/>
             <xsl:element name="metamark">
                 <xsl:attribute name="xml:id">

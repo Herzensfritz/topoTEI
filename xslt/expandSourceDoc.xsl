@@ -100,7 +100,7 @@
          <xsl:attribute name="n">
             <xsl:value-of select="//tei:lb[@xml:id = $startId]/@n"/>
          </xsl:attribute>
-         <xsl:if test="//tei:lb[@xml:id = $startId]/preceding::tei:handShift">
+         <xsl:if test="//tei:lb[@xml:id = $startId]/preceding::tei:handShift and not(//tei:lb[@xml:id = $startId]/parent::*[@hand])">
             <xsl:attribute name="hand">
                <xsl:value-of select="//tei:lb[@xml:id = $startId]/preceding::tei:handShift[1]/@new"/>
             </xsl:attribute>

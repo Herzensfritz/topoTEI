@@ -163,7 +163,7 @@ function myrest:debug() {
      <data desc="delete all files">
         {   for $resource in xmldb:get-child-resources($config:data-root)
                 return <file url="{$resource}">
-                     { (: myrest:deleteFile($resource, ()) :) } 
+                     { (:  myrest:deleteFile($resource, ()) :)  } 
                     </file>
                 
                

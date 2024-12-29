@@ -13,6 +13,10 @@ body {
    display: inline-block;
    left: 2em;
 }
+ .upside-down {
+	transform: rotate(180deg);
+	display: inline-block;
+    }
 .typesetter_red {
     color: var(--red);
 }
@@ -75,7 +79,7 @@ body {
    }
    .XXX_red, .N_red { color: #dc4731;}
    .N-Archiv_red { color: #b8390e;font-weight: bold;}
-   .N_pencil { color: gray; font-weight: bold;}
+   .N_pencil, .N-pencil { color: gray; font-weight: bold;}
    .N_brown1, .N_brown { color: var(--nbrown);}
    .red-marking:before { 
       color: var(--red-marking);

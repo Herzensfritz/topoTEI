@@ -147,7 +147,10 @@
          <xsl:value-of select="following-sibling::tei:add[@place='superimposed'][1]/text()"/>
       </span>
    </xsl:template>
-   <xsl:template match="tei:choice[not(tei:sic/tei:lb)]">
+   <xsl:template match="tei:choice[tei:abbr]">
+      <xsl:apply-templates select="tei:abbr/."/>
+   </xsl:template>
+   <xsl:template match="tei:choice[not(tei:sic/tei:lb) and not(tei:abbr)]">
       <xsl:param name="type">-1</xsl:param>
       <xsl:param name="startId"/>
       <span class="editorCorrection" title="{tei:sic/text()} &gt;{tei:corr/text()}" data-debug="{$type}" data-start-id="{$startId}">
